@@ -1,0 +1,4768 @@
+/******************************************************************************
+ * COPYRIGHT CRAY INC. ar_lcb_defs.h
+ * FILE: ar_lcb_defs.h
+ * Created by v2h.c on Wed Oct  8 14:39:04 2014
+ ******************************************************************************/
+
+#ifndef _AR_LCB_DEFS_H_
+#define _AR_LCB_DEFS_H_
+
+#define AR_LCB_N_MMRS                                          	65
+#define AR_LCB_N_DESCS                                         	0
+
+/*
+ *  AR LCB MMR TABLE ADDRESS DEFINES
+ */
+
+/*
+ *  AR LCB MMR ADDRESS DEFINES
+ */
+#define AR_SLB_LCB_CFG_RUN                                     	(AR_LCB_BASE+0x0000000000ull)
+#define AR_SLB_LCB_CFG_RUN_SIZE                                	0x0000000008ull
+#define AR_SLB_LCB_CFG_RUN_LIMIT                               	AR_SLB_LCB_CFG_RUN+AR_SLB_LCB_CFG_RUN_SIZE-1
+#define AR_SLB_LCB_CFG_MMR_RESET                               	(AR_LCB_BASE+0x0000000008ull)
+#define AR_SLB_LCB_CFG_MMR_RESET_SIZE                          	0x0000000008ull
+#define AR_SLB_LCB_CFG_MMR_RESET_LIMIT                         	AR_SLB_LCB_CFG_MMR_RESET+AR_SLB_LCB_CFG_MMR_RESET_SIZE-1
+#define AR_SLB_LCB_CFG_TX_FIFOS_RESET                          	(AR_LCB_BASE+0x0000000010ull)
+#define AR_SLB_LCB_CFG_TX_FIFOS_RESET_SIZE                     	0x0000000008ull
+#define AR_SLB_LCB_CFG_TX_FIFOS_RESET_LIMIT                    	AR_SLB_LCB_CFG_TX_FIFOS_RESET+AR_SLB_LCB_CFG_TX_FIFOS_RESET_SIZE-1
+#define AR_SLB_LCB_CFG_STARTUP_0                               	(AR_LCB_BASE+0x0000000018ull)
+#define AR_SLB_LCB_CFG_STARTUP_0_SIZE                          	0x0000000008ull
+#define AR_SLB_LCB_CFG_STARTUP_0_LIMIT                         	AR_SLB_LCB_CFG_STARTUP_0+AR_SLB_LCB_CFG_STARTUP_0_SIZE-1
+#define AR_SLB_LCB_CFG_STARTUP_1                               	(AR_LCB_BASE+0x0000000020ull)
+#define AR_SLB_LCB_CFG_STARTUP_1_SIZE                          	0x0000000008ull
+#define AR_SLB_LCB_CFG_STARTUP_1_LIMIT                         	AR_SLB_LCB_CFG_STARTUP_1+AR_SLB_LCB_CFG_STARTUP_1_SIZE-1
+#define AR_SLB_LCB_STS_STARTUP_0                               	(AR_LCB_BASE+0x0000000028ull)
+#define AR_SLB_LCB_STS_STARTUP_0_SIZE                          	0x0000000008ull
+#define AR_SLB_LCB_STS_STARTUP_0_LIMIT                         	AR_SLB_LCB_STS_STARTUP_0+AR_SLB_LCB_STS_STARTUP_0_SIZE-1
+#define AR_SLB_LCB_STS_STARTUP_1                               	(AR_LCB_BASE+0x0000000030ull)
+#define AR_SLB_LCB_STS_STARTUP_1_SIZE                          	0x0000000008ull
+#define AR_SLB_LCB_STS_STARTUP_1_LIMIT                         	AR_SLB_LCB_STS_STARTUP_1+AR_SLB_LCB_STS_STARTUP_1_SIZE-1
+#define AR_SLB_LCB_CFG_DISCOVERY_LOCAL                         	(AR_LCB_BASE+0x0000000038ull)
+#define AR_SLB_LCB_CFG_DISCOVERY_LOCAL_SIZE                    	0x0000000008ull
+#define AR_SLB_LCB_CFG_DISCOVERY_LOCAL_LIMIT                   	AR_SLB_LCB_CFG_DISCOVERY_LOCAL+AR_SLB_LCB_CFG_DISCOVERY_LOCAL_SIZE-1
+#define AR_SLB_LCB_STS_DISCOVERY_REMOTE                        	(AR_LCB_BASE+0x0000000040ull)
+#define AR_SLB_LCB_STS_DISCOVERY_REMOTE_SIZE                   	0x0000000008ull
+#define AR_SLB_LCB_STS_DISCOVERY_REMOTE_LIMIT                  	AR_SLB_LCB_STS_DISCOVERY_REMOTE+AR_SLB_LCB_STS_DISCOVERY_REMOTE_SIZE-1
+#define AR_SLB_LCB_CFG_SCRAMBLE_SEED_0                         	(AR_LCB_BASE+0x0000000048ull)
+#define AR_SLB_LCB_CFG_SCRAMBLE_SEED_0_SIZE                    	0x0000000008ull
+#define AR_SLB_LCB_CFG_SCRAMBLE_SEED_0_LIMIT                   	AR_SLB_LCB_CFG_SCRAMBLE_SEED_0+AR_SLB_LCB_CFG_SCRAMBLE_SEED_0_SIZE-1
+#define AR_SLB_LCB_CFG_SCRAMBLE_SEED_1                         	(AR_LCB_BASE+0x0000000050ull)
+#define AR_SLB_LCB_CFG_SCRAMBLE_SEED_1_SIZE                    	0x0000000008ull
+#define AR_SLB_LCB_CFG_SCRAMBLE_SEED_1_LIMIT                   	AR_SLB_LCB_CFG_SCRAMBLE_SEED_1+AR_SLB_LCB_CFG_SCRAMBLE_SEED_1_SIZE-1
+#define AR_SLB_LCB_CFG_SCRAMBLE_SEED_2                         	(AR_LCB_BASE+0x0000000058ull)
+#define AR_SLB_LCB_CFG_SCRAMBLE_SEED_2_SIZE                    	0x0000000008ull
+#define AR_SLB_LCB_CFG_SCRAMBLE_SEED_2_LIMIT                   	AR_SLB_LCB_CFG_SCRAMBLE_SEED_2+AR_SLB_LCB_CFG_SCRAMBLE_SEED_2_SIZE-1
+#define AR_SLB_LCB_CFG_DEGRADE                                 	(AR_LCB_BASE+0x0000000060ull)
+#define AR_SLB_LCB_CFG_DEGRADE_SIZE                            	0x0000000008ull
+#define AR_SLB_LCB_CFG_DEGRADE_LIMIT                           	AR_SLB_LCB_CFG_DEGRADE+AR_SLB_LCB_CFG_DEGRADE_SIZE-1
+#define AR_SLB_LCB_CFG_LINK_KILL_EN                            	(AR_LCB_BASE+0x0000000068ull)
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_SIZE                       	0x0000000008ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_LIMIT                      	AR_SLB_LCB_CFG_LINK_KILL_EN+AR_SLB_LCB_CFG_LINK_KILL_EN_SIZE-1
+#define AR_SLB_LCB_ERR_FLG                                     	(AR_LCB_BASE+0x0000000070ull)
+#define AR_SLB_LCB_ERR_FLG_SIZE                                	0x0000000008ull
+#define AR_SLB_LCB_ERR_FLG_LIMIT                               	AR_SLB_LCB_ERR_FLG+AR_SLB_LCB_ERR_FLG_SIZE-1
+#define AR_SLB_LCB_ERR_CLR                                     	(AR_LCB_BASE+0x0000000078ull)
+#define AR_SLB_LCB_ERR_CLR_SIZE                                	0x0000000008ull
+#define AR_SLB_LCB_ERR_CLR_LIMIT                               	AR_SLB_LCB_ERR_CLR+AR_SLB_LCB_ERR_CLR_SIZE-1
+#define AR_SLB_LCB_ERR_HSS_MSK                                 	(AR_LCB_BASE+0x0000000080ull)
+#define AR_SLB_LCB_ERR_HSS_MSK_SIZE                            	0x0000000008ull
+#define AR_SLB_LCB_ERR_HSS_MSK_LIMIT                           	AR_SLB_LCB_ERR_HSS_MSK+AR_SLB_LCB_ERR_HSS_MSK_SIZE-1
+#define AR_SLB_LCB_ERR_FIRST_FLG                               	(AR_LCB_BASE+0x0000000088ull)
+#define AR_SLB_LCB_ERR_FIRST_FLG_SIZE                          	0x0000000008ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_LIMIT                         	AR_SLB_LCB_ERR_FIRST_FLG+AR_SLB_LCB_ERR_FIRST_FLG_SIZE-1
+#define AR_SLB_LCB_DBG_GOOD_UP_CNT                             	(AR_LCB_BASE+0x0000000090ull)
+#define AR_SLB_LCB_DBG_GOOD_UP_CNT_SIZE                        	0x0000000008ull
+#define AR_SLB_LCB_DBG_GOOD_UP_CNT_LIMIT                       	AR_SLB_LCB_DBG_GOOD_UP_CNT+AR_SLB_LCB_DBG_GOOD_UP_CNT_SIZE-1
+#define AR_SLB_LCB_DBG_ACCEPTED_UP_CNT                         	(AR_LCB_BASE+0x0000000098ull)
+#define AR_SLB_LCB_DBG_ACCEPTED_UP_CNT_SIZE                    	0x0000000008ull
+#define AR_SLB_LCB_DBG_ACCEPTED_UP_CNT_LIMIT                   	AR_SLB_LCB_DBG_ACCEPTED_UP_CNT+AR_SLB_LCB_DBG_ACCEPTED_UP_CNT_SIZE-1
+#define AR_SLB_LCB_DBG_CLK_CNTR                                	(AR_LCB_BASE+0x00000000a0ull)
+#define AR_SLB_LCB_DBG_CLK_CNTR_SIZE                           	0x0000000008ull
+#define AR_SLB_LCB_DBG_CLK_CNTR_LIMIT                          	AR_SLB_LCB_DBG_CLK_CNTR+AR_SLB_LCB_DBG_CLK_CNTR_SIZE-1
+#define AR_SLB_LCB_CFG_PERF_CNTR_RESET                         	(AR_LCB_BASE+0x00000000a8ull)
+#define AR_SLB_LCB_CFG_PERF_CNTR_RESET_SIZE                    	0x0000000008ull
+#define AR_SLB_LCB_CFG_PERF_CNTR_RESET_LIMIT                   	AR_SLB_LCB_CFG_PERF_CNTR_RESET+AR_SLB_LCB_CFG_PERF_CNTR_RESET_SIZE-1
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_0                          	(AR_LCB_BASE+0x00000000b0ull)
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_0_SIZE                     	0x0000000008ull
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_0_LIMIT                    	AR_SLB_LCB_ERR_INFO_CRC_CNT_0+AR_SLB_LCB_ERR_INFO_CRC_CNT_0_SIZE-1
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_1                          	(AR_LCB_BASE+0x00000000b8ull)
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_1_SIZE                     	0x0000000008ull
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_1_LIMIT                    	AR_SLB_LCB_ERR_INFO_CRC_CNT_1+AR_SLB_LCB_ERR_INFO_CRC_CNT_1_SIZE-1
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_2                          	(AR_LCB_BASE+0x00000000c0ull)
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_2_SIZE                     	0x0000000008ull
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_2_LIMIT                    	AR_SLB_LCB_ERR_INFO_CRC_CNT_2+AR_SLB_LCB_ERR_INFO_CRC_CNT_2_SIZE-1
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_3                          	(AR_LCB_BASE+0x00000000c8ull)
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_3_SIZE                     	0x0000000008ull
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_3_LIMIT                    	AR_SLB_LCB_ERR_INFO_CRC_CNT_3+AR_SLB_LCB_ERR_INFO_CRC_CNT_3_SIZE-1
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_4                          	(AR_LCB_BASE+0x00000000d0ull)
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_4_SIZE                     	0x0000000008ull
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_4_LIMIT                    	AR_SLB_LCB_ERR_INFO_CRC_CNT_4+AR_SLB_LCB_ERR_INFO_CRC_CNT_4_SIZE-1
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_5                          	(AR_LCB_BASE+0x00000000d8ull)
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_5_SIZE                     	0x0000000008ull
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_5_LIMIT                    	AR_SLB_LCB_ERR_INFO_CRC_CNT_5+AR_SLB_LCB_ERR_INFO_CRC_CNT_5_SIZE-1
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT                           	(AR_LCB_BASE+0x00000000e0ull)
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_SIZE                      	0x0000000008ull
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_LIMIT                     	AR_SLB_LCB_ERR_INFO_MISC_CNT+AR_SLB_LCB_ERR_INFO_MISC_CNT_SIZE-1
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_0                          	(AR_LCB_BASE+0x00000000e8ull)
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_0_SIZE                     	0x0000000008ull
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_0_LIMIT                    	AR_SLB_LCB_ERR_INFO_ECC_CNT_0+AR_SLB_LCB_ERR_INFO_ECC_CNT_0_SIZE-1
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_1                          	(AR_LCB_BASE+0x00000000f0ull)
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_1_SIZE                     	0x0000000008ull
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_1_LIMIT                    	AR_SLB_LCB_ERR_INFO_ECC_CNT_1+AR_SLB_LCB_ERR_INFO_ECC_CNT_1_SIZE-1
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0                       	(AR_LCB_BASE+0x00000000f8ull)
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_SIZE                  	0x0000000008ull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_LIMIT                 	AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0+AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_SIZE-1
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0                       	(AR_LCB_BASE+0x0000000100ull)
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_SIZE                  	0x0000000008ull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_LIMIT                 	AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0+AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_SIZE-1
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1                       	(AR_LCB_BASE+0x0000000108ull)
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_SIZE                  	0x0000000008ull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_LIMIT                 	AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1+AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_SIZE-1
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1                       	(AR_LCB_BASE+0x0000000110ull)
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_SIZE                  	0x0000000008ull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_LIMIT                 	AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1+AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_SIZE-1
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_SBE                         	(AR_LCB_BASE+0x0000000118ull)
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_SIZE                    	0x0000000008ull
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_LIMIT                   	AR_SLB_LCB_ERR_INFO_FL_BUF_SBE+AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_SIZE-1
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_MBE                         	(AR_LCB_BASE+0x0000000120ull)
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_SIZE                    	0x0000000008ull
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_LIMIT                   	AR_SLB_LCB_ERR_INFO_FL_BUF_MBE+AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_SIZE-1
+#define AR_SLB_LCB_DBG_ERRINJ_CRC                              	(AR_LCB_BASE+0x0000000128ull)
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_SIZE                         	0x0000000008ull
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_LIMIT                        	AR_SLB_LCB_DBG_ERRINJ_CRC+AR_SLB_LCB_DBG_ERRINJ_CRC_SIZE-1
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_SEED                         	(AR_LCB_BASE+0x0000000130ull)
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_SEED_SIZE                    	0x0000000008ull
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_SEED_LIMIT                   	AR_SLB_LCB_DBG_ERRINJ_CRC_SEED+AR_SLB_LCB_DBG_ERRINJ_CRC_SEED_SIZE-1
+#define AR_SLB_LCB_DBG_ERRINJ_ECC                              	(AR_LCB_BASE+0x0000000138ull)
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_SIZE                         	0x0000000008ull
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_LIMIT                        	AR_SLB_LCB_DBG_ERRINJ_ECC+AR_SLB_LCB_DBG_ERRINJ_ECC_SIZE-1
+#define AR_SLB_LCB_DBG_ERRINJ_MISC                             	(AR_LCB_BASE+0x0000000140ull)
+#define AR_SLB_LCB_DBG_ERRINJ_MISC_SIZE                        	0x0000000008ull
+#define AR_SLB_LCB_DBG_ERRINJ_MISC_LIMIT                       	AR_SLB_LCB_DBG_ERRINJ_MISC+AR_SLB_LCB_DBG_ERRINJ_MISC_SIZE-1
+#define AR_SLB_LCB_DBG_INIT_STATE_0                            	(AR_LCB_BASE+0x0000000148ull)
+#define AR_SLB_LCB_DBG_INIT_STATE_0_SIZE                       	0x0000000008ull
+#define AR_SLB_LCB_DBG_INIT_STATE_0_LIMIT                      	AR_SLB_LCB_DBG_INIT_STATE_0+AR_SLB_LCB_DBG_INIT_STATE_0_SIZE-1
+#define AR_SLB_LCB_DBG_INIT_STATE_1                            	(AR_LCB_BASE+0x0000000150ull)
+#define AR_SLB_LCB_DBG_INIT_STATE_1_SIZE                       	0x0000000008ull
+#define AR_SLB_LCB_DBG_INIT_STATE_1_LIMIT                      	AR_SLB_LCB_DBG_INIT_STATE_1+AR_SLB_LCB_DBG_INIT_STATE_1_SIZE-1
+#define AR_SLB_LCB_DBG_INIT_STATE_2                            	(AR_LCB_BASE+0x0000000158ull)
+#define AR_SLB_LCB_DBG_INIT_STATE_2_SIZE                       	0x0000000008ull
+#define AR_SLB_LCB_DBG_INIT_STATE_2_LIMIT                      	AR_SLB_LCB_DBG_INIT_STATE_2+AR_SLB_LCB_DBG_INIT_STATE_2_SIZE-1
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0                            	(AR_LCB_BASE+0x0000000160ull)
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_SIZE                       	0x0000000008ull
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_LIMIT                      	AR_SLB_LCB_CFG_INIT_PAUSE_0+AR_SLB_LCB_CFG_INIT_PAUSE_0_SIZE-1
+#define AR_SLB_LCB_CFG_INIT_PAUSE_1                            	(AR_LCB_BASE+0x0000000168ull)
+#define AR_SLB_LCB_CFG_INIT_PAUSE_1_SIZE                       	0x0000000008ull
+#define AR_SLB_LCB_CFG_INIT_PAUSE_1_LIMIT                      	AR_SLB_LCB_CFG_INIT_PAUSE_1+AR_SLB_LCB_CFG_INIT_PAUSE_1_SIZE-1
+#define AR_SLB_LCB_DBG_TX_FIFO_WR_DATA                         	(AR_LCB_BASE+0x0000000170ull)
+#define AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_SIZE                    	0x0000000008ull
+#define AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LIMIT                   	AR_SLB_LCB_DBG_TX_FIFO_WR_DATA+AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_SIZE-1
+#define AR_SLB_LCB_DBG_TX_FIFO_RD_DATA                         	(AR_LCB_BASE+0x0000000178ull)
+#define AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_SIZE                    	0x0000000008ull
+#define AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LIMIT                   	AR_SLB_LCB_DBG_TX_FIFO_RD_DATA+AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_SIZE-1
+#define AR_SLB_LCB_DBG_RX_FIFO_WR_DATA                         	(AR_LCB_BASE+0x0000000180ull)
+#define AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_SIZE                    	0x0000000008ull
+#define AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LIMIT                   	AR_SLB_LCB_DBG_RX_FIFO_WR_DATA+AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_SIZE-1
+#define AR_SLB_LCB_DBG_RX_FIFO_RD_DATA                         	(AR_LCB_BASE+0x0000000188ull)
+#define AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_SIZE                    	0x0000000008ull
+#define AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LIMIT                   	AR_SLB_LCB_DBG_RX_FIFO_RD_DATA+AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_SIZE-1
+#define AR_SLB_LCB_DBG_REINIT_CAUSE                            	(AR_LCB_BASE+0x0000000190ull)
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_SIZE                       	0x0000000008ull
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_LIMIT                      	AR_SLB_LCB_DBG_REINIT_CAUSE+AR_SLB_LCB_DBG_REINIT_CAUSE_SIZE-1
+#define AR_SLB_LCB_DBG_REPLAY_0                                	(AR_LCB_BASE+0x0000000198ull)
+#define AR_SLB_LCB_DBG_REPLAY_0_SIZE                           	0x0000000008ull
+#define AR_SLB_LCB_DBG_REPLAY_0_LIMIT                          	AR_SLB_LCB_DBG_REPLAY_0+AR_SLB_LCB_DBG_REPLAY_0_SIZE-1
+#define AR_SLB_LCB_DBG_REPLAY_1                                	(AR_LCB_BASE+0x00000001a0ull)
+#define AR_SLB_LCB_DBG_REPLAY_1_SIZE                           	0x0000000008ull
+#define AR_SLB_LCB_DBG_REPLAY_1_LIMIT                          	AR_SLB_LCB_DBG_REPLAY_1+AR_SLB_LCB_DBG_REPLAY_1_SIZE-1
+#define AR_SLB_LCB_DBG_OFLW                                    	(AR_LCB_BASE+0x00000001a8ull)
+#define AR_SLB_LCB_DBG_OFLW_SIZE                               	0x0000000008ull
+#define AR_SLB_LCB_DBG_OFLW_LIMIT                              	AR_SLB_LCB_DBG_OFLW+AR_SLB_LCB_DBG_OFLW_SIZE-1
+#define AR_SLB_LCB_DBG_VC_ACK                                  	(AR_LCB_BASE+0x00000001b0ull)
+#define AR_SLB_LCB_DBG_VC_ACK_SIZE                             	0x0000000008ull
+#define AR_SLB_LCB_DBG_VC_ACK_LIMIT                            	AR_SLB_LCB_DBG_VC_ACK+AR_SLB_LCB_DBG_VC_ACK_SIZE-1
+#define AR_SLB_LCB_CFG_PAUSE                                   	(AR_LCB_BASE+0x00000001b8ull)
+#define AR_SLB_LCB_CFG_PAUSE_SIZE                              	0x0000000008ull
+#define AR_SLB_LCB_CFG_PAUSE_LIMIT                             	AR_SLB_LCB_CFG_PAUSE+AR_SLB_LCB_CFG_PAUSE_SIZE-1
+#define AR_SLB_LCB_CFG_COMPARE_VALUE                           	(AR_LCB_BASE+0x00000001c0ull)
+#define AR_SLB_LCB_CFG_COMPARE_VALUE_SIZE                      	0x0000000008ull
+#define AR_SLB_LCB_CFG_COMPARE_VALUE_LIMIT                     	AR_SLB_LCB_CFG_COMPARE_VALUE+AR_SLB_LCB_CFG_COMPARE_VALUE_SIZE-1
+#define AR_SLB_LCB_CFG_COMPARE_MASK                            	(AR_LCB_BASE+0x00000001c8ull)
+#define AR_SLB_LCB_CFG_COMPARE_MASK_SIZE                       	0x0000000008ull
+#define AR_SLB_LCB_CFG_COMPARE_MASK_LIMIT                      	AR_SLB_LCB_CFG_COMPARE_MASK+AR_SLB_LCB_CFG_COMPARE_MASK_SIZE-1
+#define AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT                      	(AR_LCB_BASE+0x00000001d0ull)
+#define AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_SIZE                 	0x0000000008ull
+#define AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_LIMIT                	AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT+AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_SIZE-1
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE                          	(AR_LCB_BASE+0x00000001d8ull)
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_SIZE                     	0x0000000008ull
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_LIMIT                    	AR_SLB_LCB_CFG_RAM_READ_WRITE+AR_SLB_LCB_CFG_RAM_READ_WRITE_SIZE-1
+#define AR_SLB_LCB_CFG_RAM_DATA                                	(AR_LCB_BASE+0x00000001e0ull)
+#define AR_SLB_LCB_CFG_RAM_DATA_SIZE                           	0x0000000008ull
+#define AR_SLB_LCB_CFG_RAM_DATA_LIMIT                          	AR_SLB_LCB_CFG_RAM_DATA+AR_SLB_LCB_CFG_RAM_DATA_SIZE-1
+#define AR_SLB_LCB_CFG_SERDES_CX                               	(AR_LCB_BASE+0x00000001e8ull)
+#define AR_SLB_LCB_CFG_SERDES_CX_SIZE                          	0x0000000008ull
+#define AR_SLB_LCB_CFG_SERDES_CX_LIMIT                         	AR_SLB_LCB_CFG_SERDES_CX+AR_SLB_LCB_CFG_SERDES_CX_SIZE-1
+#define AR_SLB_LCB_CFG_SERDES_TX                               	(AR_LCB_BASE+0x00000001f0ull)
+#define AR_SLB_LCB_CFG_SERDES_TX_SIZE                          	0x0000000008ull
+#define AR_SLB_LCB_CFG_SERDES_TX_LIMIT                         	AR_SLB_LCB_CFG_SERDES_TX+AR_SLB_LCB_CFG_SERDES_TX_SIZE-1
+#define AR_SLB_LCB_CFG_SERDES_RX                               	(AR_LCB_BASE+0x00000001f8ull)
+#define AR_SLB_LCB_CFG_SERDES_RX_SIZE                          	0x0000000008ull
+#define AR_SLB_LCB_CFG_SERDES_RX_LIMIT                         	AR_SLB_LCB_CFG_SERDES_RX+AR_SLB_LCB_CFG_SERDES_RX_SIZE-1
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS                          	(AR_LCB_BASE+0x0000000200ull)
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_SIZE                     	0x0000000008ull
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_LIMIT                    	AR_SLB_LCB_DBG_SERDES_OUTPUTS+AR_SLB_LCB_DBG_SERDES_OUTPUTS_SIZE-1
+
+/*
+ *  AR_SLB_LCB_CFG_RUN DEFINES
+ */
+#define AR_SLB_LCB_CFG_RUN_EN_MASK                                      	0x0000000000000001ull
+#define AR_SLB_LCB_CFG_RUN_EN_BP                                        	0
+#define AR_SLB_LCB_CFG_RUN_EN_QW                                        	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_CFG_MMR_RESET DEFINES
+ */
+#define AR_SLB_LCB_CFG_MMR_RESET_EN_MASK                                	0x0000000000000001ull
+#define AR_SLB_LCB_CFG_MMR_RESET_EN_BP                                  	0
+#define AR_SLB_LCB_CFG_MMR_RESET_EN_QW                                  	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_CFG_TX_FIFOS_RESET DEFINES
+ */
+#define AR_SLB_LCB_CFG_TX_FIFOS_RESET_ON_REINIT_MASK                    	0x0000000000000100ull
+#define AR_SLB_LCB_CFG_TX_FIFOS_RESET_RADR_MASK                         	0x0000000000000070ull
+#define AR_SLB_LCB_CFG_TX_FIFOS_RESET_EN_MASK                           	0x0000000000000001ull
+#define AR_SLB_LCB_CFG_TX_FIFOS_RESET_ON_REINIT_BP                      	8
+#define AR_SLB_LCB_CFG_TX_FIFOS_RESET_RADR_BP                           	4
+#define AR_SLB_LCB_CFG_TX_FIFOS_RESET_EN_BP                             	0
+#define AR_SLB_LCB_CFG_TX_FIFOS_RESET_ON_REINIT_QW                      	0
+#define AR_SLB_LCB_CFG_TX_FIFOS_RESET_RADR_QW                           	0
+#define AR_SLB_LCB_CFG_TX_FIFOS_RESET_EN_QW                             	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_CFG_STARTUP_0 DEFINES
+ */
+#define AR_SLB_LCB_CFG_STARTUP_0_MAX_RCV_UP_NUM_MASK                    	0x3f00000000000000ull
+#define AR_SLB_LCB_CFG_STARTUP_0_MIN_RCV_UP_NUM_MASK                    	0x003f000000000000ull
+#define AR_SLB_LCB_CFG_STARTUP_0_MIN_REPLAY_TIMEOUT_SEL2_MASK           	0x0000700000000000ull
+#define AR_SLB_LCB_CFG_STARTUP_0_MIN_REPLAY_TIMEOUT_SEL1_MASK           	0x0000070000000000ull
+#define AR_SLB_LCB_CFG_STARTUP_0_INIT_REPLAY_TIMEOUT_SEL_MASK           	0x0000003000000000ull
+#define AR_SLB_LCB_CFG_STARTUP_0_LN_ALLOWED_TIME_TO_PASS_MASK           	0x0000000300000000ull
+#define AR_SLB_LCB_CFG_STARTUP_0_LN_TEST_REQ_MATCH_CNT_MASK             	0x0000000070000000ull
+#define AR_SLB_LCB_CFG_STARTUP_0_LN_DISABLE_4_SKEW_MODE_MASK            	0x0000000003000000ull
+#define AR_SLB_LCB_CFG_STARTUP_0_FORCE_LN_ENABLE_MASK                   	0x0000000000700000ull
+#define AR_SLB_LCB_CFG_STARTUP_0_LN_REINIT_REENABLE_MASK                	0x0000000000080000ull
+#define AR_SLB_LCB_CFG_STARTUP_0_RX_LN_ALLOWED_MASK                     	0x0000000000070000ull
+#define AR_SLB_LCB_CFG_STARTUP_0_CRC_PER_LANE_MODE_MASK                 	0x0000000000001000ull
+#define AR_SLB_LCB_CFG_STARTUP_0_RX_LANE_FSS_MASK                       	0x0000000000000200ull
+#define AR_SLB_LCB_CFG_STARTUP_0_TX_LANE_FSS_MASK                       	0x0000000000000100ull
+#define AR_SLB_LCB_CFG_STARTUP_0_LOOPBACK_MASK                          	0x0000000000000030ull
+#define AR_SLB_LCB_CFG_STARTUP_0_RX_FIFOS_RESET_RADR_MASK               	0x000000000000000full
+#define AR_SLB_LCB_CFG_STARTUP_0_MAX_RCV_UP_NUM_BP                      	56
+#define AR_SLB_LCB_CFG_STARTUP_0_MIN_RCV_UP_NUM_BP                      	48
+#define AR_SLB_LCB_CFG_STARTUP_0_MIN_REPLAY_TIMEOUT_SEL2_BP             	44
+#define AR_SLB_LCB_CFG_STARTUP_0_MIN_REPLAY_TIMEOUT_SEL1_BP             	40
+#define AR_SLB_LCB_CFG_STARTUP_0_INIT_REPLAY_TIMEOUT_SEL_BP             	36
+#define AR_SLB_LCB_CFG_STARTUP_0_LN_ALLOWED_TIME_TO_PASS_BP             	32
+#define AR_SLB_LCB_CFG_STARTUP_0_LN_TEST_REQ_MATCH_CNT_BP               	28
+#define AR_SLB_LCB_CFG_STARTUP_0_LN_DISABLE_4_SKEW_MODE_BP              	24
+#define AR_SLB_LCB_CFG_STARTUP_0_FORCE_LN_ENABLE_BP                     	20
+#define AR_SLB_LCB_CFG_STARTUP_0_LN_REINIT_REENABLE_BP                  	19
+#define AR_SLB_LCB_CFG_STARTUP_0_RX_LN_ALLOWED_BP                       	16
+#define AR_SLB_LCB_CFG_STARTUP_0_CRC_PER_LANE_MODE_BP                   	12
+#define AR_SLB_LCB_CFG_STARTUP_0_RX_LANE_FSS_BP                         	9
+#define AR_SLB_LCB_CFG_STARTUP_0_TX_LANE_FSS_BP                         	8
+#define AR_SLB_LCB_CFG_STARTUP_0_LOOPBACK_BP                            	4
+#define AR_SLB_LCB_CFG_STARTUP_0_RX_FIFOS_RESET_RADR_BP                 	0
+#define AR_SLB_LCB_CFG_STARTUP_0_MAX_RCV_UP_NUM_QW                      	0
+#define AR_SLB_LCB_CFG_STARTUP_0_MIN_RCV_UP_NUM_QW                      	0
+#define AR_SLB_LCB_CFG_STARTUP_0_MIN_REPLAY_TIMEOUT_SEL2_QW             	0
+#define AR_SLB_LCB_CFG_STARTUP_0_MIN_REPLAY_TIMEOUT_SEL1_QW             	0
+#define AR_SLB_LCB_CFG_STARTUP_0_INIT_REPLAY_TIMEOUT_SEL_QW             	0
+#define AR_SLB_LCB_CFG_STARTUP_0_LN_ALLOWED_TIME_TO_PASS_QW             	0
+#define AR_SLB_LCB_CFG_STARTUP_0_LN_TEST_REQ_MATCH_CNT_QW               	0
+#define AR_SLB_LCB_CFG_STARTUP_0_LN_DISABLE_4_SKEW_MODE_QW              	0
+#define AR_SLB_LCB_CFG_STARTUP_0_FORCE_LN_ENABLE_QW                     	0
+#define AR_SLB_LCB_CFG_STARTUP_0_LN_REINIT_REENABLE_QW                  	0
+#define AR_SLB_LCB_CFG_STARTUP_0_RX_LN_ALLOWED_QW                       	0
+#define AR_SLB_LCB_CFG_STARTUP_0_CRC_PER_LANE_MODE_QW                   	0
+#define AR_SLB_LCB_CFG_STARTUP_0_RX_LANE_FSS_QW                         	0
+#define AR_SLB_LCB_CFG_STARTUP_0_TX_LANE_FSS_QW                         	0
+#define AR_SLB_LCB_CFG_STARTUP_0_LOOPBACK_QW                            	0
+#define AR_SLB_LCB_CFG_STARTUP_0_RX_FIFOS_RESET_RADR_QW                 	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_CFG_STARTUP_1 DEFINES
+ */
+#define AR_SLB_LCB_CFG_STARTUP_1_LINK_ALIVE_TIMER_MAX_MASK              	0x0300000000000000ull
+#define AR_SLB_LCB_CFG_STARTUP_1_LTO_DEGRADE_REENABLE_MASK              	0x0010000000000000ull
+#define AR_SLB_LCB_CFG_STARTUP_1_LTO_REINIT_REENABLE_MASK               	0x0001000000000000ull
+#define AR_SLB_LCB_CFG_STARTUP_1_REINITS_BEFORE_LINK_LOW_MASK           	0x0000300000000000ull
+#define AR_SLB_LCB_CFG_STARTUP_1_LINK_AUTO_RESTART_EN_MASK              	0x0000010000000000ull
+#define AR_SLB_LCB_CFG_STARTUP_1_LINK_TIMER_DISABLE_MASK                	0x0000001000000000ull
+#define AR_SLB_LCB_CFG_STARTUP_1_PAUSE_ON_REINIT_MASK                   	0x0000000100000000ull
+#define AR_SLB_LCB_CFG_STARTUP_1_USE_REPLAY_BUF_DATA_MASK               	0x0000000010000000ull
+#define AR_SLB_LCB_CFG_STARTUP_1_TURN_ON_SIGNAL_CNT_SEL_MASK            	0x0000000001000000ull
+#define AR_SLB_LCB_CFG_STARTUP_1_BACK_CH_SELECT_PRIORITY_MASK           	0x0000000000300000ull
+#define AR_SLB_LCB_CFG_STARTUP_1_RCLK_SELECT_PRIORITY_MASK              	0x0000000000030000ull
+#define AR_SLB_LCB_CFG_STARTUP_1_THROTTLE_TX_FLITS_MASK                 	0x000000000000f000ull
+#define AR_SLB_LCB_CFG_STARTUP_1_IGNORE_RCLK_LOSS_MASK                  	0x0000000000000100ull
+#define AR_SLB_LCB_CFG_STARTUP_1_IGNORE_SEQ_BAD_CRC_MASK                	0x0000000000000010ull
+#define AR_SLB_LCB_CFG_STARTUP_1_NUM_SEQ_BAD_CRC_MAX_MASK               	0x0000000000000007ull
+#define AR_SLB_LCB_CFG_STARTUP_1_LINK_ALIVE_TIMER_MAX_BP                	56
+#define AR_SLB_LCB_CFG_STARTUP_1_LTO_DEGRADE_REENABLE_BP                	52
+#define AR_SLB_LCB_CFG_STARTUP_1_LTO_REINIT_REENABLE_BP                 	48
+#define AR_SLB_LCB_CFG_STARTUP_1_REINITS_BEFORE_LINK_LOW_BP             	44
+#define AR_SLB_LCB_CFG_STARTUP_1_LINK_AUTO_RESTART_EN_BP                	40
+#define AR_SLB_LCB_CFG_STARTUP_1_LINK_TIMER_DISABLE_BP                  	36
+#define AR_SLB_LCB_CFG_STARTUP_1_PAUSE_ON_REINIT_BP                     	32
+#define AR_SLB_LCB_CFG_STARTUP_1_USE_REPLAY_BUF_DATA_BP                 	28
+#define AR_SLB_LCB_CFG_STARTUP_1_TURN_ON_SIGNAL_CNT_SEL_BP              	24
+#define AR_SLB_LCB_CFG_STARTUP_1_BACK_CH_SELECT_PRIORITY_BP             	20
+#define AR_SLB_LCB_CFG_STARTUP_1_RCLK_SELECT_PRIORITY_BP                	16
+#define AR_SLB_LCB_CFG_STARTUP_1_THROTTLE_TX_FLITS_BP                   	12
+#define AR_SLB_LCB_CFG_STARTUP_1_IGNORE_RCLK_LOSS_BP                    	8
+#define AR_SLB_LCB_CFG_STARTUP_1_IGNORE_SEQ_BAD_CRC_BP                  	4
+#define AR_SLB_LCB_CFG_STARTUP_1_NUM_SEQ_BAD_CRC_MAX_BP                 	0
+#define AR_SLB_LCB_CFG_STARTUP_1_LINK_ALIVE_TIMER_MAX_QW                	0
+#define AR_SLB_LCB_CFG_STARTUP_1_LTO_DEGRADE_REENABLE_QW                	0
+#define AR_SLB_LCB_CFG_STARTUP_1_LTO_REINIT_REENABLE_QW                 	0
+#define AR_SLB_LCB_CFG_STARTUP_1_REINITS_BEFORE_LINK_LOW_QW             	0
+#define AR_SLB_LCB_CFG_STARTUP_1_LINK_AUTO_RESTART_EN_QW                	0
+#define AR_SLB_LCB_CFG_STARTUP_1_LINK_TIMER_DISABLE_QW                  	0
+#define AR_SLB_LCB_CFG_STARTUP_1_PAUSE_ON_REINIT_QW                     	0
+#define AR_SLB_LCB_CFG_STARTUP_1_USE_REPLAY_BUF_DATA_QW                 	0
+#define AR_SLB_LCB_CFG_STARTUP_1_TURN_ON_SIGNAL_CNT_SEL_QW              	0
+#define AR_SLB_LCB_CFG_STARTUP_1_BACK_CH_SELECT_PRIORITY_QW             	0
+#define AR_SLB_LCB_CFG_STARTUP_1_RCLK_SELECT_PRIORITY_QW                	0
+#define AR_SLB_LCB_CFG_STARTUP_1_THROTTLE_TX_FLITS_QW                   	0
+#define AR_SLB_LCB_CFG_STARTUP_1_IGNORE_RCLK_LOSS_QW                    	0
+#define AR_SLB_LCB_CFG_STARTUP_1_IGNORE_SEQ_BAD_CRC_QW                  	0
+#define AR_SLB_LCB_CFG_STARTUP_1_NUM_SEQ_BAD_CRC_MAX_QW                 	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_STS_STARTUP_0 DEFINES
+ */
+#define AR_SLB_LCB_STS_STARTUP_0_VC_ACK_QUIET_CNTR_MASK                 	0x0007000000000000ull
+#define AR_SLB_LCB_STS_STARTUP_0_PHIT_QUIET_CNTR_MASK                   	0x0000700000000000ull
+#define AR_SLB_LCB_STS_STARTUP_0_ROUND_TRIP_UP_CNT_MASK                 	0x00000ff000000000ull
+#define AR_SLB_LCB_STS_STARTUP_0_RX_LINK3OR_PHY_LN_EN_MASK              	0x0000000700000000ull
+#define AR_SLB_LCB_STS_STARTUP_0_DEGRADE_LN_EN_MASK                     	0x0000000070000000ull
+#define AR_SLB_LCB_STS_STARTUP_0_RX_PHY_LN_EN_MASK                      	0x0000000007000000ull
+#define AR_SLB_LCB_STS_STARTUP_0_TX_PHY_LN_EN_MASK                      	0x0000000000700000ull
+#define AR_SLB_LCB_STS_STARTUP_0_RX_LOGICAL_LN_EN_MASK                  	0x0000000000070000ull
+#define AR_SLB_LCB_STS_STARTUP_0_RX_LN2_LOGICAL_ID_MASK                 	0x0000000000003000ull
+#define AR_SLB_LCB_STS_STARTUP_0_RX_LN1_LOGICAL_ID_MASK                 	0x0000000000000300ull
+#define AR_SLB_LCB_STS_STARTUP_0_RX_LN0_LOGICAL_ID_MASK                 	0x0000000000000030ull
+#define AR_SLB_LCB_STS_STARTUP_0_RX_UP_MODE_MASK                        	0x0000000000000008ull
+#define AR_SLB_LCB_STS_STARTUP_0_TX_UP_MODE_MASK                        	0x0000000000000004ull
+#define AR_SLB_LCB_STS_STARTUP_0_R_Q_LCB_COL_CHAN_ALIVE_MASK            	0x0000000000000002ull
+#define AR_SLB_LCB_STS_STARTUP_0_LINK_ALIVE_MASK                        	0x0000000000000001ull
+#define AR_SLB_LCB_STS_STARTUP_0_VC_ACK_QUIET_CNTR_BP                   	48
+#define AR_SLB_LCB_STS_STARTUP_0_PHIT_QUIET_CNTR_BP                     	44
+#define AR_SLB_LCB_STS_STARTUP_0_ROUND_TRIP_UP_CNT_BP                   	36
+#define AR_SLB_LCB_STS_STARTUP_0_RX_LINK3OR_PHY_LN_EN_BP                	32
+#define AR_SLB_LCB_STS_STARTUP_0_DEGRADE_LN_EN_BP                       	28
+#define AR_SLB_LCB_STS_STARTUP_0_RX_PHY_LN_EN_BP                        	24
+#define AR_SLB_LCB_STS_STARTUP_0_TX_PHY_LN_EN_BP                        	20
+#define AR_SLB_LCB_STS_STARTUP_0_RX_LOGICAL_LN_EN_BP                    	16
+#define AR_SLB_LCB_STS_STARTUP_0_RX_LN2_LOGICAL_ID_BP                   	12
+#define AR_SLB_LCB_STS_STARTUP_0_RX_LN1_LOGICAL_ID_BP                   	8
+#define AR_SLB_LCB_STS_STARTUP_0_RX_LN0_LOGICAL_ID_BP                   	4
+#define AR_SLB_LCB_STS_STARTUP_0_RX_UP_MODE_BP                          	3
+#define AR_SLB_LCB_STS_STARTUP_0_TX_UP_MODE_BP                          	2
+#define AR_SLB_LCB_STS_STARTUP_0_R_Q_LCB_COL_CHAN_ALIVE_BP              	1
+#define AR_SLB_LCB_STS_STARTUP_0_LINK_ALIVE_BP                          	0
+#define AR_SLB_LCB_STS_STARTUP_0_VC_ACK_QUIET_CNTR_QW                   	0
+#define AR_SLB_LCB_STS_STARTUP_0_PHIT_QUIET_CNTR_QW                     	0
+#define AR_SLB_LCB_STS_STARTUP_0_ROUND_TRIP_UP_CNT_QW                   	0
+#define AR_SLB_LCB_STS_STARTUP_0_RX_LINK3OR_PHY_LN_EN_QW                	0
+#define AR_SLB_LCB_STS_STARTUP_0_DEGRADE_LN_EN_QW                       	0
+#define AR_SLB_LCB_STS_STARTUP_0_RX_PHY_LN_EN_QW                        	0
+#define AR_SLB_LCB_STS_STARTUP_0_TX_PHY_LN_EN_QW                        	0
+#define AR_SLB_LCB_STS_STARTUP_0_RX_LOGICAL_LN_EN_QW                    	0
+#define AR_SLB_LCB_STS_STARTUP_0_RX_LN2_LOGICAL_ID_QW                   	0
+#define AR_SLB_LCB_STS_STARTUP_0_RX_LN1_LOGICAL_ID_QW                   	0
+#define AR_SLB_LCB_STS_STARTUP_0_RX_LN0_LOGICAL_ID_QW                   	0
+#define AR_SLB_LCB_STS_STARTUP_0_RX_UP_MODE_QW                          	0
+#define AR_SLB_LCB_STS_STARTUP_0_TX_UP_MODE_QW                          	0
+#define AR_SLB_LCB_STS_STARTUP_0_R_Q_LCB_COL_CHAN_ALIVE_QW              	0
+#define AR_SLB_LCB_STS_STARTUP_0_LINK_ALIVE_QW                          	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_STS_STARTUP_1 DEFINES
+ */
+#define AR_SLB_LCB_STS_STARTUP_1_LINK_ALIVE_TIMER_VALUE_MASK            	0x00000000000fffffull
+#define AR_SLB_LCB_STS_STARTUP_1_LINK_ALIVE_TIMER_VALUE_BP              	0
+#define AR_SLB_LCB_STS_STARTUP_1_LINK_ALIVE_TIMER_VALUE_QW              	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_CFG_DISCOVERY_LOCAL DEFINES
+ */
+#define AR_SLB_LCB_CFG_DISCOVERY_LOCAL_PATTERN_MASK                     	0xffffffffffffffffull
+#define AR_SLB_LCB_CFG_DISCOVERY_LOCAL_PATTERN_BP                       	0
+#define AR_SLB_LCB_CFG_DISCOVERY_LOCAL_PATTERN_QW                       	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_STS_DISCOVERY_REMOTE DEFINES
+ */
+#define AR_SLB_LCB_STS_DISCOVERY_REMOTE_PATTERN_MASK                    	0xffffffffffffffffull
+#define AR_SLB_LCB_STS_DISCOVERY_REMOTE_PATTERN_BP                      	0
+#define AR_SLB_LCB_STS_DISCOVERY_REMOTE_PATTERN_QW                      	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_CFG_SCRAMBLE_SEED_0 DEFINES
+ */
+#define AR_SLB_LCB_CFG_SCRAMBLE_SEED_0_VAL_MASK                         	0x00000000003fffffull
+#define AR_SLB_LCB_CFG_SCRAMBLE_SEED_0_VAL_BP                           	0
+#define AR_SLB_LCB_CFG_SCRAMBLE_SEED_0_VAL_QW                           	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_CFG_SCRAMBLE_SEED_1 DEFINES
+ */
+#define AR_SLB_LCB_CFG_SCRAMBLE_SEED_1_VAL_MASK                         	0x00000000003fffffull
+#define AR_SLB_LCB_CFG_SCRAMBLE_SEED_1_VAL_BP                           	0
+#define AR_SLB_LCB_CFG_SCRAMBLE_SEED_1_VAL_QW                           	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_CFG_SCRAMBLE_SEED_2 DEFINES
+ */
+#define AR_SLB_LCB_CFG_SCRAMBLE_SEED_2_VAL_MASK                         	0x00000000003fffffull
+#define AR_SLB_LCB_CFG_SCRAMBLE_SEED_2_VAL_BP                           	0
+#define AR_SLB_LCB_CFG_SCRAMBLE_SEED_2_VAL_QW                           	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_CFG_DEGRADE DEFINES
+ */
+#define AR_SLB_LCB_CFG_DEGRADE_RESET_SETTINGS_MASK                      	0x0100000000000000ull
+#define AR_SLB_LCB_CFG_DEGRADE_CURRENT_CFG_RACES_WON_MASK               	0x003f000000000000ull
+#define AR_SLB_LCB_CFG_DEGRADE_LN_12_RACES_WON_MASK                     	0x00003f0000000000ull
+#define AR_SLB_LCB_CFG_DEGRADE_LN_02_RACES_WON_MASK                     	0x0000003f00000000ull
+#define AR_SLB_LCB_CFG_DEGRADE_LN_01_RACES_WON_MASK                     	0x000000003f000000ull
+#define AR_SLB_LCB_CFG_DEGRADE_LN_EN_ALT_MASK                           	0x0000000000700000ull
+#define AR_SLB_LCB_CFG_DEGRADE_RACE_WINS_2TRIGGER_MASK                  	0x000000000003f000ull
+#define AR_SLB_LCB_CFG_DEGRADE_RACE_DURATION_SEL_MASK                   	0x0000000000000700ull
+#define AR_SLB_LCB_CFG_DEGRADE_NUM_DEGRADES_ALLOWED_MASK                	0x0000000000000030ull
+#define AR_SLB_LCB_CFG_DEGRADE_LN_X_DEGRADE_DISABLE_MASK                	0x0000000000000007ull
+#define AR_SLB_LCB_CFG_DEGRADE_RESET_SETTINGS_BP                        	56
+#define AR_SLB_LCB_CFG_DEGRADE_CURRENT_CFG_RACES_WON_BP                 	48
+#define AR_SLB_LCB_CFG_DEGRADE_LN_12_RACES_WON_BP                       	40
+#define AR_SLB_LCB_CFG_DEGRADE_LN_02_RACES_WON_BP                       	32
+#define AR_SLB_LCB_CFG_DEGRADE_LN_01_RACES_WON_BP                       	24
+#define AR_SLB_LCB_CFG_DEGRADE_LN_EN_ALT_BP                             	20
+#define AR_SLB_LCB_CFG_DEGRADE_RACE_WINS_2TRIGGER_BP                    	12
+#define AR_SLB_LCB_CFG_DEGRADE_RACE_DURATION_SEL_BP                     	8
+#define AR_SLB_LCB_CFG_DEGRADE_NUM_DEGRADES_ALLOWED_BP                  	4
+#define AR_SLB_LCB_CFG_DEGRADE_LN_X_DEGRADE_DISABLE_BP                  	0
+#define AR_SLB_LCB_CFG_DEGRADE_RESET_SETTINGS_QW                        	0
+#define AR_SLB_LCB_CFG_DEGRADE_CURRENT_CFG_RACES_WON_QW                 	0
+#define AR_SLB_LCB_CFG_DEGRADE_LN_12_RACES_WON_QW                       	0
+#define AR_SLB_LCB_CFG_DEGRADE_LN_02_RACES_WON_QW                       	0
+#define AR_SLB_LCB_CFG_DEGRADE_LN_01_RACES_WON_QW                       	0
+#define AR_SLB_LCB_CFG_DEGRADE_LN_EN_ALT_QW                             	0
+#define AR_SLB_LCB_CFG_DEGRADE_RACE_WINS_2TRIGGER_QW                    	0
+#define AR_SLB_LCB_CFG_DEGRADE_RACE_DURATION_SEL_QW                     	0
+#define AR_SLB_LCB_CFG_DEGRADE_NUM_DEGRADES_ALLOWED_QW                  	0
+#define AR_SLB_LCB_CFG_DEGRADE_LN_X_DEGRADE_DISABLE_QW                  	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_CFG_LINK_KILL_EN DEFINES
+ */
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_MBE_MASK              	0x0000000040000000ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_SBE_MASK              	0x0000000020000000ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_MBE1_MASK                	0x0000000010000000ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_SBE1_MASK                	0x0000000008000000ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_MBE0_MASK                	0x0000000004000000ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_SBE0_MASK                	0x0000000002000000ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_NEG_EDGE_LINK_ALIVE_MASK            	0x0000000001000000ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_VC_ACK_OFLW_MASK                    	0x0000000000ff0000ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_RCV_BUF_OFLW_MASK                   	0x0000000000008000ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_OFLW_MASK             	0x0000000000004000ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_UNEXPECTED_REPLAY_MASK              	0x0000000000002000ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_RX_LESS_THAN_3_LANES_MASK           	0x0000000000001000ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_TX_LESS_THAN_3_LANES_MASK           	0x0000000000000800ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_HOLD_REINIT_MASK                    	0x0000000000000400ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_OR_OF_ALL_PAUSE_MODES_MASK          	0x0000000000000200ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_MMR_FORCED_REINIT_MASK              	0x0000000000000100ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_REINIT_4_LN_DEGRADE_MASK            	0x0000000000000080ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_LINK_TIMEOUT_MASK             	0x0000000000000040ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_FAILED_DESKEW_MASK            	0x0000000000000020ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_REINIT_FROM_PEER_MASK               	0x0000000000000010ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_RCLK_STOPPED_MASK                   	0x0000000000000008ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_SEQ_CRC_ERR_MASK                    	0x0000000000000004ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_LOST_TON_SIG_MASK             	0x0000000000000002ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_DIAG_ONLY_MASK                      	0x0000000000000001ull
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_MBE_BP                	30
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_SBE_BP                	29
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_MBE1_BP                  	28
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_SBE1_BP                  	27
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_MBE0_BP                  	26
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_SBE0_BP                  	25
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_NEG_EDGE_LINK_ALIVE_BP              	24
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_VC_ACK_OFLW_BP                      	16
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_RCV_BUF_OFLW_BP                     	15
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_OFLW_BP               	14
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_UNEXPECTED_REPLAY_BP                	13
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_RX_LESS_THAN_3_LANES_BP             	12
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_TX_LESS_THAN_3_LANES_BP             	11
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_HOLD_REINIT_BP                      	10
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_OR_OF_ALL_PAUSE_MODES_BP            	9
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_MMR_FORCED_REINIT_BP                	8
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_REINIT_4_LN_DEGRADE_BP              	7
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_LINK_TIMEOUT_BP               	6
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_FAILED_DESKEW_BP              	5
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_REINIT_FROM_PEER_BP                 	4
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_RCLK_STOPPED_BP                     	3
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_SEQ_CRC_ERR_BP                      	2
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_LOST_TON_SIG_BP               	1
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_DIAG_ONLY_BP                        	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_MBE_QW                	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_SBE_QW                	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_MBE1_QW                  	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_SBE1_QW                  	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_MBE0_QW                  	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_SBE0_QW                  	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_NEG_EDGE_LINK_ALIVE_QW              	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_VC_ACK_OFLW_QW                      	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_RCV_BUF_OFLW_QW                     	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_OFLW_QW               	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_UNEXPECTED_REPLAY_QW                	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_RX_LESS_THAN_3_LANES_QW             	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_TX_LESS_THAN_3_LANES_QW             	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_HOLD_REINIT_QW                      	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_OR_OF_ALL_PAUSE_MODES_QW            	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_MMR_FORCED_REINIT_QW                	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_REINIT_4_LN_DEGRADE_QW              	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_LINK_TIMEOUT_QW               	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_FAILED_DESKEW_QW              	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_REINIT_FROM_PEER_QW                 	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_RCLK_STOPPED_QW                     	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_SEQ_CRC_ERR_QW                      	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_LOST_TON_SIG_QW               	0
+#define AR_SLB_LCB_CFG_LINK_KILL_EN_DIAG_ONLY_QW                        	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_ERR_FLG DEFINES
+ */
+#define AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_MBE_MASK                       	0x0000000040000000ull
+#define AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_SBE_MASK                       	0x0000000020000000ull
+#define AR_SLB_LCB_ERR_FLG_REPLAY_BUF_MBE1_MASK                         	0x0000000010000000ull
+#define AR_SLB_LCB_ERR_FLG_REPLAY_BUF_SBE1_MASK                         	0x0000000008000000ull
+#define AR_SLB_LCB_ERR_FLG_REPLAY_BUF_MBE0_MASK                         	0x0000000004000000ull
+#define AR_SLB_LCB_ERR_FLG_REPLAY_BUF_SBE0_MASK                         	0x0000000002000000ull
+#define AR_SLB_LCB_ERR_FLG_NEG_EDGE_LINK_ALIVE_MASK                     	0x0000000001000000ull
+#define AR_SLB_LCB_ERR_FLG_VC_ACK_OFLW_MASK                             	0x0000000000ff0000ull
+#define AR_SLB_LCB_ERR_FLG_RCV_BUF_OFLW_MASK                            	0x0000000000008000ull
+#define AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_OFLW_MASK                      	0x0000000000004000ull
+#define AR_SLB_LCB_ERR_FLG_UNEXPECTED_REPLAY_MASK                       	0x0000000000002000ull
+#define AR_SLB_LCB_ERR_FLG_RX_LESS_THAN_3_LANES_MASK                    	0x0000000000001000ull
+#define AR_SLB_LCB_ERR_FLG_TX_LESS_THAN_3_LANES_MASK                    	0x0000000000000800ull
+#define AR_SLB_LCB_ERR_FLG_HOLD_REINIT_MASK                             	0x0000000000000400ull
+#define AR_SLB_LCB_ERR_FLG_OR_OF_ALL_PAUSE_MODES_MASK                   	0x0000000000000200ull
+#define AR_SLB_LCB_ERR_FLG_MMR_FORCED_REINIT_MASK                       	0x0000000000000100ull
+#define AR_SLB_LCB_ERR_FLG_REINIT_4_LN_DEGRADE_MASK                     	0x0000000000000080ull
+#define AR_SLB_LCB_ERR_FLG_RST_4_LINK_TIMEOUT_MASK                      	0x0000000000000040ull
+#define AR_SLB_LCB_ERR_FLG_RST_4_FAILED_DESKEW_MASK                     	0x0000000000000020ull
+#define AR_SLB_LCB_ERR_FLG_REINIT_FROM_PEER_MASK                        	0x0000000000000010ull
+#define AR_SLB_LCB_ERR_FLG_RCLK_STOPPED_MASK                            	0x0000000000000008ull
+#define AR_SLB_LCB_ERR_FLG_SEQ_CRC_ERR_MASK                             	0x0000000000000004ull
+#define AR_SLB_LCB_ERR_FLG_RST_4_LOST_TON_SIG_MASK                      	0x0000000000000002ull
+#define AR_SLB_LCB_ERR_FLG_DIAG_ONLY_MASK                               	0x0000000000000001ull
+#define AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_MBE_BP                         	30
+#define AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_SBE_BP                         	29
+#define AR_SLB_LCB_ERR_FLG_REPLAY_BUF_MBE1_BP                           	28
+#define AR_SLB_LCB_ERR_FLG_REPLAY_BUF_SBE1_BP                           	27
+#define AR_SLB_LCB_ERR_FLG_REPLAY_BUF_MBE0_BP                           	26
+#define AR_SLB_LCB_ERR_FLG_REPLAY_BUF_SBE0_BP                           	25
+#define AR_SLB_LCB_ERR_FLG_NEG_EDGE_LINK_ALIVE_BP                       	24
+#define AR_SLB_LCB_ERR_FLG_VC_ACK_OFLW_BP                               	16
+#define AR_SLB_LCB_ERR_FLG_RCV_BUF_OFLW_BP                              	15
+#define AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_OFLW_BP                        	14
+#define AR_SLB_LCB_ERR_FLG_UNEXPECTED_REPLAY_BP                         	13
+#define AR_SLB_LCB_ERR_FLG_RX_LESS_THAN_3_LANES_BP                      	12
+#define AR_SLB_LCB_ERR_FLG_TX_LESS_THAN_3_LANES_BP                      	11
+#define AR_SLB_LCB_ERR_FLG_HOLD_REINIT_BP                               	10
+#define AR_SLB_LCB_ERR_FLG_OR_OF_ALL_PAUSE_MODES_BP                     	9
+#define AR_SLB_LCB_ERR_FLG_MMR_FORCED_REINIT_BP                         	8
+#define AR_SLB_LCB_ERR_FLG_REINIT_4_LN_DEGRADE_BP                       	7
+#define AR_SLB_LCB_ERR_FLG_RST_4_LINK_TIMEOUT_BP                        	6
+#define AR_SLB_LCB_ERR_FLG_RST_4_FAILED_DESKEW_BP                       	5
+#define AR_SLB_LCB_ERR_FLG_REINIT_FROM_PEER_BP                          	4
+#define AR_SLB_LCB_ERR_FLG_RCLK_STOPPED_BP                              	3
+#define AR_SLB_LCB_ERR_FLG_SEQ_CRC_ERR_BP                               	2
+#define AR_SLB_LCB_ERR_FLG_RST_4_LOST_TON_SIG_BP                        	1
+#define AR_SLB_LCB_ERR_FLG_DIAG_ONLY_BP                                 	0
+#define AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_MBE_QW                         	0
+#define AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_SBE_QW                         	0
+#define AR_SLB_LCB_ERR_FLG_REPLAY_BUF_MBE1_QW                           	0
+#define AR_SLB_LCB_ERR_FLG_REPLAY_BUF_SBE1_QW                           	0
+#define AR_SLB_LCB_ERR_FLG_REPLAY_BUF_MBE0_QW                           	0
+#define AR_SLB_LCB_ERR_FLG_REPLAY_BUF_SBE0_QW                           	0
+#define AR_SLB_LCB_ERR_FLG_NEG_EDGE_LINK_ALIVE_QW                       	0
+#define AR_SLB_LCB_ERR_FLG_VC_ACK_OFLW_QW                               	0
+#define AR_SLB_LCB_ERR_FLG_RCV_BUF_OFLW_QW                              	0
+#define AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_OFLW_QW                        	0
+#define AR_SLB_LCB_ERR_FLG_UNEXPECTED_REPLAY_QW                         	0
+#define AR_SLB_LCB_ERR_FLG_RX_LESS_THAN_3_LANES_QW                      	0
+#define AR_SLB_LCB_ERR_FLG_TX_LESS_THAN_3_LANES_QW                      	0
+#define AR_SLB_LCB_ERR_FLG_HOLD_REINIT_QW                               	0
+#define AR_SLB_LCB_ERR_FLG_OR_OF_ALL_PAUSE_MODES_QW                     	0
+#define AR_SLB_LCB_ERR_FLG_MMR_FORCED_REINIT_QW                         	0
+#define AR_SLB_LCB_ERR_FLG_REINIT_4_LN_DEGRADE_QW                       	0
+#define AR_SLB_LCB_ERR_FLG_RST_4_LINK_TIMEOUT_QW                        	0
+#define AR_SLB_LCB_ERR_FLG_RST_4_FAILED_DESKEW_QW                       	0
+#define AR_SLB_LCB_ERR_FLG_REINIT_FROM_PEER_QW                          	0
+#define AR_SLB_LCB_ERR_FLG_RCLK_STOPPED_QW                              	0
+#define AR_SLB_LCB_ERR_FLG_SEQ_CRC_ERR_QW                               	0
+#define AR_SLB_LCB_ERR_FLG_RST_4_LOST_TON_SIG_QW                        	0
+#define AR_SLB_LCB_ERR_FLG_DIAG_ONLY_QW                                 	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_ERR_CLR DEFINES
+ */
+#define AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_MBE_MASK                       	0x0000000040000000ull
+#define AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_SBE_MASK                       	0x0000000020000000ull
+#define AR_SLB_LCB_ERR_CLR_REPLAY_BUF_MBE1_MASK                         	0x0000000010000000ull
+#define AR_SLB_LCB_ERR_CLR_REPLAY_BUF_SBE1_MASK                         	0x0000000008000000ull
+#define AR_SLB_LCB_ERR_CLR_REPLAY_BUF_MBE0_MASK                         	0x0000000004000000ull
+#define AR_SLB_LCB_ERR_CLR_REPLAY_BUF_SBE0_MASK                         	0x0000000002000000ull
+#define AR_SLB_LCB_ERR_CLR_NEG_EDGE_LINK_ALIVE_MASK                     	0x0000000001000000ull
+#define AR_SLB_LCB_ERR_CLR_VC_ACK_OFLW_MASK                             	0x0000000000ff0000ull
+#define AR_SLB_LCB_ERR_CLR_RCV_BUF_OFLW_MASK                            	0x0000000000008000ull
+#define AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_OFLW_MASK                      	0x0000000000004000ull
+#define AR_SLB_LCB_ERR_CLR_UNEXPECTED_REPLAY_MASK                       	0x0000000000002000ull
+#define AR_SLB_LCB_ERR_CLR_RX_LESS_THAN_3_LANES_MASK                    	0x0000000000001000ull
+#define AR_SLB_LCB_ERR_CLR_TX_LESS_THAN_3_LANES_MASK                    	0x0000000000000800ull
+#define AR_SLB_LCB_ERR_CLR_HOLD_REINIT_MASK                             	0x0000000000000400ull
+#define AR_SLB_LCB_ERR_CLR_OR_OF_ALL_PAUSE_MODES_MASK                   	0x0000000000000200ull
+#define AR_SLB_LCB_ERR_CLR_MMR_FORCED_REINIT_MASK                       	0x0000000000000100ull
+#define AR_SLB_LCB_ERR_CLR_REINIT_4_LN_DEGRADE_MASK                     	0x0000000000000080ull
+#define AR_SLB_LCB_ERR_CLR_RST_4_LINK_TIMEOUT_MASK                      	0x0000000000000040ull
+#define AR_SLB_LCB_ERR_CLR_RST_4_FAILED_DESKEW_MASK                     	0x0000000000000020ull
+#define AR_SLB_LCB_ERR_CLR_REINIT_FROM_PEER_MASK                        	0x0000000000000010ull
+#define AR_SLB_LCB_ERR_CLR_RCLK_STOPPED_MASK                            	0x0000000000000008ull
+#define AR_SLB_LCB_ERR_CLR_SEQ_CRC_ERR_MASK                             	0x0000000000000004ull
+#define AR_SLB_LCB_ERR_CLR_RST_4_LOST_TON_SIG_MASK                      	0x0000000000000002ull
+#define AR_SLB_LCB_ERR_CLR_DIAG_ONLY_MASK                               	0x0000000000000001ull
+#define AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_MBE_BP                         	30
+#define AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_SBE_BP                         	29
+#define AR_SLB_LCB_ERR_CLR_REPLAY_BUF_MBE1_BP                           	28
+#define AR_SLB_LCB_ERR_CLR_REPLAY_BUF_SBE1_BP                           	27
+#define AR_SLB_LCB_ERR_CLR_REPLAY_BUF_MBE0_BP                           	26
+#define AR_SLB_LCB_ERR_CLR_REPLAY_BUF_SBE0_BP                           	25
+#define AR_SLB_LCB_ERR_CLR_NEG_EDGE_LINK_ALIVE_BP                       	24
+#define AR_SLB_LCB_ERR_CLR_VC_ACK_OFLW_BP                               	16
+#define AR_SLB_LCB_ERR_CLR_RCV_BUF_OFLW_BP                              	15
+#define AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_OFLW_BP                        	14
+#define AR_SLB_LCB_ERR_CLR_UNEXPECTED_REPLAY_BP                         	13
+#define AR_SLB_LCB_ERR_CLR_RX_LESS_THAN_3_LANES_BP                      	12
+#define AR_SLB_LCB_ERR_CLR_TX_LESS_THAN_3_LANES_BP                      	11
+#define AR_SLB_LCB_ERR_CLR_HOLD_REINIT_BP                               	10
+#define AR_SLB_LCB_ERR_CLR_OR_OF_ALL_PAUSE_MODES_BP                     	9
+#define AR_SLB_LCB_ERR_CLR_MMR_FORCED_REINIT_BP                         	8
+#define AR_SLB_LCB_ERR_CLR_REINIT_4_LN_DEGRADE_BP                       	7
+#define AR_SLB_LCB_ERR_CLR_RST_4_LINK_TIMEOUT_BP                        	6
+#define AR_SLB_LCB_ERR_CLR_RST_4_FAILED_DESKEW_BP                       	5
+#define AR_SLB_LCB_ERR_CLR_REINIT_FROM_PEER_BP                          	4
+#define AR_SLB_LCB_ERR_CLR_RCLK_STOPPED_BP                              	3
+#define AR_SLB_LCB_ERR_CLR_SEQ_CRC_ERR_BP                               	2
+#define AR_SLB_LCB_ERR_CLR_RST_4_LOST_TON_SIG_BP                        	1
+#define AR_SLB_LCB_ERR_CLR_DIAG_ONLY_BP                                 	0
+#define AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_MBE_QW                         	0
+#define AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_SBE_QW                         	0
+#define AR_SLB_LCB_ERR_CLR_REPLAY_BUF_MBE1_QW                           	0
+#define AR_SLB_LCB_ERR_CLR_REPLAY_BUF_SBE1_QW                           	0
+#define AR_SLB_LCB_ERR_CLR_REPLAY_BUF_MBE0_QW                           	0
+#define AR_SLB_LCB_ERR_CLR_REPLAY_BUF_SBE0_QW                           	0
+#define AR_SLB_LCB_ERR_CLR_NEG_EDGE_LINK_ALIVE_QW                       	0
+#define AR_SLB_LCB_ERR_CLR_VC_ACK_OFLW_QW                               	0
+#define AR_SLB_LCB_ERR_CLR_RCV_BUF_OFLW_QW                              	0
+#define AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_OFLW_QW                        	0
+#define AR_SLB_LCB_ERR_CLR_UNEXPECTED_REPLAY_QW                         	0
+#define AR_SLB_LCB_ERR_CLR_RX_LESS_THAN_3_LANES_QW                      	0
+#define AR_SLB_LCB_ERR_CLR_TX_LESS_THAN_3_LANES_QW                      	0
+#define AR_SLB_LCB_ERR_CLR_HOLD_REINIT_QW                               	0
+#define AR_SLB_LCB_ERR_CLR_OR_OF_ALL_PAUSE_MODES_QW                     	0
+#define AR_SLB_LCB_ERR_CLR_MMR_FORCED_REINIT_QW                         	0
+#define AR_SLB_LCB_ERR_CLR_REINIT_4_LN_DEGRADE_QW                       	0
+#define AR_SLB_LCB_ERR_CLR_RST_4_LINK_TIMEOUT_QW                        	0
+#define AR_SLB_LCB_ERR_CLR_RST_4_FAILED_DESKEW_QW                       	0
+#define AR_SLB_LCB_ERR_CLR_REINIT_FROM_PEER_QW                          	0
+#define AR_SLB_LCB_ERR_CLR_RCLK_STOPPED_QW                              	0
+#define AR_SLB_LCB_ERR_CLR_SEQ_CRC_ERR_QW                               	0
+#define AR_SLB_LCB_ERR_CLR_RST_4_LOST_TON_SIG_QW                        	0
+#define AR_SLB_LCB_ERR_CLR_DIAG_ONLY_QW                                 	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_ERR_HSS_MSK DEFINES
+ */
+#define AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_MBE_MASK                   	0x0000000040000000ull
+#define AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_SBE_MASK                   	0x0000000020000000ull
+#define AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_MBE1_MASK                     	0x0000000010000000ull
+#define AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_SBE1_MASK                     	0x0000000008000000ull
+#define AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_MBE0_MASK                     	0x0000000004000000ull
+#define AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_SBE0_MASK                     	0x0000000002000000ull
+#define AR_SLB_LCB_ERR_HSS_MSK_NEG_EDGE_LINK_ALIVE_MASK                 	0x0000000001000000ull
+#define AR_SLB_LCB_ERR_HSS_MSK_VC_ACK_OFLW_MASK                         	0x0000000000ff0000ull
+#define AR_SLB_LCB_ERR_HSS_MSK_RCV_BUF_OFLW_MASK                        	0x0000000000008000ull
+#define AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_OFLW_MASK                  	0x0000000000004000ull
+#define AR_SLB_LCB_ERR_HSS_MSK_UNEXPECTED_REPLAY_MASK                   	0x0000000000002000ull
+#define AR_SLB_LCB_ERR_HSS_MSK_RX_LESS_THAN_3_LANES_MASK                	0x0000000000001000ull
+#define AR_SLB_LCB_ERR_HSS_MSK_TX_LESS_THAN_3_LANES_MASK                	0x0000000000000800ull
+#define AR_SLB_LCB_ERR_HSS_MSK_HOLD_REINIT_MASK                         	0x0000000000000400ull
+#define AR_SLB_LCB_ERR_HSS_MSK_OR_OF_ALL_PAUSE_MODES_MASK               	0x0000000000000200ull
+#define AR_SLB_LCB_ERR_HSS_MSK_MMR_FORCED_REINIT_MASK                   	0x0000000000000100ull
+#define AR_SLB_LCB_ERR_HSS_MSK_REINIT_4_LN_DEGRADE_MASK                 	0x0000000000000080ull
+#define AR_SLB_LCB_ERR_HSS_MSK_RST_4_LINK_TIMEOUT_MASK                  	0x0000000000000040ull
+#define AR_SLB_LCB_ERR_HSS_MSK_RST_4_FAILED_DESKEW_MASK                 	0x0000000000000020ull
+#define AR_SLB_LCB_ERR_HSS_MSK_REINIT_FROM_PEER_MASK                    	0x0000000000000010ull
+#define AR_SLB_LCB_ERR_HSS_MSK_RCLK_STOPPED_MASK                        	0x0000000000000008ull
+#define AR_SLB_LCB_ERR_HSS_MSK_SEQ_CRC_ERR_MASK                         	0x0000000000000004ull
+#define AR_SLB_LCB_ERR_HSS_MSK_RST_4_LOST_TON_SIG_MASK                  	0x0000000000000002ull
+#define AR_SLB_LCB_ERR_HSS_MSK_DIAG_ONLY_MASK                           	0x0000000000000001ull
+#define AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_MBE_BP                     	30
+#define AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_SBE_BP                     	29
+#define AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_MBE1_BP                       	28
+#define AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_SBE1_BP                       	27
+#define AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_MBE0_BP                       	26
+#define AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_SBE0_BP                       	25
+#define AR_SLB_LCB_ERR_HSS_MSK_NEG_EDGE_LINK_ALIVE_BP                   	24
+#define AR_SLB_LCB_ERR_HSS_MSK_VC_ACK_OFLW_BP                           	16
+#define AR_SLB_LCB_ERR_HSS_MSK_RCV_BUF_OFLW_BP                          	15
+#define AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_OFLW_BP                    	14
+#define AR_SLB_LCB_ERR_HSS_MSK_UNEXPECTED_REPLAY_BP                     	13
+#define AR_SLB_LCB_ERR_HSS_MSK_RX_LESS_THAN_3_LANES_BP                  	12
+#define AR_SLB_LCB_ERR_HSS_MSK_TX_LESS_THAN_3_LANES_BP                  	11
+#define AR_SLB_LCB_ERR_HSS_MSK_HOLD_REINIT_BP                           	10
+#define AR_SLB_LCB_ERR_HSS_MSK_OR_OF_ALL_PAUSE_MODES_BP                 	9
+#define AR_SLB_LCB_ERR_HSS_MSK_MMR_FORCED_REINIT_BP                     	8
+#define AR_SLB_LCB_ERR_HSS_MSK_REINIT_4_LN_DEGRADE_BP                   	7
+#define AR_SLB_LCB_ERR_HSS_MSK_RST_4_LINK_TIMEOUT_BP                    	6
+#define AR_SLB_LCB_ERR_HSS_MSK_RST_4_FAILED_DESKEW_BP                   	5
+#define AR_SLB_LCB_ERR_HSS_MSK_REINIT_FROM_PEER_BP                      	4
+#define AR_SLB_LCB_ERR_HSS_MSK_RCLK_STOPPED_BP                          	3
+#define AR_SLB_LCB_ERR_HSS_MSK_SEQ_CRC_ERR_BP                           	2
+#define AR_SLB_LCB_ERR_HSS_MSK_RST_4_LOST_TON_SIG_BP                    	1
+#define AR_SLB_LCB_ERR_HSS_MSK_DIAG_ONLY_BP                             	0
+#define AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_MBE_QW                     	0
+#define AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_SBE_QW                     	0
+#define AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_MBE1_QW                       	0
+#define AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_SBE1_QW                       	0
+#define AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_MBE0_QW                       	0
+#define AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_SBE0_QW                       	0
+#define AR_SLB_LCB_ERR_HSS_MSK_NEG_EDGE_LINK_ALIVE_QW                   	0
+#define AR_SLB_LCB_ERR_HSS_MSK_VC_ACK_OFLW_QW                           	0
+#define AR_SLB_LCB_ERR_HSS_MSK_RCV_BUF_OFLW_QW                          	0
+#define AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_OFLW_QW                    	0
+#define AR_SLB_LCB_ERR_HSS_MSK_UNEXPECTED_REPLAY_QW                     	0
+#define AR_SLB_LCB_ERR_HSS_MSK_RX_LESS_THAN_3_LANES_QW                  	0
+#define AR_SLB_LCB_ERR_HSS_MSK_TX_LESS_THAN_3_LANES_QW                  	0
+#define AR_SLB_LCB_ERR_HSS_MSK_HOLD_REINIT_QW                           	0
+#define AR_SLB_LCB_ERR_HSS_MSK_OR_OF_ALL_PAUSE_MODES_QW                 	0
+#define AR_SLB_LCB_ERR_HSS_MSK_MMR_FORCED_REINIT_QW                     	0
+#define AR_SLB_LCB_ERR_HSS_MSK_REINIT_4_LN_DEGRADE_QW                   	0
+#define AR_SLB_LCB_ERR_HSS_MSK_RST_4_LINK_TIMEOUT_QW                    	0
+#define AR_SLB_LCB_ERR_HSS_MSK_RST_4_FAILED_DESKEW_QW                   	0
+#define AR_SLB_LCB_ERR_HSS_MSK_REINIT_FROM_PEER_QW                      	0
+#define AR_SLB_LCB_ERR_HSS_MSK_RCLK_STOPPED_QW                          	0
+#define AR_SLB_LCB_ERR_HSS_MSK_SEQ_CRC_ERR_QW                           	0
+#define AR_SLB_LCB_ERR_HSS_MSK_RST_4_LOST_TON_SIG_QW                    	0
+#define AR_SLB_LCB_ERR_HSS_MSK_DIAG_ONLY_QW                             	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_ERR_FIRST_FLG DEFINES
+ */
+#define AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_MBE_MASK                 	0x0000000040000000ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_SBE_MASK                 	0x0000000020000000ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_MBE1_MASK                   	0x0000000010000000ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_SBE1_MASK                   	0x0000000008000000ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_MBE0_MASK                   	0x0000000004000000ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_SBE0_MASK                   	0x0000000002000000ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_NEG_EDGE_LINK_ALIVE_MASK               	0x0000000001000000ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_VC_ACK_OFLW_MASK                       	0x0000000000ff0000ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_RCV_BUF_OFLW_MASK                      	0x0000000000008000ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_OFLW_MASK                	0x0000000000004000ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_UNEXPECTED_REPLAY_MASK                 	0x0000000000002000ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_RX_LESS_THAN_3_LANES_MASK              	0x0000000000001000ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_TX_LESS_THAN_3_LANES_MASK              	0x0000000000000800ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_HOLD_REINIT_MASK                       	0x0000000000000400ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_OR_OF_ALL_PAUSE_MODES_MASK             	0x0000000000000200ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_MMR_FORCED_REINIT_MASK                 	0x0000000000000100ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_REINIT_4_LN_DEGRADE_MASK               	0x0000000000000080ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_RST_4_LINK_TIMEOUT_MASK                	0x0000000000000040ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_RST_4_FAILED_DESKEW_MASK               	0x0000000000000020ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_REINIT_FROM_PEER_MASK                  	0x0000000000000010ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_RCLK_STOPPED_MASK                      	0x0000000000000008ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_SEQ_CRC_ERR_MASK                       	0x0000000000000004ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_RST_4_LOST_TON_SIG_MASK                	0x0000000000000002ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_DIAG_ONLY_MASK                         	0x0000000000000001ull
+#define AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_MBE_BP                   	30
+#define AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_SBE_BP                   	29
+#define AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_MBE1_BP                     	28
+#define AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_SBE1_BP                     	27
+#define AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_MBE0_BP                     	26
+#define AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_SBE0_BP                     	25
+#define AR_SLB_LCB_ERR_FIRST_FLG_NEG_EDGE_LINK_ALIVE_BP                 	24
+#define AR_SLB_LCB_ERR_FIRST_FLG_VC_ACK_OFLW_BP                         	16
+#define AR_SLB_LCB_ERR_FIRST_FLG_RCV_BUF_OFLW_BP                        	15
+#define AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_OFLW_BP                  	14
+#define AR_SLB_LCB_ERR_FIRST_FLG_UNEXPECTED_REPLAY_BP                   	13
+#define AR_SLB_LCB_ERR_FIRST_FLG_RX_LESS_THAN_3_LANES_BP                	12
+#define AR_SLB_LCB_ERR_FIRST_FLG_TX_LESS_THAN_3_LANES_BP                	11
+#define AR_SLB_LCB_ERR_FIRST_FLG_HOLD_REINIT_BP                         	10
+#define AR_SLB_LCB_ERR_FIRST_FLG_OR_OF_ALL_PAUSE_MODES_BP               	9
+#define AR_SLB_LCB_ERR_FIRST_FLG_MMR_FORCED_REINIT_BP                   	8
+#define AR_SLB_LCB_ERR_FIRST_FLG_REINIT_4_LN_DEGRADE_BP                 	7
+#define AR_SLB_LCB_ERR_FIRST_FLG_RST_4_LINK_TIMEOUT_BP                  	6
+#define AR_SLB_LCB_ERR_FIRST_FLG_RST_4_FAILED_DESKEW_BP                 	5
+#define AR_SLB_LCB_ERR_FIRST_FLG_REINIT_FROM_PEER_BP                    	4
+#define AR_SLB_LCB_ERR_FIRST_FLG_RCLK_STOPPED_BP                        	3
+#define AR_SLB_LCB_ERR_FIRST_FLG_SEQ_CRC_ERR_BP                         	2
+#define AR_SLB_LCB_ERR_FIRST_FLG_RST_4_LOST_TON_SIG_BP                  	1
+#define AR_SLB_LCB_ERR_FIRST_FLG_DIAG_ONLY_BP                           	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_MBE_QW                   	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_SBE_QW                   	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_MBE1_QW                     	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_SBE1_QW                     	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_MBE0_QW                     	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_SBE0_QW                     	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_NEG_EDGE_LINK_ALIVE_QW                 	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_VC_ACK_OFLW_QW                         	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_RCV_BUF_OFLW_QW                        	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_OFLW_QW                  	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_UNEXPECTED_REPLAY_QW                   	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_RX_LESS_THAN_3_LANES_QW                	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_TX_LESS_THAN_3_LANES_QW                	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_HOLD_REINIT_QW                         	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_OR_OF_ALL_PAUSE_MODES_QW               	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_MMR_FORCED_REINIT_QW                   	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_REINIT_4_LN_DEGRADE_QW                 	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_RST_4_LINK_TIMEOUT_QW                  	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_RST_4_FAILED_DESKEW_QW                 	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_REINIT_FROM_PEER_QW                    	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_RCLK_STOPPED_QW                        	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_SEQ_CRC_ERR_QW                         	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_RST_4_LOST_TON_SIG_QW                  	0
+#define AR_SLB_LCB_ERR_FIRST_FLG_DIAG_ONLY_QW                           	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_DBG_GOOD_UP_CNT DEFINES
+ */
+#define AR_SLB_LCB_DBG_GOOD_UP_CNT_CNT_MASK                             	0x0000ffffffffffffull
+#define AR_SLB_LCB_DBG_GOOD_UP_CNT_CNT_BP                               	0
+#define AR_SLB_LCB_DBG_GOOD_UP_CNT_CNT_QW                               	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_DBG_ACCEPTED_UP_CNT DEFINES
+ */
+#define AR_SLB_LCB_DBG_ACCEPTED_UP_CNT_CNT_MASK                         	0x0000ffffffffffffull
+#define AR_SLB_LCB_DBG_ACCEPTED_UP_CNT_CNT_BP                           	0
+#define AR_SLB_LCB_DBG_ACCEPTED_UP_CNT_CNT_QW                           	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_DBG_CLK_CNTR DEFINES
+ */
+#define AR_SLB_LCB_DBG_CLK_CNTR_NEW_VALUE_WAS_STROBED_MASK              	0x1000000000000000ull
+#define AR_SLB_LCB_DBG_CLK_CNTR_STROBE_ON_LCLK_CNTR_MASK                	0x0100000000000000ull
+#define AR_SLB_LCB_DBG_CLK_CNTR_SELECT_MASK                             	0x001f000000000000ull
+#define AR_SLB_LCB_DBG_CLK_CNTR_CNT_MASK                                	0x0000ffffffffffffull
+#define AR_SLB_LCB_DBG_CLK_CNTR_NEW_VALUE_WAS_STROBED_BP                	60
+#define AR_SLB_LCB_DBG_CLK_CNTR_STROBE_ON_LCLK_CNTR_BP                  	56
+#define AR_SLB_LCB_DBG_CLK_CNTR_SELECT_BP                               	48
+#define AR_SLB_LCB_DBG_CLK_CNTR_CNT_BP                                  	0
+#define AR_SLB_LCB_DBG_CLK_CNTR_NEW_VALUE_WAS_STROBED_QW                	0
+#define AR_SLB_LCB_DBG_CLK_CNTR_STROBE_ON_LCLK_CNTR_QW                  	0
+#define AR_SLB_LCB_DBG_CLK_CNTR_SELECT_QW                               	0
+#define AR_SLB_LCB_DBG_CLK_CNTR_CNT_QW                                  	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_CFG_PERF_CNTR_RESET DEFINES
+ */
+#define AR_SLB_LCB_CFG_PERF_CNTR_RESET_HOLD_CRC_ERR_CNTRS_MASK          	0x0000000000000010ull
+#define AR_SLB_LCB_CFG_PERF_CNTR_RESET_CLR_CRC_ERR_CNTRS_MASK           	0x0000000000000001ull
+#define AR_SLB_LCB_CFG_PERF_CNTR_RESET_HOLD_CRC_ERR_CNTRS_BP            	4
+#define AR_SLB_LCB_CFG_PERF_CNTR_RESET_CLR_CRC_ERR_CNTRS_BP             	0
+#define AR_SLB_LCB_CFG_PERF_CNTR_RESET_HOLD_CRC_ERR_CNTRS_QW            	0
+#define AR_SLB_LCB_CFG_PERF_CNTR_RESET_CLR_CRC_ERR_CNTRS_QW             	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_ERR_INFO_CRC_CNT_0 DEFINES
+ */
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_0_LN0_CRC_ERR_CNT_MASK              	0x0000000000ffffffull
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_0_LN0_CRC_ERR_CNT_BP                	0
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_0_LN0_CRC_ERR_CNT_QW                	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_ERR_INFO_CRC_CNT_1 DEFINES
+ */
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_1_LN1_CRC_ERR_CNT_MASK              	0x0000000000ffffffull
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_1_LN1_CRC_ERR_CNT_BP                	0
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_1_LN1_CRC_ERR_CNT_QW                	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_ERR_INFO_CRC_CNT_2 DEFINES
+ */
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_2_LN2_CRC_ERR_CNT_MASK              	0x0000000000ffffffull
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_2_LN2_CRC_ERR_CNT_BP                	0
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_2_LN2_CRC_ERR_CNT_QW                	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_ERR_INFO_CRC_CNT_3 DEFINES
+ */
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_3_MULTIPLE_LN_ERR_CNT_MASK          	0x00000000000fffffull
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_3_MULTIPLE_LN_ERR_CNT_BP            	0
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_3_MULTIPLE_LN_ERR_CNT_QW            	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_ERR_INFO_CRC_CNT_4 DEFINES
+ */
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_4_TOTAL_CRC_ERR_CNT_MASK            	0x00000000ffffffffull
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_4_TOTAL_CRC_ERR_CNT_BP              	0
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_4_TOTAL_CRC_ERR_CNT_QW              	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_ERR_INFO_CRC_CNT_5 DEFINES
+ */
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_5_RX_REPLAY_CNT_MASK                	0x0000ffffff000000ull
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_5_TX_REPLAY_CNT_MASK                	0x0000000000ffffffull
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_5_RX_REPLAY_CNT_BP                  	24
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_5_TX_REPLAY_CNT_BP                  	0
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_5_RX_REPLAY_CNT_QW                  	0
+#define AR_SLB_LCB_ERR_INFO_CRC_CNT_5_TX_REPLAY_CNT_QW                  	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_ERR_INFO_MISC_CNT DEFINES
+ */
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_RST_FOR_FAILED_DESKEW_CNT_MASK     	0x0003000000000000ull
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_REINITS_B4_LINK_LOW_CNT_MASK       	0x0000300000000000ull
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_NOISY_DEGRADE_CNT_MASK             	0x0000030000000000ull
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_UNEXPECTED_REPLAY_CNT_MASK         	0x0000003000000000ull
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_REINIT_FOR_LINK_TOUT_CNT_MASK      	0x0000000700000000ull
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_REINIT_FROM_PEER_CNT_MASK          	0x00000000ff000000ull
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT2_MASK         	0x0000000000300000ull
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT1_MASK         	0x0000000000030000ull
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT0_MASK         	0x0000000000003000ull
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_SEQ_CRC_REINIT_CNT_MASK            	0x00000000000003f0ull
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_RST_FOR_LOST_TOS_CNT_MASK          	0x0000000000000003ull
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_RST_FOR_FAILED_DESKEW_CNT_BP       	48
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_REINITS_B4_LINK_LOW_CNT_BP         	44
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_NOISY_DEGRADE_CNT_BP               	40
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_UNEXPECTED_REPLAY_CNT_BP           	36
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_REINIT_FOR_LINK_TOUT_CNT_BP        	32
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_REINIT_FROM_PEER_CNT_BP            	24
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT2_BP           	20
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT1_BP           	16
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT0_BP           	12
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_SEQ_CRC_REINIT_CNT_BP              	4
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_RST_FOR_LOST_TOS_CNT_BP            	0
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_RST_FOR_FAILED_DESKEW_CNT_QW       	0
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_REINITS_B4_LINK_LOW_CNT_QW         	0
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_NOISY_DEGRADE_CNT_QW               	0
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_UNEXPECTED_REPLAY_CNT_QW           	0
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_REINIT_FOR_LINK_TOUT_CNT_QW        	0
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_REINIT_FROM_PEER_CNT_QW            	0
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT2_QW           	0
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT1_QW           	0
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT0_QW           	0
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_SEQ_CRC_REINIT_CNT_QW              	0
+#define AR_SLB_LCB_ERR_INFO_MISC_CNT_RST_FOR_LOST_TOS_CNT_QW            	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_ERR_INFO_ECC_CNT_0 DEFINES
+ */
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_0_FLOW_CTRL_BUF_MBE_CNT_MASK        	0x0000000000700000ull
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_0_FLOW_CTRL_BUF_SBE_CNT_MASK        	0x000000000003ffffull
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_0_FLOW_CTRL_BUF_MBE_CNT_BP          	20
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_0_FLOW_CTRL_BUF_SBE_CNT_BP          	0
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_0_FLOW_CTRL_BUF_MBE_CNT_QW          	0
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_0_FLOW_CTRL_BUF_SBE_CNT_QW          	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_ERR_INFO_ECC_CNT_1 DEFINES
+ */
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_MBE_CNT1_MASK          	0x0000700000000000ull
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_SBE_CNT1_MASK          	0x000003ffff000000ull
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_MBE_CNT0_MASK          	0x0000000000700000ull
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_SBE_CNT0_MASK          	0x000000000003ffffull
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_MBE_CNT1_BP            	44
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_SBE_CNT1_BP            	24
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_MBE_CNT0_BP            	20
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_SBE_CNT0_BP            	0
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_MBE_CNT1_QW            	0
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_SBE_CNT1_QW            	0
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_MBE_CNT0_QW            	0
+#define AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_SBE_CNT0_QW            	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0 DEFINES
+ */
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_SYNDROME_MASK                  	0x7f00000000000000ull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_MMR_CREATED_SBE_MASK           	0x0080000000000000ull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_CHK_MASK                       	0x007f000000000000ull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_DATA_MASK                      	0x0000ffffffffffffull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_SYNDROME_BP                    	56
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_MMR_CREATED_SBE_BP             	55
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_CHK_BP                         	48
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_DATA_BP                        	0
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_SYNDROME_QW                    	0
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_MMR_CREATED_SBE_QW             	0
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_CHK_QW                         	0
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_DATA_QW                        	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0 DEFINES
+ */
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_SYNDROME_MASK                  	0x7f00000000000000ull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_MMR_CREATED_MBE_MASK           	0x0080000000000000ull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_CHK_MASK                       	0x007f000000000000ull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_DATA_MASK                      	0x0000ffffffffffffull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_SYNDROME_BP                    	56
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_MMR_CREATED_MBE_BP             	55
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_CHK_BP                         	48
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_DATA_BP                        	0
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_SYNDROME_QW                    	0
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_MMR_CREATED_MBE_QW             	0
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_CHK_QW                         	0
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_DATA_QW                        	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1 DEFINES
+ */
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_SIDEBAND_SBE_MASK              	0x8000000000000000ull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_SYNDROME_MASK                  	0x7f00000000000000ull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_MMR_CREATED_SBE_MASK           	0x0080000000000000ull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_CHK_MASK                       	0x007f000000000000ull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_DATA_MASK                      	0x0000ffffffffffffull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_SIDEBAND_SBE_BP                	63
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_SYNDROME_BP                    	56
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_MMR_CREATED_SBE_BP             	55
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_CHK_BP                         	48
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_DATA_BP                        	0
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_SIDEBAND_SBE_QW                	0
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_SYNDROME_QW                    	0
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_MMR_CREATED_SBE_QW             	0
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_CHK_QW                         	0
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_DATA_QW                        	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1 DEFINES
+ */
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_SIDEBAND_MBE_MASK              	0x8000000000000000ull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_SYNDROME_MASK                  	0x7f00000000000000ull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_MMR_CREATED_MBE_MASK           	0x0080000000000000ull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_CHK_MASK                       	0x007f000000000000ull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_DATA_MASK                      	0x0000ffffffffffffull
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_SIDEBAND_MBE_BP                	63
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_SYNDROME_BP                    	56
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_MMR_CREATED_MBE_BP             	55
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_CHK_BP                         	48
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_DATA_BP                        	0
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_SIDEBAND_MBE_QW                	0
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_SYNDROME_QW                    	0
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_MMR_CREATED_MBE_QW             	0
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_CHK_QW                         	0
+#define AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_DATA_QW                        	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_ERR_INFO_FL_BUF_SBE DEFINES
+ */
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_MMR_CREATED_SBE_MASK             	0x8000000000000000ull
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_SYNDROME_MASK                    	0x7f00000000000000ull
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_CHK_MASK                         	0x00fe000000000000ull
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_DATA_MASK                        	0x0001ffffffffffffull
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_MMR_CREATED_SBE_BP               	63
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_SYNDROME_BP                      	56
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_CHK_BP                           	49
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_DATA_BP                          	0
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_MMR_CREATED_SBE_QW               	0
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_SYNDROME_QW                      	0
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_CHK_QW                           	0
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_DATA_QW                          	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_ERR_INFO_FL_BUF_MBE DEFINES
+ */
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_MMR_CREATED_MBE_MASK             	0x8000000000000000ull
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_SYNDROME_MASK                    	0x7f00000000000000ull
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_CHK_MASK                         	0x00fe000000000000ull
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_DATA_MASK                        	0x0001ffffffffffffull
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_MMR_CREATED_MBE_BP               	63
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_SYNDROME_BP                      	56
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_CHK_BP                           	49
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_DATA_BP                          	0
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_MMR_CREATED_MBE_QW               	0
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_SYNDROME_QW                      	0
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_CHK_QW                           	0
+#define AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_DATA_QW                          	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_DBG_ERRINJ_CRC DEFINES
+ */
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_PROBABILITY_MASK              	0x7000000000000000ull
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_NUM_CRC_UP_ERRS_MASK                  	0x0f00000000000000ull
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_RANDOM_XFR_ERR_MASK                   	0x0010000000000000ull
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_LN_EN_MASK                    	0x0007000000000000ull
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_XFR_EN_MASK                   	0x00007ffffff00000ull
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_BIT_EN_MASK                   	0x00000000000fffffull
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_PROBABILITY_BP                	60
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_NUM_CRC_UP_ERRS_BP                    	56
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_RANDOM_XFR_ERR_BP                     	52
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_LN_EN_BP                      	48
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_XFR_EN_BP                     	20
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_BIT_EN_BP                     	0
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_PROBABILITY_QW                	0
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_NUM_CRC_UP_ERRS_QW                    	0
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_RANDOM_XFR_ERR_QW                     	0
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_LN_EN_QW                      	0
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_XFR_EN_QW                     	0
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_BIT_EN_QW                     	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_DBG_ERRINJ_CRC_SEED DEFINES
+ */
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_SEED_VAL_MASK                         	0x0000000000000fffull
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_SEED_VAL_BP                           	0
+#define AR_SLB_LCB_DBG_ERRINJ_CRC_SEED_VAL_QW                           	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_DBG_ERRINJ_ECC DEFINES
+ */
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_CLR_ECC_ERROR_CNTS_MASK               	0x0000100000000000ull
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_ADDRESS1_MASK                         	0x000001ff00000000ull
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_ADDRESS0_MASK                         	0x000000001ff00000ull
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_CHECKBYTE_MASK                        	0x000000000007f000ull
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_RAMSELECT_MASK                        	0x0000000000000f00ull
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_MODE_MASK                             	0x0000000000000030ull
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_ENABLE_MASK                           	0x0000000000000001ull
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_CLR_ECC_ERROR_CNTS_BP                 	44
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_ADDRESS1_BP                           	32
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_ADDRESS0_BP                           	20
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_CHECKBYTE_BP                          	12
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_RAMSELECT_BP                          	8
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_MODE_BP                               	4
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_ENABLE_BP                             	0
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_CLR_ECC_ERROR_CNTS_QW                 	0
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_ADDRESS1_QW                           	0
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_ADDRESS0_QW                           	0
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_CHECKBYTE_QW                          	0
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_RAMSELECT_QW                          	0
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_MODE_QW                               	0
+#define AR_SLB_LCB_DBG_ERRINJ_ECC_ENABLE_QW                             	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_DBG_ERRINJ_MISC DEFINES
+ */
+#define AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_LOST_TOS_MASK                  	0x0000000000010000ull
+#define AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_LOST_RCLK_REINIT_MASK          	0x0000000000001000ull
+#define AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_BAD_CRC_REINIT_MASK            	0x0000000000000100ull
+#define AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_REPLAY_MASK                    	0x0000000000000010ull
+#define AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_REINIT_MASK                    	0x0000000000000001ull
+#define AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_LOST_TOS_BP                    	16
+#define AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_LOST_RCLK_REINIT_BP            	12
+#define AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_BAD_CRC_REINIT_BP              	8
+#define AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_REPLAY_BP                      	4
+#define AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_REINIT_BP                      	0
+#define AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_LOST_TOS_QW                    	0
+#define AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_LOST_RCLK_REINIT_QW            	0
+#define AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_BAD_CRC_REINIT_QW              	0
+#define AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_REPLAY_QW                      	0
+#define AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_REINIT_QW                      	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_DBG_INIT_STATE_0 DEFINES
+ */
+#define AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN2_MASK        	0x0070000000000000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN1_MASK        	0x0007000000000000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN0_MASK        	0x0000700000000000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_0_FRAMING1_COMPLETE_MASK              	0x0000070000000000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_0_LOGICAL_ID_COMPLETE_MASK            	0x0000007000000000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_0_POLARITY_MASK                       	0x0000000700000000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_0_POLARITY_COMPLETE_MASK              	0x0000000070000000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN2_MASK                   	0x0000000003f00000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN1_MASK                   	0x000000000003f000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN0_MASK                   	0x00000000000003f0ull
+#define AR_SLB_LCB_DBG_INIT_STATE_0_ALIGN_COMPLETE_MASK                 	0x0000000000000007ull
+#define AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN2_BP          	52
+#define AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN1_BP          	48
+#define AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN0_BP          	44
+#define AR_SLB_LCB_DBG_INIT_STATE_0_FRAMING1_COMPLETE_BP                	40
+#define AR_SLB_LCB_DBG_INIT_STATE_0_LOGICAL_ID_COMPLETE_BP              	36
+#define AR_SLB_LCB_DBG_INIT_STATE_0_POLARITY_BP                         	32
+#define AR_SLB_LCB_DBG_INIT_STATE_0_POLARITY_COMPLETE_BP                	28
+#define AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN2_BP                     	20
+#define AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN1_BP                     	12
+#define AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN0_BP                     	4
+#define AR_SLB_LCB_DBG_INIT_STATE_0_ALIGN_COMPLETE_BP                   	0
+#define AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN2_QW          	0
+#define AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN1_QW          	0
+#define AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN0_QW          	0
+#define AR_SLB_LCB_DBG_INIT_STATE_0_FRAMING1_COMPLETE_QW                	0
+#define AR_SLB_LCB_DBG_INIT_STATE_0_LOGICAL_ID_COMPLETE_QW              	0
+#define AR_SLB_LCB_DBG_INIT_STATE_0_POLARITY_QW                         	0
+#define AR_SLB_LCB_DBG_INIT_STATE_0_POLARITY_COMPLETE_QW                	0
+#define AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN2_QW                     	0
+#define AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN1_QW                     	0
+#define AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN0_QW                     	0
+#define AR_SLB_LCB_DBG_INIT_STATE_0_ALIGN_COMPLETE_QW                   	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_DBG_INIT_STATE_1 DEFINES
+ */
+#define AR_SLB_LCB_DBG_INIT_STATE_1_LN_TEST_TIMER_COMPLETE_MASK         	0x0000000100000000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_1_LN_PASSED_TESTING_MASK              	0x0000000070000000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN2_MASK                   	0x000000000ff00000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN1_MASK                   	0x00000000000ff000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN0_MASK                   	0x0000000000000ff0ull
+#define AR_SLB_LCB_DBG_INIT_STATE_1_LN_TESTING_COMPLETE_MASK            	0x0000000000000007ull
+#define AR_SLB_LCB_DBG_INIT_STATE_1_LN_TEST_TIMER_COMPLETE_BP           	32
+#define AR_SLB_LCB_DBG_INIT_STATE_1_LN_PASSED_TESTING_BP                	28
+#define AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN2_BP                     	20
+#define AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN1_BP                     	12
+#define AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN0_BP                     	4
+#define AR_SLB_LCB_DBG_INIT_STATE_1_LN_TESTING_COMPLETE_BP              	0
+#define AR_SLB_LCB_DBG_INIT_STATE_1_LN_TEST_TIMER_COMPLETE_QW           	0
+#define AR_SLB_LCB_DBG_INIT_STATE_1_LN_PASSED_TESTING_QW                	0
+#define AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN2_QW                     	0
+#define AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN1_QW                     	0
+#define AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN0_QW                     	0
+#define AR_SLB_LCB_DBG_INIT_STATE_1_LN_TESTING_COMPLETE_QW              	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_DBG_INIT_STATE_2 DEFINES
+ */
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RX_WAIT4TOS_FAIL_CNT_MASK           	0x0700000000000000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RX_TURN_ON_SIG_CNT_MASK             	0x00f0000000000000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_2_TX_TOS_3OR_MASK                     	0x0001000000000000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_2_PEER_LANE_ENA_DETECTED_MASK         	0x0000100000000000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_2_PEER_FRAMED_MASK                    	0x0000010000000000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RCLK_SAMPLING_LN_MASK               	0x0000003000000000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_2_BACK_CHAN_REPORTING_LN_MASK         	0x0000000300000000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RX_SKEW_LN_EN_MASK                  	0x0000000070000000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN2_MASK       	0x0000000007000000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN1_MASK       	0x0000000000700000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN0_MASK       	0x0000000000070000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN2_MASK            	0x0000000000007000ull
+#define AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN1_MASK            	0x0000000000000700ull
+#define AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN0_MASK            	0x0000000000000070ull
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RX_FRAMED_MASK                      	0x0000000000000001ull
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RX_WAIT4TOS_FAIL_CNT_BP             	56
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RX_TURN_ON_SIG_CNT_BP               	52
+#define AR_SLB_LCB_DBG_INIT_STATE_2_TX_TOS_3OR_BP                       	48
+#define AR_SLB_LCB_DBG_INIT_STATE_2_PEER_LANE_ENA_DETECTED_BP           	44
+#define AR_SLB_LCB_DBG_INIT_STATE_2_PEER_FRAMED_BP                      	40
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RCLK_SAMPLING_LN_BP                 	36
+#define AR_SLB_LCB_DBG_INIT_STATE_2_BACK_CHAN_REPORTING_LN_BP           	32
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RX_SKEW_LN_EN_BP                    	28
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN2_BP         	24
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN1_BP         	20
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN0_BP         	16
+#define AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN2_BP              	12
+#define AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN1_BP              	8
+#define AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN0_BP              	4
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RX_FRAMED_BP                        	0
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RX_WAIT4TOS_FAIL_CNT_QW             	0
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RX_TURN_ON_SIG_CNT_QW               	0
+#define AR_SLB_LCB_DBG_INIT_STATE_2_TX_TOS_3OR_QW                       	0
+#define AR_SLB_LCB_DBG_INIT_STATE_2_PEER_LANE_ENA_DETECTED_QW           	0
+#define AR_SLB_LCB_DBG_INIT_STATE_2_PEER_FRAMED_QW                      	0
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RCLK_SAMPLING_LN_QW                 	0
+#define AR_SLB_LCB_DBG_INIT_STATE_2_BACK_CHAN_REPORTING_LN_QW           	0
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RX_SKEW_LN_EN_QW                    	0
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN2_QW         	0
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN1_QW         	0
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN0_QW         	0
+#define AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN2_QW              	0
+#define AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN1_QW              	0
+#define AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN0_QW              	0
+#define AR_SLB_LCB_DBG_INIT_STATE_2_RX_FRAMED_QW                        	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_CFG_INIT_PAUSE_0 DEFINES
+ */
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_RADR_MASK                   	0xf000000000000000ull
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_RD_STROBE_SELECT_MASK       	0x0300000000000000ull
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_WR_STROBE_SELECT_MASK       	0x0010000000000000ull
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_WADR_MASK                   	0x000f000000000000ull
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RADR_TRIP_MASK              	0x0000300000000000ull
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RADR_MASK                   	0x0000070000000000ull
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RD_STROBE_SELECT_MASK       	0x0000008000000000ull
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WR_STROBE_SELECT_MASK       	0x0000001000000000ull
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WADR_TRIP_MASK              	0x0000000300000000ull
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WADR_MASK                   	0x0000000070000000ull
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_ALT_LINK3OR_FRAME_MASK              	0x0000000000ffff00ull
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_USE_ALT_LINK3OR_FRAME_MASK          	0x0000000000000010ull
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_INIT_PAUSE_MODE_MASK                	0x0000000000000003ull
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_RADR_BP                     	60
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_RD_STROBE_SELECT_BP         	56
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_WR_STROBE_SELECT_BP         	52
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_WADR_BP                     	48
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RADR_TRIP_BP                	44
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RADR_BP                     	40
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RD_STROBE_SELECT_BP         	39
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WR_STROBE_SELECT_BP         	36
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WADR_TRIP_BP                	32
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WADR_BP                     	28
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_ALT_LINK3OR_FRAME_BP                	8
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_USE_ALT_LINK3OR_FRAME_BP            	4
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_INIT_PAUSE_MODE_BP                  	0
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_RADR_QW                     	0
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_RD_STROBE_SELECT_QW         	0
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_WR_STROBE_SELECT_QW         	0
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_WADR_QW                     	0
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RADR_TRIP_QW                	0
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RADR_QW                     	0
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RD_STROBE_SELECT_QW         	0
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WR_STROBE_SELECT_QW         	0
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WADR_TRIP_QW                	0
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WADR_QW                     	0
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_ALT_LINK3OR_FRAME_QW                	0
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_USE_ALT_LINK3OR_FRAME_QW            	0
+#define AR_SLB_LCB_CFG_INIT_PAUSE_0_INIT_PAUSE_MODE_QW                  	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_CFG_INIT_PAUSE_1 DEFINES
+ */
+#define AR_SLB_LCB_CFG_INIT_PAUSE_1_RX_FIFOS_SKIP_RADR_INCR_MASK        	0x0000000000000700ull
+#define AR_SLB_LCB_CFG_INIT_PAUSE_1_RX_FIFOS_RESET_MASK                 	0x0000000000000070ull
+#define AR_SLB_LCB_CFG_INIT_PAUSE_1_FORCE_ROLL_MASK                     	0x0000000000000007ull
+#define AR_SLB_LCB_CFG_INIT_PAUSE_1_RX_FIFOS_SKIP_RADR_INCR_BP          	8
+#define AR_SLB_LCB_CFG_INIT_PAUSE_1_RX_FIFOS_RESET_BP                   	4
+#define AR_SLB_LCB_CFG_INIT_PAUSE_1_FORCE_ROLL_BP                       	0
+#define AR_SLB_LCB_CFG_INIT_PAUSE_1_RX_FIFOS_SKIP_RADR_INCR_QW          	0
+#define AR_SLB_LCB_CFG_INIT_PAUSE_1_RX_FIFOS_RESET_QW                   	0
+#define AR_SLB_LCB_CFG_INIT_PAUSE_1_FORCE_ROLL_QW                       	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_DBG_TX_FIFO_WR_DATA DEFINES
+ */
+#define AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN2_MASK                         	0x0fffff0000000000ull
+#define AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN1_MASK                         	0x000000fffff00000ull
+#define AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN0_MASK                         	0x00000000000fffffull
+#define AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN2_BP                           	40
+#define AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN1_BP                           	20
+#define AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN0_BP                           	0
+#define AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN2_QW                           	0
+#define AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN1_QW                           	0
+#define AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN0_QW                           	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_DBG_TX_FIFO_RD_DATA DEFINES
+ */
+#define AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN2_MASK                         	0x0fffff0000000000ull
+#define AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN1_MASK                         	0x000000fffff00000ull
+#define AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN0_MASK                         	0x00000000000fffffull
+#define AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN2_BP                           	40
+#define AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN1_BP                           	20
+#define AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN0_BP                           	0
+#define AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN2_QW                           	0
+#define AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN1_QW                           	0
+#define AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN0_QW                           	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_DBG_RX_FIFO_WR_DATA DEFINES
+ */
+#define AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN2_MASK                         	0x0fffff0000000000ull
+#define AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN1_MASK                         	0x000000fffff00000ull
+#define AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN0_MASK                         	0x00000000000fffffull
+#define AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN2_BP                           	40
+#define AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN1_BP                           	20
+#define AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN0_BP                           	0
+#define AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN2_QW                           	0
+#define AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN1_QW                           	0
+#define AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN0_QW                           	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_DBG_RX_FIFO_RD_DATA DEFINES
+ */
+#define AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN2_MASK                         	0x0fffff0000000000ull
+#define AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN1_MASK                         	0x000000fffff00000ull
+#define AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN0_MASK                         	0x00000000000fffffull
+#define AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN2_BP                           	40
+#define AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN1_BP                           	20
+#define AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN0_BP                           	0
+#define AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN2_QW                           	0
+#define AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN1_QW                           	0
+#define AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN0_QW                           	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_DBG_REINIT_CAUSE DEFINES
+ */
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_FAILED_DESKEW_MASK        	0x0001000000000000ull
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_FROM_PEER_MASK           	0x0000100000000000ull
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_NULLS_NOT_REQUIRED_MASK         	0x0000010000000000ull
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_NULLS_DONE_MASK          	0x0000001000000000ull
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_MMR_FORCED_REINIT_MASK          	0x0000000100000000ull
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_PAUSE_MODE6_MASK                	0x0000000010000000ull
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_LINK_TIMEOUT_MASK         	0x0000000001000000ull
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_LOST_TON_SIG_MASK         	0x0000000000100000ull
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_UNEXPECTED_REPLAY_MASK          	0x0000000000010000ull
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RCLK_STOPPED_MASK               	0x0000000000001000ull
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_4_LN_DEGRADE_MASK        	0x0000000000000100ull
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_SEQ_CRC_ERR_MASK                	0x0000000000000010ull
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_CLR_LAST_REINIT_INFO_MASK           	0x0000000000000001ull
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_FAILED_DESKEW_BP          	48
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_FROM_PEER_BP             	44
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_NULLS_NOT_REQUIRED_BP           	40
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_NULLS_DONE_BP            	36
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_MMR_FORCED_REINIT_BP            	32
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_PAUSE_MODE6_BP                  	28
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_LINK_TIMEOUT_BP           	24
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_LOST_TON_SIG_BP           	20
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_UNEXPECTED_REPLAY_BP            	16
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RCLK_STOPPED_BP                 	12
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_4_LN_DEGRADE_BP          	8
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_SEQ_CRC_ERR_BP                  	4
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_CLR_LAST_REINIT_INFO_BP             	0
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_FAILED_DESKEW_QW          	0
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_FROM_PEER_QW             	0
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_NULLS_NOT_REQUIRED_QW           	0
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_NULLS_DONE_QW            	0
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_MMR_FORCED_REINIT_QW            	0
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_PAUSE_MODE6_QW                  	0
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_LINK_TIMEOUT_QW           	0
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_LOST_TON_SIG_QW           	0
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_UNEXPECTED_REPLAY_QW            	0
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RCLK_STOPPED_QW                 	0
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_4_LN_DEGRADE_QW          	0
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_SEQ_CRC_ERR_QW                  	0
+#define AR_SLB_LCB_DBG_REINIT_CAUSE_CLR_LAST_REINIT_INFO_QW             	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_DBG_REPLAY_0 DEFINES
+ */
+#define AR_SLB_LCB_DBG_REPLAY_0_REPLAY_EMPTY_MASK                       	0x1000000000000000ull
+#define AR_SLB_LCB_DBG_REPLAY_0_POST_INIT_REPLAY_EMPTY_MASK             	0x0100000000000000ull
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_REPLAYING_MASK                        	0x0010000000000000ull
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_FULL_MASK                             	0x0001000000000000ull
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_READ_UP_MASK                          	0x00003f0000000000ull
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_WRITE_UP_ODD_MASK                     	0x0000001000000000ull
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_WRITE_UP_MASK                         	0x00000003f0000000ull
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_ODD_PLUS1_MASK               	0x0000000001000000ull
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_PLUS1_MASK                	0x00000000003f0000ull
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_PREVIOUS_MASK             	0x0000000000003f00ull
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_MASK                      	0x000000000000003full
+#define AR_SLB_LCB_DBG_REPLAY_0_REPLAY_EMPTY_BP                         	60
+#define AR_SLB_LCB_DBG_REPLAY_0_POST_INIT_REPLAY_EMPTY_BP               	56
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_REPLAYING_BP                          	52
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_FULL_BP                               	48
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_READ_UP_BP                            	40
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_WRITE_UP_ODD_BP                       	36
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_WRITE_UP_BP                           	28
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_ODD_PLUS1_BP                 	24
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_PLUS1_BP                  	16
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_PREVIOUS_BP               	8
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_BP                        	0
+#define AR_SLB_LCB_DBG_REPLAY_0_REPLAY_EMPTY_QW                         	0
+#define AR_SLB_LCB_DBG_REPLAY_0_POST_INIT_REPLAY_EMPTY_QW               	0
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_REPLAYING_QW                          	0
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_FULL_QW                               	0
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_READ_UP_QW                            	0
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_WRITE_UP_ODD_QW                       	0
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_WRITE_UP_QW                           	0
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_ODD_PLUS1_QW                 	0
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_PLUS1_QW                  	0
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_PREVIOUS_QW               	0
+#define AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_QW                        	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_DBG_REPLAY_1 DEFINES
+ */
+#define AR_SLB_LCB_DBG_REPLAY_1_Q_TOSSING_MASK                          	0x0000001000000000ull
+#define AR_SLB_LCB_DBG_REPLAY_1_Q_LCL_RCV_UP_ODD_MASK                   	0x0000000100000000ull
+#define AR_SLB_LCB_DBG_REPLAY_1_Q_LCL_RCV_UP_NUM_MASK                   	0x000000003f000000ull
+#define AR_SLB_LCB_DBG_REPLAY_1_Q_MIN_TIMEOUT_PLUS_NULL_CNT_MASK        	0x0000000000ff0000ull
+#define AR_SLB_LCB_DBG_REPLAY_1_Q_STATIC_RCV_UP_CNT_MASK                	0x000000000000ff00ull
+#define AR_SLB_LCB_DBG_REPLAY_1_Q_FIRST_ROUND_TRIP_MASK                 	0x0000000000000010ull
+#define AR_SLB_LCB_DBG_REPLAY_1_Q_USE_INIT_TIMEOUT_MASK                 	0x0000000000000001ull
+#define AR_SLB_LCB_DBG_REPLAY_1_Q_TOSSING_BP                            	36
+#define AR_SLB_LCB_DBG_REPLAY_1_Q_LCL_RCV_UP_ODD_BP                     	32
+#define AR_SLB_LCB_DBG_REPLAY_1_Q_LCL_RCV_UP_NUM_BP                     	24
+#define AR_SLB_LCB_DBG_REPLAY_1_Q_MIN_TIMEOUT_PLUS_NULL_CNT_BP          	16
+#define AR_SLB_LCB_DBG_REPLAY_1_Q_STATIC_RCV_UP_CNT_BP                  	8
+#define AR_SLB_LCB_DBG_REPLAY_1_Q_FIRST_ROUND_TRIP_BP                   	4
+#define AR_SLB_LCB_DBG_REPLAY_1_Q_USE_INIT_TIMEOUT_BP                   	0
+#define AR_SLB_LCB_DBG_REPLAY_1_Q_TOSSING_QW                            	0
+#define AR_SLB_LCB_DBG_REPLAY_1_Q_LCL_RCV_UP_ODD_QW                     	0
+#define AR_SLB_LCB_DBG_REPLAY_1_Q_LCL_RCV_UP_NUM_QW                     	0
+#define AR_SLB_LCB_DBG_REPLAY_1_Q_MIN_TIMEOUT_PLUS_NULL_CNT_QW          	0
+#define AR_SLB_LCB_DBG_REPLAY_1_Q_STATIC_RCV_UP_CNT_QW                  	0
+#define AR_SLB_LCB_DBG_REPLAY_1_Q_FIRST_ROUND_TRIP_QW                   	0
+#define AR_SLB_LCB_DBG_REPLAY_1_Q_USE_INIT_TIMEOUT_QW                   	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_DBG_OFLW DEFINES
+ */
+#define AR_SLB_LCB_DBG_OFLW_RCV_BUF_PADR_PRIOR_MASK                     	0x0000000f00000000ull
+#define AR_SLB_LCB_DBG_OFLW_RCV_BUF_PADR_HOLD_MASK                      	0x00000000f0000000ull
+#define AR_SLB_LCB_DBG_OFLW_RCV_BUF_RADR_MASK                           	0x000000000f000000ull
+#define AR_SLB_LCB_DBG_OFLW_RCV_BUF_WADR_MASK                           	0x0000000000f00000ull
+#define AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_RADR_MASK                      	0x00000000000f0000ull
+#define AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_WADR_STALL_MASK                	0x000000000000f000ull
+#define AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_WADR_MASK                      	0x0000000000000f00ull
+#define AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_FULL_MASK                      	0x0000000000000010ull
+#define AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_EMPTY_MASK                     	0x0000000000000001ull
+#define AR_SLB_LCB_DBG_OFLW_RCV_BUF_PADR_PRIOR_BP                       	32
+#define AR_SLB_LCB_DBG_OFLW_RCV_BUF_PADR_HOLD_BP                        	28
+#define AR_SLB_LCB_DBG_OFLW_RCV_BUF_RADR_BP                             	24
+#define AR_SLB_LCB_DBG_OFLW_RCV_BUF_WADR_BP                             	20
+#define AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_RADR_BP                        	16
+#define AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_WADR_STALL_BP                  	12
+#define AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_WADR_BP                        	8
+#define AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_FULL_BP                        	4
+#define AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_EMPTY_BP                       	0
+#define AR_SLB_LCB_DBG_OFLW_RCV_BUF_PADR_PRIOR_QW                       	0
+#define AR_SLB_LCB_DBG_OFLW_RCV_BUF_PADR_HOLD_QW                        	0
+#define AR_SLB_LCB_DBG_OFLW_RCV_BUF_RADR_QW                             	0
+#define AR_SLB_LCB_DBG_OFLW_RCV_BUF_WADR_QW                             	0
+#define AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_RADR_QW                        	0
+#define AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_WADR_STALL_QW                  	0
+#define AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_WADR_QW                        	0
+#define AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_FULL_QW                        	0
+#define AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_EMPTY_QW                       	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_DBG_VC_ACK DEFINES
+ */
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_7_MASK                                	0xff00000000000000ull
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_6_MASK                                	0x00ff000000000000ull
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_5_MASK                                	0x0000ff0000000000ull
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_4_MASK                                	0x000000ff00000000ull
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_3_MASK                                	0x00000000ff000000ull
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_2_MASK                                	0x0000000000ff0000ull
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_1_MASK                                	0x000000000000ff00ull
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_0_MASK                                	0x00000000000000ffull
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_7_BP                                  	56
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_6_BP                                  	48
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_5_BP                                  	40
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_4_BP                                  	32
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_3_BP                                  	24
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_2_BP                                  	16
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_1_BP                                  	8
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_0_BP                                  	0
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_7_QW                                  	0
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_6_QW                                  	0
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_5_QW                                  	0
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_4_QW                                  	0
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_3_QW                                  	0
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_2_QW                                  	0
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_1_QW                                  	0
+#define AR_SLB_LCB_DBG_VC_ACK_CNT_0_QW                                  	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_CFG_PAUSE DEFINES
+ */
+#define AR_SLB_LCB_CFG_PAUSE_DELAY_CNT_MASK                             	0x3ff0000000000000ull
+#define AR_SLB_LCB_CFG_PAUSE_CNT_CLKS_MASK                              	0x0008000000000000ull
+#define AR_SLB_LCB_CFG_PAUSE_UNIT48_SELECTS_MASK                        	0x0003ff0000000000ull
+#define AR_SLB_LCB_CFG_PAUSE_COMPARE_CNT_MASK                           	0x000000f000000000ull
+#define AR_SLB_LCB_CFG_PAUSE_COMPARE_TYPE_SELECT_MASK                   	0x0000000c00000000ull
+#define AR_SLB_LCB_CFG_PAUSE_TX_TRIGGER_ENABLES_MASK                    	0x0000000300000000ull
+#define AR_SLB_LCB_CFG_PAUSE_TRIGGER_SELECTS_MASK                       	0x00000000f0000000ull
+#define AR_SLB_LCB_CFG_PAUSE_CLR_PAUSE_MODE5_MASK                       	0x0000000004000000ull
+#define AR_SLB_LCB_CFG_PAUSE_CLR_PAUSE_MODE2_MASK                       	0x0000000002000000ull
+#define AR_SLB_LCB_CFG_PAUSE_REARM_ALL_MASK                             	0x0000000001000000ull
+#define AR_SLB_LCB_CFG_PAUSE_MODE_ENABLE_MASK                           	0x0000000000fff000ull
+#define AR_SLB_LCB_CFG_PAUSE_MODE_STS_MASK                              	0x0000000000000fffull
+#define AR_SLB_LCB_CFG_PAUSE_DELAY_CNT_BP                               	52
+#define AR_SLB_LCB_CFG_PAUSE_CNT_CLKS_BP                                	51
+#define AR_SLB_LCB_CFG_PAUSE_UNIT48_SELECTS_BP                          	40
+#define AR_SLB_LCB_CFG_PAUSE_COMPARE_CNT_BP                             	36
+#define AR_SLB_LCB_CFG_PAUSE_COMPARE_TYPE_SELECT_BP                     	34
+#define AR_SLB_LCB_CFG_PAUSE_TX_TRIGGER_ENABLES_BP                      	32
+#define AR_SLB_LCB_CFG_PAUSE_TRIGGER_SELECTS_BP                         	28
+#define AR_SLB_LCB_CFG_PAUSE_CLR_PAUSE_MODE5_BP                         	26
+#define AR_SLB_LCB_CFG_PAUSE_CLR_PAUSE_MODE2_BP                         	25
+#define AR_SLB_LCB_CFG_PAUSE_REARM_ALL_BP                               	24
+#define AR_SLB_LCB_CFG_PAUSE_MODE_ENABLE_BP                             	12
+#define AR_SLB_LCB_CFG_PAUSE_MODE_STS_BP                                	0
+#define AR_SLB_LCB_CFG_PAUSE_DELAY_CNT_QW                               	0
+#define AR_SLB_LCB_CFG_PAUSE_CNT_CLKS_QW                                	0
+#define AR_SLB_LCB_CFG_PAUSE_UNIT48_SELECTS_QW                          	0
+#define AR_SLB_LCB_CFG_PAUSE_COMPARE_CNT_QW                             	0
+#define AR_SLB_LCB_CFG_PAUSE_COMPARE_TYPE_SELECT_QW                     	0
+#define AR_SLB_LCB_CFG_PAUSE_TX_TRIGGER_ENABLES_QW                      	0
+#define AR_SLB_LCB_CFG_PAUSE_TRIGGER_SELECTS_QW                         	0
+#define AR_SLB_LCB_CFG_PAUSE_CLR_PAUSE_MODE5_QW                         	0
+#define AR_SLB_LCB_CFG_PAUSE_CLR_PAUSE_MODE2_QW                         	0
+#define AR_SLB_LCB_CFG_PAUSE_REARM_ALL_QW                               	0
+#define AR_SLB_LCB_CFG_PAUSE_MODE_ENABLE_QW                             	0
+#define AR_SLB_LCB_CFG_PAUSE_MODE_STS_QW                                	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_CFG_COMPARE_VALUE DEFINES
+ */
+#define AR_SLB_LCB_CFG_COMPARE_VALUE_FIELD_MASK                         	0x0001ffffffffffffull
+#define AR_SLB_LCB_CFG_COMPARE_VALUE_FIELD_BP                           	0
+#define AR_SLB_LCB_CFG_COMPARE_VALUE_FIELD_QW                           	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_CFG_COMPARE_MASK DEFINES
+ */
+#define AR_SLB_LCB_CFG_COMPARE_MASK_FIELD_MASK                          	0x0001ffffffffffffull
+#define AR_SLB_LCB_CFG_COMPARE_MASK_FIELD_BP                            	0
+#define AR_SLB_LCB_CFG_COMPARE_MASK_FIELD_QW                            	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT DEFINES
+ */
+#define AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_WAS_REPLAY_MASK               	0x8000000000000000ull
+#define AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_VALID_MASK                    	0x1000000000000000ull
+#define AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_UNIT48_CNT_MASK               	0x0f00000000000000ull
+#define AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_WAS_PIPE1_MASK                	0x0010000000000000ull
+#define AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_VALUE_MASK                    	0x0001ffffffffffffull
+#define AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_WAS_REPLAY_BP                 	63
+#define AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_VALID_BP                      	60
+#define AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_UNIT48_CNT_BP                 	56
+#define AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_WAS_PIPE1_BP                  	52
+#define AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_VALUE_BP                      	0
+#define AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_WAS_REPLAY_QW                 	0
+#define AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_VALID_QW                      	0
+#define AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_UNIT48_CNT_QW                 	0
+#define AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_WAS_PIPE1_QW                  	0
+#define AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_VALUE_QW                      	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_CFG_RAM_READ_WRITE DEFINES
+ */
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_WAS_GOOD_MASK             	0x0000000100000000ull
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_WAS_TOSSING_MASK          	0x0000000010000000ull
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_COMPARE_RDY_MASK          	0x0000000001000000ull
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_ARM_RAW_UP_DATA_HOLD_MASK         	0x0000000000100000ull
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_REPLAY_BUF_WRITE_MASK             	0x0000000000010000ull
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_BUFFER_MASK                       	0x0000000000003000ull
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_REPLAY_BUF_UP_MASK                	0x00000000000003f0ull
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_ADDRESS_MASK                      	0x000000000000000full
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_WAS_GOOD_BP               	32
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_WAS_TOSSING_BP            	28
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_COMPARE_RDY_BP            	24
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_ARM_RAW_UP_DATA_HOLD_BP           	20
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_REPLAY_BUF_WRITE_BP               	16
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_BUFFER_BP                         	12
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_REPLAY_BUF_UP_BP                  	4
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_ADDRESS_BP                        	0
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_WAS_GOOD_QW               	0
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_WAS_TOSSING_QW            	0
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_COMPARE_RDY_QW            	0
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_ARM_RAW_UP_DATA_HOLD_QW           	0
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_REPLAY_BUF_WRITE_QW               	0
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_BUFFER_QW                         	0
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_REPLAY_BUF_UP_QW                  	0
+#define AR_SLB_LCB_CFG_RAM_READ_WRITE_ADDRESS_QW                        	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_CFG_RAM_DATA DEFINES
+ */
+#define AR_SLB_LCB_CFG_RAM_DATA_DATA_MASK                               	0xffffffffffffffffull
+#define AR_SLB_LCB_CFG_RAM_DATA_DATA_BP                                 	0
+#define AR_SLB_LCB_CFG_RAM_DATA_DATA_QW                                 	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_CFG_SERDES_CX DEFINES
+ */
+#define AR_SLB_LCB_CFG_SERDES_CX_TX_RATE_SEL_MASK                       	0x000001ff00000000ull
+#define AR_SLB_LCB_CFG_SERDES_CX_REF_SEL_MASK                           	0x00000000ff000000ull
+#define AR_SLB_LCB_CFG_SERDES_CX_PLL_RECAL_EN_MASK                      	0x0000000000800000ull
+#define AR_SLB_LCB_CFG_SERDES_CX_NEAR_LOOPBACK_EN_MASK                  	0x0000000000400000ull
+#define AR_SLB_LCB_CFG_SERDES_CX_KR_TRAINING_EN_MASK                    	0x0000000000200000ull
+#define AR_SLB_LCB_CFG_SERDES_CX_KR_RESTART_TRAINING_MASK               	0x0000000000100000ull
+#define AR_SLB_LCB_CFG_SERDES_CX_K30_7_ERR_EN_MASK                      	0x0000000000080000ull
+#define AR_SLB_LCB_CFG_SERDES_CX_FAR_LOOPBACK_EN_MASK                   	0x0000000000040000ull
+#define AR_SLB_LCB_CFG_SERDES_CX_CORE_TO_CNTL_MASK                      	0x000000000003fffcull
+#define AR_SLB_LCB_CFG_SERDES_CX_LN_RESET_MASK                          	0x0000000000000002ull
+#define AR_SLB_LCB_CFG_SERDES_CX_LSB_CONTROL_MASK                       	0x0000000000000001ull
+#define AR_SLB_LCB_CFG_SERDES_CX_TX_RATE_SEL_BP                         	32
+#define AR_SLB_LCB_CFG_SERDES_CX_REF_SEL_BP                             	24
+#define AR_SLB_LCB_CFG_SERDES_CX_PLL_RECAL_EN_BP                        	23
+#define AR_SLB_LCB_CFG_SERDES_CX_NEAR_LOOPBACK_EN_BP                    	22
+#define AR_SLB_LCB_CFG_SERDES_CX_KR_TRAINING_EN_BP                      	21
+#define AR_SLB_LCB_CFG_SERDES_CX_KR_RESTART_TRAINING_BP                 	20
+#define AR_SLB_LCB_CFG_SERDES_CX_K30_7_ERR_EN_BP                        	19
+#define AR_SLB_LCB_CFG_SERDES_CX_FAR_LOOPBACK_EN_BP                     	18
+#define AR_SLB_LCB_CFG_SERDES_CX_CORE_TO_CNTL_BP                        	2
+#define AR_SLB_LCB_CFG_SERDES_CX_LN_RESET_BP                            	1
+#define AR_SLB_LCB_CFG_SERDES_CX_LSB_CONTROL_BP                         	0
+#define AR_SLB_LCB_CFG_SERDES_CX_TX_RATE_SEL_QW                         	0
+#define AR_SLB_LCB_CFG_SERDES_CX_REF_SEL_QW                             	0
+#define AR_SLB_LCB_CFG_SERDES_CX_PLL_RECAL_EN_QW                        	0
+#define AR_SLB_LCB_CFG_SERDES_CX_NEAR_LOOPBACK_EN_QW                    	0
+#define AR_SLB_LCB_CFG_SERDES_CX_KR_TRAINING_EN_QW                      	0
+#define AR_SLB_LCB_CFG_SERDES_CX_KR_RESTART_TRAINING_QW                 	0
+#define AR_SLB_LCB_CFG_SERDES_CX_K30_7_ERR_EN_QW                        	0
+#define AR_SLB_LCB_CFG_SERDES_CX_FAR_LOOPBACK_EN_QW                     	0
+#define AR_SLB_LCB_CFG_SERDES_CX_CORE_TO_CNTL_QW                        	0
+#define AR_SLB_LCB_CFG_SERDES_CX_LN_RESET_QW                            	0
+#define AR_SLB_LCB_CFG_SERDES_CX_LSB_CONTROL_QW                         	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_CFG_SERDES_TX DEFINES
+ */
+#define AR_SLB_LCB_CFG_SERDES_TX_EN_MASK                                	0x0200000000000000ull
+#define AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_ATTENUATION_MASK                	0x01fe000000000000ull
+#define AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EN_MASK                         	0x0001000000000000ull
+#define AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EQ_POST_MASK                    	0x0000ff0000000000ull
+#define AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EQ_PRE_MASK                     	0x000000f000000000ull
+#define AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_SLEW_MASK                       	0x0000000c00000000ull
+#define AR_SLB_LCB_CFG_SERDES_TX_PHASE_CAL_EN_MASK                      	0x0000000380000000ull
+#define AR_SLB_LCB_CFG_SERDES_TX_PHASE_MASTER_MASK                      	0x0000000070000000ull
+#define AR_SLB_LCB_CFG_SERDES_TX_REFCLK_SYNC_MASTER_MASK                	0x000000000e000000ull
+#define AR_SLB_LCB_CFG_SERDES_TX_PHASE_SLIP_MASK                        	0x0000000001c00000ull
+#define AR_SLB_LCB_CFG_SERDES_TX_WIDTH_MODE_MASK                        	0x0000000000300000ull
+#define AR_SLB_LCB_CFG_SERDES_TX_OVERRIDE_EN_MASK                       	0x0000000000080000ull
+#define AR_SLB_LCB_CFG_SERDES_TX_OVERRIDE_IN_MASK                       	0x0000000000040000ull
+#define AR_SLB_LCB_CFG_SERDES_TX_ELEC_IDLE_MASK                         	0x0000000000038000ull
+#define AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_EN_MASK                    	0x0000000000007000ull
+#define AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN2_MASK               	0x0000000000000e00ull
+#define AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN1_MASK               	0x00000000000001c0ull
+#define AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN0_MASK               	0x0000000000000038ull
+#define AR_SLB_LCB_CFG_SERDES_TX_POLARITY_INV_EN_MASK                   	0x0000000000000007ull
+#define AR_SLB_LCB_CFG_SERDES_TX_EN_BP                                  	57
+#define AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_ATTENUATION_BP                  	49
+#define AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EN_BP                           	48
+#define AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EQ_POST_BP                      	40
+#define AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EQ_PRE_BP                       	36
+#define AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_SLEW_BP                         	34
+#define AR_SLB_LCB_CFG_SERDES_TX_PHASE_CAL_EN_BP                        	31
+#define AR_SLB_LCB_CFG_SERDES_TX_PHASE_MASTER_BP                        	28
+#define AR_SLB_LCB_CFG_SERDES_TX_REFCLK_SYNC_MASTER_BP                  	25
+#define AR_SLB_LCB_CFG_SERDES_TX_PHASE_SLIP_BP                          	22
+#define AR_SLB_LCB_CFG_SERDES_TX_WIDTH_MODE_BP                          	20
+#define AR_SLB_LCB_CFG_SERDES_TX_OVERRIDE_EN_BP                         	19
+#define AR_SLB_LCB_CFG_SERDES_TX_OVERRIDE_IN_BP                         	18
+#define AR_SLB_LCB_CFG_SERDES_TX_ELEC_IDLE_BP                           	15
+#define AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_EN_BP                      	12
+#define AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN2_BP                 	9
+#define AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN1_BP                 	6
+#define AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN0_BP                 	3
+#define AR_SLB_LCB_CFG_SERDES_TX_POLARITY_INV_EN_BP                     	0
+#define AR_SLB_LCB_CFG_SERDES_TX_EN_QW                                  	0
+#define AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_ATTENUATION_QW                  	0
+#define AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EN_QW                           	0
+#define AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EQ_POST_QW                      	0
+#define AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EQ_PRE_QW                       	0
+#define AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_SLEW_QW                         	0
+#define AR_SLB_LCB_CFG_SERDES_TX_PHASE_CAL_EN_QW                        	0
+#define AR_SLB_LCB_CFG_SERDES_TX_PHASE_MASTER_QW                        	0
+#define AR_SLB_LCB_CFG_SERDES_TX_REFCLK_SYNC_MASTER_QW                  	0
+#define AR_SLB_LCB_CFG_SERDES_TX_PHASE_SLIP_QW                          	0
+#define AR_SLB_LCB_CFG_SERDES_TX_WIDTH_MODE_QW                          	0
+#define AR_SLB_LCB_CFG_SERDES_TX_OVERRIDE_EN_QW                         	0
+#define AR_SLB_LCB_CFG_SERDES_TX_OVERRIDE_IN_QW                         	0
+#define AR_SLB_LCB_CFG_SERDES_TX_ELEC_IDLE_QW                           	0
+#define AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_EN_QW                      	0
+#define AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN2_QW                 	0
+#define AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN1_QW                 	0
+#define AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN0_QW                 	0
+#define AR_SLB_LCB_CFG_SERDES_TX_POLARITY_INV_EN_QW                     	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_CFG_SERDES_RX DEFINES
+ */
+#define AR_SLB_LCB_CFG_SERDES_RX_SIG_OK_USE_SIGNAL_STRENGTH_MASK        	0x0000000100000000ull
+#define AR_SLB_LCB_CFG_SERDES_RX_SIG_OK_USE_FINE_FLOCK_COUNTER_MASK     	0x0000000080000000ull
+#define AR_SLB_LCB_CFG_SERDES_RX_ACTIVE_SIG_MIN_MASK                    	0x000000007e000000ull
+#define AR_SLB_LCB_CFG_SERDES_RX_DROPOUT_CHAR_EN_MASK                   	0x0000000001000000ull
+#define AR_SLB_LCB_CFG_SERDES_RX_EN_MASK                                	0x0000000000080000ull
+#define AR_SLB_LCB_CFG_SERDES_RX_PATTERN_CMP_EN_MASK                    	0x0000000000040000ull
+#define AR_SLB_LCB_CFG_SERDES_RX_PATTERN_CMP_SEL_MASK                   	0x0000000000038000ull
+#define AR_SLB_LCB_CFG_SERDES_RX_POLARITY_INV_EN_MASK                   	0x0000000000004000ull
+#define AR_SLB_LCB_CFG_SERDES_RX_RATE_SEL_MASK                          	0x0000000000003fe0ull
+#define AR_SLB_LCB_CFG_SERDES_RX_SIG_STRENGTH_EN_MASK                   	0x0000000000000010ull
+#define AR_SLB_LCB_CFG_SERDES_RX_SIG_STRENGTH_STRONG_EN_MASK            	0x0000000000000008ull
+#define AR_SLB_LCB_CFG_SERDES_RX_WIDTH_MODE_MASK                        	0x0000000000000006ull
+#define AR_SLB_LCB_CFG_SERDES_RX_SIG_OK_USE_SIGNAL_STRENGTH_BP          	32
+#define AR_SLB_LCB_CFG_SERDES_RX_SIG_OK_USE_FINE_FLOCK_COUNTER_BP       	31
+#define AR_SLB_LCB_CFG_SERDES_RX_ACTIVE_SIG_MIN_BP                      	25
+#define AR_SLB_LCB_CFG_SERDES_RX_DROPOUT_CHAR_EN_BP                     	24
+#define AR_SLB_LCB_CFG_SERDES_RX_EN_BP                                  	19
+#define AR_SLB_LCB_CFG_SERDES_RX_PATTERN_CMP_EN_BP                      	18
+#define AR_SLB_LCB_CFG_SERDES_RX_PATTERN_CMP_SEL_BP                     	15
+#define AR_SLB_LCB_CFG_SERDES_RX_POLARITY_INV_EN_BP                     	14
+#define AR_SLB_LCB_CFG_SERDES_RX_RATE_SEL_BP                            	5
+#define AR_SLB_LCB_CFG_SERDES_RX_SIG_STRENGTH_EN_BP                     	4
+#define AR_SLB_LCB_CFG_SERDES_RX_SIG_STRENGTH_STRONG_EN_BP              	3
+#define AR_SLB_LCB_CFG_SERDES_RX_WIDTH_MODE_BP                          	1
+#define AR_SLB_LCB_CFG_SERDES_RX_SIG_OK_USE_SIGNAL_STRENGTH_QW          	0
+#define AR_SLB_LCB_CFG_SERDES_RX_SIG_OK_USE_FINE_FLOCK_COUNTER_QW       	0
+#define AR_SLB_LCB_CFG_SERDES_RX_ACTIVE_SIG_MIN_QW                      	0
+#define AR_SLB_LCB_CFG_SERDES_RX_DROPOUT_CHAR_EN_QW                     	0
+#define AR_SLB_LCB_CFG_SERDES_RX_EN_QW                                  	0
+#define AR_SLB_LCB_CFG_SERDES_RX_PATTERN_CMP_EN_QW                      	0
+#define AR_SLB_LCB_CFG_SERDES_RX_PATTERN_CMP_SEL_QW                     	0
+#define AR_SLB_LCB_CFG_SERDES_RX_POLARITY_INV_EN_QW                     	0
+#define AR_SLB_LCB_CFG_SERDES_RX_RATE_SEL_QW                            	0
+#define AR_SLB_LCB_CFG_SERDES_RX_SIG_STRENGTH_EN_QW                     	0
+#define AR_SLB_LCB_CFG_SERDES_RX_SIG_STRENGTH_STRONG_EN_QW              	0
+#define AR_SLB_LCB_CFG_SERDES_RX_WIDTH_MODE_QW                          	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_SLB_LCB_DBG_SERDES_OUTPUTS DEFINES
+ */
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_RDY_MASK                       	0x0000038000000000ull
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN2_MASK             	0x0000007c00000000ull
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN1_MASK             	0x00000003e0000000ull
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN0_MASK             	0x000000001f000000ull
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN2_MASK      	0x0000000000f00000ull
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN1_MASK      	0x00000000000f0000ull
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN0_MASK      	0x000000000000f000ull
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIGNAL_OK_MASK                 	0x0000000000000e00ull
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN2_MASK          	0x0000000000000180ull
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN1_MASK          	0x0000000000000060ull
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN0_MASK          	0x0000000000000018ull
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_RDY_MASK                       	0x0000000000000007ull
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_RDY_BP                         	39
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN2_BP               	34
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN1_BP               	29
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN0_BP               	24
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN2_BP        	20
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN1_BP        	16
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN0_BP        	12
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIGNAL_OK_BP                   	9
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN2_BP            	7
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN1_BP            	5
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN0_BP            	3
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_RDY_BP                         	0
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_RDY_QW                         	0
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN2_QW               	0
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN1_QW               	0
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN0_QW               	0
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN2_QW        	0
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN1_QW        	0
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN0_QW        	0
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIGNAL_OK_QW                   	0
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN2_QW            	0
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN1_QW            	0
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN0_QW            	0
+#define AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_RDY_QW                         	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+
+/*
+ *  AR LCB MACROS
+ */
+#ifndef RD_FIELD
+#define RD_FIELD(d, bp, m)	(((d)&(m))>>(bp))
+#endif
+#ifndef WR_FIELD
+#define WR_FIELD(mmr, d, bp, m)	(mmr = (((mmr) & ~(m)) | ((((uint64_t)(d))<<(bp)) & (m))))
+#endif
+#define RF_AR_SLB_LCB_CFG_RUN_EN(mmr)                           	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_RUN_EN_BP,\
+									AR_SLB_LCB_CFG_RUN_EN_MASK)
+#define WF_AR_SLB_LCB_CFG_RUN_EN(mmr,v)                         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_RUN_EN_BP,\
+									AR_SLB_LCB_CFG_RUN_EN_MASK)
+#define RF_AR_SLB_LCB_CFG_MMR_RESET_EN(mmr)                     	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_MMR_RESET_EN_BP,\
+									AR_SLB_LCB_CFG_MMR_RESET_EN_MASK)
+#define WF_AR_SLB_LCB_CFG_MMR_RESET_EN(mmr,v)                   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_MMR_RESET_EN_BP,\
+									AR_SLB_LCB_CFG_MMR_RESET_EN_MASK)
+#define RF_AR_SLB_LCB_CFG_TX_FIFOS_RESET_ON_REINIT(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_TX_FIFOS_RESET_ON_REINIT_BP,\
+									AR_SLB_LCB_CFG_TX_FIFOS_RESET_ON_REINIT_MASK)
+#define WF_AR_SLB_LCB_CFG_TX_FIFOS_RESET_ON_REINIT(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_TX_FIFOS_RESET_ON_REINIT_BP,\
+									AR_SLB_LCB_CFG_TX_FIFOS_RESET_ON_REINIT_MASK)
+#define RF_AR_SLB_LCB_CFG_TX_FIFOS_RESET_RADR(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_TX_FIFOS_RESET_RADR_BP,\
+									AR_SLB_LCB_CFG_TX_FIFOS_RESET_RADR_MASK)
+#define WF_AR_SLB_LCB_CFG_TX_FIFOS_RESET_RADR(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_TX_FIFOS_RESET_RADR_BP,\
+									AR_SLB_LCB_CFG_TX_FIFOS_RESET_RADR_MASK)
+#define RF_AR_SLB_LCB_CFG_TX_FIFOS_RESET_EN(mmr)                	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_TX_FIFOS_RESET_EN_BP,\
+									AR_SLB_LCB_CFG_TX_FIFOS_RESET_EN_MASK)
+#define WF_AR_SLB_LCB_CFG_TX_FIFOS_RESET_EN(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_TX_FIFOS_RESET_EN_BP,\
+									AR_SLB_LCB_CFG_TX_FIFOS_RESET_EN_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_0_MAX_RCV_UP_NUM(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_0_MAX_RCV_UP_NUM_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_MAX_RCV_UP_NUM_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_0_MAX_RCV_UP_NUM(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_0_MAX_RCV_UP_NUM_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_MAX_RCV_UP_NUM_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_0_MIN_RCV_UP_NUM(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_0_MIN_RCV_UP_NUM_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_MIN_RCV_UP_NUM_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_0_MIN_RCV_UP_NUM(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_0_MIN_RCV_UP_NUM_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_MIN_RCV_UP_NUM_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_0_MIN_REPLAY_TIMEOUT_SEL2(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_0_MIN_REPLAY_TIMEOUT_SEL2_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_MIN_REPLAY_TIMEOUT_SEL2_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_0_MIN_REPLAY_TIMEOUT_SEL2(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_0_MIN_REPLAY_TIMEOUT_SEL2_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_MIN_REPLAY_TIMEOUT_SEL2_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_0_MIN_REPLAY_TIMEOUT_SEL1(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_0_MIN_REPLAY_TIMEOUT_SEL1_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_MIN_REPLAY_TIMEOUT_SEL1_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_0_MIN_REPLAY_TIMEOUT_SEL1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_0_MIN_REPLAY_TIMEOUT_SEL1_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_MIN_REPLAY_TIMEOUT_SEL1_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_0_INIT_REPLAY_TIMEOUT_SEL(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_0_INIT_REPLAY_TIMEOUT_SEL_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_INIT_REPLAY_TIMEOUT_SEL_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_0_INIT_REPLAY_TIMEOUT_SEL(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_0_INIT_REPLAY_TIMEOUT_SEL_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_INIT_REPLAY_TIMEOUT_SEL_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_0_LN_ALLOWED_TIME_TO_PASS(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_0_LN_ALLOWED_TIME_TO_PASS_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_LN_ALLOWED_TIME_TO_PASS_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_0_LN_ALLOWED_TIME_TO_PASS(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_0_LN_ALLOWED_TIME_TO_PASS_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_LN_ALLOWED_TIME_TO_PASS_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_0_LN_TEST_REQ_MATCH_CNT(mmr)  	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_0_LN_TEST_REQ_MATCH_CNT_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_LN_TEST_REQ_MATCH_CNT_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_0_LN_TEST_REQ_MATCH_CNT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_0_LN_TEST_REQ_MATCH_CNT_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_LN_TEST_REQ_MATCH_CNT_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_0_LN_DISABLE_4_SKEW_MODE(mmr) 	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_0_LN_DISABLE_4_SKEW_MODE_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_LN_DISABLE_4_SKEW_MODE_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_0_LN_DISABLE_4_SKEW_MODE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_0_LN_DISABLE_4_SKEW_MODE_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_LN_DISABLE_4_SKEW_MODE_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_0_FORCE_LN_ENABLE(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_0_FORCE_LN_ENABLE_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_FORCE_LN_ENABLE_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_0_FORCE_LN_ENABLE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_0_FORCE_LN_ENABLE_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_FORCE_LN_ENABLE_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_0_LN_REINIT_REENABLE(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_0_LN_REINIT_REENABLE_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_LN_REINIT_REENABLE_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_0_LN_REINIT_REENABLE(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_0_LN_REINIT_REENABLE_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_LN_REINIT_REENABLE_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_0_RX_LN_ALLOWED(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_0_RX_LN_ALLOWED_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_RX_LN_ALLOWED_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_0_RX_LN_ALLOWED(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_0_RX_LN_ALLOWED_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_RX_LN_ALLOWED_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_0_CRC_PER_LANE_MODE(mmr)      	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_0_CRC_PER_LANE_MODE_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_CRC_PER_LANE_MODE_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_0_CRC_PER_LANE_MODE(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_0_CRC_PER_LANE_MODE_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_CRC_PER_LANE_MODE_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_0_RX_LANE_FSS(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_0_RX_LANE_FSS_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_RX_LANE_FSS_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_0_RX_LANE_FSS(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_0_RX_LANE_FSS_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_RX_LANE_FSS_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_0_TX_LANE_FSS(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_0_TX_LANE_FSS_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_TX_LANE_FSS_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_0_TX_LANE_FSS(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_0_TX_LANE_FSS_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_TX_LANE_FSS_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_0_LOOPBACK(mmr)               	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_0_LOOPBACK_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_LOOPBACK_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_0_LOOPBACK(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_0_LOOPBACK_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_LOOPBACK_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_0_RX_FIFOS_RESET_RADR(mmr)    	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_0_RX_FIFOS_RESET_RADR_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_RX_FIFOS_RESET_RADR_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_0_RX_FIFOS_RESET_RADR(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_0_RX_FIFOS_RESET_RADR_BP,\
+									AR_SLB_LCB_CFG_STARTUP_0_RX_FIFOS_RESET_RADR_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_1_LINK_ALIVE_TIMER_MAX(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_1_LINK_ALIVE_TIMER_MAX_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_LINK_ALIVE_TIMER_MAX_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_1_LINK_ALIVE_TIMER_MAX(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_1_LINK_ALIVE_TIMER_MAX_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_LINK_ALIVE_TIMER_MAX_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_1_LTO_DEGRADE_REENABLE(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_1_LTO_DEGRADE_REENABLE_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_LTO_DEGRADE_REENABLE_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_1_LTO_DEGRADE_REENABLE(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_1_LTO_DEGRADE_REENABLE_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_LTO_DEGRADE_REENABLE_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_1_LTO_REINIT_REENABLE(mmr)    	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_1_LTO_REINIT_REENABLE_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_LTO_REINIT_REENABLE_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_1_LTO_REINIT_REENABLE(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_1_LTO_REINIT_REENABLE_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_LTO_REINIT_REENABLE_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_1_REINITS_BEFORE_LINK_LOW(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_1_REINITS_BEFORE_LINK_LOW_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_REINITS_BEFORE_LINK_LOW_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_1_REINITS_BEFORE_LINK_LOW(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_1_REINITS_BEFORE_LINK_LOW_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_REINITS_BEFORE_LINK_LOW_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_1_LINK_AUTO_RESTART_EN(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_1_LINK_AUTO_RESTART_EN_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_LINK_AUTO_RESTART_EN_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_1_LINK_AUTO_RESTART_EN(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_1_LINK_AUTO_RESTART_EN_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_LINK_AUTO_RESTART_EN_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_1_LINK_TIMER_DISABLE(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_1_LINK_TIMER_DISABLE_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_LINK_TIMER_DISABLE_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_1_LINK_TIMER_DISABLE(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_1_LINK_TIMER_DISABLE_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_LINK_TIMER_DISABLE_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_1_PAUSE_ON_REINIT(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_1_PAUSE_ON_REINIT_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_PAUSE_ON_REINIT_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_1_PAUSE_ON_REINIT(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_1_PAUSE_ON_REINIT_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_PAUSE_ON_REINIT_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_1_USE_REPLAY_BUF_DATA(mmr)    	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_1_USE_REPLAY_BUF_DATA_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_USE_REPLAY_BUF_DATA_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_1_USE_REPLAY_BUF_DATA(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_1_USE_REPLAY_BUF_DATA_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_USE_REPLAY_BUF_DATA_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_1_TURN_ON_SIGNAL_CNT_SEL(mmr) 	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_1_TURN_ON_SIGNAL_CNT_SEL_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_TURN_ON_SIGNAL_CNT_SEL_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_1_TURN_ON_SIGNAL_CNT_SEL(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_1_TURN_ON_SIGNAL_CNT_SEL_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_TURN_ON_SIGNAL_CNT_SEL_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_1_BACK_CH_SELECT_PRIORITY(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_1_BACK_CH_SELECT_PRIORITY_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_BACK_CH_SELECT_PRIORITY_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_1_BACK_CH_SELECT_PRIORITY(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_1_BACK_CH_SELECT_PRIORITY_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_BACK_CH_SELECT_PRIORITY_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_1_RCLK_SELECT_PRIORITY(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_1_RCLK_SELECT_PRIORITY_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_RCLK_SELECT_PRIORITY_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_1_RCLK_SELECT_PRIORITY(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_1_RCLK_SELECT_PRIORITY_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_RCLK_SELECT_PRIORITY_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_1_THROTTLE_TX_FLITS(mmr)      	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_1_THROTTLE_TX_FLITS_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_THROTTLE_TX_FLITS_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_1_THROTTLE_TX_FLITS(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_1_THROTTLE_TX_FLITS_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_THROTTLE_TX_FLITS_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_1_IGNORE_RCLK_LOSS(mmr)       	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_1_IGNORE_RCLK_LOSS_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_IGNORE_RCLK_LOSS_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_1_IGNORE_RCLK_LOSS(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_1_IGNORE_RCLK_LOSS_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_IGNORE_RCLK_LOSS_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_1_IGNORE_SEQ_BAD_CRC(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_1_IGNORE_SEQ_BAD_CRC_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_IGNORE_SEQ_BAD_CRC_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_1_IGNORE_SEQ_BAD_CRC(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_1_IGNORE_SEQ_BAD_CRC_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_IGNORE_SEQ_BAD_CRC_MASK)
+#define RF_AR_SLB_LCB_CFG_STARTUP_1_NUM_SEQ_BAD_CRC_MAX(mmr)    	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_STARTUP_1_NUM_SEQ_BAD_CRC_MAX_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_NUM_SEQ_BAD_CRC_MAX_MASK)
+#define WF_AR_SLB_LCB_CFG_STARTUP_1_NUM_SEQ_BAD_CRC_MAX(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_STARTUP_1_NUM_SEQ_BAD_CRC_MAX_BP,\
+									AR_SLB_LCB_CFG_STARTUP_1_NUM_SEQ_BAD_CRC_MAX_MASK)
+#define RF_AR_SLB_LCB_STS_STARTUP_0_VC_ACK_QUIET_CNTR(mmr)      	RD_FIELD(mmr,\
+									AR_SLB_LCB_STS_STARTUP_0_VC_ACK_QUIET_CNTR_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_VC_ACK_QUIET_CNTR_MASK)
+#define WF_AR_SLB_LCB_STS_STARTUP_0_VC_ACK_QUIET_CNTR(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_STS_STARTUP_0_VC_ACK_QUIET_CNTR_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_VC_ACK_QUIET_CNTR_MASK)
+#define RF_AR_SLB_LCB_STS_STARTUP_0_PHIT_QUIET_CNTR(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_STS_STARTUP_0_PHIT_QUIET_CNTR_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_PHIT_QUIET_CNTR_MASK)
+#define WF_AR_SLB_LCB_STS_STARTUP_0_PHIT_QUIET_CNTR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_STS_STARTUP_0_PHIT_QUIET_CNTR_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_PHIT_QUIET_CNTR_MASK)
+#define RF_AR_SLB_LCB_STS_STARTUP_0_ROUND_TRIP_UP_CNT(mmr)      	RD_FIELD(mmr,\
+									AR_SLB_LCB_STS_STARTUP_0_ROUND_TRIP_UP_CNT_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_ROUND_TRIP_UP_CNT_MASK)
+#define WF_AR_SLB_LCB_STS_STARTUP_0_ROUND_TRIP_UP_CNT(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_STS_STARTUP_0_ROUND_TRIP_UP_CNT_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_ROUND_TRIP_UP_CNT_MASK)
+#define RF_AR_SLB_LCB_STS_STARTUP_0_RX_LINK3OR_PHY_LN_EN(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_LINK3OR_PHY_LN_EN_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_LINK3OR_PHY_LN_EN_MASK)
+#define WF_AR_SLB_LCB_STS_STARTUP_0_RX_LINK3OR_PHY_LN_EN(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_LINK3OR_PHY_LN_EN_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_LINK3OR_PHY_LN_EN_MASK)
+#define RF_AR_SLB_LCB_STS_STARTUP_0_DEGRADE_LN_EN(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_STS_STARTUP_0_DEGRADE_LN_EN_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_DEGRADE_LN_EN_MASK)
+#define WF_AR_SLB_LCB_STS_STARTUP_0_DEGRADE_LN_EN(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_STS_STARTUP_0_DEGRADE_LN_EN_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_DEGRADE_LN_EN_MASK)
+#define RF_AR_SLB_LCB_STS_STARTUP_0_RX_PHY_LN_EN(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_PHY_LN_EN_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_PHY_LN_EN_MASK)
+#define WF_AR_SLB_LCB_STS_STARTUP_0_RX_PHY_LN_EN(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_PHY_LN_EN_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_PHY_LN_EN_MASK)
+#define RF_AR_SLB_LCB_STS_STARTUP_0_TX_PHY_LN_EN(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_STS_STARTUP_0_TX_PHY_LN_EN_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_TX_PHY_LN_EN_MASK)
+#define WF_AR_SLB_LCB_STS_STARTUP_0_TX_PHY_LN_EN(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_STS_STARTUP_0_TX_PHY_LN_EN_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_TX_PHY_LN_EN_MASK)
+#define RF_AR_SLB_LCB_STS_STARTUP_0_RX_LOGICAL_LN_EN(mmr)       	RD_FIELD(mmr,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_LOGICAL_LN_EN_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_LOGICAL_LN_EN_MASK)
+#define WF_AR_SLB_LCB_STS_STARTUP_0_RX_LOGICAL_LN_EN(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_LOGICAL_LN_EN_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_LOGICAL_LN_EN_MASK)
+#define RF_AR_SLB_LCB_STS_STARTUP_0_RX_LN2_LOGICAL_ID(mmr)      	RD_FIELD(mmr,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_LN2_LOGICAL_ID_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_LN2_LOGICAL_ID_MASK)
+#define WF_AR_SLB_LCB_STS_STARTUP_0_RX_LN2_LOGICAL_ID(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_LN2_LOGICAL_ID_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_LN2_LOGICAL_ID_MASK)
+#define RF_AR_SLB_LCB_STS_STARTUP_0_RX_LN1_LOGICAL_ID(mmr)      	RD_FIELD(mmr,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_LN1_LOGICAL_ID_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_LN1_LOGICAL_ID_MASK)
+#define WF_AR_SLB_LCB_STS_STARTUP_0_RX_LN1_LOGICAL_ID(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_LN1_LOGICAL_ID_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_LN1_LOGICAL_ID_MASK)
+#define RF_AR_SLB_LCB_STS_STARTUP_0_RX_LN0_LOGICAL_ID(mmr)      	RD_FIELD(mmr,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_LN0_LOGICAL_ID_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_LN0_LOGICAL_ID_MASK)
+#define WF_AR_SLB_LCB_STS_STARTUP_0_RX_LN0_LOGICAL_ID(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_LN0_LOGICAL_ID_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_LN0_LOGICAL_ID_MASK)
+#define RF_AR_SLB_LCB_STS_STARTUP_0_RX_UP_MODE(mmr)             	RD_FIELD(mmr,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_UP_MODE_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_UP_MODE_MASK)
+#define WF_AR_SLB_LCB_STS_STARTUP_0_RX_UP_MODE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_UP_MODE_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_RX_UP_MODE_MASK)
+#define RF_AR_SLB_LCB_STS_STARTUP_0_TX_UP_MODE(mmr)             	RD_FIELD(mmr,\
+									AR_SLB_LCB_STS_STARTUP_0_TX_UP_MODE_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_TX_UP_MODE_MASK)
+#define WF_AR_SLB_LCB_STS_STARTUP_0_TX_UP_MODE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_STS_STARTUP_0_TX_UP_MODE_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_TX_UP_MODE_MASK)
+#define RF_AR_SLB_LCB_STS_STARTUP_0_R_Q_LCB_COL_CHAN_ALIVE(mmr) 	RD_FIELD(mmr,\
+									AR_SLB_LCB_STS_STARTUP_0_R_Q_LCB_COL_CHAN_ALIVE_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_R_Q_LCB_COL_CHAN_ALIVE_MASK)
+#define WF_AR_SLB_LCB_STS_STARTUP_0_R_Q_LCB_COL_CHAN_ALIVE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_STS_STARTUP_0_R_Q_LCB_COL_CHAN_ALIVE_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_R_Q_LCB_COL_CHAN_ALIVE_MASK)
+#define RF_AR_SLB_LCB_STS_STARTUP_0_LINK_ALIVE(mmr)             	RD_FIELD(mmr,\
+									AR_SLB_LCB_STS_STARTUP_0_LINK_ALIVE_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_LINK_ALIVE_MASK)
+#define WF_AR_SLB_LCB_STS_STARTUP_0_LINK_ALIVE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_STS_STARTUP_0_LINK_ALIVE_BP,\
+									AR_SLB_LCB_STS_STARTUP_0_LINK_ALIVE_MASK)
+#define RF_AR_SLB_LCB_STS_STARTUP_1_LINK_ALIVE_TIMER_VALUE(mmr) 	RD_FIELD(mmr,\
+									AR_SLB_LCB_STS_STARTUP_1_LINK_ALIVE_TIMER_VALUE_BP,\
+									AR_SLB_LCB_STS_STARTUP_1_LINK_ALIVE_TIMER_VALUE_MASK)
+#define WF_AR_SLB_LCB_STS_STARTUP_1_LINK_ALIVE_TIMER_VALUE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_STS_STARTUP_1_LINK_ALIVE_TIMER_VALUE_BP,\
+									AR_SLB_LCB_STS_STARTUP_1_LINK_ALIVE_TIMER_VALUE_MASK)
+#define RF_AR_SLB_LCB_CFG_DISCOVERY_LOCAL_PATTERN(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_DISCOVERY_LOCAL_PATTERN_BP,\
+									AR_SLB_LCB_CFG_DISCOVERY_LOCAL_PATTERN_MASK)
+#define WF_AR_SLB_LCB_CFG_DISCOVERY_LOCAL_PATTERN(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_DISCOVERY_LOCAL_PATTERN_BP,\
+									AR_SLB_LCB_CFG_DISCOVERY_LOCAL_PATTERN_MASK)
+#define RF_AR_SLB_LCB_STS_DISCOVERY_REMOTE_PATTERN(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_STS_DISCOVERY_REMOTE_PATTERN_BP,\
+									AR_SLB_LCB_STS_DISCOVERY_REMOTE_PATTERN_MASK)
+#define WF_AR_SLB_LCB_STS_DISCOVERY_REMOTE_PATTERN(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_STS_DISCOVERY_REMOTE_PATTERN_BP,\
+									AR_SLB_LCB_STS_DISCOVERY_REMOTE_PATTERN_MASK)
+#define RF_AR_SLB_LCB_CFG_SCRAMBLE_SEED_0_VAL(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SCRAMBLE_SEED_0_VAL_BP,\
+									AR_SLB_LCB_CFG_SCRAMBLE_SEED_0_VAL_MASK)
+#define WF_AR_SLB_LCB_CFG_SCRAMBLE_SEED_0_VAL(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SCRAMBLE_SEED_0_VAL_BP,\
+									AR_SLB_LCB_CFG_SCRAMBLE_SEED_0_VAL_MASK)
+#define RF_AR_SLB_LCB_CFG_SCRAMBLE_SEED_1_VAL(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SCRAMBLE_SEED_1_VAL_BP,\
+									AR_SLB_LCB_CFG_SCRAMBLE_SEED_1_VAL_MASK)
+#define WF_AR_SLB_LCB_CFG_SCRAMBLE_SEED_1_VAL(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SCRAMBLE_SEED_1_VAL_BP,\
+									AR_SLB_LCB_CFG_SCRAMBLE_SEED_1_VAL_MASK)
+#define RF_AR_SLB_LCB_CFG_SCRAMBLE_SEED_2_VAL(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SCRAMBLE_SEED_2_VAL_BP,\
+									AR_SLB_LCB_CFG_SCRAMBLE_SEED_2_VAL_MASK)
+#define WF_AR_SLB_LCB_CFG_SCRAMBLE_SEED_2_VAL(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SCRAMBLE_SEED_2_VAL_BP,\
+									AR_SLB_LCB_CFG_SCRAMBLE_SEED_2_VAL_MASK)
+#define RF_AR_SLB_LCB_CFG_DEGRADE_RESET_SETTINGS(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_DEGRADE_RESET_SETTINGS_BP,\
+									AR_SLB_LCB_CFG_DEGRADE_RESET_SETTINGS_MASK)
+#define WF_AR_SLB_LCB_CFG_DEGRADE_RESET_SETTINGS(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_DEGRADE_RESET_SETTINGS_BP,\
+									AR_SLB_LCB_CFG_DEGRADE_RESET_SETTINGS_MASK)
+#define RF_AR_SLB_LCB_CFG_DEGRADE_CURRENT_CFG_RACES_WON(mmr)    	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_DEGRADE_CURRENT_CFG_RACES_WON_BP,\
+									AR_SLB_LCB_CFG_DEGRADE_CURRENT_CFG_RACES_WON_MASK)
+#define WF_AR_SLB_LCB_CFG_DEGRADE_CURRENT_CFG_RACES_WON(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_DEGRADE_CURRENT_CFG_RACES_WON_BP,\
+									AR_SLB_LCB_CFG_DEGRADE_CURRENT_CFG_RACES_WON_MASK)
+#define RF_AR_SLB_LCB_CFG_DEGRADE_LN_12_RACES_WON(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_DEGRADE_LN_12_RACES_WON_BP,\
+									AR_SLB_LCB_CFG_DEGRADE_LN_12_RACES_WON_MASK)
+#define WF_AR_SLB_LCB_CFG_DEGRADE_LN_12_RACES_WON(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_DEGRADE_LN_12_RACES_WON_BP,\
+									AR_SLB_LCB_CFG_DEGRADE_LN_12_RACES_WON_MASK)
+#define RF_AR_SLB_LCB_CFG_DEGRADE_LN_02_RACES_WON(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_DEGRADE_LN_02_RACES_WON_BP,\
+									AR_SLB_LCB_CFG_DEGRADE_LN_02_RACES_WON_MASK)
+#define WF_AR_SLB_LCB_CFG_DEGRADE_LN_02_RACES_WON(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_DEGRADE_LN_02_RACES_WON_BP,\
+									AR_SLB_LCB_CFG_DEGRADE_LN_02_RACES_WON_MASK)
+#define RF_AR_SLB_LCB_CFG_DEGRADE_LN_01_RACES_WON(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_DEGRADE_LN_01_RACES_WON_BP,\
+									AR_SLB_LCB_CFG_DEGRADE_LN_01_RACES_WON_MASK)
+#define WF_AR_SLB_LCB_CFG_DEGRADE_LN_01_RACES_WON(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_DEGRADE_LN_01_RACES_WON_BP,\
+									AR_SLB_LCB_CFG_DEGRADE_LN_01_RACES_WON_MASK)
+#define RF_AR_SLB_LCB_CFG_DEGRADE_LN_EN_ALT(mmr)                	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_DEGRADE_LN_EN_ALT_BP,\
+									AR_SLB_LCB_CFG_DEGRADE_LN_EN_ALT_MASK)
+#define WF_AR_SLB_LCB_CFG_DEGRADE_LN_EN_ALT(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_DEGRADE_LN_EN_ALT_BP,\
+									AR_SLB_LCB_CFG_DEGRADE_LN_EN_ALT_MASK)
+#define RF_AR_SLB_LCB_CFG_DEGRADE_RACE_WINS_2TRIGGER(mmr)       	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_DEGRADE_RACE_WINS_2TRIGGER_BP,\
+									AR_SLB_LCB_CFG_DEGRADE_RACE_WINS_2TRIGGER_MASK)
+#define WF_AR_SLB_LCB_CFG_DEGRADE_RACE_WINS_2TRIGGER(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_DEGRADE_RACE_WINS_2TRIGGER_BP,\
+									AR_SLB_LCB_CFG_DEGRADE_RACE_WINS_2TRIGGER_MASK)
+#define RF_AR_SLB_LCB_CFG_DEGRADE_RACE_DURATION_SEL(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_DEGRADE_RACE_DURATION_SEL_BP,\
+									AR_SLB_LCB_CFG_DEGRADE_RACE_DURATION_SEL_MASK)
+#define WF_AR_SLB_LCB_CFG_DEGRADE_RACE_DURATION_SEL(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_DEGRADE_RACE_DURATION_SEL_BP,\
+									AR_SLB_LCB_CFG_DEGRADE_RACE_DURATION_SEL_MASK)
+#define RF_AR_SLB_LCB_CFG_DEGRADE_NUM_DEGRADES_ALLOWED(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_DEGRADE_NUM_DEGRADES_ALLOWED_BP,\
+									AR_SLB_LCB_CFG_DEGRADE_NUM_DEGRADES_ALLOWED_MASK)
+#define WF_AR_SLB_LCB_CFG_DEGRADE_NUM_DEGRADES_ALLOWED(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_DEGRADE_NUM_DEGRADES_ALLOWED_BP,\
+									AR_SLB_LCB_CFG_DEGRADE_NUM_DEGRADES_ALLOWED_MASK)
+#define RF_AR_SLB_LCB_CFG_DEGRADE_LN_X_DEGRADE_DISABLE(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_DEGRADE_LN_X_DEGRADE_DISABLE_BP,\
+									AR_SLB_LCB_CFG_DEGRADE_LN_X_DEGRADE_DISABLE_MASK)
+#define WF_AR_SLB_LCB_CFG_DEGRADE_LN_X_DEGRADE_DISABLE(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_DEGRADE_LN_X_DEGRADE_DISABLE_BP,\
+									AR_SLB_LCB_CFG_DEGRADE_LN_X_DEGRADE_DISABLE_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_MBE(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_MBE_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_MBE_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_MBE(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_MBE_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_MBE_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_SBE(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_SBE_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_SBE_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_SBE(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_SBE_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_SBE_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_MBE1(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_MBE1_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_MBE1_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_MBE1(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_MBE1_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_MBE1_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_SBE1(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_SBE1_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_SBE1_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_SBE1(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_SBE1_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_SBE1_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_MBE0(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_MBE0_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_MBE0_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_MBE0(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_MBE0_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_MBE0_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_SBE0(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_SBE0_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_SBE0_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_SBE0(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_SBE0_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REPLAY_BUF_SBE0_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_NEG_EDGE_LINK_ALIVE(mmr) 	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_NEG_EDGE_LINK_ALIVE_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_NEG_EDGE_LINK_ALIVE_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_NEG_EDGE_LINK_ALIVE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_NEG_EDGE_LINK_ALIVE_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_NEG_EDGE_LINK_ALIVE_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_VC_ACK_OFLW(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_VC_ACK_OFLW_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_VC_ACK_OFLW_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_VC_ACK_OFLW(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_VC_ACK_OFLW_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_VC_ACK_OFLW_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_RCV_BUF_OFLW(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RCV_BUF_OFLW_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RCV_BUF_OFLW_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_RCV_BUF_OFLW(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RCV_BUF_OFLW_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RCV_BUF_OFLW_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_OFLW(mmr)  	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_OFLW_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_OFLW_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_OFLW(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_OFLW_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_FLOW_CTRL_BUF_OFLW_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_UNEXPECTED_REPLAY(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_UNEXPECTED_REPLAY_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_UNEXPECTED_REPLAY_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_UNEXPECTED_REPLAY(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_UNEXPECTED_REPLAY_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_UNEXPECTED_REPLAY_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_RX_LESS_THAN_3_LANES(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RX_LESS_THAN_3_LANES_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RX_LESS_THAN_3_LANES_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_RX_LESS_THAN_3_LANES(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RX_LESS_THAN_3_LANES_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RX_LESS_THAN_3_LANES_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_TX_LESS_THAN_3_LANES(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_TX_LESS_THAN_3_LANES_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_TX_LESS_THAN_3_LANES_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_TX_LESS_THAN_3_LANES(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_TX_LESS_THAN_3_LANES_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_TX_LESS_THAN_3_LANES_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_HOLD_REINIT(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_HOLD_REINIT_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_HOLD_REINIT_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_HOLD_REINIT(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_HOLD_REINIT_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_HOLD_REINIT_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_OR_OF_ALL_PAUSE_MODES(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_OR_OF_ALL_PAUSE_MODES_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_OR_OF_ALL_PAUSE_MODES_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_OR_OF_ALL_PAUSE_MODES(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_OR_OF_ALL_PAUSE_MODES_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_OR_OF_ALL_PAUSE_MODES_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_MMR_FORCED_REINIT(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_MMR_FORCED_REINIT_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_MMR_FORCED_REINIT_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_MMR_FORCED_REINIT(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_MMR_FORCED_REINIT_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_MMR_FORCED_REINIT_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_REINIT_4_LN_DEGRADE(mmr) 	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REINIT_4_LN_DEGRADE_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REINIT_4_LN_DEGRADE_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_REINIT_4_LN_DEGRADE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REINIT_4_LN_DEGRADE_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REINIT_4_LN_DEGRADE_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_LINK_TIMEOUT(mmr)  	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_LINK_TIMEOUT_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_LINK_TIMEOUT_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_LINK_TIMEOUT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_LINK_TIMEOUT_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_LINK_TIMEOUT_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_FAILED_DESKEW(mmr) 	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_FAILED_DESKEW_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_FAILED_DESKEW_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_FAILED_DESKEW(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_FAILED_DESKEW_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_FAILED_DESKEW_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_REINIT_FROM_PEER(mmr)    	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REINIT_FROM_PEER_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REINIT_FROM_PEER_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_REINIT_FROM_PEER(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REINIT_FROM_PEER_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_REINIT_FROM_PEER_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_RCLK_STOPPED(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RCLK_STOPPED_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RCLK_STOPPED_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_RCLK_STOPPED(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RCLK_STOPPED_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RCLK_STOPPED_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_SEQ_CRC_ERR(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_SEQ_CRC_ERR_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_SEQ_CRC_ERR_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_SEQ_CRC_ERR(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_SEQ_CRC_ERR_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_SEQ_CRC_ERR_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_LOST_TON_SIG(mmr)  	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_LOST_TON_SIG_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_LOST_TON_SIG_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_LOST_TON_SIG(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_LOST_TON_SIG_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_RST_4_LOST_TON_SIG_MASK)
+#define RF_AR_SLB_LCB_CFG_LINK_KILL_EN_DIAG_ONLY(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_DIAG_ONLY_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_DIAG_ONLY_MASK)
+#define WF_AR_SLB_LCB_CFG_LINK_KILL_EN_DIAG_ONLY(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_DIAG_ONLY_BP,\
+									AR_SLB_LCB_CFG_LINK_KILL_EN_DIAG_ONLY_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_MBE(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_MBE_BP,\
+									AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_MBE_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_MBE(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_MBE_BP,\
+									AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_MBE_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_SBE(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_SBE_BP,\
+									AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_SBE_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_SBE(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_SBE_BP,\
+									AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_SBE_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_REPLAY_BUF_MBE1(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_REPLAY_BUF_MBE1_BP,\
+									AR_SLB_LCB_ERR_FLG_REPLAY_BUF_MBE1_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_REPLAY_BUF_MBE1(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_REPLAY_BUF_MBE1_BP,\
+									AR_SLB_LCB_ERR_FLG_REPLAY_BUF_MBE1_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_REPLAY_BUF_SBE1(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_REPLAY_BUF_SBE1_BP,\
+									AR_SLB_LCB_ERR_FLG_REPLAY_BUF_SBE1_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_REPLAY_BUF_SBE1(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_REPLAY_BUF_SBE1_BP,\
+									AR_SLB_LCB_ERR_FLG_REPLAY_BUF_SBE1_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_REPLAY_BUF_MBE0(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_REPLAY_BUF_MBE0_BP,\
+									AR_SLB_LCB_ERR_FLG_REPLAY_BUF_MBE0_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_REPLAY_BUF_MBE0(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_REPLAY_BUF_MBE0_BP,\
+									AR_SLB_LCB_ERR_FLG_REPLAY_BUF_MBE0_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_REPLAY_BUF_SBE0(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_REPLAY_BUF_SBE0_BP,\
+									AR_SLB_LCB_ERR_FLG_REPLAY_BUF_SBE0_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_REPLAY_BUF_SBE0(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_REPLAY_BUF_SBE0_BP,\
+									AR_SLB_LCB_ERR_FLG_REPLAY_BUF_SBE0_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_NEG_EDGE_LINK_ALIVE(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_NEG_EDGE_LINK_ALIVE_BP,\
+									AR_SLB_LCB_ERR_FLG_NEG_EDGE_LINK_ALIVE_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_NEG_EDGE_LINK_ALIVE(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_NEG_EDGE_LINK_ALIVE_BP,\
+									AR_SLB_LCB_ERR_FLG_NEG_EDGE_LINK_ALIVE_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_VC_ACK_OFLW(mmr)                  	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_VC_ACK_OFLW_BP,\
+									AR_SLB_LCB_ERR_FLG_VC_ACK_OFLW_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_VC_ACK_OFLW(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_VC_ACK_OFLW_BP,\
+									AR_SLB_LCB_ERR_FLG_VC_ACK_OFLW_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_RCV_BUF_OFLW(mmr)                 	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_RCV_BUF_OFLW_BP,\
+									AR_SLB_LCB_ERR_FLG_RCV_BUF_OFLW_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_RCV_BUF_OFLW(mmr,v)               	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_RCV_BUF_OFLW_BP,\
+									AR_SLB_LCB_ERR_FLG_RCV_BUF_OFLW_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_OFLW(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_OFLW_BP,\
+									AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_OFLW_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_OFLW(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_OFLW_BP,\
+									AR_SLB_LCB_ERR_FLG_FLOW_CTRL_BUF_OFLW_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_UNEXPECTED_REPLAY(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_UNEXPECTED_REPLAY_BP,\
+									AR_SLB_LCB_ERR_FLG_UNEXPECTED_REPLAY_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_UNEXPECTED_REPLAY(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_UNEXPECTED_REPLAY_BP,\
+									AR_SLB_LCB_ERR_FLG_UNEXPECTED_REPLAY_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_RX_LESS_THAN_3_LANES(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_RX_LESS_THAN_3_LANES_BP,\
+									AR_SLB_LCB_ERR_FLG_RX_LESS_THAN_3_LANES_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_RX_LESS_THAN_3_LANES(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_RX_LESS_THAN_3_LANES_BP,\
+									AR_SLB_LCB_ERR_FLG_RX_LESS_THAN_3_LANES_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_TX_LESS_THAN_3_LANES(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_TX_LESS_THAN_3_LANES_BP,\
+									AR_SLB_LCB_ERR_FLG_TX_LESS_THAN_3_LANES_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_TX_LESS_THAN_3_LANES(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_TX_LESS_THAN_3_LANES_BP,\
+									AR_SLB_LCB_ERR_FLG_TX_LESS_THAN_3_LANES_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_HOLD_REINIT(mmr)                  	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_HOLD_REINIT_BP,\
+									AR_SLB_LCB_ERR_FLG_HOLD_REINIT_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_HOLD_REINIT(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_HOLD_REINIT_BP,\
+									AR_SLB_LCB_ERR_FLG_HOLD_REINIT_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_OR_OF_ALL_PAUSE_MODES(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_OR_OF_ALL_PAUSE_MODES_BP,\
+									AR_SLB_LCB_ERR_FLG_OR_OF_ALL_PAUSE_MODES_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_OR_OF_ALL_PAUSE_MODES(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_OR_OF_ALL_PAUSE_MODES_BP,\
+									AR_SLB_LCB_ERR_FLG_OR_OF_ALL_PAUSE_MODES_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_MMR_FORCED_REINIT(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_MMR_FORCED_REINIT_BP,\
+									AR_SLB_LCB_ERR_FLG_MMR_FORCED_REINIT_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_MMR_FORCED_REINIT(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_MMR_FORCED_REINIT_BP,\
+									AR_SLB_LCB_ERR_FLG_MMR_FORCED_REINIT_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_REINIT_4_LN_DEGRADE(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_REINIT_4_LN_DEGRADE_BP,\
+									AR_SLB_LCB_ERR_FLG_REINIT_4_LN_DEGRADE_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_REINIT_4_LN_DEGRADE(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_REINIT_4_LN_DEGRADE_BP,\
+									AR_SLB_LCB_ERR_FLG_REINIT_4_LN_DEGRADE_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_RST_4_LINK_TIMEOUT(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_RST_4_LINK_TIMEOUT_BP,\
+									AR_SLB_LCB_ERR_FLG_RST_4_LINK_TIMEOUT_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_RST_4_LINK_TIMEOUT(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_RST_4_LINK_TIMEOUT_BP,\
+									AR_SLB_LCB_ERR_FLG_RST_4_LINK_TIMEOUT_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_RST_4_FAILED_DESKEW(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_RST_4_FAILED_DESKEW_BP,\
+									AR_SLB_LCB_ERR_FLG_RST_4_FAILED_DESKEW_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_RST_4_FAILED_DESKEW(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_RST_4_FAILED_DESKEW_BP,\
+									AR_SLB_LCB_ERR_FLG_RST_4_FAILED_DESKEW_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_REINIT_FROM_PEER(mmr)             	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_REINIT_FROM_PEER_BP,\
+									AR_SLB_LCB_ERR_FLG_REINIT_FROM_PEER_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_REINIT_FROM_PEER(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_REINIT_FROM_PEER_BP,\
+									AR_SLB_LCB_ERR_FLG_REINIT_FROM_PEER_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_RCLK_STOPPED(mmr)                 	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_RCLK_STOPPED_BP,\
+									AR_SLB_LCB_ERR_FLG_RCLK_STOPPED_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_RCLK_STOPPED(mmr,v)               	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_RCLK_STOPPED_BP,\
+									AR_SLB_LCB_ERR_FLG_RCLK_STOPPED_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_SEQ_CRC_ERR(mmr)                  	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_SEQ_CRC_ERR_BP,\
+									AR_SLB_LCB_ERR_FLG_SEQ_CRC_ERR_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_SEQ_CRC_ERR(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_SEQ_CRC_ERR_BP,\
+									AR_SLB_LCB_ERR_FLG_SEQ_CRC_ERR_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_RST_4_LOST_TON_SIG(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_RST_4_LOST_TON_SIG_BP,\
+									AR_SLB_LCB_ERR_FLG_RST_4_LOST_TON_SIG_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_RST_4_LOST_TON_SIG(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_RST_4_LOST_TON_SIG_BP,\
+									AR_SLB_LCB_ERR_FLG_RST_4_LOST_TON_SIG_MASK)
+#define RF_AR_SLB_LCB_ERR_FLG_DIAG_ONLY(mmr)                    	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FLG_DIAG_ONLY_BP,\
+									AR_SLB_LCB_ERR_FLG_DIAG_ONLY_MASK)
+#define WF_AR_SLB_LCB_ERR_FLG_DIAG_ONLY(mmr,v)                  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FLG_DIAG_ONLY_BP,\
+									AR_SLB_LCB_ERR_FLG_DIAG_ONLY_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_MBE(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_MBE_BP,\
+									AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_MBE_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_MBE(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_MBE_BP,\
+									AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_MBE_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_SBE(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_SBE_BP,\
+									AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_SBE_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_SBE(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_SBE_BP,\
+									AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_SBE_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_REPLAY_BUF_MBE1(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_REPLAY_BUF_MBE1_BP,\
+									AR_SLB_LCB_ERR_CLR_REPLAY_BUF_MBE1_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_REPLAY_BUF_MBE1(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_REPLAY_BUF_MBE1_BP,\
+									AR_SLB_LCB_ERR_CLR_REPLAY_BUF_MBE1_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_REPLAY_BUF_SBE1(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_REPLAY_BUF_SBE1_BP,\
+									AR_SLB_LCB_ERR_CLR_REPLAY_BUF_SBE1_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_REPLAY_BUF_SBE1(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_REPLAY_BUF_SBE1_BP,\
+									AR_SLB_LCB_ERR_CLR_REPLAY_BUF_SBE1_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_REPLAY_BUF_MBE0(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_REPLAY_BUF_MBE0_BP,\
+									AR_SLB_LCB_ERR_CLR_REPLAY_BUF_MBE0_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_REPLAY_BUF_MBE0(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_REPLAY_BUF_MBE0_BP,\
+									AR_SLB_LCB_ERR_CLR_REPLAY_BUF_MBE0_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_REPLAY_BUF_SBE0(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_REPLAY_BUF_SBE0_BP,\
+									AR_SLB_LCB_ERR_CLR_REPLAY_BUF_SBE0_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_REPLAY_BUF_SBE0(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_REPLAY_BUF_SBE0_BP,\
+									AR_SLB_LCB_ERR_CLR_REPLAY_BUF_SBE0_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_NEG_EDGE_LINK_ALIVE(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_NEG_EDGE_LINK_ALIVE_BP,\
+									AR_SLB_LCB_ERR_CLR_NEG_EDGE_LINK_ALIVE_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_NEG_EDGE_LINK_ALIVE(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_NEG_EDGE_LINK_ALIVE_BP,\
+									AR_SLB_LCB_ERR_CLR_NEG_EDGE_LINK_ALIVE_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_VC_ACK_OFLW(mmr)                  	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_VC_ACK_OFLW_BP,\
+									AR_SLB_LCB_ERR_CLR_VC_ACK_OFLW_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_VC_ACK_OFLW(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_VC_ACK_OFLW_BP,\
+									AR_SLB_LCB_ERR_CLR_VC_ACK_OFLW_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_RCV_BUF_OFLW(mmr)                 	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_RCV_BUF_OFLW_BP,\
+									AR_SLB_LCB_ERR_CLR_RCV_BUF_OFLW_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_RCV_BUF_OFLW(mmr,v)               	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_RCV_BUF_OFLW_BP,\
+									AR_SLB_LCB_ERR_CLR_RCV_BUF_OFLW_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_OFLW(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_OFLW_BP,\
+									AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_OFLW_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_OFLW(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_OFLW_BP,\
+									AR_SLB_LCB_ERR_CLR_FLOW_CTRL_BUF_OFLW_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_UNEXPECTED_REPLAY(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_UNEXPECTED_REPLAY_BP,\
+									AR_SLB_LCB_ERR_CLR_UNEXPECTED_REPLAY_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_UNEXPECTED_REPLAY(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_UNEXPECTED_REPLAY_BP,\
+									AR_SLB_LCB_ERR_CLR_UNEXPECTED_REPLAY_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_RX_LESS_THAN_3_LANES(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_RX_LESS_THAN_3_LANES_BP,\
+									AR_SLB_LCB_ERR_CLR_RX_LESS_THAN_3_LANES_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_RX_LESS_THAN_3_LANES(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_RX_LESS_THAN_3_LANES_BP,\
+									AR_SLB_LCB_ERR_CLR_RX_LESS_THAN_3_LANES_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_TX_LESS_THAN_3_LANES(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_TX_LESS_THAN_3_LANES_BP,\
+									AR_SLB_LCB_ERR_CLR_TX_LESS_THAN_3_LANES_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_TX_LESS_THAN_3_LANES(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_TX_LESS_THAN_3_LANES_BP,\
+									AR_SLB_LCB_ERR_CLR_TX_LESS_THAN_3_LANES_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_HOLD_REINIT(mmr)                  	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_HOLD_REINIT_BP,\
+									AR_SLB_LCB_ERR_CLR_HOLD_REINIT_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_HOLD_REINIT(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_HOLD_REINIT_BP,\
+									AR_SLB_LCB_ERR_CLR_HOLD_REINIT_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_OR_OF_ALL_PAUSE_MODES(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_OR_OF_ALL_PAUSE_MODES_BP,\
+									AR_SLB_LCB_ERR_CLR_OR_OF_ALL_PAUSE_MODES_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_OR_OF_ALL_PAUSE_MODES(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_OR_OF_ALL_PAUSE_MODES_BP,\
+									AR_SLB_LCB_ERR_CLR_OR_OF_ALL_PAUSE_MODES_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_MMR_FORCED_REINIT(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_MMR_FORCED_REINIT_BP,\
+									AR_SLB_LCB_ERR_CLR_MMR_FORCED_REINIT_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_MMR_FORCED_REINIT(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_MMR_FORCED_REINIT_BP,\
+									AR_SLB_LCB_ERR_CLR_MMR_FORCED_REINIT_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_REINIT_4_LN_DEGRADE(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_REINIT_4_LN_DEGRADE_BP,\
+									AR_SLB_LCB_ERR_CLR_REINIT_4_LN_DEGRADE_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_REINIT_4_LN_DEGRADE(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_REINIT_4_LN_DEGRADE_BP,\
+									AR_SLB_LCB_ERR_CLR_REINIT_4_LN_DEGRADE_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_RST_4_LINK_TIMEOUT(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_RST_4_LINK_TIMEOUT_BP,\
+									AR_SLB_LCB_ERR_CLR_RST_4_LINK_TIMEOUT_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_RST_4_LINK_TIMEOUT(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_RST_4_LINK_TIMEOUT_BP,\
+									AR_SLB_LCB_ERR_CLR_RST_4_LINK_TIMEOUT_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_RST_4_FAILED_DESKEW(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_RST_4_FAILED_DESKEW_BP,\
+									AR_SLB_LCB_ERR_CLR_RST_4_FAILED_DESKEW_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_RST_4_FAILED_DESKEW(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_RST_4_FAILED_DESKEW_BP,\
+									AR_SLB_LCB_ERR_CLR_RST_4_FAILED_DESKEW_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_REINIT_FROM_PEER(mmr)             	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_REINIT_FROM_PEER_BP,\
+									AR_SLB_LCB_ERR_CLR_REINIT_FROM_PEER_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_REINIT_FROM_PEER(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_REINIT_FROM_PEER_BP,\
+									AR_SLB_LCB_ERR_CLR_REINIT_FROM_PEER_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_RCLK_STOPPED(mmr)                 	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_RCLK_STOPPED_BP,\
+									AR_SLB_LCB_ERR_CLR_RCLK_STOPPED_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_RCLK_STOPPED(mmr,v)               	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_RCLK_STOPPED_BP,\
+									AR_SLB_LCB_ERR_CLR_RCLK_STOPPED_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_SEQ_CRC_ERR(mmr)                  	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_SEQ_CRC_ERR_BP,\
+									AR_SLB_LCB_ERR_CLR_SEQ_CRC_ERR_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_SEQ_CRC_ERR(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_SEQ_CRC_ERR_BP,\
+									AR_SLB_LCB_ERR_CLR_SEQ_CRC_ERR_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_RST_4_LOST_TON_SIG(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_RST_4_LOST_TON_SIG_BP,\
+									AR_SLB_LCB_ERR_CLR_RST_4_LOST_TON_SIG_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_RST_4_LOST_TON_SIG(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_RST_4_LOST_TON_SIG_BP,\
+									AR_SLB_LCB_ERR_CLR_RST_4_LOST_TON_SIG_MASK)
+#define RF_AR_SLB_LCB_ERR_CLR_DIAG_ONLY(mmr)                    	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_CLR_DIAG_ONLY_BP,\
+									AR_SLB_LCB_ERR_CLR_DIAG_ONLY_MASK)
+#define WF_AR_SLB_LCB_ERR_CLR_DIAG_ONLY(mmr,v)                  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_CLR_DIAG_ONLY_BP,\
+									AR_SLB_LCB_ERR_CLR_DIAG_ONLY_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_MBE(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_MBE_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_MBE_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_MBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_MBE_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_MBE_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_SBE(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_SBE_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_SBE_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_SBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_SBE_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_SBE_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_MBE1(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_MBE1_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_MBE1_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_MBE1(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_MBE1_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_MBE1_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_SBE1(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_SBE1_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_SBE1_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_SBE1(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_SBE1_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_SBE1_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_MBE0(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_MBE0_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_MBE0_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_MBE0(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_MBE0_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_MBE0_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_SBE0(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_SBE0_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_SBE0_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_SBE0(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_SBE0_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_REPLAY_BUF_SBE0_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_NEG_EDGE_LINK_ALIVE(mmr)      	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_NEG_EDGE_LINK_ALIVE_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_NEG_EDGE_LINK_ALIVE_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_NEG_EDGE_LINK_ALIVE(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_NEG_EDGE_LINK_ALIVE_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_NEG_EDGE_LINK_ALIVE_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_VC_ACK_OFLW(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_VC_ACK_OFLW_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_VC_ACK_OFLW_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_VC_ACK_OFLW(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_VC_ACK_OFLW_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_VC_ACK_OFLW_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_RCV_BUF_OFLW(mmr)             	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_RCV_BUF_OFLW_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_RCV_BUF_OFLW_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_RCV_BUF_OFLW(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_RCV_BUF_OFLW_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_RCV_BUF_OFLW_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_OFLW(mmr)       	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_OFLW_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_OFLW_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_OFLW(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_OFLW_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_FLOW_CTRL_BUF_OFLW_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_UNEXPECTED_REPLAY(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_UNEXPECTED_REPLAY_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_UNEXPECTED_REPLAY_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_UNEXPECTED_REPLAY(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_UNEXPECTED_REPLAY_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_UNEXPECTED_REPLAY_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_RX_LESS_THAN_3_LANES(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_RX_LESS_THAN_3_LANES_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_RX_LESS_THAN_3_LANES_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_RX_LESS_THAN_3_LANES(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_RX_LESS_THAN_3_LANES_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_RX_LESS_THAN_3_LANES_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_TX_LESS_THAN_3_LANES(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_TX_LESS_THAN_3_LANES_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_TX_LESS_THAN_3_LANES_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_TX_LESS_THAN_3_LANES(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_TX_LESS_THAN_3_LANES_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_TX_LESS_THAN_3_LANES_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_HOLD_REINIT(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_HOLD_REINIT_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_HOLD_REINIT_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_HOLD_REINIT(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_HOLD_REINIT_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_HOLD_REINIT_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_OR_OF_ALL_PAUSE_MODES(mmr)    	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_OR_OF_ALL_PAUSE_MODES_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_OR_OF_ALL_PAUSE_MODES_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_OR_OF_ALL_PAUSE_MODES(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_OR_OF_ALL_PAUSE_MODES_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_OR_OF_ALL_PAUSE_MODES_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_MMR_FORCED_REINIT(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_MMR_FORCED_REINIT_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_MMR_FORCED_REINIT_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_MMR_FORCED_REINIT(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_MMR_FORCED_REINIT_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_MMR_FORCED_REINIT_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_REINIT_4_LN_DEGRADE(mmr)      	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_REINIT_4_LN_DEGRADE_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_REINIT_4_LN_DEGRADE_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_REINIT_4_LN_DEGRADE(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_REINIT_4_LN_DEGRADE_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_REINIT_4_LN_DEGRADE_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_RST_4_LINK_TIMEOUT(mmr)       	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_RST_4_LINK_TIMEOUT_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_RST_4_LINK_TIMEOUT_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_RST_4_LINK_TIMEOUT(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_RST_4_LINK_TIMEOUT_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_RST_4_LINK_TIMEOUT_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_RST_4_FAILED_DESKEW(mmr)      	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_RST_4_FAILED_DESKEW_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_RST_4_FAILED_DESKEW_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_RST_4_FAILED_DESKEW(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_RST_4_FAILED_DESKEW_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_RST_4_FAILED_DESKEW_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_REINIT_FROM_PEER(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_REINIT_FROM_PEER_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_REINIT_FROM_PEER_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_REINIT_FROM_PEER(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_REINIT_FROM_PEER_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_REINIT_FROM_PEER_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_RCLK_STOPPED(mmr)             	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_RCLK_STOPPED_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_RCLK_STOPPED_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_RCLK_STOPPED(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_RCLK_STOPPED_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_RCLK_STOPPED_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_SEQ_CRC_ERR(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_SEQ_CRC_ERR_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_SEQ_CRC_ERR_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_SEQ_CRC_ERR(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_SEQ_CRC_ERR_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_SEQ_CRC_ERR_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_RST_4_LOST_TON_SIG(mmr)       	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_RST_4_LOST_TON_SIG_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_RST_4_LOST_TON_SIG_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_RST_4_LOST_TON_SIG(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_RST_4_LOST_TON_SIG_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_RST_4_LOST_TON_SIG_MASK)
+#define RF_AR_SLB_LCB_ERR_HSS_MSK_DIAG_ONLY(mmr)                	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_HSS_MSK_DIAG_ONLY_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_DIAG_ONLY_MASK)
+#define WF_AR_SLB_LCB_ERR_HSS_MSK_DIAG_ONLY(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_HSS_MSK_DIAG_ONLY_BP,\
+									AR_SLB_LCB_ERR_HSS_MSK_DIAG_ONLY_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_MBE(mmr)      	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_MBE_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_MBE_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_MBE(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_MBE_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_MBE_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_SBE(mmr)      	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_SBE_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_SBE_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_SBE(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_SBE_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_SBE_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_MBE1(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_MBE1_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_MBE1_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_MBE1(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_MBE1_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_MBE1_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_SBE1(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_SBE1_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_SBE1_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_SBE1(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_SBE1_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_SBE1_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_MBE0(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_MBE0_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_MBE0_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_MBE0(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_MBE0_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_MBE0_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_SBE0(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_SBE0_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_SBE0_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_SBE0(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_SBE0_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REPLAY_BUF_SBE0_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_NEG_EDGE_LINK_ALIVE(mmr)    	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_NEG_EDGE_LINK_ALIVE_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_NEG_EDGE_LINK_ALIVE_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_NEG_EDGE_LINK_ALIVE(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_NEG_EDGE_LINK_ALIVE_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_NEG_EDGE_LINK_ALIVE_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_VC_ACK_OFLW(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_VC_ACK_OFLW_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_VC_ACK_OFLW_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_VC_ACK_OFLW(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_VC_ACK_OFLW_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_VC_ACK_OFLW_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_RCV_BUF_OFLW(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RCV_BUF_OFLW_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RCV_BUF_OFLW_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_RCV_BUF_OFLW(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RCV_BUF_OFLW_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RCV_BUF_OFLW_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_OFLW(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_OFLW_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_OFLW_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_OFLW(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_OFLW_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_FLOW_CTRL_BUF_OFLW_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_UNEXPECTED_REPLAY(mmr)      	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_UNEXPECTED_REPLAY_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_UNEXPECTED_REPLAY_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_UNEXPECTED_REPLAY(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_UNEXPECTED_REPLAY_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_UNEXPECTED_REPLAY_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_RX_LESS_THAN_3_LANES(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RX_LESS_THAN_3_LANES_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RX_LESS_THAN_3_LANES_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_RX_LESS_THAN_3_LANES(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RX_LESS_THAN_3_LANES_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RX_LESS_THAN_3_LANES_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_TX_LESS_THAN_3_LANES(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_TX_LESS_THAN_3_LANES_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_TX_LESS_THAN_3_LANES_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_TX_LESS_THAN_3_LANES(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_TX_LESS_THAN_3_LANES_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_TX_LESS_THAN_3_LANES_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_HOLD_REINIT(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_HOLD_REINIT_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_HOLD_REINIT_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_HOLD_REINIT(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_HOLD_REINIT_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_HOLD_REINIT_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_OR_OF_ALL_PAUSE_MODES(mmr)  	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_OR_OF_ALL_PAUSE_MODES_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_OR_OF_ALL_PAUSE_MODES_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_OR_OF_ALL_PAUSE_MODES(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_OR_OF_ALL_PAUSE_MODES_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_OR_OF_ALL_PAUSE_MODES_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_MMR_FORCED_REINIT(mmr)      	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_MMR_FORCED_REINIT_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_MMR_FORCED_REINIT_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_MMR_FORCED_REINIT(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_MMR_FORCED_REINIT_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_MMR_FORCED_REINIT_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_REINIT_4_LN_DEGRADE(mmr)    	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REINIT_4_LN_DEGRADE_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REINIT_4_LN_DEGRADE_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_REINIT_4_LN_DEGRADE(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REINIT_4_LN_DEGRADE_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REINIT_4_LN_DEGRADE_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_RST_4_LINK_TIMEOUT(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RST_4_LINK_TIMEOUT_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RST_4_LINK_TIMEOUT_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_RST_4_LINK_TIMEOUT(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RST_4_LINK_TIMEOUT_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RST_4_LINK_TIMEOUT_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_RST_4_FAILED_DESKEW(mmr)    	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RST_4_FAILED_DESKEW_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RST_4_FAILED_DESKEW_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_RST_4_FAILED_DESKEW(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RST_4_FAILED_DESKEW_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RST_4_FAILED_DESKEW_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_REINIT_FROM_PEER(mmr)       	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REINIT_FROM_PEER_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REINIT_FROM_PEER_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_REINIT_FROM_PEER(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REINIT_FROM_PEER_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_REINIT_FROM_PEER_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_RCLK_STOPPED(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RCLK_STOPPED_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RCLK_STOPPED_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_RCLK_STOPPED(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RCLK_STOPPED_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RCLK_STOPPED_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_SEQ_CRC_ERR(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_SEQ_CRC_ERR_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_SEQ_CRC_ERR_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_SEQ_CRC_ERR(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_SEQ_CRC_ERR_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_SEQ_CRC_ERR_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_RST_4_LOST_TON_SIG(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RST_4_LOST_TON_SIG_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RST_4_LOST_TON_SIG_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_RST_4_LOST_TON_SIG(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RST_4_LOST_TON_SIG_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_RST_4_LOST_TON_SIG_MASK)
+#define RF_AR_SLB_LCB_ERR_FIRST_FLG_DIAG_ONLY(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_FIRST_FLG_DIAG_ONLY_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_DIAG_ONLY_MASK)
+#define WF_AR_SLB_LCB_ERR_FIRST_FLG_DIAG_ONLY(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_FIRST_FLG_DIAG_ONLY_BP,\
+									AR_SLB_LCB_ERR_FIRST_FLG_DIAG_ONLY_MASK)
+#define RF_AR_SLB_LCB_DBG_GOOD_UP_CNT_CNT(mmr)                  	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_GOOD_UP_CNT_CNT_BP,\
+									AR_SLB_LCB_DBG_GOOD_UP_CNT_CNT_MASK)
+#define WF_AR_SLB_LCB_DBG_GOOD_UP_CNT_CNT(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_GOOD_UP_CNT_CNT_BP,\
+									AR_SLB_LCB_DBG_GOOD_UP_CNT_CNT_MASK)
+#define RF_AR_SLB_LCB_DBG_ACCEPTED_UP_CNT_CNT(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_ACCEPTED_UP_CNT_CNT_BP,\
+									AR_SLB_LCB_DBG_ACCEPTED_UP_CNT_CNT_MASK)
+#define WF_AR_SLB_LCB_DBG_ACCEPTED_UP_CNT_CNT(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_ACCEPTED_UP_CNT_CNT_BP,\
+									AR_SLB_LCB_DBG_ACCEPTED_UP_CNT_CNT_MASK)
+#define RF_AR_SLB_LCB_DBG_CLK_CNTR_NEW_VALUE_WAS_STROBED(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_CLK_CNTR_NEW_VALUE_WAS_STROBED_BP,\
+									AR_SLB_LCB_DBG_CLK_CNTR_NEW_VALUE_WAS_STROBED_MASK)
+#define WF_AR_SLB_LCB_DBG_CLK_CNTR_NEW_VALUE_WAS_STROBED(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_CLK_CNTR_NEW_VALUE_WAS_STROBED_BP,\
+									AR_SLB_LCB_DBG_CLK_CNTR_NEW_VALUE_WAS_STROBED_MASK)
+#define RF_AR_SLB_LCB_DBG_CLK_CNTR_STROBE_ON_LCLK_CNTR(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_CLK_CNTR_STROBE_ON_LCLK_CNTR_BP,\
+									AR_SLB_LCB_DBG_CLK_CNTR_STROBE_ON_LCLK_CNTR_MASK)
+#define WF_AR_SLB_LCB_DBG_CLK_CNTR_STROBE_ON_LCLK_CNTR(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_CLK_CNTR_STROBE_ON_LCLK_CNTR_BP,\
+									AR_SLB_LCB_DBG_CLK_CNTR_STROBE_ON_LCLK_CNTR_MASK)
+#define RF_AR_SLB_LCB_DBG_CLK_CNTR_SELECT(mmr)                  	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_CLK_CNTR_SELECT_BP,\
+									AR_SLB_LCB_DBG_CLK_CNTR_SELECT_MASK)
+#define WF_AR_SLB_LCB_DBG_CLK_CNTR_SELECT(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_CLK_CNTR_SELECT_BP,\
+									AR_SLB_LCB_DBG_CLK_CNTR_SELECT_MASK)
+#define RF_AR_SLB_LCB_DBG_CLK_CNTR_CNT(mmr)                     	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_CLK_CNTR_CNT_BP,\
+									AR_SLB_LCB_DBG_CLK_CNTR_CNT_MASK)
+#define WF_AR_SLB_LCB_DBG_CLK_CNTR_CNT(mmr,v)                   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_CLK_CNTR_CNT_BP,\
+									AR_SLB_LCB_DBG_CLK_CNTR_CNT_MASK)
+#define RF_AR_SLB_LCB_CFG_PERF_CNTR_RESET_HOLD_CRC_ERR_CNTRS(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_PERF_CNTR_RESET_HOLD_CRC_ERR_CNTRS_BP,\
+									AR_SLB_LCB_CFG_PERF_CNTR_RESET_HOLD_CRC_ERR_CNTRS_MASK)
+#define WF_AR_SLB_LCB_CFG_PERF_CNTR_RESET_HOLD_CRC_ERR_CNTRS(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_PERF_CNTR_RESET_HOLD_CRC_ERR_CNTRS_BP,\
+									AR_SLB_LCB_CFG_PERF_CNTR_RESET_HOLD_CRC_ERR_CNTRS_MASK)
+#define RF_AR_SLB_LCB_CFG_PERF_CNTR_RESET_CLR_CRC_ERR_CNTRS(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_PERF_CNTR_RESET_CLR_CRC_ERR_CNTRS_BP,\
+									AR_SLB_LCB_CFG_PERF_CNTR_RESET_CLR_CRC_ERR_CNTRS_MASK)
+#define WF_AR_SLB_LCB_CFG_PERF_CNTR_RESET_CLR_CRC_ERR_CNTRS(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_PERF_CNTR_RESET_CLR_CRC_ERR_CNTRS_BP,\
+									AR_SLB_LCB_CFG_PERF_CNTR_RESET_CLR_CRC_ERR_CNTRS_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_CRC_CNT_0_LN0_CRC_ERR_CNT(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_0_LN0_CRC_ERR_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_0_LN0_CRC_ERR_CNT_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_CRC_CNT_0_LN0_CRC_ERR_CNT(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_0_LN0_CRC_ERR_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_0_LN0_CRC_ERR_CNT_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_CRC_CNT_1_LN1_CRC_ERR_CNT(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_1_LN1_CRC_ERR_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_1_LN1_CRC_ERR_CNT_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_CRC_CNT_1_LN1_CRC_ERR_CNT(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_1_LN1_CRC_ERR_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_1_LN1_CRC_ERR_CNT_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_CRC_CNT_2_LN2_CRC_ERR_CNT(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_2_LN2_CRC_ERR_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_2_LN2_CRC_ERR_CNT_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_CRC_CNT_2_LN2_CRC_ERR_CNT(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_2_LN2_CRC_ERR_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_2_LN2_CRC_ERR_CNT_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_CRC_CNT_3_MULTIPLE_LN_ERR_CNT(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_3_MULTIPLE_LN_ERR_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_3_MULTIPLE_LN_ERR_CNT_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_CRC_CNT_3_MULTIPLE_LN_ERR_CNT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_3_MULTIPLE_LN_ERR_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_3_MULTIPLE_LN_ERR_CNT_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_CRC_CNT_4_TOTAL_CRC_ERR_CNT(mmr) 	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_4_TOTAL_CRC_ERR_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_4_TOTAL_CRC_ERR_CNT_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_CRC_CNT_4_TOTAL_CRC_ERR_CNT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_4_TOTAL_CRC_ERR_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_4_TOTAL_CRC_ERR_CNT_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_CRC_CNT_5_RX_REPLAY_CNT(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_5_RX_REPLAY_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_5_RX_REPLAY_CNT_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_CRC_CNT_5_RX_REPLAY_CNT(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_5_RX_REPLAY_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_5_RX_REPLAY_CNT_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_CRC_CNT_5_TX_REPLAY_CNT(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_5_TX_REPLAY_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_5_TX_REPLAY_CNT_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_CRC_CNT_5_TX_REPLAY_CNT(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_5_TX_REPLAY_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_CRC_CNT_5_TX_REPLAY_CNT_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_MISC_CNT_RST_FOR_FAILED_DESKEW_CNT(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_RST_FOR_FAILED_DESKEW_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_RST_FOR_FAILED_DESKEW_CNT_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_MISC_CNT_RST_FOR_FAILED_DESKEW_CNT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_RST_FOR_FAILED_DESKEW_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_RST_FOR_FAILED_DESKEW_CNT_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_MISC_CNT_REINITS_B4_LINK_LOW_CNT(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_REINITS_B4_LINK_LOW_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_REINITS_B4_LINK_LOW_CNT_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_MISC_CNT_REINITS_B4_LINK_LOW_CNT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_REINITS_B4_LINK_LOW_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_REINITS_B4_LINK_LOW_CNT_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_MISC_CNT_NOISY_DEGRADE_CNT(mmr)  	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_NOISY_DEGRADE_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_NOISY_DEGRADE_CNT_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_MISC_CNT_NOISY_DEGRADE_CNT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_NOISY_DEGRADE_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_NOISY_DEGRADE_CNT_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_MISC_CNT_UNEXPECTED_REPLAY_CNT(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_UNEXPECTED_REPLAY_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_UNEXPECTED_REPLAY_CNT_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_MISC_CNT_UNEXPECTED_REPLAY_CNT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_UNEXPECTED_REPLAY_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_UNEXPECTED_REPLAY_CNT_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_MISC_CNT_REINIT_FOR_LINK_TOUT_CNT(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_REINIT_FOR_LINK_TOUT_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_REINIT_FOR_LINK_TOUT_CNT_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_MISC_CNT_REINIT_FOR_LINK_TOUT_CNT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_REINIT_FOR_LINK_TOUT_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_REINIT_FOR_LINK_TOUT_CNT_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_MISC_CNT_REINIT_FROM_PEER_CNT(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_REINIT_FROM_PEER_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_REINIT_FROM_PEER_CNT_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_MISC_CNT_REINIT_FROM_PEER_CNT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_REINIT_FROM_PEER_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_REINIT_FROM_PEER_CNT_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT2(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT2_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT2_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT2(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT2_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT2_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT1(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT1_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT1_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT1_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT1_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT0(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT0_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT0_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT0(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT0_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_LOST_RCLK_REINIT_CNT0_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_MISC_CNT_SEQ_CRC_REINIT_CNT(mmr) 	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_SEQ_CRC_REINIT_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_SEQ_CRC_REINIT_CNT_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_MISC_CNT_SEQ_CRC_REINIT_CNT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_SEQ_CRC_REINIT_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_SEQ_CRC_REINIT_CNT_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_MISC_CNT_RST_FOR_LOST_TOS_CNT(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_RST_FOR_LOST_TOS_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_RST_FOR_LOST_TOS_CNT_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_MISC_CNT_RST_FOR_LOST_TOS_CNT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_RST_FOR_LOST_TOS_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_MISC_CNT_RST_FOR_LOST_TOS_CNT_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_ECC_CNT_0_FLOW_CTRL_BUF_MBE_CNT(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_0_FLOW_CTRL_BUF_MBE_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_0_FLOW_CTRL_BUF_MBE_CNT_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_ECC_CNT_0_FLOW_CTRL_BUF_MBE_CNT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_0_FLOW_CTRL_BUF_MBE_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_0_FLOW_CTRL_BUF_MBE_CNT_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_ECC_CNT_0_FLOW_CTRL_BUF_SBE_CNT(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_0_FLOW_CTRL_BUF_SBE_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_0_FLOW_CTRL_BUF_SBE_CNT_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_ECC_CNT_0_FLOW_CTRL_BUF_SBE_CNT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_0_FLOW_CTRL_BUF_SBE_CNT_BP,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_0_FLOW_CTRL_BUF_SBE_CNT_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_MBE_CNT1(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_MBE_CNT1_BP,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_MBE_CNT1_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_MBE_CNT1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_MBE_CNT1_BP,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_MBE_CNT1_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_SBE_CNT1(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_SBE_CNT1_BP,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_SBE_CNT1_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_SBE_CNT1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_SBE_CNT1_BP,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_SBE_CNT1_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_MBE_CNT0(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_MBE_CNT0_BP,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_MBE_CNT0_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_MBE_CNT0(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_MBE_CNT0_BP,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_MBE_CNT0_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_SBE_CNT0(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_SBE_CNT0_BP,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_SBE_CNT0_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_SBE_CNT0(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_SBE_CNT0_BP,\
+									AR_SLB_LCB_ERR_INFO_ECC_CNT_1_REPLAY_BUF_SBE_CNT0_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_SYNDROME(mmr)       	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_SYNDROME_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_SYNDROME_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_SYNDROME(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_SYNDROME_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_SYNDROME_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_MMR_CREATED_SBE(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_MMR_CREATED_SBE_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_MMR_CREATED_SBE_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_MMR_CREATED_SBE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_MMR_CREATED_SBE_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_MMR_CREATED_SBE_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_CHK(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_CHK_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_CHK_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_CHK(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_CHK_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_CHK_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_DATA(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_DATA_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_DATA_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_DATA(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_DATA_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_0_DATA_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_SYNDROME(mmr)       	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_SYNDROME_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_SYNDROME_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_SYNDROME(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_SYNDROME_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_SYNDROME_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_MMR_CREATED_MBE(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_MMR_CREATED_MBE_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_MMR_CREATED_MBE_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_MMR_CREATED_MBE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_MMR_CREATED_MBE_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_MMR_CREATED_MBE_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_CHK(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_CHK_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_CHK_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_CHK(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_CHK_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_CHK_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_DATA(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_DATA_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_DATA_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_DATA(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_DATA_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_0_DATA_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_SIDEBAND_SBE(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_SIDEBAND_SBE_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_SIDEBAND_SBE_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_SIDEBAND_SBE(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_SIDEBAND_SBE_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_SIDEBAND_SBE_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_SYNDROME(mmr)       	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_SYNDROME_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_SYNDROME_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_SYNDROME(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_SYNDROME_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_SYNDROME_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_MMR_CREATED_SBE(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_MMR_CREATED_SBE_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_MMR_CREATED_SBE_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_MMR_CREATED_SBE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_MMR_CREATED_SBE_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_MMR_CREATED_SBE_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_CHK(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_CHK_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_CHK_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_CHK(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_CHK_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_CHK_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_DATA(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_DATA_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_DATA_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_DATA(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_DATA_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_SBE_1_DATA_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_SIDEBAND_MBE(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_SIDEBAND_MBE_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_SIDEBAND_MBE_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_SIDEBAND_MBE(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_SIDEBAND_MBE_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_SIDEBAND_MBE_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_SYNDROME(mmr)       	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_SYNDROME_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_SYNDROME_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_SYNDROME(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_SYNDROME_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_SYNDROME_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_MMR_CREATED_MBE(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_MMR_CREATED_MBE_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_MMR_CREATED_MBE_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_MMR_CREATED_MBE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_MMR_CREATED_MBE_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_MMR_CREATED_MBE_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_CHK(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_CHK_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_CHK_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_CHK(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_CHK_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_CHK_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_DATA(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_DATA_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_DATA_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_DATA(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_DATA_BP,\
+									AR_SLB_LCB_ERR_INFO_RP_BUF_MBE_1_DATA_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_MMR_CREATED_SBE(mmr)  	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_MMR_CREATED_SBE_BP,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_MMR_CREATED_SBE_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_MMR_CREATED_SBE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_MMR_CREATED_SBE_BP,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_MMR_CREATED_SBE_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_SYNDROME(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_SYNDROME_BP,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_SYNDROME_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_SYNDROME(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_SYNDROME_BP,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_SYNDROME_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_CHK(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_CHK_BP,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_CHK_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_CHK(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_CHK_BP,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_CHK_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_DATA(mmr)             	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_DATA_BP,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_DATA_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_DATA(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_DATA_BP,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_SBE_DATA_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_MMR_CREATED_MBE(mmr)  	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_MMR_CREATED_MBE_BP,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_MMR_CREATED_MBE_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_MMR_CREATED_MBE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_MMR_CREATED_MBE_BP,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_MMR_CREATED_MBE_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_SYNDROME(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_SYNDROME_BP,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_SYNDROME_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_SYNDROME(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_SYNDROME_BP,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_SYNDROME_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_CHK(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_CHK_BP,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_CHK_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_CHK(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_CHK_BP,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_CHK_MASK)
+#define RF_AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_DATA(mmr)             	RD_FIELD(mmr,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_DATA_BP,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_DATA_MASK)
+#define WF_AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_DATA(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_DATA_BP,\
+									AR_SLB_LCB_ERR_INFO_FL_BUF_MBE_DATA_MASK)
+#define RF_AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_PROBABILITY(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_PROBABILITY_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_PROBABILITY_MASK)
+#define WF_AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_PROBABILITY(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_PROBABILITY_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_PROBABILITY_MASK)
+#define RF_AR_SLB_LCB_DBG_ERRINJ_CRC_NUM_CRC_UP_ERRS(mmr)       	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_NUM_CRC_UP_ERRS_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_NUM_CRC_UP_ERRS_MASK)
+#define WF_AR_SLB_LCB_DBG_ERRINJ_CRC_NUM_CRC_UP_ERRS(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_NUM_CRC_UP_ERRS_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_NUM_CRC_UP_ERRS_MASK)
+#define RF_AR_SLB_LCB_DBG_ERRINJ_CRC_RANDOM_XFR_ERR(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_RANDOM_XFR_ERR_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_RANDOM_XFR_ERR_MASK)
+#define WF_AR_SLB_LCB_DBG_ERRINJ_CRC_RANDOM_XFR_ERR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_RANDOM_XFR_ERR_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_RANDOM_XFR_ERR_MASK)
+#define RF_AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_LN_EN(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_LN_EN_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_LN_EN_MASK)
+#define WF_AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_LN_EN(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_LN_EN_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_LN_EN_MASK)
+#define RF_AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_XFR_EN(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_XFR_EN_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_XFR_EN_MASK)
+#define WF_AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_XFR_EN(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_XFR_EN_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_XFR_EN_MASK)
+#define RF_AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_BIT_EN(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_BIT_EN_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_BIT_EN_MASK)
+#define WF_AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_BIT_EN(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_BIT_EN_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_CRC_ERR_BIT_EN_MASK)
+#define RF_AR_SLB_LCB_DBG_ERRINJ_CRC_SEED_VAL(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_SEED_VAL_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_SEED_VAL_MASK)
+#define WF_AR_SLB_LCB_DBG_ERRINJ_CRC_SEED_VAL(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_SEED_VAL_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_CRC_SEED_VAL_MASK)
+#define RF_AR_SLB_LCB_DBG_ERRINJ_ECC_CLR_ECC_ERROR_CNTS(mmr)    	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_CLR_ECC_ERROR_CNTS_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_CLR_ECC_ERROR_CNTS_MASK)
+#define WF_AR_SLB_LCB_DBG_ERRINJ_ECC_CLR_ECC_ERROR_CNTS(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_CLR_ECC_ERROR_CNTS_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_CLR_ECC_ERROR_CNTS_MASK)
+#define RF_AR_SLB_LCB_DBG_ERRINJ_ECC_ADDRESS1(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_ADDRESS1_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_ADDRESS1_MASK)
+#define WF_AR_SLB_LCB_DBG_ERRINJ_ECC_ADDRESS1(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_ADDRESS1_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_ADDRESS1_MASK)
+#define RF_AR_SLB_LCB_DBG_ERRINJ_ECC_ADDRESS0(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_ADDRESS0_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_ADDRESS0_MASK)
+#define WF_AR_SLB_LCB_DBG_ERRINJ_ECC_ADDRESS0(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_ADDRESS0_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_ADDRESS0_MASK)
+#define RF_AR_SLB_LCB_DBG_ERRINJ_ECC_CHECKBYTE(mmr)             	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_CHECKBYTE_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_CHECKBYTE_MASK)
+#define WF_AR_SLB_LCB_DBG_ERRINJ_ECC_CHECKBYTE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_CHECKBYTE_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_CHECKBYTE_MASK)
+#define RF_AR_SLB_LCB_DBG_ERRINJ_ECC_RAMSELECT(mmr)             	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_RAMSELECT_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_RAMSELECT_MASK)
+#define WF_AR_SLB_LCB_DBG_ERRINJ_ECC_RAMSELECT(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_RAMSELECT_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_RAMSELECT_MASK)
+#define RF_AR_SLB_LCB_DBG_ERRINJ_ECC_MODE(mmr)                  	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_MODE_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_MODE_MASK)
+#define WF_AR_SLB_LCB_DBG_ERRINJ_ECC_MODE(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_MODE_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_MODE_MASK)
+#define RF_AR_SLB_LCB_DBG_ERRINJ_ECC_ENABLE(mmr)                	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_ENABLE_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_ENABLE_MASK)
+#define WF_AR_SLB_LCB_DBG_ERRINJ_ECC_ENABLE(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_ENABLE_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_ECC_ENABLE_MASK)
+#define RF_AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_LOST_TOS(mmr)       	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_LOST_TOS_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_LOST_TOS_MASK)
+#define WF_AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_LOST_TOS(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_LOST_TOS_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_LOST_TOS_MASK)
+#define RF_AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_LOST_RCLK_REINIT(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_LOST_RCLK_REINIT_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_LOST_RCLK_REINIT_MASK)
+#define WF_AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_LOST_RCLK_REINIT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_LOST_RCLK_REINIT_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_LOST_RCLK_REINIT_MASK)
+#define RF_AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_BAD_CRC_REINIT(mmr) 	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_BAD_CRC_REINIT_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_BAD_CRC_REINIT_MASK)
+#define WF_AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_BAD_CRC_REINIT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_BAD_CRC_REINIT_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_BAD_CRC_REINIT_MASK)
+#define RF_AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_REPLAY(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_REPLAY_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_REPLAY_MASK)
+#define WF_AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_REPLAY(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_REPLAY_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_REPLAY_MASK)
+#define RF_AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_REINIT(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_REINIT_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_REINIT_MASK)
+#define WF_AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_REINIT(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_REINIT_BP,\
+									AR_SLB_LCB_DBG_ERRINJ_MISC_FORCE_REINIT_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN2(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN2_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN2_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN2(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN2_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN2_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN1(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN1_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN1_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN1_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN1_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN0(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN0_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN0_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN0(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN0_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_FAILED_FRAMING1_CNT_LN0_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_0_FRAMING1_COMPLETE(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_FRAMING1_COMPLETE_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_FRAMING1_COMPLETE_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_0_FRAMING1_COMPLETE(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_FRAMING1_COMPLETE_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_FRAMING1_COMPLETE_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_0_LOGICAL_ID_COMPLETE(mmr) 	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_LOGICAL_ID_COMPLETE_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_LOGICAL_ID_COMPLETE_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_0_LOGICAL_ID_COMPLETE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_LOGICAL_ID_COMPLETE_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_LOGICAL_ID_COMPLETE_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_0_POLARITY(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_POLARITY_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_POLARITY_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_0_POLARITY(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_POLARITY_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_POLARITY_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_0_POLARITY_COMPLETE(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_POLARITY_COMPLETE_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_POLARITY_COMPLETE_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_0_POLARITY_COMPLETE(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_POLARITY_COMPLETE_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_POLARITY_COMPLETE_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN2(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN2_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN2_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN2(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN2_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN2_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN1(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN1_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN1_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN1(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN1_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN1_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN0(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN0_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN0_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN0(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN0_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_ROLL_CNT_LN0_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_0_ALIGN_COMPLETE(mmr)      	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_ALIGN_COMPLETE_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_ALIGN_COMPLETE_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_0_ALIGN_COMPLETE(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_ALIGN_COMPLETE_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_0_ALIGN_COMPLETE_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_1_LN_TEST_TIMER_COMPLETE(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_LN_TEST_TIMER_COMPLETE_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_LN_TEST_TIMER_COMPLETE_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_1_LN_TEST_TIMER_COMPLETE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_LN_TEST_TIMER_COMPLETE_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_LN_TEST_TIMER_COMPLETE_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_1_LN_PASSED_TESTING(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_LN_PASSED_TESTING_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_LN_PASSED_TESTING_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_1_LN_PASSED_TESTING(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_LN_PASSED_TESTING_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_LN_PASSED_TESTING_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN2(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN2_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN2_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN2(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN2_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN2_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN1(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN1_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN1_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN1(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN1_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN1_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN0(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN0_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN0_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN0(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN0_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_PASS_CNT_LN0_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_1_LN_TESTING_COMPLETE(mmr) 	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_LN_TESTING_COMPLETE_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_LN_TESTING_COMPLETE_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_1_LN_TESTING_COMPLETE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_LN_TESTING_COMPLETE_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_1_LN_TESTING_COMPLETE_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_2_RX_WAIT4TOS_FAIL_CNT(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RX_WAIT4TOS_FAIL_CNT_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RX_WAIT4TOS_FAIL_CNT_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_2_RX_WAIT4TOS_FAIL_CNT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RX_WAIT4TOS_FAIL_CNT_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RX_WAIT4TOS_FAIL_CNT_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_2_RX_TURN_ON_SIG_CNT(mmr)  	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RX_TURN_ON_SIG_CNT_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RX_TURN_ON_SIG_CNT_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_2_RX_TURN_ON_SIG_CNT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RX_TURN_ON_SIG_CNT_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RX_TURN_ON_SIG_CNT_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_2_TX_TOS_3OR(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_TX_TOS_3OR_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_TX_TOS_3OR_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_2_TX_TOS_3OR(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_TX_TOS_3OR_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_TX_TOS_3OR_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_2_PEER_LANE_ENA_DETECTED(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_PEER_LANE_ENA_DETECTED_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_PEER_LANE_ENA_DETECTED_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_2_PEER_LANE_ENA_DETECTED(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_PEER_LANE_ENA_DETECTED_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_PEER_LANE_ENA_DETECTED_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_2_PEER_FRAMED(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_PEER_FRAMED_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_PEER_FRAMED_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_2_PEER_FRAMED(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_PEER_FRAMED_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_PEER_FRAMED_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_2_RCLK_SAMPLING_LN(mmr)    	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RCLK_SAMPLING_LN_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RCLK_SAMPLING_LN_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_2_RCLK_SAMPLING_LN(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RCLK_SAMPLING_LN_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RCLK_SAMPLING_LN_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_2_BACK_CHAN_REPORTING_LN(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_BACK_CHAN_REPORTING_LN_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_BACK_CHAN_REPORTING_LN_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_2_BACK_CHAN_REPORTING_LN(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_BACK_CHAN_REPORTING_LN_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_BACK_CHAN_REPORTING_LN_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_2_RX_SKEW_LN_EN(mmr)       	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RX_SKEW_LN_EN_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RX_SKEW_LN_EN_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_2_RX_SKEW_LN_EN(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RX_SKEW_LN_EN_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RX_SKEW_LN_EN_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN2(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN2_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN2_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN2(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN2_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN2_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN1(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN1_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN1_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN1_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN1_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN0(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN0_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN0_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN0(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN0_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RADR_SKIP4DESKEW_CNT_LN0_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN2(mmr) 	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN2_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN2_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN2(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN2_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN2_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN1(mmr) 	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN1_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN1_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN1_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN1_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN0(mmr) 	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN0_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN0_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN0(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN0_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_FAILED_TEST_CNT_LN0_MASK)
+#define RF_AR_SLB_LCB_DBG_INIT_STATE_2_RX_FRAMED(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RX_FRAMED_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RX_FRAMED_MASK)
+#define WF_AR_SLB_LCB_DBG_INIT_STATE_2_RX_FRAMED(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RX_FRAMED_BP,\
+									AR_SLB_LCB_DBG_INIT_STATE_2_RX_FRAMED_MASK)
+#define RF_AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_RADR(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_RADR_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_RADR_MASK)
+#define WF_AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_RADR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_RADR_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_RADR_MASK)
+#define RF_AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_RD_STROBE_SELECT(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_RD_STROBE_SELECT_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_RD_STROBE_SELECT_MASK)
+#define WF_AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_RD_STROBE_SELECT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_RD_STROBE_SELECT_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_RD_STROBE_SELECT_MASK)
+#define RF_AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_WR_STROBE_SELECT(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_WR_STROBE_SELECT_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_WR_STROBE_SELECT_MASK)
+#define WF_AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_WR_STROBE_SELECT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_WR_STROBE_SELECT_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_WR_STROBE_SELECT_MASK)
+#define RF_AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_WADR(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_WADR_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_WADR_MASK)
+#define WF_AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_WADR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_WADR_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_RX_FIFO_WADR_MASK)
+#define RF_AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RADR_TRIP(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RADR_TRIP_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RADR_TRIP_MASK)
+#define WF_AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RADR_TRIP(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RADR_TRIP_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RADR_TRIP_MASK)
+#define RF_AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RADR(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RADR_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RADR_MASK)
+#define WF_AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RADR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RADR_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RADR_MASK)
+#define RF_AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RD_STROBE_SELECT(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RD_STROBE_SELECT_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RD_STROBE_SELECT_MASK)
+#define WF_AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RD_STROBE_SELECT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RD_STROBE_SELECT_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_RD_STROBE_SELECT_MASK)
+#define RF_AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WR_STROBE_SELECT(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WR_STROBE_SELECT_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WR_STROBE_SELECT_MASK)
+#define WF_AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WR_STROBE_SELECT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WR_STROBE_SELECT_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WR_STROBE_SELECT_MASK)
+#define RF_AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WADR_TRIP(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WADR_TRIP_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WADR_TRIP_MASK)
+#define WF_AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WADR_TRIP(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WADR_TRIP_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WADR_TRIP_MASK)
+#define RF_AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WADR(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WADR_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WADR_MASK)
+#define WF_AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WADR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WADR_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_TX_FIFO_WADR_MASK)
+#define RF_AR_SLB_LCB_CFG_INIT_PAUSE_0_ALT_LINK3OR_FRAME(mmr)   	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_ALT_LINK3OR_FRAME_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_ALT_LINK3OR_FRAME_MASK)
+#define WF_AR_SLB_LCB_CFG_INIT_PAUSE_0_ALT_LINK3OR_FRAME(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_ALT_LINK3OR_FRAME_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_ALT_LINK3OR_FRAME_MASK)
+#define RF_AR_SLB_LCB_CFG_INIT_PAUSE_0_USE_ALT_LINK3OR_FRAME(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_USE_ALT_LINK3OR_FRAME_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_USE_ALT_LINK3OR_FRAME_MASK)
+#define WF_AR_SLB_LCB_CFG_INIT_PAUSE_0_USE_ALT_LINK3OR_FRAME(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_USE_ALT_LINK3OR_FRAME_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_USE_ALT_LINK3OR_FRAME_MASK)
+#define RF_AR_SLB_LCB_CFG_INIT_PAUSE_0_INIT_PAUSE_MODE(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_INIT_PAUSE_MODE_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_INIT_PAUSE_MODE_MASK)
+#define WF_AR_SLB_LCB_CFG_INIT_PAUSE_0_INIT_PAUSE_MODE(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_INIT_PAUSE_MODE_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_0_INIT_PAUSE_MODE_MASK)
+#define RF_AR_SLB_LCB_CFG_INIT_PAUSE_1_RX_FIFOS_SKIP_RADR_INCR(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_1_RX_FIFOS_SKIP_RADR_INCR_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_1_RX_FIFOS_SKIP_RADR_INCR_MASK)
+#define WF_AR_SLB_LCB_CFG_INIT_PAUSE_1_RX_FIFOS_SKIP_RADR_INCR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_1_RX_FIFOS_SKIP_RADR_INCR_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_1_RX_FIFOS_SKIP_RADR_INCR_MASK)
+#define RF_AR_SLB_LCB_CFG_INIT_PAUSE_1_RX_FIFOS_RESET(mmr)      	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_1_RX_FIFOS_RESET_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_1_RX_FIFOS_RESET_MASK)
+#define WF_AR_SLB_LCB_CFG_INIT_PAUSE_1_RX_FIFOS_RESET(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_1_RX_FIFOS_RESET_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_1_RX_FIFOS_RESET_MASK)
+#define RF_AR_SLB_LCB_CFG_INIT_PAUSE_1_FORCE_ROLL(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_1_FORCE_ROLL_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_1_FORCE_ROLL_MASK)
+#define WF_AR_SLB_LCB_CFG_INIT_PAUSE_1_FORCE_ROLL(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_1_FORCE_ROLL_BP,\
+									AR_SLB_LCB_CFG_INIT_PAUSE_1_FORCE_ROLL_MASK)
+#define RF_AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN2(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN2_BP,\
+									AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN2_MASK)
+#define WF_AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN2(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN2_BP,\
+									AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN2_MASK)
+#define RF_AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN1(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN1_BP,\
+									AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN1_MASK)
+#define WF_AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN1(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN1_BP,\
+									AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN1_MASK)
+#define RF_AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN0(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN0_BP,\
+									AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN0_MASK)
+#define WF_AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN0(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN0_BP,\
+									AR_SLB_LCB_DBG_TX_FIFO_WR_DATA_LN0_MASK)
+#define RF_AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN2(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN2_BP,\
+									AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN2_MASK)
+#define WF_AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN2(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN2_BP,\
+									AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN2_MASK)
+#define RF_AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN1(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN1_BP,\
+									AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN1_MASK)
+#define WF_AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN1(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN1_BP,\
+									AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN1_MASK)
+#define RF_AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN0(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN0_BP,\
+									AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN0_MASK)
+#define WF_AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN0(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN0_BP,\
+									AR_SLB_LCB_DBG_TX_FIFO_RD_DATA_LN0_MASK)
+#define RF_AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN2(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN2_BP,\
+									AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN2_MASK)
+#define WF_AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN2(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN2_BP,\
+									AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN2_MASK)
+#define RF_AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN1(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN1_BP,\
+									AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN1_MASK)
+#define WF_AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN1(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN1_BP,\
+									AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN1_MASK)
+#define RF_AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN0(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN0_BP,\
+									AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN0_MASK)
+#define WF_AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN0(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN0_BP,\
+									AR_SLB_LCB_DBG_RX_FIFO_WR_DATA_LN0_MASK)
+#define RF_AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN2(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN2_BP,\
+									AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN2_MASK)
+#define WF_AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN2(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN2_BP,\
+									AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN2_MASK)
+#define RF_AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN1(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN1_BP,\
+									AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN1_MASK)
+#define WF_AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN1(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN1_BP,\
+									AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN1_MASK)
+#define RF_AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN0(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN0_BP,\
+									AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN0_MASK)
+#define WF_AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN0(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN0_BP,\
+									AR_SLB_LCB_DBG_RX_FIFO_RD_DATA_LN0_MASK)
+#define RF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_FAILED_DESKEW(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_FAILED_DESKEW_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_FAILED_DESKEW_MASK)
+#define WF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_FAILED_DESKEW(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_FAILED_DESKEW_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_FAILED_DESKEW_MASK)
+#define RF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_FROM_PEER(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_FROM_PEER_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_FROM_PEER_MASK)
+#define WF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_FROM_PEER(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_FROM_PEER_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_FROM_PEER_MASK)
+#define RF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_NULLS_NOT_REQUIRED(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_NULLS_NOT_REQUIRED_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_NULLS_NOT_REQUIRED_MASK)
+#define WF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_NULLS_NOT_REQUIRED(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_NULLS_NOT_REQUIRED_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_NULLS_NOT_REQUIRED_MASK)
+#define RF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_NULLS_DONE(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_NULLS_DONE_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_NULLS_DONE_MASK)
+#define WF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_NULLS_DONE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_NULLS_DONE_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_NULLS_DONE_MASK)
+#define RF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_MMR_FORCED_REINIT(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_MMR_FORCED_REINIT_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_MMR_FORCED_REINIT_MASK)
+#define WF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_MMR_FORCED_REINIT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_MMR_FORCED_REINIT_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_MMR_FORCED_REINIT_MASK)
+#define RF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_PAUSE_MODE6(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_PAUSE_MODE6_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_PAUSE_MODE6_MASK)
+#define WF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_PAUSE_MODE6(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_PAUSE_MODE6_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_PAUSE_MODE6_MASK)
+#define RF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_LINK_TIMEOUT(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_LINK_TIMEOUT_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_LINK_TIMEOUT_MASK)
+#define WF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_LINK_TIMEOUT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_LINK_TIMEOUT_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_LINK_TIMEOUT_MASK)
+#define RF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_LOST_TON_SIG(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_LOST_TON_SIG_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_LOST_TON_SIG_MASK)
+#define WF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_LOST_TON_SIG(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_LOST_TON_SIG_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RST_4_LOST_TON_SIG_MASK)
+#define RF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_UNEXPECTED_REPLAY(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_UNEXPECTED_REPLAY_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_UNEXPECTED_REPLAY_MASK)
+#define WF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_UNEXPECTED_REPLAY(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_UNEXPECTED_REPLAY_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_UNEXPECTED_REPLAY_MASK)
+#define RF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RCLK_STOPPED(mmr)    	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RCLK_STOPPED_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RCLK_STOPPED_MASK)
+#define WF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RCLK_STOPPED(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RCLK_STOPPED_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_RCLK_STOPPED_MASK)
+#define RF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_4_LN_DEGRADE(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_4_LN_DEGRADE_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_4_LN_DEGRADE_MASK)
+#define WF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_4_LN_DEGRADE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_4_LN_DEGRADE_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_REINIT_4_LN_DEGRADE_MASK)
+#define RF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_SEQ_CRC_ERR(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_SEQ_CRC_ERR_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_SEQ_CRC_ERR_MASK)
+#define WF_AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_SEQ_CRC_ERR(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_SEQ_CRC_ERR_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_WAS_SEQ_CRC_ERR_MASK)
+#define RF_AR_SLB_LCB_DBG_REINIT_CAUSE_CLR_LAST_REINIT_INFO(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_CLR_LAST_REINIT_INFO_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_CLR_LAST_REINIT_INFO_MASK)
+#define WF_AR_SLB_LCB_DBG_REINIT_CAUSE_CLR_LAST_REINIT_INFO(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_CLR_LAST_REINIT_INFO_BP,\
+									AR_SLB_LCB_DBG_REINIT_CAUSE_CLR_LAST_REINIT_INFO_MASK)
+#define RF_AR_SLB_LCB_DBG_REPLAY_0_REPLAY_EMPTY(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REPLAY_0_REPLAY_EMPTY_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_REPLAY_EMPTY_MASK)
+#define WF_AR_SLB_LCB_DBG_REPLAY_0_REPLAY_EMPTY(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REPLAY_0_REPLAY_EMPTY_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_REPLAY_EMPTY_MASK)
+#define RF_AR_SLB_LCB_DBG_REPLAY_0_POST_INIT_REPLAY_EMPTY(mmr)  	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REPLAY_0_POST_INIT_REPLAY_EMPTY_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_POST_INIT_REPLAY_EMPTY_MASK)
+#define WF_AR_SLB_LCB_DBG_REPLAY_0_POST_INIT_REPLAY_EMPTY(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REPLAY_0_POST_INIT_REPLAY_EMPTY_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_POST_INIT_REPLAY_EMPTY_MASK)
+#define RF_AR_SLB_LCB_DBG_REPLAY_0_Q_REPLAYING(mmr)             	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_REPLAYING_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_REPLAYING_MASK)
+#define WF_AR_SLB_LCB_DBG_REPLAY_0_Q_REPLAYING(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_REPLAYING_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_REPLAYING_MASK)
+#define RF_AR_SLB_LCB_DBG_REPLAY_0_Q_FULL(mmr)                  	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_FULL_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_FULL_MASK)
+#define WF_AR_SLB_LCB_DBG_REPLAY_0_Q_FULL(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_FULL_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_FULL_MASK)
+#define RF_AR_SLB_LCB_DBG_REPLAY_0_Q_READ_UP(mmr)               	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_READ_UP_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_READ_UP_MASK)
+#define WF_AR_SLB_LCB_DBG_REPLAY_0_Q_READ_UP(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_READ_UP_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_READ_UP_MASK)
+#define RF_AR_SLB_LCB_DBG_REPLAY_0_Q_WRITE_UP_ODD(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_WRITE_UP_ODD_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_WRITE_UP_ODD_MASK)
+#define WF_AR_SLB_LCB_DBG_REPLAY_0_Q_WRITE_UP_ODD(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_WRITE_UP_ODD_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_WRITE_UP_ODD_MASK)
+#define RF_AR_SLB_LCB_DBG_REPLAY_0_Q_WRITE_UP(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_WRITE_UP_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_WRITE_UP_MASK)
+#define WF_AR_SLB_LCB_DBG_REPLAY_0_Q_WRITE_UP(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_WRITE_UP_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_WRITE_UP_MASK)
+#define RF_AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_ODD_PLUS1(mmr)    	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_ODD_PLUS1_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_ODD_PLUS1_MASK)
+#define WF_AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_ODD_PLUS1(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_ODD_PLUS1_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_ODD_PLUS1_MASK)
+#define RF_AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_PLUS1(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_PLUS1_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_PLUS1_MASK)
+#define WF_AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_PLUS1(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_PLUS1_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_PLUS1_MASK)
+#define RF_AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_PREVIOUS(mmr)  	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_PREVIOUS_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_PREVIOUS_MASK)
+#define WF_AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_PREVIOUS(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_PREVIOUS_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_PREVIOUS_MASK)
+#define RF_AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_MASK)
+#define WF_AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_BP,\
+									AR_SLB_LCB_DBG_REPLAY_0_Q_VERIFIED_UP_MASK)
+#define RF_AR_SLB_LCB_DBG_REPLAY_1_Q_TOSSING(mmr)               	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_TOSSING_BP,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_TOSSING_MASK)
+#define WF_AR_SLB_LCB_DBG_REPLAY_1_Q_TOSSING(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_TOSSING_BP,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_TOSSING_MASK)
+#define RF_AR_SLB_LCB_DBG_REPLAY_1_Q_LCL_RCV_UP_ODD(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_LCL_RCV_UP_ODD_BP,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_LCL_RCV_UP_ODD_MASK)
+#define WF_AR_SLB_LCB_DBG_REPLAY_1_Q_LCL_RCV_UP_ODD(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_LCL_RCV_UP_ODD_BP,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_LCL_RCV_UP_ODD_MASK)
+#define RF_AR_SLB_LCB_DBG_REPLAY_1_Q_LCL_RCV_UP_NUM(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_LCL_RCV_UP_NUM_BP,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_LCL_RCV_UP_NUM_MASK)
+#define WF_AR_SLB_LCB_DBG_REPLAY_1_Q_LCL_RCV_UP_NUM(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_LCL_RCV_UP_NUM_BP,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_LCL_RCV_UP_NUM_MASK)
+#define RF_AR_SLB_LCB_DBG_REPLAY_1_Q_MIN_TIMEOUT_PLUS_NULL_CNT(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_MIN_TIMEOUT_PLUS_NULL_CNT_BP,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_MIN_TIMEOUT_PLUS_NULL_CNT_MASK)
+#define WF_AR_SLB_LCB_DBG_REPLAY_1_Q_MIN_TIMEOUT_PLUS_NULL_CNT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_MIN_TIMEOUT_PLUS_NULL_CNT_BP,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_MIN_TIMEOUT_PLUS_NULL_CNT_MASK)
+#define RF_AR_SLB_LCB_DBG_REPLAY_1_Q_STATIC_RCV_UP_CNT(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_STATIC_RCV_UP_CNT_BP,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_STATIC_RCV_UP_CNT_MASK)
+#define WF_AR_SLB_LCB_DBG_REPLAY_1_Q_STATIC_RCV_UP_CNT(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_STATIC_RCV_UP_CNT_BP,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_STATIC_RCV_UP_CNT_MASK)
+#define RF_AR_SLB_LCB_DBG_REPLAY_1_Q_FIRST_ROUND_TRIP(mmr)      	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_FIRST_ROUND_TRIP_BP,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_FIRST_ROUND_TRIP_MASK)
+#define WF_AR_SLB_LCB_DBG_REPLAY_1_Q_FIRST_ROUND_TRIP(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_FIRST_ROUND_TRIP_BP,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_FIRST_ROUND_TRIP_MASK)
+#define RF_AR_SLB_LCB_DBG_REPLAY_1_Q_USE_INIT_TIMEOUT(mmr)      	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_USE_INIT_TIMEOUT_BP,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_USE_INIT_TIMEOUT_MASK)
+#define WF_AR_SLB_LCB_DBG_REPLAY_1_Q_USE_INIT_TIMEOUT(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_USE_INIT_TIMEOUT_BP,\
+									AR_SLB_LCB_DBG_REPLAY_1_Q_USE_INIT_TIMEOUT_MASK)
+#define RF_AR_SLB_LCB_DBG_OFLW_RCV_BUF_PADR_PRIOR(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_OFLW_RCV_BUF_PADR_PRIOR_BP,\
+									AR_SLB_LCB_DBG_OFLW_RCV_BUF_PADR_PRIOR_MASK)
+#define WF_AR_SLB_LCB_DBG_OFLW_RCV_BUF_PADR_PRIOR(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_OFLW_RCV_BUF_PADR_PRIOR_BP,\
+									AR_SLB_LCB_DBG_OFLW_RCV_BUF_PADR_PRIOR_MASK)
+#define RF_AR_SLB_LCB_DBG_OFLW_RCV_BUF_PADR_HOLD(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_OFLW_RCV_BUF_PADR_HOLD_BP,\
+									AR_SLB_LCB_DBG_OFLW_RCV_BUF_PADR_HOLD_MASK)
+#define WF_AR_SLB_LCB_DBG_OFLW_RCV_BUF_PADR_HOLD(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_OFLW_RCV_BUF_PADR_HOLD_BP,\
+									AR_SLB_LCB_DBG_OFLW_RCV_BUF_PADR_HOLD_MASK)
+#define RF_AR_SLB_LCB_DBG_OFLW_RCV_BUF_RADR(mmr)                	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_OFLW_RCV_BUF_RADR_BP,\
+									AR_SLB_LCB_DBG_OFLW_RCV_BUF_RADR_MASK)
+#define WF_AR_SLB_LCB_DBG_OFLW_RCV_BUF_RADR(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_OFLW_RCV_BUF_RADR_BP,\
+									AR_SLB_LCB_DBG_OFLW_RCV_BUF_RADR_MASK)
+#define RF_AR_SLB_LCB_DBG_OFLW_RCV_BUF_WADR(mmr)                	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_OFLW_RCV_BUF_WADR_BP,\
+									AR_SLB_LCB_DBG_OFLW_RCV_BUF_WADR_MASK)
+#define WF_AR_SLB_LCB_DBG_OFLW_RCV_BUF_WADR(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_OFLW_RCV_BUF_WADR_BP,\
+									AR_SLB_LCB_DBG_OFLW_RCV_BUF_WADR_MASK)
+#define RF_AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_RADR(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_RADR_BP,\
+									AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_RADR_MASK)
+#define WF_AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_RADR(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_RADR_BP,\
+									AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_RADR_MASK)
+#define RF_AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_WADR_STALL(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_WADR_STALL_BP,\
+									AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_WADR_STALL_MASK)
+#define WF_AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_WADR_STALL(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_WADR_STALL_BP,\
+									AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_WADR_STALL_MASK)
+#define RF_AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_WADR(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_WADR_BP,\
+									AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_WADR_MASK)
+#define WF_AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_WADR(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_WADR_BP,\
+									AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_WADR_MASK)
+#define RF_AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_FULL(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_FULL_BP,\
+									AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_FULL_MASK)
+#define WF_AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_FULL(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_FULL_BP,\
+									AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_FULL_MASK)
+#define RF_AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_EMPTY(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_EMPTY_BP,\
+									AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_EMPTY_MASK)
+#define WF_AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_EMPTY(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_EMPTY_BP,\
+									AR_SLB_LCB_DBG_OFLW_FLOW_CTL_BUF_EMPTY_MASK)
+#define RF_AR_SLB_LCB_DBG_VC_ACK_CNT_7(mmr)                     	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_7_BP,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_7_MASK)
+#define WF_AR_SLB_LCB_DBG_VC_ACK_CNT_7(mmr,v)                   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_7_BP,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_7_MASK)
+#define RF_AR_SLB_LCB_DBG_VC_ACK_CNT_6(mmr)                     	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_6_BP,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_6_MASK)
+#define WF_AR_SLB_LCB_DBG_VC_ACK_CNT_6(mmr,v)                   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_6_BP,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_6_MASK)
+#define RF_AR_SLB_LCB_DBG_VC_ACK_CNT_5(mmr)                     	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_5_BP,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_5_MASK)
+#define WF_AR_SLB_LCB_DBG_VC_ACK_CNT_5(mmr,v)                   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_5_BP,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_5_MASK)
+#define RF_AR_SLB_LCB_DBG_VC_ACK_CNT_4(mmr)                     	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_4_BP,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_4_MASK)
+#define WF_AR_SLB_LCB_DBG_VC_ACK_CNT_4(mmr,v)                   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_4_BP,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_4_MASK)
+#define RF_AR_SLB_LCB_DBG_VC_ACK_CNT_3(mmr)                     	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_3_BP,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_3_MASK)
+#define WF_AR_SLB_LCB_DBG_VC_ACK_CNT_3(mmr,v)                   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_3_BP,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_3_MASK)
+#define RF_AR_SLB_LCB_DBG_VC_ACK_CNT_2(mmr)                     	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_2_BP,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_2_MASK)
+#define WF_AR_SLB_LCB_DBG_VC_ACK_CNT_2(mmr,v)                   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_2_BP,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_2_MASK)
+#define RF_AR_SLB_LCB_DBG_VC_ACK_CNT_1(mmr)                     	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_1_BP,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_1_MASK)
+#define WF_AR_SLB_LCB_DBG_VC_ACK_CNT_1(mmr,v)                   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_1_BP,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_1_MASK)
+#define RF_AR_SLB_LCB_DBG_VC_ACK_CNT_0(mmr)                     	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_0_BP,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_0_MASK)
+#define WF_AR_SLB_LCB_DBG_VC_ACK_CNT_0(mmr,v)                   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_0_BP,\
+									AR_SLB_LCB_DBG_VC_ACK_CNT_0_MASK)
+#define RF_AR_SLB_LCB_CFG_PAUSE_DELAY_CNT(mmr)                  	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_PAUSE_DELAY_CNT_BP,\
+									AR_SLB_LCB_CFG_PAUSE_DELAY_CNT_MASK)
+#define WF_AR_SLB_LCB_CFG_PAUSE_DELAY_CNT(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_PAUSE_DELAY_CNT_BP,\
+									AR_SLB_LCB_CFG_PAUSE_DELAY_CNT_MASK)
+#define RF_AR_SLB_LCB_CFG_PAUSE_CNT_CLKS(mmr)                   	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_PAUSE_CNT_CLKS_BP,\
+									AR_SLB_LCB_CFG_PAUSE_CNT_CLKS_MASK)
+#define WF_AR_SLB_LCB_CFG_PAUSE_CNT_CLKS(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_PAUSE_CNT_CLKS_BP,\
+									AR_SLB_LCB_CFG_PAUSE_CNT_CLKS_MASK)
+#define RF_AR_SLB_LCB_CFG_PAUSE_UNIT48_SELECTS(mmr)             	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_PAUSE_UNIT48_SELECTS_BP,\
+									AR_SLB_LCB_CFG_PAUSE_UNIT48_SELECTS_MASK)
+#define WF_AR_SLB_LCB_CFG_PAUSE_UNIT48_SELECTS(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_PAUSE_UNIT48_SELECTS_BP,\
+									AR_SLB_LCB_CFG_PAUSE_UNIT48_SELECTS_MASK)
+#define RF_AR_SLB_LCB_CFG_PAUSE_COMPARE_CNT(mmr)                	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_PAUSE_COMPARE_CNT_BP,\
+									AR_SLB_LCB_CFG_PAUSE_COMPARE_CNT_MASK)
+#define WF_AR_SLB_LCB_CFG_PAUSE_COMPARE_CNT(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_PAUSE_COMPARE_CNT_BP,\
+									AR_SLB_LCB_CFG_PAUSE_COMPARE_CNT_MASK)
+#define RF_AR_SLB_LCB_CFG_PAUSE_COMPARE_TYPE_SELECT(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_PAUSE_COMPARE_TYPE_SELECT_BP,\
+									AR_SLB_LCB_CFG_PAUSE_COMPARE_TYPE_SELECT_MASK)
+#define WF_AR_SLB_LCB_CFG_PAUSE_COMPARE_TYPE_SELECT(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_PAUSE_COMPARE_TYPE_SELECT_BP,\
+									AR_SLB_LCB_CFG_PAUSE_COMPARE_TYPE_SELECT_MASK)
+#define RF_AR_SLB_LCB_CFG_PAUSE_TX_TRIGGER_ENABLES(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_PAUSE_TX_TRIGGER_ENABLES_BP,\
+									AR_SLB_LCB_CFG_PAUSE_TX_TRIGGER_ENABLES_MASK)
+#define WF_AR_SLB_LCB_CFG_PAUSE_TX_TRIGGER_ENABLES(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_PAUSE_TX_TRIGGER_ENABLES_BP,\
+									AR_SLB_LCB_CFG_PAUSE_TX_TRIGGER_ENABLES_MASK)
+#define RF_AR_SLB_LCB_CFG_PAUSE_TRIGGER_SELECTS(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_PAUSE_TRIGGER_SELECTS_BP,\
+									AR_SLB_LCB_CFG_PAUSE_TRIGGER_SELECTS_MASK)
+#define WF_AR_SLB_LCB_CFG_PAUSE_TRIGGER_SELECTS(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_PAUSE_TRIGGER_SELECTS_BP,\
+									AR_SLB_LCB_CFG_PAUSE_TRIGGER_SELECTS_MASK)
+#define RF_AR_SLB_LCB_CFG_PAUSE_CLR_PAUSE_MODE5(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_PAUSE_CLR_PAUSE_MODE5_BP,\
+									AR_SLB_LCB_CFG_PAUSE_CLR_PAUSE_MODE5_MASK)
+#define WF_AR_SLB_LCB_CFG_PAUSE_CLR_PAUSE_MODE5(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_PAUSE_CLR_PAUSE_MODE5_BP,\
+									AR_SLB_LCB_CFG_PAUSE_CLR_PAUSE_MODE5_MASK)
+#define RF_AR_SLB_LCB_CFG_PAUSE_CLR_PAUSE_MODE2(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_PAUSE_CLR_PAUSE_MODE2_BP,\
+									AR_SLB_LCB_CFG_PAUSE_CLR_PAUSE_MODE2_MASK)
+#define WF_AR_SLB_LCB_CFG_PAUSE_CLR_PAUSE_MODE2(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_PAUSE_CLR_PAUSE_MODE2_BP,\
+									AR_SLB_LCB_CFG_PAUSE_CLR_PAUSE_MODE2_MASK)
+#define RF_AR_SLB_LCB_CFG_PAUSE_REARM_ALL(mmr)                  	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_PAUSE_REARM_ALL_BP,\
+									AR_SLB_LCB_CFG_PAUSE_REARM_ALL_MASK)
+#define WF_AR_SLB_LCB_CFG_PAUSE_REARM_ALL(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_PAUSE_REARM_ALL_BP,\
+									AR_SLB_LCB_CFG_PAUSE_REARM_ALL_MASK)
+#define RF_AR_SLB_LCB_CFG_PAUSE_MODE_ENABLE(mmr)                	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_PAUSE_MODE_ENABLE_BP,\
+									AR_SLB_LCB_CFG_PAUSE_MODE_ENABLE_MASK)
+#define WF_AR_SLB_LCB_CFG_PAUSE_MODE_ENABLE(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_PAUSE_MODE_ENABLE_BP,\
+									AR_SLB_LCB_CFG_PAUSE_MODE_ENABLE_MASK)
+#define RF_AR_SLB_LCB_CFG_PAUSE_MODE_STS(mmr)                   	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_PAUSE_MODE_STS_BP,\
+									AR_SLB_LCB_CFG_PAUSE_MODE_STS_MASK)
+#define WF_AR_SLB_LCB_CFG_PAUSE_MODE_STS(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_PAUSE_MODE_STS_BP,\
+									AR_SLB_LCB_CFG_PAUSE_MODE_STS_MASK)
+#define RF_AR_SLB_LCB_CFG_COMPARE_VALUE_FIELD(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_COMPARE_VALUE_FIELD_BP,\
+									AR_SLB_LCB_CFG_COMPARE_VALUE_FIELD_MASK)
+#define WF_AR_SLB_LCB_CFG_COMPARE_VALUE_FIELD(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_COMPARE_VALUE_FIELD_BP,\
+									AR_SLB_LCB_CFG_COMPARE_VALUE_FIELD_MASK)
+#define RF_AR_SLB_LCB_CFG_COMPARE_MASK_FIELD(mmr)               	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_COMPARE_MASK_FIELD_BP,\
+									AR_SLB_LCB_CFG_COMPARE_MASK_FIELD_MASK)
+#define WF_AR_SLB_LCB_CFG_COMPARE_MASK_FIELD(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_COMPARE_MASK_FIELD_BP,\
+									AR_SLB_LCB_CFG_COMPARE_MASK_FIELD_MASK)
+#define RF_AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_WAS_REPLAY(mmr)    	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_WAS_REPLAY_BP,\
+									AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_WAS_REPLAY_MASK)
+#define WF_AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_WAS_REPLAY(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_WAS_REPLAY_BP,\
+									AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_WAS_REPLAY_MASK)
+#define RF_AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_VALID(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_VALID_BP,\
+									AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_VALID_MASK)
+#define WF_AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_VALID(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_VALID_BP,\
+									AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_VALID_MASK)
+#define RF_AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_UNIT48_CNT(mmr)    	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_UNIT48_CNT_BP,\
+									AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_UNIT48_CNT_MASK)
+#define WF_AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_UNIT48_CNT(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_UNIT48_CNT_BP,\
+									AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_UNIT48_CNT_MASK)
+#define RF_AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_WAS_PIPE1(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_WAS_PIPE1_BP,\
+									AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_WAS_PIPE1_MASK)
+#define WF_AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_WAS_PIPE1(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_WAS_PIPE1_BP,\
+									AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_WAS_PIPE1_MASK)
+#define RF_AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_VALUE(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_VALUE_BP,\
+									AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_VALUE_MASK)
+#define WF_AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_VALUE(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_VALUE_BP,\
+									AR_SLB_LCB_DBG_PAUSE_TRIGGER_FLIT_VALUE_MASK)
+#define RF_AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_WAS_GOOD(mmr)  	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_WAS_GOOD_BP,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_WAS_GOOD_MASK)
+#define WF_AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_WAS_GOOD(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_WAS_GOOD_BP,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_WAS_GOOD_MASK)
+#define RF_AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_WAS_TOSSING(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_WAS_TOSSING_BP,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_WAS_TOSSING_MASK)
+#define WF_AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_WAS_TOSSING(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_WAS_TOSSING_BP,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_WAS_TOSSING_MASK)
+#define RF_AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_COMPARE_RDY(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_COMPARE_RDY_BP,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_COMPARE_RDY_MASK)
+#define WF_AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_COMPARE_RDY(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_COMPARE_RDY_BP,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_UP_DATA_COMPARE_RDY_MASK)
+#define RF_AR_SLB_LCB_CFG_RAM_READ_WRITE_ARM_RAW_UP_DATA_HOLD(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_ARM_RAW_UP_DATA_HOLD_BP,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_ARM_RAW_UP_DATA_HOLD_MASK)
+#define WF_AR_SLB_LCB_CFG_RAM_READ_WRITE_ARM_RAW_UP_DATA_HOLD(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_ARM_RAW_UP_DATA_HOLD_BP,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_ARM_RAW_UP_DATA_HOLD_MASK)
+#define RF_AR_SLB_LCB_CFG_RAM_READ_WRITE_REPLAY_BUF_WRITE(mmr)  	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_REPLAY_BUF_WRITE_BP,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_REPLAY_BUF_WRITE_MASK)
+#define WF_AR_SLB_LCB_CFG_RAM_READ_WRITE_REPLAY_BUF_WRITE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_REPLAY_BUF_WRITE_BP,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_REPLAY_BUF_WRITE_MASK)
+#define RF_AR_SLB_LCB_CFG_RAM_READ_WRITE_BUFFER(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_BUFFER_BP,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_BUFFER_MASK)
+#define WF_AR_SLB_LCB_CFG_RAM_READ_WRITE_BUFFER(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_BUFFER_BP,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_BUFFER_MASK)
+#define RF_AR_SLB_LCB_CFG_RAM_READ_WRITE_REPLAY_BUF_UP(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_REPLAY_BUF_UP_BP,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_REPLAY_BUF_UP_MASK)
+#define WF_AR_SLB_LCB_CFG_RAM_READ_WRITE_REPLAY_BUF_UP(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_REPLAY_BUF_UP_BP,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_REPLAY_BUF_UP_MASK)
+#define RF_AR_SLB_LCB_CFG_RAM_READ_WRITE_ADDRESS(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_ADDRESS_BP,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_ADDRESS_MASK)
+#define WF_AR_SLB_LCB_CFG_RAM_READ_WRITE_ADDRESS(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_ADDRESS_BP,\
+									AR_SLB_LCB_CFG_RAM_READ_WRITE_ADDRESS_MASK)
+#define RF_AR_SLB_LCB_CFG_RAM_DATA_DATA(mmr)                    	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_RAM_DATA_DATA_BP,\
+									AR_SLB_LCB_CFG_RAM_DATA_DATA_MASK)
+#define WF_AR_SLB_LCB_CFG_RAM_DATA_DATA(mmr,v)                  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_RAM_DATA_DATA_BP,\
+									AR_SLB_LCB_CFG_RAM_DATA_DATA_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_CX_TX_RATE_SEL(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_CX_TX_RATE_SEL_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_TX_RATE_SEL_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_CX_TX_RATE_SEL(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_CX_TX_RATE_SEL_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_TX_RATE_SEL_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_CX_REF_SEL(mmr)                	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_CX_REF_SEL_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_REF_SEL_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_CX_REF_SEL(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_CX_REF_SEL_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_REF_SEL_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_CX_PLL_RECAL_EN(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_CX_PLL_RECAL_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_PLL_RECAL_EN_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_CX_PLL_RECAL_EN(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_CX_PLL_RECAL_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_PLL_RECAL_EN_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_CX_NEAR_LOOPBACK_EN(mmr)       	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_CX_NEAR_LOOPBACK_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_NEAR_LOOPBACK_EN_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_CX_NEAR_LOOPBACK_EN(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_CX_NEAR_LOOPBACK_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_NEAR_LOOPBACK_EN_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_CX_KR_TRAINING_EN(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_CX_KR_TRAINING_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_KR_TRAINING_EN_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_CX_KR_TRAINING_EN(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_CX_KR_TRAINING_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_KR_TRAINING_EN_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_CX_KR_RESTART_TRAINING(mmr)    	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_CX_KR_RESTART_TRAINING_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_KR_RESTART_TRAINING_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_CX_KR_RESTART_TRAINING(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_CX_KR_RESTART_TRAINING_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_KR_RESTART_TRAINING_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_CX_K30_7_ERR_EN(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_CX_K30_7_ERR_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_K30_7_ERR_EN_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_CX_K30_7_ERR_EN(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_CX_K30_7_ERR_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_K30_7_ERR_EN_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_CX_FAR_LOOPBACK_EN(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_CX_FAR_LOOPBACK_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_FAR_LOOPBACK_EN_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_CX_FAR_LOOPBACK_EN(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_CX_FAR_LOOPBACK_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_FAR_LOOPBACK_EN_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_CX_CORE_TO_CNTL(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_CX_CORE_TO_CNTL_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_CORE_TO_CNTL_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_CX_CORE_TO_CNTL(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_CX_CORE_TO_CNTL_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_CORE_TO_CNTL_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_CX_LN_RESET(mmr)               	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_CX_LN_RESET_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_LN_RESET_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_CX_LN_RESET(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_CX_LN_RESET_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_LN_RESET_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_CX_LSB_CONTROL(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_CX_LSB_CONTROL_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_LSB_CONTROL_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_CX_LSB_CONTROL(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_CX_LSB_CONTROL_BP,\
+									AR_SLB_LCB_CFG_SERDES_CX_LSB_CONTROL_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_TX_EN(mmr)                     	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_TX_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_EN_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_TX_EN(mmr,v)                   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_TX_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_EN_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_ATTENUATION(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_ATTENUATION_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_ATTENUATION_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_ATTENUATION(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_ATTENUATION_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_ATTENUATION_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EN(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EN_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EN(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EN_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EQ_POST(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EQ_POST_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EQ_POST_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EQ_POST(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EQ_POST_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EQ_POST_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EQ_PRE(mmr)          	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EQ_PRE_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EQ_PRE_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EQ_PRE(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EQ_PRE_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_EQ_PRE_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_SLEW(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_SLEW_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_SLEW_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_SLEW(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_SLEW_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_OUTPUT_SLEW_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_TX_PHASE_CAL_EN(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_TX_PHASE_CAL_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_PHASE_CAL_EN_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_TX_PHASE_CAL_EN(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_TX_PHASE_CAL_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_PHASE_CAL_EN_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_TX_PHASE_MASTER(mmr)           	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_TX_PHASE_MASTER_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_PHASE_MASTER_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_TX_PHASE_MASTER(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_TX_PHASE_MASTER_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_PHASE_MASTER_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_TX_REFCLK_SYNC_MASTER(mmr)     	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_TX_REFCLK_SYNC_MASTER_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_REFCLK_SYNC_MASTER_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_TX_REFCLK_SYNC_MASTER(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_TX_REFCLK_SYNC_MASTER_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_REFCLK_SYNC_MASTER_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_TX_PHASE_SLIP(mmr)             	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_TX_PHASE_SLIP_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_PHASE_SLIP_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_TX_PHASE_SLIP(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_TX_PHASE_SLIP_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_PHASE_SLIP_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_TX_WIDTH_MODE(mmr)             	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_TX_WIDTH_MODE_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_WIDTH_MODE_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_TX_WIDTH_MODE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_TX_WIDTH_MODE_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_WIDTH_MODE_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_TX_OVERRIDE_EN(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_TX_OVERRIDE_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_OVERRIDE_EN_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_TX_OVERRIDE_EN(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_TX_OVERRIDE_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_OVERRIDE_EN_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_TX_OVERRIDE_IN(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_TX_OVERRIDE_IN_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_OVERRIDE_IN_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_TX_OVERRIDE_IN(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_TX_OVERRIDE_IN_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_OVERRIDE_IN_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_TX_ELEC_IDLE(mmr)              	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_TX_ELEC_IDLE_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_ELEC_IDLE_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_TX_ELEC_IDLE(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_TX_ELEC_IDLE_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_ELEC_IDLE_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_EN(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_EN_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_EN(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_EN_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN2(mmr)    	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN2_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN2_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN2(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN2_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN2_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN1(mmr)    	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN1_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN1_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN1(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN1_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN1_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN0(mmr)    	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN0_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN0_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN0(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN0_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_PATTERN_GEN_SEL_LN0_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_TX_POLARITY_INV_EN(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_TX_POLARITY_INV_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_POLARITY_INV_EN_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_TX_POLARITY_INV_EN(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_TX_POLARITY_INV_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_TX_POLARITY_INV_EN_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_RX_SIG_OK_USE_SIGNAL_STRENGTH(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_RX_SIG_OK_USE_SIGNAL_STRENGTH_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_SIG_OK_USE_SIGNAL_STRENGTH_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_RX_SIG_OK_USE_SIGNAL_STRENGTH(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_RX_SIG_OK_USE_SIGNAL_STRENGTH_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_SIG_OK_USE_SIGNAL_STRENGTH_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_RX_SIG_OK_USE_FINE_FLOCK_COUNTER(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_RX_SIG_OK_USE_FINE_FLOCK_COUNTER_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_SIG_OK_USE_FINE_FLOCK_COUNTER_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_RX_SIG_OK_USE_FINE_FLOCK_COUNTER(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_RX_SIG_OK_USE_FINE_FLOCK_COUNTER_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_SIG_OK_USE_FINE_FLOCK_COUNTER_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_RX_ACTIVE_SIG_MIN(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_RX_ACTIVE_SIG_MIN_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_ACTIVE_SIG_MIN_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_RX_ACTIVE_SIG_MIN(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_RX_ACTIVE_SIG_MIN_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_ACTIVE_SIG_MIN_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_RX_DROPOUT_CHAR_EN(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_RX_DROPOUT_CHAR_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_DROPOUT_CHAR_EN_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_RX_DROPOUT_CHAR_EN(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_RX_DROPOUT_CHAR_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_DROPOUT_CHAR_EN_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_RX_EN(mmr)                     	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_RX_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_EN_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_RX_EN(mmr,v)                   	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_RX_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_EN_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_RX_PATTERN_CMP_EN(mmr)         	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_RX_PATTERN_CMP_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_PATTERN_CMP_EN_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_RX_PATTERN_CMP_EN(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_RX_PATTERN_CMP_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_PATTERN_CMP_EN_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_RX_PATTERN_CMP_SEL(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_RX_PATTERN_CMP_SEL_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_PATTERN_CMP_SEL_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_RX_PATTERN_CMP_SEL(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_RX_PATTERN_CMP_SEL_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_PATTERN_CMP_SEL_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_RX_POLARITY_INV_EN(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_RX_POLARITY_INV_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_POLARITY_INV_EN_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_RX_POLARITY_INV_EN(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_RX_POLARITY_INV_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_POLARITY_INV_EN_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_RX_RATE_SEL(mmr)               	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_RX_RATE_SEL_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_RATE_SEL_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_RX_RATE_SEL(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_RX_RATE_SEL_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_RATE_SEL_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_RX_SIG_STRENGTH_EN(mmr)        	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_RX_SIG_STRENGTH_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_SIG_STRENGTH_EN_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_RX_SIG_STRENGTH_EN(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_RX_SIG_STRENGTH_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_SIG_STRENGTH_EN_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_RX_SIG_STRENGTH_STRONG_EN(mmr) 	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_RX_SIG_STRENGTH_STRONG_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_SIG_STRENGTH_STRONG_EN_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_RX_SIG_STRENGTH_STRONG_EN(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_RX_SIG_STRENGTH_STRONG_EN_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_SIG_STRENGTH_STRONG_EN_MASK)
+#define RF_AR_SLB_LCB_CFG_SERDES_RX_WIDTH_MODE(mmr)             	RD_FIELD(mmr,\
+									AR_SLB_LCB_CFG_SERDES_RX_WIDTH_MODE_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_WIDTH_MODE_MASK)
+#define WF_AR_SLB_LCB_CFG_SERDES_RX_WIDTH_MODE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_CFG_SERDES_RX_WIDTH_MODE_BP,\
+									AR_SLB_LCB_CFG_SERDES_RX_WIDTH_MODE_MASK)
+#define RF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_RDY(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_RDY_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_RDY_MASK)
+#define WF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_RDY(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_RDY_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_RDY_MASK)
+#define RF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN2(mmr)  	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN2_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN2_MASK)
+#define WF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN2(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN2_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN2_MASK)
+#define RF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN1(mmr)  	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN1_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN1_MASK)
+#define WF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN1_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN1_MASK)
+#define RF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN0(mmr)  	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN0_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN0_MASK)
+#define WF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN0(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN0_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_TX_PHASE_OUT_LN0_MASK)
+#define RF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN2(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN2_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN2_MASK)
+#define WF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN2(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN2_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN2_MASK)
+#define RF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN1(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN1_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN1_MASK)
+#define WF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN1_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN1_MASK)
+#define RF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN0(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN0_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN0_MASK)
+#define WF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN0(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN0_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_PATTERN_CMP_PASS_LN0_MASK)
+#define RF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIGNAL_OK(mmr)      	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIGNAL_OK_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIGNAL_OK_MASK)
+#define WF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIGNAL_OK(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIGNAL_OK_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIGNAL_OK_MASK)
+#define RF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN2(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN2_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN2_MASK)
+#define WF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN2(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN2_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN2_MASK)
+#define RF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN1(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN1_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN1_MASK)
+#define WF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN1_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN1_MASK)
+#define RF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN0(mmr)	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN0_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN0_MASK)
+#define WF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN0(mmr,v)	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN0_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_SIG_STRENGTH_LN0_MASK)
+#define RF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_RDY(mmr)            	RD_FIELD(mmr,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_RDY_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_RDY_MASK)
+#define WF_AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_RDY(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_RDY_BP,\
+									AR_SLB_LCB_DBG_SERDES_OUTPUTS_RX_RDY_MASK)
+
+#endif

@@ -1,0 +1,27 @@
+This is Cray's gpcd library
+
+Where the files come from:
+./aries/misc/<XXX>.h	cray-gni-headers-4.0/include/aries/misc
+./aries/vregs/<XXX>.h	cray-gni-headers-4.0/include/aries/misc
+AUTHORS	  	     	gem
+			NOTE: this is empty
+autogen.sh		gem
+ChangeLog	     	gem
+configure.ac	     	gem
+COPYING		     	gem
+depcomp		     	gem
+gpcd_lib.h	     	cray-gni-1.0/gpcd/include
+gpcd_lib.c	     	cray-gni-1.0/gpcd/tests
+		     	MODIFICATION: commented out cray-gni-config.h
+		     	MODIFICATION: wired in #define CRAY_GNI_ARCH_ARI 1
+gpcd_lib_ari_names.h 	cray-gni-1.0/gpcd/tests
+gpcd_lib_gem_mmrs.h  	cray-gni-1.0/gpcd/include
+gpcd_lib_gem_names.h 	cray-gni-1.0/gpcd/tests (not necessary for aries)
+gpcd_pub.h	     	cray-gni-1.0/gpcd/include
+INSTALL		     	gem
+install-sh	     	gem
+Makefile.am 	     	SNL
+missing		     	gem
+NEWS		     	gem
+			NOTE: this is empty
+README		     	SNL

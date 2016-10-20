@@ -1,0 +1,7523 @@
+/******************************************************************************
+ * COPYRIGHT CRAY INC. ar_fma_defs.h
+ * FILE: ar_fma_defs.h
+ * Created by v2h.c on Wed Oct  8 14:38:59 2014
+ ******************************************************************************/
+
+#ifndef _AR_FMA_DEFS_H_
+#define _AR_FMA_DEFS_H_
+
+#define AR_FMA_N_MMRS                                          	38
+#define AR_FMA_N_DESCS                                         	3
+
+/*
+ *  AR FMA MMR TABLE ADDRESS DEFINES
+ */
+#define AR_NIC_FMA_CFG_DESC_SFMA                               	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_CFG_DESC_SFMA_BASE                          	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_CFG_DESC_SFMA_SIZE                          	0x0000080000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_LIMIT                         	AR_NIC_FMA_CFG_DESC_SFMA_BASE+AR_NIC_FMA_CFG_DESC_SFMA_SIZE-1
+#define AR_NIC_FMA_CFG_DESC_SFMA_N_ENTRY                       	128
+#define AR_NIC_FMA_CFG_DESC_SFMA_DESC_INCR                     	0x00001000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_DESC_N_QUADWORDS              	27
+#define AR_NIC_FMA_CFG_DESC_SFMA_ADDR(didx)                    	(((didx)*AR_NIC_FMA_CFG_DESC_SFMA_DESC_INCR)\
+								+ AR_NIC_FMA_CFG_DESC_SFMA_BASE)
+#define AR_NIC_FMA_CFG_DESC_FLBTE                              	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_CFG_DESC_FLBTE_BASE                         	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_CFG_DESC_FLBTE_SIZE                         	0x0000080000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_LIMIT                        	AR_NIC_FMA_CFG_DESC_FLBTE_BASE+AR_NIC_FMA_CFG_DESC_FLBTE_SIZE-1
+#define AR_NIC_FMA_CFG_DESC_FLBTE_N_ENTRY                      	128
+#define AR_NIC_FMA_CFG_DESC_FLBTE_DESC_INCR                    	0x00001000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_DESC_N_QUADWORDS             	27
+#define AR_NIC_FMA_CFG_DESC_FLBTE_ADDR(didx)                   	(((didx)*AR_NIC_FMA_CFG_DESC_FLBTE_DESC_INCR)\
+								+ AR_NIC_FMA_CFG_DESC_FLBTE_BASE)
+#define AR_NIC_FMA_CFG_DESC_CE                                 	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_CFG_DESC_CE_BASE                            	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_CFG_DESC_CE_SIZE                            	0x0000080000ull
+#define AR_NIC_FMA_CFG_DESC_CE_LIMIT                           	AR_NIC_FMA_CFG_DESC_CE_BASE+AR_NIC_FMA_CFG_DESC_CE_SIZE-1
+#define AR_NIC_FMA_CFG_DESC_CE_N_ENTRY                         	128
+#define AR_NIC_FMA_CFG_DESC_CE_DESC_INCR                       	0x00001000ull
+#define AR_NIC_FMA_CFG_DESC_CE_DESC_N_QUADWORDS                	27
+#define AR_NIC_FMA_CFG_DESC_CE_ADDR(didx)                      	(((didx)*AR_NIC_FMA_CFG_DESC_CE_DESC_INCR)\
+								+ AR_NIC_FMA_CFG_DESC_CE_BASE)
+
+/*
+ *  AR FMA MMR ADDRESS DEFINES
+ */
+#define AR_NIC_FMA_MMR_RING_0_HI_FMA                           	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_MMR_RING_0_HI_FMA_SIZE                      	0x0000000018ull
+#define AR_NIC_FMA_MMR_RING_0_HI_FMA_LIMIT                     	AR_NIC_FMA_MMR_RING_0_HI_FMA+AR_NIC_FMA_MMR_RING_0_HI_FMA_SIZE-1
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA                          	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_SIZE                     	0x0000000010ull
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_LIMIT                    	AR_NIC_FMA_MMR_RING_0_MID_FMA+AR_NIC_FMA_MMR_RING_0_MID_FMA_SIZE-1
+#define AR_NIC_FMA_MMR_RING_0_LO_FMA                           	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_MMR_RING_0_LO_FMA_SIZE                      	0x0000000008ull
+#define AR_NIC_FMA_MMR_RING_0_LO_FMA_LIMIT                     	AR_NIC_FMA_MMR_RING_0_LO_FMA+AR_NIC_FMA_MMR_RING_0_LO_FMA_SIZE-1
+#define AR_NIC_FMA_ERR_FLG_1_HI_FMA                            	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_ERR_FLG_1_HI_FMA_SIZE                       	0x0000000018ull
+#define AR_NIC_FMA_ERR_FLG_1_HI_FMA_LIMIT                      	AR_NIC_FMA_ERR_FLG_1_HI_FMA+AR_NIC_FMA_ERR_FLG_1_HI_FMA_SIZE-1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA                           	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_SIZE                      	0x0000000010ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_LIMIT                     	AR_NIC_FMA_ERR_FLG_1_MID_FMA+AR_NIC_FMA_ERR_FLG_1_MID_FMA_SIZE-1
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA                            	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_SIZE                       	0x0000000008ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_LIMIT                      	AR_NIC_FMA_ERR_FLG_1_LO_FMA+AR_NIC_FMA_ERR_FLG_1_LO_FMA_SIZE-1
+#define AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA                	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA_SIZE           	0x0000000018ull
+#define AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA_LIMIT          	AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA+AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA_SIZE-1
+#define AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_MID_FMA               	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_MID_FMA_SIZE          	0x0000000010ull
+#define AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_MID_FMA_LIMIT         	AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_MID_FMA+AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_MID_FMA_SIZE-1
+#define AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_LO_FMA                	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_LO_FMA_SIZE           	0x0000000008ull
+#define AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_LO_FMA_LIMIT          	AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_LO_FMA+AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_LO_FMA_SIZE-1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_HI_FMA  	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_HI_FMA_SIZE	0x0000000018ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_HI_FMA_LIMIT	AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_HI_FMA+AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_HI_FMA_SIZE-1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA 	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_SIZE	0x0000000010ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_LIMIT	AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA+AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_SIZE-1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA  	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_SIZE	0x0000000008ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_LIMIT	AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA+AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_SIZE-1
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA    	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_SIZE	0x0000000018ull
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_LIMIT	AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA+AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_SIZE-1
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA   	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA_SIZE	0x0000000010ull
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA_LIMIT	AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA+AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA_SIZE-1
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_LO_FMA    	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_LO_FMA_SIZE	0x0000000008ull
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_LO_FMA_LIMIT	AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_LO_FMA+AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_LO_FMA_SIZE-1
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_HI_FMA 	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_HI_FMA_SIZE	0x0000000018ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_HI_FMA_LIMIT	AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_HI_FMA+AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_HI_FMA_SIZE-1
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_SIZE	0x0000000010ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_LIMIT	AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA+AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_SIZE-1
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA 	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_SIZE	0x0000000008ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_LIMIT	AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA+AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_SIZE-1
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_HI_FMA                 	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_HI_FMA_SIZE            	0x0000000018ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_HI_FMA_LIMIT           	AR_NIC_FMA_TARB_RD_DATA_STAGE_7_HI_FMA+AR_NIC_FMA_TARB_RD_DATA_STAGE_7_HI_FMA_SIZE-1
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_MID_FMA                	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_MID_FMA_SIZE           	0x0000000010ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_MID_FMA_LIMIT          	AR_NIC_FMA_TARB_RD_DATA_STAGE_7_MID_FMA+AR_NIC_FMA_TARB_RD_DATA_STAGE_7_MID_FMA_SIZE-1
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA                 	(AR_FMA_BASE+0x0000000000ull)
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_SIZE            	0x0000000008ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_LIMIT           	AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA+AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_SIZE-1
+#define AR_NIC_FMA_ERR_FLG                                     	(AR_FMA_BASE+0x0000080000ull)
+#define AR_NIC_FMA_ERR_FLG_SIZE                                	0x0000000008ull
+#define AR_NIC_FMA_ERR_FLG_LIMIT                               	AR_NIC_FMA_ERR_FLG+AR_NIC_FMA_ERR_FLG_SIZE-1
+#define AR_NIC_FMA_ERR_CLR                                     	(AR_FMA_BASE+0x0000080008ull)
+#define AR_NIC_FMA_ERR_CLR_SIZE                                	0x0000000008ull
+#define AR_NIC_FMA_ERR_CLR_LIMIT                               	AR_NIC_FMA_ERR_CLR+AR_NIC_FMA_ERR_CLR_SIZE-1
+#define AR_NIC_FMA_ERR_HSS_MSK                                 	(AR_FMA_BASE+0x0000080010ull)
+#define AR_NIC_FMA_ERR_HSS_MSK_SIZE                            	0x0000000008ull
+#define AR_NIC_FMA_ERR_HSS_MSK_LIMIT                           	AR_NIC_FMA_ERR_HSS_MSK+AR_NIC_FMA_ERR_HSS_MSK_SIZE-1
+#define AR_NIC_FMA_ERR_OS_MSK                                  	(AR_FMA_BASE+0x0000080018ull)
+#define AR_NIC_FMA_ERR_OS_MSK_SIZE                             	0x0000000008ull
+#define AR_NIC_FMA_ERR_OS_MSK_LIMIT                            	AR_NIC_FMA_ERR_OS_MSK+AR_NIC_FMA_ERR_OS_MSK_SIZE-1
+#define AR_NIC_FMA_ERR_FIRST_FLG                               	(AR_FMA_BASE+0x0000080020ull)
+#define AR_NIC_FMA_ERR_FIRST_FLG_SIZE                          	0x0000000008ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_LIMIT                         	AR_NIC_FMA_ERR_FIRST_FLG+AR_NIC_FMA_ERR_FIRST_FLG_SIZE-1
+#define AR_NIC_FMA_ERR_INFO_RAM0                               	(AR_FMA_BASE+0x0000080028ull)
+#define AR_NIC_FMA_ERR_INFO_RAM0_SIZE                          	0x0000000008ull
+#define AR_NIC_FMA_ERR_INFO_RAM0_LIMIT                         	AR_NIC_FMA_ERR_INFO_RAM0+AR_NIC_FMA_ERR_INFO_RAM0_SIZE-1
+#define AR_NIC_FMA_ERR_INFO_RAM1                               	(AR_FMA_BASE+0x0000080030ull)
+#define AR_NIC_FMA_ERR_INFO_RAM1_SIZE                          	0x0000000008ull
+#define AR_NIC_FMA_ERR_INFO_RAM1_LIMIT                         	AR_NIC_FMA_ERR_INFO_RAM1+AR_NIC_FMA_ERR_INFO_RAM1_SIZE-1
+#define AR_NIC_FMA_ERR_INFO_DATA                               	(AR_FMA_BASE+0x0000080038ull)
+#define AR_NIC_FMA_ERR_INFO_DATA_SIZE                          	0x0000000008ull
+#define AR_NIC_FMA_ERR_INFO_DATA_LIMIT                         	AR_NIC_FMA_ERR_INFO_DATA+AR_NIC_FMA_ERR_INFO_DATA_SIZE-1
+#define AR_NIC_FMA_ERR_INFO_HDR                                	(AR_FMA_BASE+0x0000080040ull)
+#define AR_NIC_FMA_ERR_INFO_HDR_SIZE                           	0x0000000008ull
+#define AR_NIC_FMA_ERR_INFO_HDR_LIMIT                          	AR_NIC_FMA_ERR_INFO_HDR+AR_NIC_FMA_ERR_INFO_HDR_SIZE-1
+#define AR_NIC_FMA_DBG_ERRINJ_RAM                              	(AR_FMA_BASE+0x0000080048ull)
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_SIZE                         	0x0000000008ull
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_LIMIT                        	AR_NIC_FMA_DBG_ERRINJ_RAM+AR_NIC_FMA_DBG_ERRINJ_RAM_SIZE-1
+#define AR_NIC_FMA_DBG_ERRINJ_PKT                              	(AR_FMA_BASE+0x0000080050ull)
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_SIZE                         	0x0000000008ull
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_LIMIT                        	AR_NIC_FMA_DBG_ERRINJ_PKT+AR_NIC_FMA_DBG_ERRINJ_PKT_SIZE-1
+#define AR_NIC_FMA_CFG_CREDIT                                  	(AR_FMA_BASE+0x0000080058ull)
+#define AR_NIC_FMA_CFG_CREDIT_SIZE                             	0x0000000008ull
+#define AR_NIC_FMA_CFG_CREDIT_LIMIT                            	AR_NIC_FMA_CFG_CREDIT+AR_NIC_FMA_CFG_CREDIT_SIZE-1
+#define AR_NIC_FMA_ERR_INFO_PI                                 	(AR_FMA_BASE+0x0000080060ull)
+#define AR_NIC_FMA_ERR_INFO_PI_SIZE                            	0x0000000008ull
+#define AR_NIC_FMA_ERR_INFO_PI_LIMIT                           	AR_NIC_FMA_ERR_INFO_PI+AR_NIC_FMA_ERR_INFO_PI_SIZE-1
+#define AR_NIC_FMA_ERR_INFO_SW                                 	(AR_FMA_BASE+0x0000080068ull)
+#define AR_NIC_FMA_ERR_INFO_SW_SIZE                            	0x0000000008ull
+#define AR_NIC_FMA_ERR_INFO_SW_LIMIT                           	AR_NIC_FMA_ERR_INFO_SW+AR_NIC_FMA_ERR_INFO_SW_SIZE-1
+
+/*
+ *  AR_NIC_FMA_CFG_DESC_SFMA DEFINES
+ */
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1727_1713_MASK                	0xfffe000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_MARKER_DEALLOC_MASK                	0x0001000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1711_1696_MASK                	0x0000ffff00000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_MARKER_ID_MASK                         	0x00000000ffffffffull
+#define AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_OPERAND_MASK                	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1599_1595_MASK                	0xf800000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_GET_MASK                    	0x0400000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_GLOBAL_OFFSET_MASK          	0x03ffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1103_MASK                     	0x0000000000008000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_CD_MASK                      	0x0000000000004000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_PR_MASK                      	0x0000000000002000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_HIGH_PRIORITY_MASK                 	0x0000000000001000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1099_MASK                     	0x0000000000000800ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_CQH_MASK                           	0x00000000000007ffull
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_DONE_MASK                       	0x8000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_TRANS_ACTIVE_MASK               	0x4000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_LAUNCH1_MASK                    	0x0200000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_LAUNCH0_MASK                    	0x0100000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_PRIV_ERR_MASK                   	0x0010000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_HW_ERR_MASK                     	0x0008000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_SW_ERR_MASK                     	0x0004000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_NPES_ERR_MASK                   	0x0002000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_ALLOC_SEQID_ERR_MASK            	0x0001000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_SSIDS_IN_USE_MASK               	0x000003ff00000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_RC_MASK                         	0x00000000ffff0000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WC_MASK                         	0x000000000000ffffull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1023_960_MASK                 	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_959_896_MASK                  	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_TYPE_MASK                       	0xff00000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_887_882_MASK                  	0x00fc000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_TRANSACTION_END_MASK                   	0x0002000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_DLA_DEALLOC_MASK                	0x0001000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_SRC_CQ_DATA_MASK                	0x0000ffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_831_771_MASK                  	0xfffffffffffffff8ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_WR_STATUS_WHEN_MASK                    	0x0000000000000007ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_767_704_MASK                  	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_703_640_MASK                  	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_639_624_MASK                  	0xffff000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_CQ_WRITE_MASK                          	0x0000ffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_SFMA_TRANSACTION_START_MASK                 	0x8000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_REISSUE_MASK                       	0x4000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_DISCARD_RESET_MASK                     	0x2000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_ALLOC_STATUS_RESET_MASK                	0x1000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_571_558_MASK                  	0x0fffc00000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_CREDITS_REQUIRED_MASK                  	0x00003fff00000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_BLOCK_ID_MASK                          	0x00000000fffff000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_523_522_MASK                  	0x0000000000000c00ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_INTERVAL_MASK                   	0x00000000000003ffull
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WREN_MASK                       	0x0001000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_MARKER_DBELL_WREN_MASK             	0x0000800000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_DBELL_WREN_MASK             	0x0000400000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_WR_STATUS_DBELL_WREN_MASK              	0x0000200000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_CE_DBELL_WREN_MASK                     	0x0000100000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_FLBTE_DBELL_WREN_MASK                  	0x0000080000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_CQ_WRITE_DBELL_WREN_MASK               	0x0000040000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_DBELL_WREN_MASK                 	0x0000020000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_ALLOC_SEQ_ID_DBELL_WREN_MASK           	0x0000010000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_WC_WREN_MASK                           	0x0000008000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_CD_WREN_MASK                 	0x0000004000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_PR_WREN_MASK                 	0x0000002000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_HIGH_PRIORITY_WREN_MASK            	0x0000001000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_CQH_WREN_MASK                      	0x0000000800000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG2_WREN_MASK                 	0x0000000400000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG1_WREN_MASK                 	0x0000000200000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG0_WREN_MASK                 	0x0000000100000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_NTT_EN_WREN_MASK                       	0x0000000010000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_PTAG_WREN_MASK                         	0x0000000008000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_SRC_CQH_WREN_MASK                      	0x0000000004000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_PE_BASE_WREN_MASK                      	0x0000000002000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_NPES_WREN_MASK                         	0x0000000001000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_REM_MDH_WREN_MASK                      	0x0000000000010000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_LOC_MDH_WREN_MASK                      	0x0000000000008000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_BTE_FENCE_WREN_MASK                    	0x0000000000004000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_PRIVILEGED_WREN_MASK                   	0x0000000000002000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_BTE_CHAN_WREN_MASK                     	0x0000000000001000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_NAT_RDCTRL_LONG_PKT_WREN_MASK          	0x0000000000000800ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_ENQ_STATUS_CQH_WREN_MASK               	0x0000000000000400ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_PE_MASK_FPE_WREN_MASK                  	0x0000000000000200ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_OP_WREN_MASK                           	0x0000000000000100ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_FMA_EN_WREN_MASK                       	0x0000000000000008ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RC_WREN_MASK                           	0x0000000000000004ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_HIGH_WREN_MASK             	0x0000000000000002ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_LOW_WREN_MASK              	0x0000000000000001ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_383_368_MASK                  	0xffff000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_DEST_CQ_DATA_MASK                      	0x0000ffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_SFMA_FLAG_DATA_OFFSET_MASK                  	0x000000ffffffffffull
+#define AR_NIC_FMA_CFG_DESC_SFMA_AMO_OPRND2_MASK                        	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_SFMA_FLAG_DATA_MASK                         	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_SFMA_AMO_OPRND1_MASK                        	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_SFMA_NTT_EN_MASK                            	0x8000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_REM_PTAG_MASK                          	0x7f80000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_LOC_PTAG_MASK                          	0x007f800000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_SRC_CQH_MASK                           	0x00007ff000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_PE_BASE_MASK                           	0x0000000ffffc0000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_NPES_MASK                              	0x000000000003ffffull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_127_MASK                      	0x8000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_REM_MDH_MASK                           	0x7ff8000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_114_MASK                      	0x0004000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_LOC_MDH_MASK                           	0x0003ffc000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_101_100_MASK                  	0x0000003000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_99_98_MASK                    	0x0000000c00000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_97_92_MASK                    	0x00000003f0000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_91_MASK                       	0x0000000008000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_90_80_MASK                    	0x0000000007ff0000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_79_76_MASK                    	0x000000000000f000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_75_MASK                       	0x0000000000000800ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_PE_MASK_MODE_MASK                      	0x0000000000000700ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_71_MASK                       	0x0000000000000080ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_FMA_OP_MASK                            	0x000000000000007full
+#define AR_NIC_FMA_CFG_DESC_SFMA_FMA_EN_MASK                            	0x8000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RC_MASK                                	0x7000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_WC_MASK                                	0x0800000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_GET_LAUNCH_MASK                        	0x0400000000000000ull
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WD_OFFSET_MASK                  	0x03ffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_MASK                       	0x03ffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_SFMA_GLOBAL_OFFSET_MASK                     	0x03ffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1727_1713_BP                  	49
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_MARKER_DEALLOC_BP                  	48
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1711_1696_BP                  	32
+#define AR_NIC_FMA_CFG_DESC_SFMA_MARKER_ID_BP                           	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_OPERAND_BP                  	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1599_1595_BP                  	59
+#define AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_GET_BP                      	58
+#define AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_GLOBAL_OFFSET_BP            	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1103_BP                       	15
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_CD_BP                        	14
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_PR_BP                        	13
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_HIGH_PRIORITY_BP                   	12
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1099_BP                       	11
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_CQH_BP                             	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_DONE_BP                         	63
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_TRANS_ACTIVE_BP                 	62
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_LAUNCH1_BP                      	57
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_LAUNCH0_BP                      	56
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_PRIV_ERR_BP                     	52
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_HW_ERR_BP                       	51
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_SW_ERR_BP                       	50
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_NPES_ERR_BP                     	49
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_ALLOC_SEQID_ERR_BP              	48
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_SSIDS_IN_USE_BP                 	32
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_RC_BP                           	16
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WC_BP                           	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1023_960_BP                   	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_959_896_BP                    	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_TYPE_BP                         	56
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_887_882_BP                    	50
+#define AR_NIC_FMA_CFG_DESC_SFMA_TRANSACTION_END_BP                     	49
+#define AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_DLA_DEALLOC_BP                  	48
+#define AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_SRC_CQ_DATA_BP                  	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_831_771_BP                    	3
+#define AR_NIC_FMA_CFG_DESC_SFMA_WR_STATUS_WHEN_BP                      	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_767_704_BP                    	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_703_640_BP                    	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_639_624_BP                    	48
+#define AR_NIC_FMA_CFG_DESC_SFMA_CQ_WRITE_BP                            	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_TRANSACTION_START_BP                   	63
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_REISSUE_BP                         	62
+#define AR_NIC_FMA_CFG_DESC_SFMA_DISCARD_RESET_BP                       	61
+#define AR_NIC_FMA_CFG_DESC_SFMA_ALLOC_STATUS_RESET_BP                  	60
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_571_558_BP                    	46
+#define AR_NIC_FMA_CFG_DESC_SFMA_CREDITS_REQUIRED_BP                    	32
+#define AR_NIC_FMA_CFG_DESC_SFMA_BLOCK_ID_BP                            	12
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_523_522_BP                    	10
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_INTERVAL_BP                     	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WREN_BP                         	48
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_MARKER_DBELL_WREN_BP               	47
+#define AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_DBELL_WREN_BP               	46
+#define AR_NIC_FMA_CFG_DESC_SFMA_WR_STATUS_DBELL_WREN_BP                	45
+#define AR_NIC_FMA_CFG_DESC_SFMA_CE_DBELL_WREN_BP                       	44
+#define AR_NIC_FMA_CFG_DESC_SFMA_FLBTE_DBELL_WREN_BP                    	43
+#define AR_NIC_FMA_CFG_DESC_SFMA_CQ_WRITE_DBELL_WREN_BP                 	42
+#define AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_DBELL_WREN_BP                   	41
+#define AR_NIC_FMA_CFG_DESC_SFMA_ALLOC_SEQ_ID_DBELL_WREN_BP             	40
+#define AR_NIC_FMA_CFG_DESC_SFMA_WC_WREN_BP                             	39
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_CD_WREN_BP                   	38
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_PR_WREN_BP                   	37
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_HIGH_PRIORITY_WREN_BP              	36
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_CQH_WREN_BP                        	35
+#define AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG2_WREN_BP                   	34
+#define AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG1_WREN_BP                   	33
+#define AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG0_WREN_BP                   	32
+#define AR_NIC_FMA_CFG_DESC_SFMA_NTT_EN_WREN_BP                         	28
+#define AR_NIC_FMA_CFG_DESC_SFMA_PTAG_WREN_BP                           	27
+#define AR_NIC_FMA_CFG_DESC_SFMA_SRC_CQH_WREN_BP                        	26
+#define AR_NIC_FMA_CFG_DESC_SFMA_PE_BASE_WREN_BP                        	25
+#define AR_NIC_FMA_CFG_DESC_SFMA_NPES_WREN_BP                           	24
+#define AR_NIC_FMA_CFG_DESC_SFMA_REM_MDH_WREN_BP                        	16
+#define AR_NIC_FMA_CFG_DESC_SFMA_LOC_MDH_WREN_BP                        	15
+#define AR_NIC_FMA_CFG_DESC_SFMA_BTE_FENCE_WREN_BP                      	14
+#define AR_NIC_FMA_CFG_DESC_SFMA_PRIVILEGED_WREN_BP                     	13
+#define AR_NIC_FMA_CFG_DESC_SFMA_BTE_CHAN_WREN_BP                       	12
+#define AR_NIC_FMA_CFG_DESC_SFMA_NAT_RDCTRL_LONG_PKT_WREN_BP            	11
+#define AR_NIC_FMA_CFG_DESC_SFMA_ENQ_STATUS_CQH_WREN_BP                 	10
+#define AR_NIC_FMA_CFG_DESC_SFMA_PE_MASK_FPE_WREN_BP                    	9
+#define AR_NIC_FMA_CFG_DESC_SFMA_OP_WREN_BP                             	8
+#define AR_NIC_FMA_CFG_DESC_SFMA_FMA_EN_WREN_BP                         	3
+#define AR_NIC_FMA_CFG_DESC_SFMA_RC_WREN_BP                             	2
+#define AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_HIGH_WREN_BP               	1
+#define AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_LOW_WREN_BP                	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_383_368_BP                    	48
+#define AR_NIC_FMA_CFG_DESC_SFMA_DEST_CQ_DATA_BP                        	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_FLAG_DATA_OFFSET_BP                    	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_AMO_OPRND2_BP                          	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_FLAG_DATA_BP                           	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_AMO_OPRND1_BP                          	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_NTT_EN_BP                              	63
+#define AR_NIC_FMA_CFG_DESC_SFMA_REM_PTAG_BP                            	55
+#define AR_NIC_FMA_CFG_DESC_SFMA_LOC_PTAG_BP                            	47
+#define AR_NIC_FMA_CFG_DESC_SFMA_SRC_CQH_BP                             	36
+#define AR_NIC_FMA_CFG_DESC_SFMA_PE_BASE_BP                             	18
+#define AR_NIC_FMA_CFG_DESC_SFMA_NPES_BP                                	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_127_BP                        	63
+#define AR_NIC_FMA_CFG_DESC_SFMA_REM_MDH_BP                             	51
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_114_BP                        	50
+#define AR_NIC_FMA_CFG_DESC_SFMA_LOC_MDH_BP                             	38
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_101_100_BP                    	36
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_99_98_BP                      	34
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_97_92_BP                      	28
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_91_BP                         	27
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_90_80_BP                      	16
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_79_76_BP                      	12
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_75_BP                         	11
+#define AR_NIC_FMA_CFG_DESC_SFMA_PE_MASK_MODE_BP                        	8
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_71_BP                         	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_FMA_OP_BP                              	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_FMA_EN_BP                              	63
+#define AR_NIC_FMA_CFG_DESC_SFMA_RC_BP                                  	60
+#define AR_NIC_FMA_CFG_DESC_SFMA_WC_BP                                  	59
+#define AR_NIC_FMA_CFG_DESC_SFMA_GET_LAUNCH_BP                          	58
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WD_OFFSET_BP                    	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_BP                         	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_GLOBAL_OFFSET_BP                       	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1727_1713_QW                  	26
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_MARKER_DEALLOC_QW                  	26
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1711_1696_QW                  	26
+#define AR_NIC_FMA_CFG_DESC_SFMA_MARKER_ID_QW                           	26
+#define AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_OPERAND_QW                  	25
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1599_1595_QW                  	24
+#define AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_GET_QW                      	24
+#define AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_GLOBAL_OFFSET_QW            	24
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1103_QW                       	17
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_CD_QW                        	17
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_PR_QW                        	17
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_HIGH_PRIORITY_QW                   	17
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1099_QW                       	17
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_CQH_QW                             	17
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_DONE_QW                         	16
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_TRANS_ACTIVE_QW                 	16
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_LAUNCH1_QW                      	16
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_LAUNCH0_QW                      	16
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_PRIV_ERR_QW                     	16
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_HW_ERR_QW                       	16
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_SW_ERR_QW                       	16
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_NPES_ERR_QW                     	16
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_ALLOC_SEQID_ERR_QW              	16
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_SSIDS_IN_USE_QW                 	16
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_RC_QW                           	16
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WC_QW                           	16
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1023_960_QW                   	15
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_959_896_QW                    	14
+#define AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_TYPE_QW                         	13
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_887_882_QW                    	13
+#define AR_NIC_FMA_CFG_DESC_SFMA_TRANSACTION_END_QW                     	13
+#define AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_DLA_DEALLOC_QW                  	13
+#define AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_SRC_CQ_DATA_QW                  	13
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_831_771_QW                    	12
+#define AR_NIC_FMA_CFG_DESC_SFMA_WR_STATUS_WHEN_QW                      	12
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_767_704_QW                    	11
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_703_640_QW                    	10
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_639_624_QW                    	9
+#define AR_NIC_FMA_CFG_DESC_SFMA_CQ_WRITE_QW                            	9
+#define AR_NIC_FMA_CFG_DESC_SFMA_TRANSACTION_START_QW                   	8
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_REISSUE_QW                         	8
+#define AR_NIC_FMA_CFG_DESC_SFMA_DISCARD_RESET_QW                       	8
+#define AR_NIC_FMA_CFG_DESC_SFMA_ALLOC_STATUS_RESET_QW                  	8
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_571_558_QW                    	8
+#define AR_NIC_FMA_CFG_DESC_SFMA_CREDITS_REQUIRED_QW                    	8
+#define AR_NIC_FMA_CFG_DESC_SFMA_BLOCK_ID_QW                            	8
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_523_522_QW                    	8
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_INTERVAL_QW                     	8
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WREN_QW                         	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_MARKER_DBELL_WREN_QW               	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_DBELL_WREN_QW               	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_WR_STATUS_DBELL_WREN_QW                	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_CE_DBELL_WREN_QW                       	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_FLBTE_DBELL_WREN_QW                    	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_CQ_WRITE_DBELL_WREN_QW                 	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_DBELL_WREN_QW                   	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_ALLOC_SEQ_ID_DBELL_WREN_QW             	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_WC_WREN_QW                             	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_CD_WREN_QW                   	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_PR_WREN_QW                   	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_HIGH_PRIORITY_WREN_QW              	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_DLA_CQH_WREN_QW                        	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG2_WREN_QW                   	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG1_WREN_QW                   	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG0_WREN_QW                   	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_NTT_EN_WREN_QW                         	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_PTAG_WREN_QW                           	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_SRC_CQH_WREN_QW                        	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_PE_BASE_WREN_QW                        	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_NPES_WREN_QW                           	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_REM_MDH_WREN_QW                        	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_LOC_MDH_WREN_QW                        	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_BTE_FENCE_WREN_QW                      	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_PRIVILEGED_WREN_QW                     	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_BTE_CHAN_WREN_QW                       	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_NAT_RDCTRL_LONG_PKT_WREN_QW            	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_ENQ_STATUS_CQH_WREN_QW                 	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_PE_MASK_FPE_WREN_QW                    	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_OP_WREN_QW                             	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_FMA_EN_WREN_QW                         	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_RC_WREN_QW                             	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_HIGH_WREN_QW               	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_LOW_WREN_QW                	7
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_383_368_QW                    	5
+#define AR_NIC_FMA_CFG_DESC_SFMA_DEST_CQ_DATA_QW                        	5
+#define AR_NIC_FMA_CFG_DESC_SFMA_FLAG_DATA_OFFSET_QW                    	4
+#define AR_NIC_FMA_CFG_DESC_SFMA_AMO_OPRND2_QW                          	4
+#define AR_NIC_FMA_CFG_DESC_SFMA_FLAG_DATA_QW                           	3
+#define AR_NIC_FMA_CFG_DESC_SFMA_AMO_OPRND1_QW                          	3
+#define AR_NIC_FMA_CFG_DESC_SFMA_NTT_EN_QW                              	2
+#define AR_NIC_FMA_CFG_DESC_SFMA_REM_PTAG_QW                            	2
+#define AR_NIC_FMA_CFG_DESC_SFMA_LOC_PTAG_QW                            	2
+#define AR_NIC_FMA_CFG_DESC_SFMA_SRC_CQH_QW                             	2
+#define AR_NIC_FMA_CFG_DESC_SFMA_PE_BASE_QW                             	2
+#define AR_NIC_FMA_CFG_DESC_SFMA_NPES_QW                                	2
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_127_QW                        	1
+#define AR_NIC_FMA_CFG_DESC_SFMA_REM_MDH_QW                             	1
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_114_QW                        	1
+#define AR_NIC_FMA_CFG_DESC_SFMA_LOC_MDH_QW                             	1
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_101_100_QW                    	1
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_99_98_QW                      	1
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_97_92_QW                      	1
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_91_QW                         	1
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_90_80_QW                      	1
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_79_76_QW                      	1
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_75_QW                         	1
+#define AR_NIC_FMA_CFG_DESC_SFMA_PE_MASK_MODE_QW                        	1
+#define AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_71_QW                         	1
+#define AR_NIC_FMA_CFG_DESC_SFMA_FMA_OP_QW                              	1
+#define AR_NIC_FMA_CFG_DESC_SFMA_FMA_EN_QW                              	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_RC_QW                                  	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_WC_QW                                  	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_GET_LAUNCH_QW                          	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WD_OFFSET_QW                    	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_QW                         	0
+#define AR_NIC_FMA_CFG_DESC_SFMA_GLOBAL_OFFSET_QW                       	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_MMR_RING_0_HI_FMA DEFINES
+ */
+#define AR_NIC_FMA_MMR_RING_0_HI_FMA_UNUSED_145_35_MASK                 	0x000000000003ffffull
+#define AR_NIC_FMA_MMR_RING_0_HI_FMA_UNUSED_145_35_BP                   	0
+#define AR_NIC_FMA_MMR_RING_0_HI_FMA_UNUSED_145_35_QW                   	2
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_MMR_RING_0_MID_FMA DEFINES
+ */
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_UNUSED_127_98_MASK                	0xfffffffc00000000ull
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_TDATA_SBE_MASK               	0x0000000200000000ull
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_INV_CMD_MASK                 	0x0000000100000000ull
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_DESC_MBE_MASK                	0x0000000080000000ull
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_DATA_MBE_MASK                	0x0000000040000000ull
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_HDR_PERR_MASK                	0x0000000020000000ull
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_NFAMO_REQ_MASK               	0x0000000010000000ull
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PUT_REQ_MASK                 	0x0000000008000000ull
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_FAMO_REQ_MASK                	0x0000000004000000ull
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_GET_REQ_MASK                 	0x0000000002000000ull
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_CQ_STALL_MASK                	0x0000000001000000ull
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_CQ_MASK                      	0x0000000000800000ull
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PI_FLIT_MASK                 	0x0000000000400000ull
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PI_PKT_MASK                  	0x0000000000200000ull
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_TARB_STALLED_MASK            	0x0000000000100000ull
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_FLIT_MASK                    	0x0000000000080000ull
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PKT_MASK                     	0x0000000000040000ull
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_UNUSED_81_64_MASK                 	0x000000000003ffffull
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_UNUSED_127_98_BP                  	34
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_TDATA_SBE_BP                 	33
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_INV_CMD_BP                   	32
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_DESC_MBE_BP                  	31
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_DATA_MBE_BP                  	30
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_HDR_PERR_BP                  	29
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_NFAMO_REQ_BP                 	28
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PUT_REQ_BP                   	27
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_FAMO_REQ_BP                  	26
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_GET_REQ_BP                   	25
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_CQ_STALL_BP                  	24
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_CQ_BP                        	23
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PI_FLIT_BP                   	22
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PI_PKT_BP                    	21
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_TARB_STALLED_BP              	20
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_FLIT_BP                      	19
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PKT_BP                       	18
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_UNUSED_81_64_BP                   	0
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_UNUSED_127_98_QW                  	1
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_TDATA_SBE_QW                 	1
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_INV_CMD_QW                   	1
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_DESC_MBE_QW                  	1
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_DATA_MBE_QW                  	1
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_HDR_PERR_QW                  	1
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_NFAMO_REQ_QW                 	1
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PUT_REQ_QW                   	1
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_FAMO_REQ_QW                  	1
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_GET_REQ_QW                   	1
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_CQ_STALL_QW                  	1
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_CQ_QW                        	1
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PI_FLIT_QW                   	1
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PI_PKT_QW                    	1
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_TARB_STALLED_QW              	1
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_FLIT_QW                      	1
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PKT_QW                       	1
+#define AR_NIC_FMA_MMR_RING_0_MID_FMA_UNUSED_81_64_QW                   	1
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_MMR_RING_0_LO_FMA DEFINES
+ */
+#define AR_NIC_FMA_MMR_RING_0_LO_FMA_UNUSED_145_35_MASK                 	0xfffffff800000000ull
+#define AR_NIC_FMA_MMR_RING_0_LO_FMA_OS_INTR_REQ_MASK                   	0x0000000400000000ull
+#define AR_NIC_FMA_MMR_RING_0_LO_FMA_HSS_INTR_REQ_MASK                  	0x0000000200000000ull
+#define AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_WR_ACK_MASK                    	0x0000000100000000ull
+#define AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_RESP_OUT_MASK                  	0x00000000ffff0000ull
+#define AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_REQ_IN_MASK                    	0x000000000000ffffull
+#define AR_NIC_FMA_MMR_RING_0_LO_FMA_UNUSED_145_35_BP                   	35
+#define AR_NIC_FMA_MMR_RING_0_LO_FMA_OS_INTR_REQ_BP                     	34
+#define AR_NIC_FMA_MMR_RING_0_LO_FMA_HSS_INTR_REQ_BP                    	33
+#define AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_WR_ACK_BP                      	32
+#define AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_RESP_OUT_BP                    	16
+#define AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_REQ_IN_BP                      	0
+#define AR_NIC_FMA_MMR_RING_0_LO_FMA_UNUSED_145_35_QW                   	0
+#define AR_NIC_FMA_MMR_RING_0_LO_FMA_OS_INTR_REQ_QW                     	0
+#define AR_NIC_FMA_MMR_RING_0_LO_FMA_HSS_INTR_REQ_QW                    	0
+#define AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_WR_ACK_QW                      	0
+#define AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_RESP_OUT_QW                    	0
+#define AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_REQ_IN_QW                      	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_ERR_FLG_1_HI_FMA DEFINES
+ */
+#define AR_NIC_FMA_ERR_FLG_1_HI_FMA_UNUSED_145_110_MASK                 	0x000000000003ffffull
+#define AR_NIC_FMA_ERR_FLG_1_HI_FMA_UNUSED_145_110_BP                   	0
+#define AR_NIC_FMA_ERR_FLG_1_HI_FMA_UNUSED_145_110_QW                   	2
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_ERR_FLG_1_MID_FMA DEFINES
+ */
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_UNUSED_127_110_MASK                	0xffffc00000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_SW_ERR_MASK                        	0x0000200000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_PKT_ERR_MASK                    	0x0000100000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_BYTE_PUT_ERR_MASK               	0x0000080000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_AMO_BYTE_PUT_ERR_MASK              	0x0000040000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_GCW_MBE_ERR_MASK                   	0x0000020000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_GET_ADDR_ERR_MASK               	0x0000010000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_FMA_LAUNCH_ERR_MASK                	0x0000008000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_ADDR_ALIGN_ERR_MASK                	0x0000004000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_GET_FR_ERR_MASK                    	0x0000002000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_GET_LEN_ERR_MASK                   	0x0000001000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PUT_LEN_ERR_MASK                   	0x0000000800000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_INV_COM_ERR_MASK                   	0x0000000400000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_NPES_ERR_MASK                      	0x0000000200000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_ADDR_ERR_MASK                   	0x0000000100000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_LEN_ERR_MASK                    	0x0000000080000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_SSID_INACTIVE_ERR_MASK             	0x0000000040000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_CMD_ERR_MASK                    	0x0000000020000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DB_MBE_ERR_MASK                    	0x0000000010000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_NOPRIV_ERR_MASK                    	0x0000000008000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_SSID_ALLOCID_ERR_MASK              	0x0000000004000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_ENABLE_ERR_MASK               	0x0000000002000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_BUF_OVERFLOW_MASK               	0x0000000001000000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_WR_ERR_MASK                   	0x0000000000800000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_DB_WR_ERR_MASK                	0x0000000000400000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_HDR_PERR_MASK                      	0x0000000000200000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA1IN_MBE_MASK                   	0x0000000000100000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA1IN_SBE_MASK                   	0x0000000000080000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA0IN_MBE_MASK                   	0x0000000000040000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA0IN_SBE_MASK                   	0x0000000000020000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC88_MBE_MASK                    	0x0000000000010000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC88_SBE_MASK                    	0x0000000000008000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC38_MBE_MASK                    	0x0000000000004000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC38_SBE_MASK                    	0x0000000000002000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC28_MBE_MASK                    	0x0000000000001000ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC28_SBE_MASK                    	0x0000000000000800ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC20_MBE_MASK                    	0x0000000000000400ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC20_SBE_MASK                    	0x0000000000000200ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC18_MBE_MASK                    	0x0000000000000100ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC18_SBE_MASK                    	0x0000000000000080ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC10_MBE_MASK                    	0x0000000000000040ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC10_SBE_MASK                    	0x0000000000000020ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC08_MBE_MASK                    	0x0000000000000010ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC08_SBE_MASK                    	0x0000000000000008ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC00_MBE_MASK                    	0x0000000000000004ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC00_SBE_MASK                    	0x0000000000000002ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_UNUSED_64_MASK                     	0x0000000000000001ull
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_UNUSED_127_110_BP                  	46
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_SW_ERR_BP                          	45
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_PKT_ERR_BP                      	44
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_BYTE_PUT_ERR_BP                 	43
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_AMO_BYTE_PUT_ERR_BP                	42
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_GCW_MBE_ERR_BP                     	41
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_GET_ADDR_ERR_BP                 	40
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_FMA_LAUNCH_ERR_BP                  	39
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_ADDR_ALIGN_ERR_BP                  	38
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_GET_FR_ERR_BP                      	37
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_GET_LEN_ERR_BP                     	36
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PUT_LEN_ERR_BP                     	35
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_INV_COM_ERR_BP                     	34
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_NPES_ERR_BP                        	33
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_ADDR_ERR_BP                     	32
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_LEN_ERR_BP                      	31
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_SSID_INACTIVE_ERR_BP               	30
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_CMD_ERR_BP                      	29
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DB_MBE_ERR_BP                      	28
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_NOPRIV_ERR_BP                      	27
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_SSID_ALLOCID_ERR_BP                	26
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_ENABLE_ERR_BP                 	25
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_BUF_OVERFLOW_BP                 	24
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_WR_ERR_BP                     	23
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_DB_WR_ERR_BP                  	22
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_HDR_PERR_BP                        	21
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA1IN_MBE_BP                     	20
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA1IN_SBE_BP                     	19
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA0IN_MBE_BP                     	18
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA0IN_SBE_BP                     	17
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC88_MBE_BP                      	16
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC88_SBE_BP                      	15
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC38_MBE_BP                      	14
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC38_SBE_BP                      	13
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC28_MBE_BP                      	12
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC28_SBE_BP                      	11
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC20_MBE_BP                      	10
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC20_SBE_BP                      	9
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC18_MBE_BP                      	8
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC18_SBE_BP                      	7
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC10_MBE_BP                      	6
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC10_SBE_BP                      	5
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC08_MBE_BP                      	4
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC08_SBE_BP                      	3
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC00_MBE_BP                      	2
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC00_SBE_BP                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_UNUSED_64_BP                       	0
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_UNUSED_127_110_QW                  	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_SW_ERR_QW                          	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_PKT_ERR_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_BYTE_PUT_ERR_QW                 	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_AMO_BYTE_PUT_ERR_QW                	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_GCW_MBE_ERR_QW                     	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_GET_ADDR_ERR_QW                 	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_FMA_LAUNCH_ERR_QW                  	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_ADDR_ALIGN_ERR_QW                  	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_GET_FR_ERR_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_GET_LEN_ERR_QW                     	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PUT_LEN_ERR_QW                     	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_INV_COM_ERR_QW                     	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_NPES_ERR_QW                        	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_ADDR_ERR_QW                     	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_LEN_ERR_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_SSID_INACTIVE_ERR_QW               	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_CMD_ERR_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DB_MBE_ERR_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_NOPRIV_ERR_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_SSID_ALLOCID_ERR_QW                	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_ENABLE_ERR_QW                 	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_BUF_OVERFLOW_QW                 	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_WR_ERR_QW                     	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_DB_WR_ERR_QW                  	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_HDR_PERR_QW                        	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA1IN_MBE_QW                     	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA1IN_SBE_QW                     	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA0IN_MBE_QW                     	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA0IN_SBE_QW                     	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC88_MBE_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC88_SBE_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC38_MBE_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC38_SBE_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC28_MBE_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC28_SBE_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC20_MBE_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC20_SBE_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC18_MBE_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC18_SBE_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC10_MBE_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC10_SBE_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC08_MBE_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC08_SBE_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC00_MBE_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC00_SBE_QW                      	1
+#define AR_NIC_FMA_ERR_FLG_1_MID_FMA_UNUSED_64_QW                       	1
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_ERR_FLG_1_LO_FMA DEFINES
+ */
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_UNUSED_63_46_MASK                   	0xffffc00000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SW_ERR_MASK                       	0x0000200000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_PKT_ERR_MASK                   	0x0000100000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_BYTE_PUT_ERR_MASK              	0x0000080000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_AMO_BYTE_PUT_ERR_MASK             	0x0000040000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GCW_MBE_ERR_MASK                  	0x0000020000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_GET_ADDR_ERR_MASK              	0x0000010000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_FMA_LAUNCH_ERR_MASK               	0x0000008000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_ADDR_ALIGN_ERR_MASK               	0x0000004000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GET_FR_ERR_MASK                   	0x0000002000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GET_LEN_ERR_MASK                  	0x0000001000000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PUT_LEN_ERR_MASK                  	0x0000000800000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_INV_COM_ERR_MASK                  	0x0000000400000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_NPES_ERR_MASK                     	0x0000000200000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_ADDR_ERR_MASK                  	0x0000000100000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_LEN_ERR_MASK                   	0x0000000080000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SSID_INACTIVE_ERR_MASK            	0x0000000040000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_CMD_ERR_MASK                   	0x0000000020000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DB_MBE_ERR_MASK                   	0x0000000010000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_NOPRIV_ERR_MASK                   	0x0000000008000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SSID_ALLOCID_ERR_MASK             	0x0000000004000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_ENABLE_ERR_MASK              	0x0000000002000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_BUF_OVERFLOW_MASK              	0x0000000001000000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_WR_ERR_MASK                  	0x0000000000800000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_DB_WR_ERR_MASK               	0x0000000000400000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_HDR_PERR_MASK                     	0x0000000000200000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA1IN_MBE_MASK                  	0x0000000000100000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA1IN_SBE_MASK                  	0x0000000000080000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA0IN_MBE_MASK                  	0x0000000000040000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA0IN_SBE_MASK                  	0x0000000000020000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC88_MBE_MASK                   	0x0000000000010000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC88_SBE_MASK                   	0x0000000000008000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC38_MBE_MASK                   	0x0000000000004000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC38_SBE_MASK                   	0x0000000000002000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC28_MBE_MASK                   	0x0000000000001000ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC28_SBE_MASK                   	0x0000000000000800ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC20_MBE_MASK                   	0x0000000000000400ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC20_SBE_MASK                   	0x0000000000000200ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC18_MBE_MASK                   	0x0000000000000100ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC18_SBE_MASK                   	0x0000000000000080ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC10_MBE_MASK                   	0x0000000000000040ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC10_SBE_MASK                   	0x0000000000000020ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC08_MBE_MASK                   	0x0000000000000010ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC08_SBE_MASK                   	0x0000000000000008ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC00_MBE_MASK                   	0x0000000000000004ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC00_SBE_MASK                   	0x0000000000000002ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_UNUSED_0_MASK                       	0x0000000000000001ull
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_UNUSED_63_46_BP                     	46
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SW_ERR_BP                         	45
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_PKT_ERR_BP                     	44
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_BYTE_PUT_ERR_BP                	43
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_AMO_BYTE_PUT_ERR_BP               	42
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GCW_MBE_ERR_BP                    	41
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_GET_ADDR_ERR_BP                	40
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_FMA_LAUNCH_ERR_BP                 	39
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_ADDR_ALIGN_ERR_BP                 	38
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GET_FR_ERR_BP                     	37
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GET_LEN_ERR_BP                    	36
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PUT_LEN_ERR_BP                    	35
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_INV_COM_ERR_BP                    	34
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_NPES_ERR_BP                       	33
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_ADDR_ERR_BP                    	32
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_LEN_ERR_BP                     	31
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SSID_INACTIVE_ERR_BP              	30
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_CMD_ERR_BP                     	29
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DB_MBE_ERR_BP                     	28
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_NOPRIV_ERR_BP                     	27
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SSID_ALLOCID_ERR_BP               	26
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_ENABLE_ERR_BP                	25
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_BUF_OVERFLOW_BP                	24
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_WR_ERR_BP                    	23
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_DB_WR_ERR_BP                 	22
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_HDR_PERR_BP                       	21
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA1IN_MBE_BP                    	20
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA1IN_SBE_BP                    	19
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA0IN_MBE_BP                    	18
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA0IN_SBE_BP                    	17
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC88_MBE_BP                     	16
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC88_SBE_BP                     	15
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC38_MBE_BP                     	14
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC38_SBE_BP                     	13
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC28_MBE_BP                     	12
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC28_SBE_BP                     	11
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC20_MBE_BP                     	10
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC20_SBE_BP                     	9
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC18_MBE_BP                     	8
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC18_SBE_BP                     	7
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC10_MBE_BP                     	6
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC10_SBE_BP                     	5
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC08_MBE_BP                     	4
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC08_SBE_BP                     	3
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC00_MBE_BP                     	2
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC00_SBE_BP                     	1
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_UNUSED_0_BP                         	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_UNUSED_63_46_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SW_ERR_QW                         	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_PKT_ERR_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_BYTE_PUT_ERR_QW                	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_AMO_BYTE_PUT_ERR_QW               	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GCW_MBE_ERR_QW                    	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_GET_ADDR_ERR_QW                	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_FMA_LAUNCH_ERR_QW                 	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_ADDR_ALIGN_ERR_QW                 	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GET_FR_ERR_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GET_LEN_ERR_QW                    	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PUT_LEN_ERR_QW                    	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_INV_COM_ERR_QW                    	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_NPES_ERR_QW                       	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_ADDR_ERR_QW                    	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_LEN_ERR_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SSID_INACTIVE_ERR_QW              	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_CMD_ERR_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DB_MBE_ERR_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_NOPRIV_ERR_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SSID_ALLOCID_ERR_QW               	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_ENABLE_ERR_QW                	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_BUF_OVERFLOW_QW                	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_WR_ERR_QW                    	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_DB_WR_ERR_QW                 	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_HDR_PERR_QW                       	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA1IN_MBE_QW                    	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA1IN_SBE_QW                    	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA0IN_MBE_QW                    	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA0IN_SBE_QW                    	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC88_MBE_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC88_SBE_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC38_MBE_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC38_SBE_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC28_MBE_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC28_SBE_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC20_MBE_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC20_SBE_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC18_MBE_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC18_SBE_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC10_MBE_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC10_SBE_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC08_MBE_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC08_SBE_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC00_MBE_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC00_SBE_QW                     	0
+#define AR_NIC_FMA_ERR_FLG_1_LO_FMA_UNUSED_0_QW                         	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA DEFINES
+ */
+#define AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA_I_PI_NIC_REQ_SB_MASK    	0x0000000000030000ull
+#define AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA_I_PI_NIC_REQ_FLIT_MASK  	0x000000000000ffffull
+#define AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA_I_PI_NIC_REQ_SB_BP      	16
+#define AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA_I_PI_NIC_REQ_FLIT_BP    	0
+#define AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA_I_PI_NIC_REQ_SB_QW      	2
+#define AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA_I_PI_NIC_REQ_FLIT_QW    	2
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_MID_FMA DEFINES
+ */
+#define AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_MID_FMA_I_PI_NIC_REQ_FLIT_MASK 	0xffffffffffffffffull
+#define AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_MID_FMA_I_PI_NIC_REQ_FLIT_BP   	0
+#define AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_MID_FMA_I_PI_NIC_REQ_FLIT_QW   	1
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_LO_FMA DEFINES
+ */
+#define AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_LO_FMA_I_PI_NIC_REQ_FLIT_MASK  	0xffffffffffffffffull
+#define AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_LO_FMA_I_PI_NIC_REQ_FLIT_BP    	0
+#define AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_LO_FMA_I_PI_NIC_REQ_FLIT_QW    	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_HI_FMA DEFINES
+ */
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_HI_FMA_UNUSED_145_96_MASK	0x000000000003ffffull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_HI_FMA_UNUSED_145_96_BP	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_HI_FMA_UNUSED_145_96_QW	2
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA DEFINES
+ */
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_UNUSED_145_96_MASK	0xffffffff00000000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_DLA_MARKER_HDR_SG3_MASK	0x0000000080000000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_WR_88_SG3_MASK	0x0000000040000000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_RD_88_SG3_MASK	0x0000000020000000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_Q_NIC_PI_REQ_ACK_MASK	0x0000000010000000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_PI_REWIND_MASK	0x0000000008000000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_PI_HOLD_MASK	0x0000000004000000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_VALID_SG3_MASK	0x0000000002000000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_HEADER_SG3_MASK	0x0000000001000000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_ERR_RECVD_SG3_MASK	0x0000000000800000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WN_HDR_SG3_MASK	0x0000000000400000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WN_DTF_SG3_MASK	0x0000000000200000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_USER_SG3_MASK	0x0000000000100000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_CQ_WINDOW_SG3_MASK	0x0000000000080000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_ALLOC_SSID_SG3_MASK	0x0000000000040000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CQWRITE_HDR_SG3_MASK	0x0000000000020000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CQWRITE_DTF_SG3_MASK	0x0000000000010000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_FLBTE_SG3_MASK	0x0000000000008000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_WR_STAT_WHEN_SG3_MASK	0x0000000000004000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CE_HDR_SG3_MASK	0x0000000000002000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CE_DTF_SG3_MASK	0x0000000000001000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_SEQCMP_HDR_SG3_MASK	0x0000000000000800ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_SEQCMP_DTF_SG3_MASK	0x0000000000000400ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_MMR_RD_SG3_MASK	0x0000000000000200ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_MMR_WR_SG3_MASK	0x0000000000000100ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_FMA_LAUNCH0_MASK	0x0000000000000080ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_FMA_LAUNCH1_MASK	0x0000000000000040ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WR_STAT_REQ_SG3_MASK	0x0000000000000020ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_SEQ_ACTIVE_READ_SG3_MASK	0x0000000000000010ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_DESCRIPTOR_SG3_MASK	0x000000000000000full
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_UNUSED_145_96_BP	32
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_DLA_MARKER_HDR_SG3_BP	31
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_WR_88_SG3_BP	30
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_RD_88_SG3_BP	29
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_Q_NIC_PI_REQ_ACK_BP	28
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_PI_REWIND_BP	27
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_PI_HOLD_BP	26
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_VALID_SG3_BP	25
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_HEADER_SG3_BP	24
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_ERR_RECVD_SG3_BP	23
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WN_HDR_SG3_BP	22
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WN_DTF_SG3_BP	21
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_USER_SG3_BP	20
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_CQ_WINDOW_SG3_BP	19
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_ALLOC_SSID_SG3_BP	18
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CQWRITE_HDR_SG3_BP	17
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CQWRITE_DTF_SG3_BP	16
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_FLBTE_SG3_BP	15
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_WR_STAT_WHEN_SG3_BP	14
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CE_HDR_SG3_BP	13
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CE_DTF_SG3_BP	12
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_SEQCMP_HDR_SG3_BP	11
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_SEQCMP_DTF_SG3_BP	10
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_MMR_RD_SG3_BP	9
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_MMR_WR_SG3_BP	8
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_FMA_LAUNCH0_BP	7
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_FMA_LAUNCH1_BP	6
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WR_STAT_REQ_SG3_BP	5
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_SEQ_ACTIVE_READ_SG3_BP	4
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_DESCRIPTOR_SG3_BP	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_UNUSED_145_96_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_DLA_MARKER_HDR_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_WR_88_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_RD_88_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_Q_NIC_PI_REQ_ACK_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_PI_REWIND_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_PI_HOLD_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_VALID_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_HEADER_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_ERR_RECVD_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WN_HDR_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WN_DTF_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_USER_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_CQ_WINDOW_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_ALLOC_SSID_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CQWRITE_HDR_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CQWRITE_DTF_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_FLBTE_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_WR_STAT_WHEN_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CE_HDR_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CE_DTF_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_SEQCMP_HDR_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_SEQCMP_DTF_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_MMR_RD_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_MMR_WR_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_FMA_LAUNCH0_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_FMA_LAUNCH1_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WR_STAT_REQ_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_SEQ_ACTIVE_READ_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_DESCRIPTOR_SG3_QW	1
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA DEFINES
+ */
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_DESCRIPTOR_SG3_MASK	0xe000000000000000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_ADDRESS_SG3_MASK	0x1fffffff80000000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DATA0_2ODD_MASK	0x0000000040000000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_00_SG3_MASK	0x0000000020000000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_08_SG3_MASK	0x0000000010000000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_10_SG3_MASK	0x0000000008000000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_18_SG3_MASK	0x0000000004000000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_20_SG3_MASK	0x0000000002000000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_28_SG3_MASK	0x0000000001000000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_38_SG3_MASK	0x0000000000800000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_80_SG3_MASK	0x0000000000400000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_00_SG3_MASK	0x0000000000200000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_08_SG3_MASK	0x0000000000100000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_10_SG3_MASK	0x0000000000080000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_18_SG3_MASK	0x0000000000040000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_20_SG3_MASK	0x0000000000020000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_28_SG3_MASK	0x0000000000010000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_38_SG3_MASK	0x0000000000008000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_80_SG3_MASK	0x0000000000004000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_TAIL_FLIT_SG3_MASK	0x0000000000002000ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_PERR_MASK	0x0000000000001e00ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_COM_ERR_MASK	0x0000000000000100ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_ADR_ERR_MASK	0x0000000000000080ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_LEN_ERR_MASK	0x0000000000000040ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA0_SBE_MASK	0x0000000000000020ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA0_MBE_MASK	0x0000000000000010ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA1_SBE_MASK	0x0000000000000008ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA1_MBE_MASK	0x0000000000000004ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DESC_OP_ERR_MASK	0x0000000000000002ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DESC_DB_ERR_MASK	0x0000000000000001ull
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_DESCRIPTOR_SG3_BP	61
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_ADDRESS_SG3_BP	31
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DATA0_2ODD_BP	30
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_00_SG3_BP	29
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_08_SG3_BP	28
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_10_SG3_BP	27
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_18_SG3_BP	26
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_20_SG3_BP	25
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_28_SG3_BP	24
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_38_SG3_BP	23
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_80_SG3_BP	22
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_00_SG3_BP	21
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_08_SG3_BP	20
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_10_SG3_BP	19
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_18_SG3_BP	18
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_20_SG3_BP	17
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_28_SG3_BP	16
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_38_SG3_BP	15
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_80_SG3_BP	14
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_TAIL_FLIT_SG3_BP	13
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_PERR_BP	9
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_COM_ERR_BP	8
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_ADR_ERR_BP	7
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_LEN_ERR_BP	6
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA0_SBE_BP	5
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA0_MBE_BP	4
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA1_SBE_BP	3
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA1_MBE_BP	2
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DESC_OP_ERR_BP	1
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DESC_DB_ERR_BP	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_DESCRIPTOR_SG3_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_ADDRESS_SG3_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DATA0_2ODD_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_00_SG3_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_08_SG3_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_10_SG3_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_18_SG3_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_20_SG3_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_28_SG3_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_38_SG3_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_80_SG3_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_00_SG3_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_08_SG3_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_10_SG3_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_18_SG3_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_20_SG3_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_28_SG3_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_38_SG3_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_80_SG3_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_TAIL_FLIT_SG3_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_PERR_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_COM_ERR_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_ADR_ERR_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_LEN_ERR_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA0_SBE_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA0_MBE_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA1_SBE_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA1_MBE_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DESC_OP_ERR_QW	0
+#define AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DESC_DB_ERR_QW	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA DEFINES
+ */
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_UNUSED_145_144_MASK	0x0000000000030000ull
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_R_ECC1_SG3_MASK	0x000000000000ff00ull
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_R_DATA1_SG3_MASK	0x00000000000000ffull
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_UNUSED_145_144_BP	16
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_R_ECC1_SG3_BP	8
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_R_DATA1_SG3_BP	0
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_UNUSED_145_144_QW	2
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_R_ECC1_SG3_QW	2
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_R_DATA1_SG3_QW	2
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA DEFINES
+ */
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA_R_DATA1_SG3_MASK	0xffffffffffffff00ull
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA_R_ECC0_SG3_MASK	0x00000000000000ffull
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA_R_DATA1_SG3_BP	8
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA_R_ECC0_SG3_BP	0
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA_R_DATA1_SG3_QW	1
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA_R_ECC0_SG3_QW	1
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_LO_FMA DEFINES
+ */
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_LO_FMA_R_DATA0_SG3_MASK	0xffffffffffffffffull
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_LO_FMA_R_DATA0_SG3_BP	0
+#define AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_LO_FMA_R_DATA0_SG3_QW	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_HI_FMA DEFINES
+ */
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_HI_FMA_UNUSED_145_82_MASK	0x000000000003ffffull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_HI_FMA_UNUSED_145_82_BP	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_HI_FMA_UNUSED_145_82_QW	2
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA DEFINES
+ */
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_UNUSED_145_82_MASK	0xfffffffffffc0000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_I_DESC_SG6_MASK	0x000000000003f800ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_HDR_MASK	0x0000000000000400ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_LAUNCH_MASK	0x0000000000000200ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_GET_MASK	0x0000000000000100ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_PUT_MASK	0x0000000000000080ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_AMO_MASK	0x0000000000000040ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_STAT_REQ_MASK	0x0000000000000020ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_AMO_2OPS_MASK	0x0000000000000010ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_32BIT_AMO_CE_MASK	0x0000000000000008ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_64BIT_MASK	0x0000000000000004ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_REQ_COUNT_MASK	0x0000000000000003ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_UNUSED_145_82_BP	18
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_I_DESC_SG6_BP	11
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_HDR_BP	10
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_LAUNCH_BP	9
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_GET_BP	8
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_PUT_BP	7
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_AMO_BP	6
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_STAT_REQ_BP	5
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_AMO_2OPS_BP	4
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_32BIT_AMO_CE_BP	3
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_64BIT_BP	2
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_REQ_COUNT_BP	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_UNUSED_145_82_QW	1
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_I_DESC_SG6_QW	1
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_HDR_QW	1
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_LAUNCH_QW	1
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_GET_QW	1
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_PUT_QW	1
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_AMO_QW	1
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_STAT_REQ_QW	1
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_AMO_2OPS_QW	1
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_32BIT_AMO_CE_QW	1
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_64BIT_QW	1
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_REQ_COUNT_QW	1
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA DEFINES
+ */
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_REQ_COUNT_MASK	0xe000000000000000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GOP0_SG6_MASK	0x1fc0000000000000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_COUNT_MASK	0x003c000000000000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_MBE_MASK	0x0002000000000000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_COUNT_ERR_MASK	0x0001000000000000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GOP1_SG6_MASK	0x0000fe0000000000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_COUNT_MASK	0x000001e000000000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_MBE_MASK	0x0000001000000000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_COUNT_ERR_MASK	0x0000000800000000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_DTF_MASK	0x0000000400000000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_TAIL_MASK	0x0000000200000000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_CE_DTF1_MASK	0x0000000100000000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_FLAG_DATA_MASK	0x0000000080000000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_CE_IDX_MASK	0x0000000040000000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_CE_OP2_MASK	0x0000000020000000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_LAF1_VALID_MASK	0x0000000010000000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_RC0_MASK	0x0000000008000000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_WC0_MASK	0x0000000004000000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_COUNT0_MASK	0x0000000003e00000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_RC1_MASK	0x0000000000100000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_WC1_MASK	0x0000000000080000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SW_ERR_1_MASK	0x0000000000040000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_NPES_ERR_MASK	0x0000000000030000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SEQID_ERR_MASK	0x0000000000008000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SSID_AA_ERR_MASK	0x0000000000004000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SSID_NA_ERR_MASK	0x0000000000002000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_ENABLE_ERR_MASK	0x0000000000001000ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_FR_LEN_ERR_MASK	0x0000000000000800ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_GET_LEN_ERR_MASK	0x0000000000000400ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_PUT_LEN_ERR_MASK	0x0000000000000200ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INV_COM_ERR_MASK	0x0000000000000100ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_ALIGN_ERR_MASK	0x0000000000000080ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_LAUNCH_ERR_MASK	0x0000000000000040ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_WR_STAT_WHEN_MASK	0x0000000000000020ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_WR_STAT_WHEN_MODE_MASK	0x000000000000001cull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_UNUSED_1_MASK	0x0000000000000002ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_FMA_BTE_VALID_MASK	0x0000000000000001ull
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_REQ_COUNT_BP	61
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GOP0_SG6_BP	54
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_COUNT_BP	50
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_MBE_BP	49
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_COUNT_ERR_BP	48
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GOP1_SG6_BP	41
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_COUNT_BP	37
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_MBE_BP	36
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_COUNT_ERR_BP	35
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_DTF_BP 	34
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_TAIL_BP	33
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_CE_DTF1_BP	32
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_FLAG_DATA_BP	31
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_CE_IDX_BP	30
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_CE_OP2_BP	29
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_LAF1_VALID_BP	28
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_RC0_BP	27
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_WC0_BP	26
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_COUNT0_BP	21
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_RC1_BP	20
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_WC1_BP	19
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SW_ERR_1_BP	18
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_NPES_ERR_BP	16
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SEQID_ERR_BP	15
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SSID_AA_ERR_BP	14
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SSID_NA_ERR_BP	13
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_ENABLE_ERR_BP	12
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_FR_LEN_ERR_BP	11
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_GET_LEN_ERR_BP	10
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_PUT_LEN_ERR_BP	9
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INV_COM_ERR_BP	8
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_ALIGN_ERR_BP	7
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_LAUNCH_ERR_BP	6
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_WR_STAT_WHEN_BP	5
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_WR_STAT_WHEN_MODE_BP	2
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_UNUSED_1_BP	1
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_FMA_BTE_VALID_BP	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_REQ_COUNT_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GOP0_SG6_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_COUNT_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_MBE_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_COUNT_ERR_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GOP1_SG6_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_COUNT_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_MBE_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_COUNT_ERR_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_DTF_QW 	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_TAIL_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_CE_DTF1_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_FLAG_DATA_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_CE_IDX_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_CE_OP2_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_LAF1_VALID_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_RC0_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_WC0_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_COUNT0_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_RC1_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_WC1_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SW_ERR_1_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_NPES_ERR_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SEQID_ERR_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SSID_AA_ERR_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SSID_NA_ERR_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_ENABLE_ERR_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_FR_LEN_ERR_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_GET_LEN_ERR_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_PUT_LEN_ERR_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INV_COM_ERR_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_ALIGN_ERR_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_LAUNCH_ERR_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_WR_STAT_WHEN_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_WR_STAT_WHEN_MODE_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_UNUSED_1_QW	0
+#define AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_FMA_BTE_VALID_QW	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_TARB_RD_DATA_STAGE_7_HI_FMA DEFINES
+ */
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_HI_FMA_UNUSED_145_64_MASK       	0x000000000003ffffull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_HI_FMA_UNUSED_145_64_BP         	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_HI_FMA_UNUSED_145_64_QW         	2
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_TARB_RD_DATA_STAGE_7_MID_FMA DEFINES
+ */
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_MID_FMA_UNUSED_145_64_MASK      	0xffffffffffffffffull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_MID_FMA_UNUSED_145_64_BP        	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_MID_FMA_UNUSED_145_64_QW        	1
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA DEFINES
+ */
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_ACTIVE_MASK        	0x8000000000000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_READ_PKT_MASK          	0x4000000000000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_LAF1_MASK          	0x2000000000000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_DONE_MASK          	0x1000000000000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_PUT_AAX_MODE_MASK	0x0800000000000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_ACTIVE_MASK    	0x0400000000000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_DONE_MASK      	0x0200000000000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_PUT_AMO_MASK     	0x0100000000000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_ADD_DATA_MASK          	0x0080000000000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_MASK             	0x0040000000000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_PUT_AMO_MASK       	0x0020000000000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_PTR_MASK       	0x0018000000000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_NEXT_FLIT_MASK 	0x0004000000000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PEND_REQ_COUNT_MASK    	0x0003e00000000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GO_READ_SG1_MASK       	0x0000100000000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_HEADER_SG1_MASK        	0x0000080000000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_LAUNCH_SG1_MASK        	0x0000040000000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_GET_MASK         	0x0000020000000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GOP0_SG1_MASK          	0x000001fc00000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_CNT0_SG1_MASK          	0x00000003c0000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW0_MBE_SG1_MASK      	0x0000000020000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW0_COUNT_ERR_SG1_MASK	0x0000000010000000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GOP1_SG1_MASK          	0x000000000fe00000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_CNT1_SG1_MASK          	0x00000000001e0000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW1_MBE_SG1_MASK      	0x0000000000010000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW1_COUNT_ERR_SG1_MASK	0x0000000000008000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_TAIL_SG1_MASK          	0x0000000000004000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_HDR_SG1_MASK      	0x0000000000002000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_LAF_SG1_MASK      	0x0000000000001000ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_LAF1_SG1_MASK     	0x0000000000000800ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_DATA_READ_SG1_MASK     	0x0000000000000400ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_ADD_DATA_SG1_MASK      	0x0000000000000200ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_PUT_AMO_DATA_SG1_MASK	0x0000000000000100ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_GET_AMO_DATA_SG1_MASK	0x0000000000000080ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_PTR_SG1_MASK   	0x0000000000000060ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_SG1_MASK         	0x0000000000000010ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_PUT_AMO_SG1_MASK   	0x0000000000000008ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_GET_AMO_SG1_MASK   	0x0000000000000004ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_GET_AMO_SG1_MASK 	0x0000000000000002ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_PUT_AMO_SG1_MASK 	0x0000000000000001ull
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_ACTIVE_BP          	63
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_READ_PKT_BP            	62
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_LAF1_BP            	61
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_DONE_BP            	60
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_PUT_AAX_MODE_BP  	59
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_ACTIVE_BP      	58
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_DONE_BP        	57
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_PUT_AMO_BP       	56
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_ADD_DATA_BP            	55
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_BP               	54
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_PUT_AMO_BP         	53
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_PTR_BP         	51
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_NEXT_FLIT_BP   	50
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PEND_REQ_COUNT_BP      	45
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GO_READ_SG1_BP         	44
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_HEADER_SG1_BP          	43
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_LAUNCH_SG1_BP          	42
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_GET_BP           	41
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GOP0_SG1_BP            	34
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_CNT0_SG1_BP            	30
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW0_MBE_SG1_BP        	29
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW0_COUNT_ERR_SG1_BP  	28
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GOP1_SG1_BP            	21
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_CNT1_SG1_BP            	17
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW1_MBE_SG1_BP        	16
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW1_COUNT_ERR_SG1_BP  	15
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_TAIL_SG1_BP            	14
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_HDR_SG1_BP        	13
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_LAF_SG1_BP        	12
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_LAF1_SG1_BP       	11
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_DATA_READ_SG1_BP       	10
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_ADD_DATA_SG1_BP        	9
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_PUT_AMO_DATA_SG1_BP	8
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_GET_AMO_DATA_SG1_BP	7
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_PTR_SG1_BP     	5
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_SG1_BP           	4
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_PUT_AMO_SG1_BP     	3
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_GET_AMO_SG1_BP     	2
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_GET_AMO_SG1_BP   	1
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_PUT_AMO_SG1_BP   	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_ACTIVE_QW          	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_READ_PKT_QW            	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_LAF1_QW            	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_DONE_QW            	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_PUT_AAX_MODE_QW  	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_ACTIVE_QW      	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_DONE_QW        	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_PUT_AMO_QW       	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_ADD_DATA_QW            	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_QW               	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_PUT_AMO_QW         	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_PTR_QW         	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_NEXT_FLIT_QW   	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PEND_REQ_COUNT_QW      	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GO_READ_SG1_QW         	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_HEADER_SG1_QW          	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_LAUNCH_SG1_QW          	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_GET_QW           	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GOP0_SG1_QW            	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_CNT0_SG1_QW            	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW0_MBE_SG1_QW        	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW0_COUNT_ERR_SG1_QW  	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GOP1_SG1_QW            	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_CNT1_SG1_QW            	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW1_MBE_SG1_QW        	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW1_COUNT_ERR_SG1_QW  	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_TAIL_SG1_QW            	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_HDR_SG1_QW        	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_LAF_SG1_QW        	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_LAF1_SG1_QW       	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_DATA_READ_SG1_QW       	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_ADD_DATA_SG1_QW        	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_PUT_AMO_DATA_SG1_QW	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_GET_AMO_DATA_SG1_QW	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_PTR_SG1_QW     	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_SG1_QW           	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_PUT_AMO_SG1_QW     	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_GET_AMO_SG1_QW     	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_GET_AMO_SG1_QW   	0
+#define AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_PUT_AMO_SG1_QW   	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_CFG_DESC_FLBTE DEFINES
+ */
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1727_1664_MASK               	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1663_1600_MASK               	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1599_1536_MASK               	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1151_1088_MASK               	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_STATUS_MASK                           	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1023_960_MASK                	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_959_896_MASK                 	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_895_832_MASK                 	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_831_771_MASK                 	0xfffffffffffffff8ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_WR_STATUS_WHEN_MASK                   	0x0000000000000007ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_767_704_MASK                 	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_RPT_ENQ_STATUS_MASK             	0x8000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_BTE_IMMEDIATE_MASK              	0x4000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_SSID_CQ_EN_MASK             	0x2000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_BTE_CQ_EN_MASK              	0x1000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_699_688_MASK                 	0x0fff000000000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_CQ_DATA_MASK                	0x0000ffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_639_576_MASK                 	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_575_512_MASK                 	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_PRIVILEGE_MASK_MASK                   	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_DEST_USER_DATA_MASK                   	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_319_288_MASK                 	0xffffffff00000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_XFER_LEN_MASK                         	0x00000000ffffffffull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_255_240_MASK                 	0xffff000000000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_LOC_PHYS_ADDR_MASK                    	0x0000ffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_LOC_MEM_OFFSET_MASK                   	0x000000ffffffffffull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_NTT_EN_MASK                           	0x8000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_REM_PTAG_MASK                         	0x7f80000000000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_LOC_PTAG_MASK                         	0x007f800000000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_SRC_CQH_MASK                          	0x00007ff000000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_PE_BASE_MASK                          	0x0000000ffffc0000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_NPES_MASK                             	0x000000000003ffffull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_127_MASK                     	0x8000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_REM_MDH_MASK                          	0x7ff8000000000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_114_MASK                     	0x0004000000000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_LOC_MDH_MASK                          	0x0003ffc000000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_BTE_FENCE_MASK                        	0x0000002000000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_PRIVILEGED_MASK                       	0x0000001000000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_99_98_MASK                   	0x0000000c00000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_BTE_CHAN_MASK                         	0x0000000300000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_95_MASK                      	0x0000000080000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RD_NO_SNOOP_MASK                      	0x0000000040000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RD_RO_MASK                            	0x0000000020000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_NAT_EN_MASK                           	0x0000000010000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_91_MASK                      	0x0000000008000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_ENQ_STATUS_CQH_MASK                   	0x0000000007ff0000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_75_72_MASK                   	0x0000000000000f00ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_71_MASK                      	0x0000000000000080ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_70_66_MASK                   	0x000000000000007cull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_BTE_OP_MASK                           	0x0000000000000003ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_FMA_EN_MASK                           	0x8000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RC_MASK                               	0x7000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_WC_MASK                               	0x0800000000000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_58_MASK                      	0x0400000000000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_LOGICAL_DEST_MASK                     	0x03ffff0000000000ull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_REM_MEM_OFFSET_MASK                   	0x000000ffffffffffull
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1727_1664_BP                 	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1663_1600_BP                 	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1599_1536_BP                 	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1151_1088_BP                 	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_STATUS_BP                             	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1023_960_BP                  	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_959_896_BP                   	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_895_832_BP                   	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_831_771_BP                   	3
+#define AR_NIC_FMA_CFG_DESC_FLBTE_WR_STATUS_WHEN_BP                     	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_767_704_BP                   	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_RPT_ENQ_STATUS_BP               	63
+#define AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_BTE_IMMEDIATE_BP                	62
+#define AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_SSID_CQ_EN_BP               	61
+#define AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_BTE_CQ_EN_BP                	60
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_699_688_BP                   	48
+#define AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_CQ_DATA_BP                  	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_639_576_BP                   	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_575_512_BP                   	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_PRIVILEGE_MASK_BP                     	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_DEST_USER_DATA_BP                     	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_319_288_BP                   	32
+#define AR_NIC_FMA_CFG_DESC_FLBTE_XFER_LEN_BP                           	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_255_240_BP                   	48
+#define AR_NIC_FMA_CFG_DESC_FLBTE_LOC_PHYS_ADDR_BP                      	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_LOC_MEM_OFFSET_BP                     	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_NTT_EN_BP                             	63
+#define AR_NIC_FMA_CFG_DESC_FLBTE_REM_PTAG_BP                           	55
+#define AR_NIC_FMA_CFG_DESC_FLBTE_LOC_PTAG_BP                           	47
+#define AR_NIC_FMA_CFG_DESC_FLBTE_SRC_CQH_BP                            	36
+#define AR_NIC_FMA_CFG_DESC_FLBTE_PE_BASE_BP                            	18
+#define AR_NIC_FMA_CFG_DESC_FLBTE_NPES_BP                               	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_127_BP                       	63
+#define AR_NIC_FMA_CFG_DESC_FLBTE_REM_MDH_BP                            	51
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_114_BP                       	50
+#define AR_NIC_FMA_CFG_DESC_FLBTE_LOC_MDH_BP                            	38
+#define AR_NIC_FMA_CFG_DESC_FLBTE_BTE_FENCE_BP                          	37
+#define AR_NIC_FMA_CFG_DESC_FLBTE_PRIVILEGED_BP                         	36
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_99_98_BP                     	34
+#define AR_NIC_FMA_CFG_DESC_FLBTE_BTE_CHAN_BP                           	32
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_95_BP                        	31
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RD_NO_SNOOP_BP                        	30
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RD_RO_BP                              	29
+#define AR_NIC_FMA_CFG_DESC_FLBTE_NAT_EN_BP                             	28
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_91_BP                        	27
+#define AR_NIC_FMA_CFG_DESC_FLBTE_ENQ_STATUS_CQH_BP                     	16
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_75_72_BP                     	8
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_71_BP                        	7
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_70_66_BP                     	2
+#define AR_NIC_FMA_CFG_DESC_FLBTE_BTE_OP_BP                             	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_FMA_EN_BP                             	63
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RC_BP                                 	60
+#define AR_NIC_FMA_CFG_DESC_FLBTE_WC_BP                                 	59
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_58_BP                        	58
+#define AR_NIC_FMA_CFG_DESC_FLBTE_LOGICAL_DEST_BP                       	40
+#define AR_NIC_FMA_CFG_DESC_FLBTE_REM_MEM_OFFSET_BP                     	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1727_1664_QW                 	26
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1663_1600_QW                 	25
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1599_1536_QW                 	24
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1151_1088_QW                 	17
+#define AR_NIC_FMA_CFG_DESC_FLBTE_STATUS_QW                             	16
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1023_960_QW                  	15
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_959_896_QW                   	14
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_895_832_QW                   	13
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_831_771_QW                   	12
+#define AR_NIC_FMA_CFG_DESC_FLBTE_WR_STATUS_WHEN_QW                     	12
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_767_704_QW                   	11
+#define AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_RPT_ENQ_STATUS_QW               	10
+#define AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_BTE_IMMEDIATE_QW                	10
+#define AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_SSID_CQ_EN_QW               	10
+#define AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_BTE_CQ_EN_QW                	10
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_699_688_QW                   	10
+#define AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_CQ_DATA_QW                  	10
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_639_576_QW                   	9
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_575_512_QW                   	8
+#define AR_NIC_FMA_CFG_DESC_FLBTE_PRIVILEGE_MASK_QW                     	7
+#define AR_NIC_FMA_CFG_DESC_FLBTE_DEST_USER_DATA_QW                     	5
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_319_288_QW                   	4
+#define AR_NIC_FMA_CFG_DESC_FLBTE_XFER_LEN_QW                           	4
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_255_240_QW                   	3
+#define AR_NIC_FMA_CFG_DESC_FLBTE_LOC_PHYS_ADDR_QW                      	3
+#define AR_NIC_FMA_CFG_DESC_FLBTE_LOC_MEM_OFFSET_QW                     	3
+#define AR_NIC_FMA_CFG_DESC_FLBTE_NTT_EN_QW                             	2
+#define AR_NIC_FMA_CFG_DESC_FLBTE_REM_PTAG_QW                           	2
+#define AR_NIC_FMA_CFG_DESC_FLBTE_LOC_PTAG_QW                           	2
+#define AR_NIC_FMA_CFG_DESC_FLBTE_SRC_CQH_QW                            	2
+#define AR_NIC_FMA_CFG_DESC_FLBTE_PE_BASE_QW                            	2
+#define AR_NIC_FMA_CFG_DESC_FLBTE_NPES_QW                               	2
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_127_QW                       	1
+#define AR_NIC_FMA_CFG_DESC_FLBTE_REM_MDH_QW                            	1
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_114_QW                       	1
+#define AR_NIC_FMA_CFG_DESC_FLBTE_LOC_MDH_QW                            	1
+#define AR_NIC_FMA_CFG_DESC_FLBTE_BTE_FENCE_QW                          	1
+#define AR_NIC_FMA_CFG_DESC_FLBTE_PRIVILEGED_QW                         	1
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_99_98_QW                     	1
+#define AR_NIC_FMA_CFG_DESC_FLBTE_BTE_CHAN_QW                           	1
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_95_QW                        	1
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RD_NO_SNOOP_QW                        	1
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RD_RO_QW                              	1
+#define AR_NIC_FMA_CFG_DESC_FLBTE_NAT_EN_QW                             	1
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_91_QW                        	1
+#define AR_NIC_FMA_CFG_DESC_FLBTE_ENQ_STATUS_CQH_QW                     	1
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_75_72_QW                     	1
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_71_QW                        	1
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_70_66_QW                     	1
+#define AR_NIC_FMA_CFG_DESC_FLBTE_BTE_OP_QW                             	1
+#define AR_NIC_FMA_CFG_DESC_FLBTE_FMA_EN_QW                             	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RC_QW                                 	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_WC_QW                                 	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_58_QW                        	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_LOGICAL_DEST_QW                       	0
+#define AR_NIC_FMA_CFG_DESC_FLBTE_REM_MEM_OFFSET_QW                     	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_CFG_DESC_CE DEFINES
+ */
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_1727_1664_MASK                  	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_1663_1600_MASK                  	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_1599_1536_MASK                  	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_1151_1088_MASK                  	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_CE_STATUS_MASK                              	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_1023_960_MASK                   	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_959_896_MASK                    	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_CE_SEQCMP_MASK                              	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_831_771_MASK                    	0xfffffffffffffff8ull
+#define AR_NIC_FMA_CFG_DESC_CE_WR_STATUS_WHEN_MASK                      	0x0000000000000007ull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_767_745_MASK                    	0xfffffe0000000000ull
+#define AR_NIC_FMA_CFG_DESC_CE_CEDB_USE_OPRND2_MASK                     	0x0000010000000000ull
+#define AR_NIC_FMA_CFG_DESC_CE_CEDB_REDUCTN_ID_MASK                     	0x000000ffffffffffull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_703_640_MASK                    	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_639_576_MASK                    	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_CE_ALLOC_SEQID_MASK                         	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_CE_PRIVILEGE_MASK_MASK                      	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_383_334_MASK                    	0xffffffffffffc000ull
+#define AR_NIC_FMA_CFG_DESC_CE_CHILD_ID_MASK                            	0x0000000000003f00ull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_327_326_MASK                    	0x00000000000000c0ull
+#define AR_NIC_FMA_CFG_DESC_CE_CE_ID_MASK                               	0x000000000000003full
+#define AR_NIC_FMA_CFG_DESC_CE_CE_OPRND2_MASK                           	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_CE_CE_OPRND1_MASK                           	0xffffffffffffffffull
+#define AR_NIC_FMA_CFG_DESC_CE_NTT_EN_MASK                              	0x8000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_CE_REM_PTAG_MASK                            	0x7f80000000000000ull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_182_164_MASK                    	0x007ffff000000000ull
+#define AR_NIC_FMA_CFG_DESC_CE_PE_BASE_MASK                             	0x0000000ffffc0000ull
+#define AR_NIC_FMA_CFG_DESC_CE_NPES_MASK                                	0x000000000003ffffull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_127_MASK                        	0x8000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_CE_REM_MDH_MASK                             	0x7ff8000000000000ull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_114_MASK                        	0x0004000000000000ull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_113_100_MASK                    	0x0003fff000000000ull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_99_98_MASK                      	0x0000000c00000000ull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_97_92_MASK                      	0x00000003f0000000ull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_91_MASK                         	0x0000000008000000ull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_90_80_MASK                      	0x0000000007ff0000ull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_79_76_MASK                      	0x000000000000f000ull
+#define AR_NIC_FMA_CFG_DESC_CE_FP_EXCEPTION_MASK                        	0x0000000000000f00ull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_71_MASK                         	0x0000000000000080ull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_70_MASK                         	0x0000000000000040ull
+#define AR_NIC_FMA_CFG_DESC_CE_CE_OP_MASK                               	0x000000000000003full
+#define AR_NIC_FMA_CFG_DESC_CE_FMA_EN_MASK                              	0x8000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_CE_RC_MASK                                  	0x7000000000000000ull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_59_MASK                         	0x0800000000000000ull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_58_MASK                         	0x0400000000000000ull
+#define AR_NIC_FMA_CFG_DESC_CE_LOGICAL_DEST_MASK                        	0x03ffff0000000000ull
+#define AR_NIC_FMA_CFG_DESC_CE_SCATTER_OFFSET_MASK                      	0x000000ffffffffffull
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_1727_1664_BP                    	0
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_1663_1600_BP                    	0
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_1599_1536_BP                    	0
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_1151_1088_BP                    	0
+#define AR_NIC_FMA_CFG_DESC_CE_STATUS_BP                                	0
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_1023_960_BP                     	0
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_959_896_BP                      	0
+#define AR_NIC_FMA_CFG_DESC_CE_SEQCMP_BP                                	0
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_831_771_BP                      	3
+#define AR_NIC_FMA_CFG_DESC_CE_WR_STATUS_WHEN_BP                        	0
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_767_745_BP                      	41
+#define AR_NIC_FMA_CFG_DESC_CE_CEDB_USE_OPRND2_BP                       	40
+#define AR_NIC_FMA_CFG_DESC_CE_CEDB_REDUCTN_ID_BP                       	0
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_703_640_BP                      	0
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_639_576_BP                      	0
+#define AR_NIC_FMA_CFG_DESC_CE_ALLOC_SEQID_BP                           	0
+#define AR_NIC_FMA_CFG_DESC_CE_PRIVILEGE_MASK_BP                        	0
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_383_334_BP                      	14
+#define AR_NIC_FMA_CFG_DESC_CE_CHILD_ID_BP                              	8
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_327_326_BP                      	6
+#define AR_NIC_FMA_CFG_DESC_CE_CE_ID_BP                                 	0
+#define AR_NIC_FMA_CFG_DESC_CE_CE_OPRND2_BP                             	0
+#define AR_NIC_FMA_CFG_DESC_CE_CE_OPRND1_BP                             	0
+#define AR_NIC_FMA_CFG_DESC_CE_NTT_EN_BP                                	63
+#define AR_NIC_FMA_CFG_DESC_CE_REM_PTAG_BP                              	55
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_182_164_BP                      	36
+#define AR_NIC_FMA_CFG_DESC_CE_PE_BASE_BP                               	18
+#define AR_NIC_FMA_CFG_DESC_CE_NPES_BP                                  	0
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_127_BP                          	63
+#define AR_NIC_FMA_CFG_DESC_CE_REM_MDH_BP                               	51
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_114_BP                          	50
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_113_100_BP                      	36
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_99_98_BP                        	34
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_97_92_BP                        	28
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_91_BP                           	27
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_90_80_BP                        	16
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_79_76_BP                        	12
+#define AR_NIC_FMA_CFG_DESC_CE_FP_EXCEPTION_BP                          	8
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_71_BP                           	7
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_70_BP                           	6
+#define AR_NIC_FMA_CFG_DESC_CE_CE_OP_BP                                 	0
+#define AR_NIC_FMA_CFG_DESC_CE_FMA_EN_BP                                	63
+#define AR_NIC_FMA_CFG_DESC_CE_RC_BP                                    	60
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_59_BP                           	59
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_58_BP                           	58
+#define AR_NIC_FMA_CFG_DESC_CE_LOGICAL_DEST_BP                          	40
+#define AR_NIC_FMA_CFG_DESC_CE_SCATTER_OFFSET_BP                        	0
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_1727_1664_QW                    	26
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_1663_1600_QW                    	25
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_1599_1536_QW                    	24
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_1151_1088_QW                    	17
+#define AR_NIC_FMA_CFG_DESC_CE_STATUS_QW                                	16
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_1023_960_QW                     	15
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_959_896_QW                      	14
+#define AR_NIC_FMA_CFG_DESC_CE_SEQCMP_QW                                	13
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_831_771_QW                      	12
+#define AR_NIC_FMA_CFG_DESC_CE_WR_STATUS_WHEN_QW                        	12
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_767_745_QW                      	11
+#define AR_NIC_FMA_CFG_DESC_CE_CEDB_USE_OPRND2_QW                       	11
+#define AR_NIC_FMA_CFG_DESC_CE_CEDB_REDUCTN_ID_QW                       	11
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_703_640_QW                      	10
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_639_576_QW                      	9
+#define AR_NIC_FMA_CFG_DESC_CE_ALLOC_SEQID_QW                           	8
+#define AR_NIC_FMA_CFG_DESC_CE_PRIVILEGE_MASK_QW                        	7
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_383_334_QW                      	5
+#define AR_NIC_FMA_CFG_DESC_CE_CHILD_ID_QW                              	5
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_327_326_QW                      	5
+#define AR_NIC_FMA_CFG_DESC_CE_CE_ID_QW                                 	5
+#define AR_NIC_FMA_CFG_DESC_CE_CE_OPRND2_QW                             	4
+#define AR_NIC_FMA_CFG_DESC_CE_CE_OPRND1_QW                             	3
+#define AR_NIC_FMA_CFG_DESC_CE_NTT_EN_QW                                	2
+#define AR_NIC_FMA_CFG_DESC_CE_REM_PTAG_QW                              	2
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_182_164_QW                      	2
+#define AR_NIC_FMA_CFG_DESC_CE_PE_BASE_QW                               	2
+#define AR_NIC_FMA_CFG_DESC_CE_NPES_QW                                  	2
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_127_QW                          	1
+#define AR_NIC_FMA_CFG_DESC_CE_REM_MDH_QW                               	1
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_114_QW                          	1
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_113_100_QW                      	1
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_99_98_QW                        	1
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_97_92_QW                        	1
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_91_QW                           	1
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_90_80_QW                        	1
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_79_76_QW                        	1
+#define AR_NIC_FMA_CFG_DESC_CE_FP_EXCEPTION_QW                          	1
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_71_QW                           	1
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_70_QW                           	1
+#define AR_NIC_FMA_CFG_DESC_CE_CE_OP_QW                                 	1
+#define AR_NIC_FMA_CFG_DESC_CE_FMA_EN_QW                                	0
+#define AR_NIC_FMA_CFG_DESC_CE_RC_QW                                    	0
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_59_QW                           	0
+#define AR_NIC_FMA_CFG_DESC_CE_RESERVED_58_QW                           	0
+#define AR_NIC_FMA_CFG_DESC_CE_LOGICAL_DEST_QW                          	0
+#define AR_NIC_FMA_CFG_DESC_CE_SCATTER_OFFSET_QW                        	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_ERR_FLG DEFINES
+ */
+#define AR_NIC_FMA_ERR_FLG_SW_ERR_MASK                                  	0x0000200000000000ull
+#define AR_NIC_FMA_ERR_FLG_PI_PKT_ERR_MASK                              	0x0000100000000000ull
+#define AR_NIC_FMA_ERR_FLG_PI_BYTE_PUT_ERR_MASK                         	0x0000080000000000ull
+#define AR_NIC_FMA_ERR_FLG_AMO_BYTE_PUT_ERR_MASK                        	0x0000040000000000ull
+#define AR_NIC_FMA_ERR_FLG_GCW_MBE_ERR_MASK                             	0x0000020000000000ull
+#define AR_NIC_FMA_ERR_FLG_PI_GET_ADDR_ERR_MASK                         	0x0000010000000000ull
+#define AR_NIC_FMA_ERR_FLG_FMA_LAUNCH_ERR_MASK                          	0x0000008000000000ull
+#define AR_NIC_FMA_ERR_FLG_ADDR_ALIGN_ERR_MASK                          	0x0000004000000000ull
+#define AR_NIC_FMA_ERR_FLG_GET_FR_ERR_MASK                              	0x0000002000000000ull
+#define AR_NIC_FMA_ERR_FLG_GET_LEN_ERR_MASK                             	0x0000001000000000ull
+#define AR_NIC_FMA_ERR_FLG_PUT_LEN_ERR_MASK                             	0x0000000800000000ull
+#define AR_NIC_FMA_ERR_FLG_INV_COM_ERR_MASK                             	0x0000000400000000ull
+#define AR_NIC_FMA_ERR_FLG_NPES_ERR_MASK                                	0x0000000200000000ull
+#define AR_NIC_FMA_ERR_FLG_PI_ADDR_ERR_MASK                             	0x0000000100000000ull
+#define AR_NIC_FMA_ERR_FLG_PI_LEN_ERR_MASK                              	0x0000000080000000ull
+#define AR_NIC_FMA_ERR_FLG_SSID_INACTIVE_ERR_MASK                       	0x0000000040000000ull
+#define AR_NIC_FMA_ERR_FLG_PI_CMD_ERR_MASK                              	0x0000000020000000ull
+#define AR_NIC_FMA_ERR_FLG_DB_MBE_ERR_MASK                              	0x0000000010000000ull
+#define AR_NIC_FMA_ERR_FLG_NOPRIV_ERR_MASK                              	0x0000000008000000ull
+#define AR_NIC_FMA_ERR_FLG_SSID_ALLOCID_ERR_MASK                        	0x0000000004000000ull
+#define AR_NIC_FMA_ERR_FLG_DESC_ENABLE_ERR_MASK                         	0x0000000002000000ull
+#define AR_NIC_FMA_ERR_FLG_PI_BUF_OVERFLOW_MASK                         	0x0000000001000000ull
+#define AR_NIC_FMA_ERR_FLG_DESC_WR_ERR_MASK                             	0x0000000000800000ull
+#define AR_NIC_FMA_ERR_FLG_DESC_DB_WR_ERR_MASK                          	0x0000000000400000ull
+#define AR_NIC_FMA_ERR_FLG_HDR_PERR_MASK                                	0x0000000000200000ull
+#define AR_NIC_FMA_ERR_FLG_DATA1IN_MBE_MASK                             	0x0000000000100000ull
+#define AR_NIC_FMA_ERR_FLG_DATA1IN_SBE_MASK                             	0x0000000000080000ull
+#define AR_NIC_FMA_ERR_FLG_DATA0IN_MBE_MASK                             	0x0000000000040000ull
+#define AR_NIC_FMA_ERR_FLG_DATA0IN_SBE_MASK                             	0x0000000000020000ull
+#define AR_NIC_FMA_ERR_FLG_DESC88_MBE_MASK                              	0x0000000000010000ull
+#define AR_NIC_FMA_ERR_FLG_DESC88_SBE_MASK                              	0x0000000000008000ull
+#define AR_NIC_FMA_ERR_FLG_DESC38_MBE_MASK                              	0x0000000000004000ull
+#define AR_NIC_FMA_ERR_FLG_DESC38_SBE_MASK                              	0x0000000000002000ull
+#define AR_NIC_FMA_ERR_FLG_DESC28_MBE_MASK                              	0x0000000000001000ull
+#define AR_NIC_FMA_ERR_FLG_DESC28_SBE_MASK                              	0x0000000000000800ull
+#define AR_NIC_FMA_ERR_FLG_DESC20_MBE_MASK                              	0x0000000000000400ull
+#define AR_NIC_FMA_ERR_FLG_DESC20_SBE_MASK                              	0x0000000000000200ull
+#define AR_NIC_FMA_ERR_FLG_DESC18_MBE_MASK                              	0x0000000000000100ull
+#define AR_NIC_FMA_ERR_FLG_DESC18_SBE_MASK                              	0x0000000000000080ull
+#define AR_NIC_FMA_ERR_FLG_DESC10_MBE_MASK                              	0x0000000000000040ull
+#define AR_NIC_FMA_ERR_FLG_DESC10_SBE_MASK                              	0x0000000000000020ull
+#define AR_NIC_FMA_ERR_FLG_DESC08_MBE_MASK                              	0x0000000000000010ull
+#define AR_NIC_FMA_ERR_FLG_DESC08_SBE_MASK                              	0x0000000000000008ull
+#define AR_NIC_FMA_ERR_FLG_DESC00_MBE_MASK                              	0x0000000000000004ull
+#define AR_NIC_FMA_ERR_FLG_DESC00_SBE_MASK                              	0x0000000000000002ull
+#define AR_NIC_FMA_ERR_FLG_DIAG_ONLY_MASK                               	0x0000000000000001ull
+#define AR_NIC_FMA_ERR_FLG_SW_ERR_BP                                    	45
+#define AR_NIC_FMA_ERR_FLG_PI_PKT_ERR_BP                                	44
+#define AR_NIC_FMA_ERR_FLG_PI_BYTE_PUT_ERR_BP                           	43
+#define AR_NIC_FMA_ERR_FLG_AMO_BYTE_PUT_ERR_BP                          	42
+#define AR_NIC_FMA_ERR_FLG_GCW_MBE_ERR_BP                               	41
+#define AR_NIC_FMA_ERR_FLG_PI_GET_ADDR_ERR_BP                           	40
+#define AR_NIC_FMA_ERR_FLG_FMA_LAUNCH_ERR_BP                            	39
+#define AR_NIC_FMA_ERR_FLG_ADDR_ALIGN_ERR_BP                            	38
+#define AR_NIC_FMA_ERR_FLG_GET_FR_ERR_BP                                	37
+#define AR_NIC_FMA_ERR_FLG_GET_LEN_ERR_BP                               	36
+#define AR_NIC_FMA_ERR_FLG_PUT_LEN_ERR_BP                               	35
+#define AR_NIC_FMA_ERR_FLG_INV_COM_ERR_BP                               	34
+#define AR_NIC_FMA_ERR_FLG_NPES_ERR_BP                                  	33
+#define AR_NIC_FMA_ERR_FLG_PI_ADDR_ERR_BP                               	32
+#define AR_NIC_FMA_ERR_FLG_PI_LEN_ERR_BP                                	31
+#define AR_NIC_FMA_ERR_FLG_SSID_INACTIVE_ERR_BP                         	30
+#define AR_NIC_FMA_ERR_FLG_PI_CMD_ERR_BP                                	29
+#define AR_NIC_FMA_ERR_FLG_DB_MBE_ERR_BP                                	28
+#define AR_NIC_FMA_ERR_FLG_NOPRIV_ERR_BP                                	27
+#define AR_NIC_FMA_ERR_FLG_SSID_ALLOCID_ERR_BP                          	26
+#define AR_NIC_FMA_ERR_FLG_DESC_ENABLE_ERR_BP                           	25
+#define AR_NIC_FMA_ERR_FLG_PI_BUF_OVERFLOW_BP                           	24
+#define AR_NIC_FMA_ERR_FLG_DESC_WR_ERR_BP                               	23
+#define AR_NIC_FMA_ERR_FLG_DESC_DB_WR_ERR_BP                            	22
+#define AR_NIC_FMA_ERR_FLG_HDR_PERR_BP                                  	21
+#define AR_NIC_FMA_ERR_FLG_DATA1IN_MBE_BP                               	20
+#define AR_NIC_FMA_ERR_FLG_DATA1IN_SBE_BP                               	19
+#define AR_NIC_FMA_ERR_FLG_DATA0IN_MBE_BP                               	18
+#define AR_NIC_FMA_ERR_FLG_DATA0IN_SBE_BP                               	17
+#define AR_NIC_FMA_ERR_FLG_DESC88_MBE_BP                                	16
+#define AR_NIC_FMA_ERR_FLG_DESC88_SBE_BP                                	15
+#define AR_NIC_FMA_ERR_FLG_DESC38_MBE_BP                                	14
+#define AR_NIC_FMA_ERR_FLG_DESC38_SBE_BP                                	13
+#define AR_NIC_FMA_ERR_FLG_DESC28_MBE_BP                                	12
+#define AR_NIC_FMA_ERR_FLG_DESC28_SBE_BP                                	11
+#define AR_NIC_FMA_ERR_FLG_DESC20_MBE_BP                                	10
+#define AR_NIC_FMA_ERR_FLG_DESC20_SBE_BP                                	9
+#define AR_NIC_FMA_ERR_FLG_DESC18_MBE_BP                                	8
+#define AR_NIC_FMA_ERR_FLG_DESC18_SBE_BP                                	7
+#define AR_NIC_FMA_ERR_FLG_DESC10_MBE_BP                                	6
+#define AR_NIC_FMA_ERR_FLG_DESC10_SBE_BP                                	5
+#define AR_NIC_FMA_ERR_FLG_DESC08_MBE_BP                                	4
+#define AR_NIC_FMA_ERR_FLG_DESC08_SBE_BP                                	3
+#define AR_NIC_FMA_ERR_FLG_DESC00_MBE_BP                                	2
+#define AR_NIC_FMA_ERR_FLG_DESC00_SBE_BP                                	1
+#define AR_NIC_FMA_ERR_FLG_DIAG_ONLY_BP                                 	0
+#define AR_NIC_FMA_ERR_FLG_SW_ERR_QW                                    	0
+#define AR_NIC_FMA_ERR_FLG_PI_PKT_ERR_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_PI_BYTE_PUT_ERR_QW                           	0
+#define AR_NIC_FMA_ERR_FLG_AMO_BYTE_PUT_ERR_QW                          	0
+#define AR_NIC_FMA_ERR_FLG_GCW_MBE_ERR_QW                               	0
+#define AR_NIC_FMA_ERR_FLG_PI_GET_ADDR_ERR_QW                           	0
+#define AR_NIC_FMA_ERR_FLG_FMA_LAUNCH_ERR_QW                            	0
+#define AR_NIC_FMA_ERR_FLG_ADDR_ALIGN_ERR_QW                            	0
+#define AR_NIC_FMA_ERR_FLG_GET_FR_ERR_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_GET_LEN_ERR_QW                               	0
+#define AR_NIC_FMA_ERR_FLG_PUT_LEN_ERR_QW                               	0
+#define AR_NIC_FMA_ERR_FLG_INV_COM_ERR_QW                               	0
+#define AR_NIC_FMA_ERR_FLG_NPES_ERR_QW                                  	0
+#define AR_NIC_FMA_ERR_FLG_PI_ADDR_ERR_QW                               	0
+#define AR_NIC_FMA_ERR_FLG_PI_LEN_ERR_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_SSID_INACTIVE_ERR_QW                         	0
+#define AR_NIC_FMA_ERR_FLG_PI_CMD_ERR_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_DB_MBE_ERR_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_NOPRIV_ERR_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_SSID_ALLOCID_ERR_QW                          	0
+#define AR_NIC_FMA_ERR_FLG_DESC_ENABLE_ERR_QW                           	0
+#define AR_NIC_FMA_ERR_FLG_PI_BUF_OVERFLOW_QW                           	0
+#define AR_NIC_FMA_ERR_FLG_DESC_WR_ERR_QW                               	0
+#define AR_NIC_FMA_ERR_FLG_DESC_DB_WR_ERR_QW                            	0
+#define AR_NIC_FMA_ERR_FLG_HDR_PERR_QW                                  	0
+#define AR_NIC_FMA_ERR_FLG_DATA1IN_MBE_QW                               	0
+#define AR_NIC_FMA_ERR_FLG_DATA1IN_SBE_QW                               	0
+#define AR_NIC_FMA_ERR_FLG_DATA0IN_MBE_QW                               	0
+#define AR_NIC_FMA_ERR_FLG_DATA0IN_SBE_QW                               	0
+#define AR_NIC_FMA_ERR_FLG_DESC88_MBE_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_DESC88_SBE_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_DESC38_MBE_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_DESC38_SBE_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_DESC28_MBE_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_DESC28_SBE_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_DESC20_MBE_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_DESC20_SBE_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_DESC18_MBE_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_DESC18_SBE_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_DESC10_MBE_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_DESC10_SBE_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_DESC08_MBE_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_DESC08_SBE_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_DESC00_MBE_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_DESC00_SBE_QW                                	0
+#define AR_NIC_FMA_ERR_FLG_DIAG_ONLY_QW                                 	0
+#ifdef EXCEPTIONS_DEFS
+#define AR_NIC_FMA_ERR_FLG_SW_ERR_EC                                    	A_EC_INFO
+#define AR_NIC_FMA_ERR_FLG_PI_PKT_ERR_EC                                	A_EC_UXACT
+#define AR_NIC_FMA_ERR_FLG_PI_BYTE_PUT_ERR_EC                           	A_EC_UXACT
+#define AR_NIC_FMA_ERR_FLG_AMO_BYTE_PUT_ERR_EC                          	A_EC_UXACT
+#define AR_NIC_FMA_ERR_FLG_GCW_MBE_ERR_EC                               	A_EC_UXACT
+#define AR_NIC_FMA_ERR_FLG_PI_GET_ADDR_ERR_EC                           	A_EC_UXACT
+#define AR_NIC_FMA_ERR_FLG_FMA_LAUNCH_ERR_EC                            	A_EC_UXACT
+#define AR_NIC_FMA_ERR_FLG_ADDR_ALIGN_ERR_EC                            	A_EC_XACT
+#define AR_NIC_FMA_ERR_FLG_GET_FR_ERR_EC                                	A_EC_XACT
+#define AR_NIC_FMA_ERR_FLG_GET_LEN_ERR_EC                               	A_EC_XACT
+#define AR_NIC_FMA_ERR_FLG_PUT_LEN_ERR_EC                               	A_EC_XACT
+#define AR_NIC_FMA_ERR_FLG_INV_COM_ERR_EC                               	A_EC_XACT
+#define AR_NIC_FMA_ERR_FLG_NPES_ERR_EC                                  	A_EC_XLAT
+#define AR_NIC_FMA_ERR_FLG_PI_ADDR_ERR_EC                               	A_EC_CRIT
+#define AR_NIC_FMA_ERR_FLG_PI_LEN_ERR_EC                                	A_EC_CRIT
+#define AR_NIC_FMA_ERR_FLG_SSID_INACTIVE_ERR_EC                         	A_EC_UXACT
+#define AR_NIC_FMA_ERR_FLG_PI_CMD_ERR_EC                                	A_EC_CRIT
+#define AR_NIC_FMA_ERR_FLG_DB_MBE_ERR_EC                                	A_EC_UXACT
+#define AR_NIC_FMA_ERR_FLG_NOPRIV_ERR_EC                                	A_EC_UXACT
+#define AR_NIC_FMA_ERR_FLG_SSID_ALLOCID_ERR_EC                          	A_EC_UXACT
+#define AR_NIC_FMA_ERR_FLG_DESC_ENABLE_ERR_EC                           	A_EC_UXACT
+#define AR_NIC_FMA_ERR_FLG_PI_BUF_OVERFLOW_EC                           	A_EC_CRIT
+#define AR_NIC_FMA_ERR_FLG_DESC_WR_ERR_EC                               	A_EC_UXACT
+#define AR_NIC_FMA_ERR_FLG_DESC_DB_WR_ERR_EC                            	A_EC_UXACT
+#define AR_NIC_FMA_ERR_FLG_HDR_PERR_EC                                  	A_EC_UXACT
+#define AR_NIC_FMA_ERR_FLG_DATA1IN_MBE_EC                               	A_EC_XIENT
+#define AR_NIC_FMA_ERR_FLG_DATA1IN_SBE_EC                               	A_EC_CORR
+#define AR_NIC_FMA_ERR_FLG_DATA0IN_MBE_EC                               	A_EC_XIENT
+#define AR_NIC_FMA_ERR_FLG_DATA0IN_SBE_EC                               	A_EC_CORR
+#define AR_NIC_FMA_ERR_FLG_DESC88_MBE_EC                                	A_EC_XACT
+#define AR_NIC_FMA_ERR_FLG_DESC88_SBE_EC                                	A_EC_CORR
+#define AR_NIC_FMA_ERR_FLG_DESC38_MBE_EC                                	A_EC_UXACT
+#define AR_NIC_FMA_ERR_FLG_DESC38_SBE_EC                                	A_EC_CORR
+#define AR_NIC_FMA_ERR_FLG_DESC28_MBE_EC                                	A_EC_XACT
+#define AR_NIC_FMA_ERR_FLG_DESC28_SBE_EC                                	A_EC_CORR
+#define AR_NIC_FMA_ERR_FLG_DESC20_MBE_EC                                	A_EC_XACT
+#define AR_NIC_FMA_ERR_FLG_DESC20_SBE_EC                                	A_EC_CORR
+#define AR_NIC_FMA_ERR_FLG_DESC18_MBE_EC                                	A_EC_XACT
+#define AR_NIC_FMA_ERR_FLG_DESC18_SBE_EC                                	A_EC_CORR
+#define AR_NIC_FMA_ERR_FLG_DESC10_MBE_EC                                	A_EC_XACT
+#define AR_NIC_FMA_ERR_FLG_DESC10_SBE_EC                                	A_EC_CORR
+#define AR_NIC_FMA_ERR_FLG_DESC08_MBE_EC                                	A_EC_XACT
+#define AR_NIC_FMA_ERR_FLG_DESC08_SBE_EC                                	A_EC_CORR
+#define AR_NIC_FMA_ERR_FLG_DESC00_MBE_EC                                	A_EC_XACT
+#define AR_NIC_FMA_ERR_FLG_DESC00_SBE_EC                                	A_EC_CORR
+#define AR_NIC_FMA_ERR_FLG_DIAG_ONLY_EC                                 	A_EC_DIAG
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_ERR_CLR DEFINES
+ */
+#define AR_NIC_FMA_ERR_CLR_SW_ERR_MASK                                  	0x0000200000000000ull
+#define AR_NIC_FMA_ERR_CLR_PI_PKT_ERR_MASK                              	0x0000100000000000ull
+#define AR_NIC_FMA_ERR_CLR_PI_BYTE_PUT_ERR_MASK                         	0x0000080000000000ull
+#define AR_NIC_FMA_ERR_CLR_AMO_BYTE_PUT_ERR_MASK                        	0x0000040000000000ull
+#define AR_NIC_FMA_ERR_CLR_GCW_MBE_ERR_MASK                             	0x0000020000000000ull
+#define AR_NIC_FMA_ERR_CLR_PI_GET_ADDR_ERR_MASK                         	0x0000010000000000ull
+#define AR_NIC_FMA_ERR_CLR_FMA_LAUNCH_ERR_MASK                          	0x0000008000000000ull
+#define AR_NIC_FMA_ERR_CLR_ADDR_ALIGN_ERR_MASK                          	0x0000004000000000ull
+#define AR_NIC_FMA_ERR_CLR_GET_FR_ERR_MASK                              	0x0000002000000000ull
+#define AR_NIC_FMA_ERR_CLR_GET_LEN_ERR_MASK                             	0x0000001000000000ull
+#define AR_NIC_FMA_ERR_CLR_PUT_LEN_ERR_MASK                             	0x0000000800000000ull
+#define AR_NIC_FMA_ERR_CLR_INV_COM_ERR_MASK                             	0x0000000400000000ull
+#define AR_NIC_FMA_ERR_CLR_NPES_ERR_MASK                                	0x0000000200000000ull
+#define AR_NIC_FMA_ERR_CLR_PI_ADDR_ERR_MASK                             	0x0000000100000000ull
+#define AR_NIC_FMA_ERR_CLR_PI_LEN_ERR_MASK                              	0x0000000080000000ull
+#define AR_NIC_FMA_ERR_CLR_SSID_INACTIVE_ERR_MASK                       	0x0000000040000000ull
+#define AR_NIC_FMA_ERR_CLR_PI_CMD_ERR_MASK                              	0x0000000020000000ull
+#define AR_NIC_FMA_ERR_CLR_DB_MBE_ERR_MASK                              	0x0000000010000000ull
+#define AR_NIC_FMA_ERR_CLR_NOPRIV_ERR_MASK                              	0x0000000008000000ull
+#define AR_NIC_FMA_ERR_CLR_SSID_ALLOCID_ERR_MASK                        	0x0000000004000000ull
+#define AR_NIC_FMA_ERR_CLR_DESC_ENABLE_ERR_MASK                         	0x0000000002000000ull
+#define AR_NIC_FMA_ERR_CLR_PI_BUF_OVERFLOW_MASK                         	0x0000000001000000ull
+#define AR_NIC_FMA_ERR_CLR_DESC_WR_ERR_MASK                             	0x0000000000800000ull
+#define AR_NIC_FMA_ERR_CLR_DESC_DB_WR_ERR_MASK                          	0x0000000000400000ull
+#define AR_NIC_FMA_ERR_CLR_HDR_PERR_MASK                                	0x0000000000200000ull
+#define AR_NIC_FMA_ERR_CLR_DATA1IN_MBE_MASK                             	0x0000000000100000ull
+#define AR_NIC_FMA_ERR_CLR_DATA1IN_SBE_MASK                             	0x0000000000080000ull
+#define AR_NIC_FMA_ERR_CLR_DATA0IN_MBE_MASK                             	0x0000000000040000ull
+#define AR_NIC_FMA_ERR_CLR_DATA0IN_SBE_MASK                             	0x0000000000020000ull
+#define AR_NIC_FMA_ERR_CLR_DESC88_MBE_MASK                              	0x0000000000010000ull
+#define AR_NIC_FMA_ERR_CLR_DESC88_SBE_MASK                              	0x0000000000008000ull
+#define AR_NIC_FMA_ERR_CLR_DESC38_MBE_MASK                              	0x0000000000004000ull
+#define AR_NIC_FMA_ERR_CLR_DESC38_SBE_MASK                              	0x0000000000002000ull
+#define AR_NIC_FMA_ERR_CLR_DESC28_MBE_MASK                              	0x0000000000001000ull
+#define AR_NIC_FMA_ERR_CLR_DESC28_SBE_MASK                              	0x0000000000000800ull
+#define AR_NIC_FMA_ERR_CLR_DESC20_MBE_MASK                              	0x0000000000000400ull
+#define AR_NIC_FMA_ERR_CLR_DESC20_SBE_MASK                              	0x0000000000000200ull
+#define AR_NIC_FMA_ERR_CLR_DESC18_MBE_MASK                              	0x0000000000000100ull
+#define AR_NIC_FMA_ERR_CLR_DESC18_SBE_MASK                              	0x0000000000000080ull
+#define AR_NIC_FMA_ERR_CLR_DESC10_MBE_MASK                              	0x0000000000000040ull
+#define AR_NIC_FMA_ERR_CLR_DESC10_SBE_MASK                              	0x0000000000000020ull
+#define AR_NIC_FMA_ERR_CLR_DESC08_MBE_MASK                              	0x0000000000000010ull
+#define AR_NIC_FMA_ERR_CLR_DESC08_SBE_MASK                              	0x0000000000000008ull
+#define AR_NIC_FMA_ERR_CLR_DESC00_MBE_MASK                              	0x0000000000000004ull
+#define AR_NIC_FMA_ERR_CLR_DESC00_SBE_MASK                              	0x0000000000000002ull
+#define AR_NIC_FMA_ERR_CLR_DIAG_ONLY_MASK                               	0x0000000000000001ull
+#define AR_NIC_FMA_ERR_CLR_SW_ERR_BP                                    	45
+#define AR_NIC_FMA_ERR_CLR_PI_PKT_ERR_BP                                	44
+#define AR_NIC_FMA_ERR_CLR_PI_BYTE_PUT_ERR_BP                           	43
+#define AR_NIC_FMA_ERR_CLR_AMO_BYTE_PUT_ERR_BP                          	42
+#define AR_NIC_FMA_ERR_CLR_GCW_MBE_ERR_BP                               	41
+#define AR_NIC_FMA_ERR_CLR_PI_GET_ADDR_ERR_BP                           	40
+#define AR_NIC_FMA_ERR_CLR_FMA_LAUNCH_ERR_BP                            	39
+#define AR_NIC_FMA_ERR_CLR_ADDR_ALIGN_ERR_BP                            	38
+#define AR_NIC_FMA_ERR_CLR_GET_FR_ERR_BP                                	37
+#define AR_NIC_FMA_ERR_CLR_GET_LEN_ERR_BP                               	36
+#define AR_NIC_FMA_ERR_CLR_PUT_LEN_ERR_BP                               	35
+#define AR_NIC_FMA_ERR_CLR_INV_COM_ERR_BP                               	34
+#define AR_NIC_FMA_ERR_CLR_NPES_ERR_BP                                  	33
+#define AR_NIC_FMA_ERR_CLR_PI_ADDR_ERR_BP                               	32
+#define AR_NIC_FMA_ERR_CLR_PI_LEN_ERR_BP                                	31
+#define AR_NIC_FMA_ERR_CLR_SSID_INACTIVE_ERR_BP                         	30
+#define AR_NIC_FMA_ERR_CLR_PI_CMD_ERR_BP                                	29
+#define AR_NIC_FMA_ERR_CLR_DB_MBE_ERR_BP                                	28
+#define AR_NIC_FMA_ERR_CLR_NOPRIV_ERR_BP                                	27
+#define AR_NIC_FMA_ERR_CLR_SSID_ALLOCID_ERR_BP                          	26
+#define AR_NIC_FMA_ERR_CLR_DESC_ENABLE_ERR_BP                           	25
+#define AR_NIC_FMA_ERR_CLR_PI_BUF_OVERFLOW_BP                           	24
+#define AR_NIC_FMA_ERR_CLR_DESC_WR_ERR_BP                               	23
+#define AR_NIC_FMA_ERR_CLR_DESC_DB_WR_ERR_BP                            	22
+#define AR_NIC_FMA_ERR_CLR_HDR_PERR_BP                                  	21
+#define AR_NIC_FMA_ERR_CLR_DATA1IN_MBE_BP                               	20
+#define AR_NIC_FMA_ERR_CLR_DATA1IN_SBE_BP                               	19
+#define AR_NIC_FMA_ERR_CLR_DATA0IN_MBE_BP                               	18
+#define AR_NIC_FMA_ERR_CLR_DATA0IN_SBE_BP                               	17
+#define AR_NIC_FMA_ERR_CLR_DESC88_MBE_BP                                	16
+#define AR_NIC_FMA_ERR_CLR_DESC88_SBE_BP                                	15
+#define AR_NIC_FMA_ERR_CLR_DESC38_MBE_BP                                	14
+#define AR_NIC_FMA_ERR_CLR_DESC38_SBE_BP                                	13
+#define AR_NIC_FMA_ERR_CLR_DESC28_MBE_BP                                	12
+#define AR_NIC_FMA_ERR_CLR_DESC28_SBE_BP                                	11
+#define AR_NIC_FMA_ERR_CLR_DESC20_MBE_BP                                	10
+#define AR_NIC_FMA_ERR_CLR_DESC20_SBE_BP                                	9
+#define AR_NIC_FMA_ERR_CLR_DESC18_MBE_BP                                	8
+#define AR_NIC_FMA_ERR_CLR_DESC18_SBE_BP                                	7
+#define AR_NIC_FMA_ERR_CLR_DESC10_MBE_BP                                	6
+#define AR_NIC_FMA_ERR_CLR_DESC10_SBE_BP                                	5
+#define AR_NIC_FMA_ERR_CLR_DESC08_MBE_BP                                	4
+#define AR_NIC_FMA_ERR_CLR_DESC08_SBE_BP                                	3
+#define AR_NIC_FMA_ERR_CLR_DESC00_MBE_BP                                	2
+#define AR_NIC_FMA_ERR_CLR_DESC00_SBE_BP                                	1
+#define AR_NIC_FMA_ERR_CLR_DIAG_ONLY_BP                                 	0
+#define AR_NIC_FMA_ERR_CLR_SW_ERR_QW                                    	0
+#define AR_NIC_FMA_ERR_CLR_PI_PKT_ERR_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_PI_BYTE_PUT_ERR_QW                           	0
+#define AR_NIC_FMA_ERR_CLR_AMO_BYTE_PUT_ERR_QW                          	0
+#define AR_NIC_FMA_ERR_CLR_GCW_MBE_ERR_QW                               	0
+#define AR_NIC_FMA_ERR_CLR_PI_GET_ADDR_ERR_QW                           	0
+#define AR_NIC_FMA_ERR_CLR_FMA_LAUNCH_ERR_QW                            	0
+#define AR_NIC_FMA_ERR_CLR_ADDR_ALIGN_ERR_QW                            	0
+#define AR_NIC_FMA_ERR_CLR_GET_FR_ERR_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_GET_LEN_ERR_QW                               	0
+#define AR_NIC_FMA_ERR_CLR_PUT_LEN_ERR_QW                               	0
+#define AR_NIC_FMA_ERR_CLR_INV_COM_ERR_QW                               	0
+#define AR_NIC_FMA_ERR_CLR_NPES_ERR_QW                                  	0
+#define AR_NIC_FMA_ERR_CLR_PI_ADDR_ERR_QW                               	0
+#define AR_NIC_FMA_ERR_CLR_PI_LEN_ERR_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_SSID_INACTIVE_ERR_QW                         	0
+#define AR_NIC_FMA_ERR_CLR_PI_CMD_ERR_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_DB_MBE_ERR_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_NOPRIV_ERR_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_SSID_ALLOCID_ERR_QW                          	0
+#define AR_NIC_FMA_ERR_CLR_DESC_ENABLE_ERR_QW                           	0
+#define AR_NIC_FMA_ERR_CLR_PI_BUF_OVERFLOW_QW                           	0
+#define AR_NIC_FMA_ERR_CLR_DESC_WR_ERR_QW                               	0
+#define AR_NIC_FMA_ERR_CLR_DESC_DB_WR_ERR_QW                            	0
+#define AR_NIC_FMA_ERR_CLR_HDR_PERR_QW                                  	0
+#define AR_NIC_FMA_ERR_CLR_DATA1IN_MBE_QW                               	0
+#define AR_NIC_FMA_ERR_CLR_DATA1IN_SBE_QW                               	0
+#define AR_NIC_FMA_ERR_CLR_DATA0IN_MBE_QW                               	0
+#define AR_NIC_FMA_ERR_CLR_DATA0IN_SBE_QW                               	0
+#define AR_NIC_FMA_ERR_CLR_DESC88_MBE_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_DESC88_SBE_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_DESC38_MBE_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_DESC38_SBE_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_DESC28_MBE_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_DESC28_SBE_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_DESC20_MBE_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_DESC20_SBE_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_DESC18_MBE_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_DESC18_SBE_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_DESC10_MBE_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_DESC10_SBE_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_DESC08_MBE_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_DESC08_SBE_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_DESC00_MBE_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_DESC00_SBE_QW                                	0
+#define AR_NIC_FMA_ERR_CLR_DIAG_ONLY_QW                                 	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_ERR_HSS_MSK DEFINES
+ */
+#define AR_NIC_FMA_ERR_HSS_MSK_SW_ERR_MASK                              	0x0000200000000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_PI_PKT_ERR_MASK                          	0x0000100000000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_PI_BYTE_PUT_ERR_MASK                     	0x0000080000000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_AMO_BYTE_PUT_ERR_MASK                    	0x0000040000000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_GCW_MBE_ERR_MASK                         	0x0000020000000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_PI_GET_ADDR_ERR_MASK                     	0x0000010000000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_FMA_LAUNCH_ERR_MASK                      	0x0000008000000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_ADDR_ALIGN_ERR_MASK                      	0x0000004000000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_GET_FR_ERR_MASK                          	0x0000002000000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_GET_LEN_ERR_MASK                         	0x0000001000000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_PUT_LEN_ERR_MASK                         	0x0000000800000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_INV_COM_ERR_MASK                         	0x0000000400000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_NPES_ERR_MASK                            	0x0000000200000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_PI_ADDR_ERR_MASK                         	0x0000000100000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_PI_LEN_ERR_MASK                          	0x0000000080000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_SSID_INACTIVE_ERR_MASK                   	0x0000000040000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_PI_CMD_ERR_MASK                          	0x0000000020000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DB_MBE_ERR_MASK                          	0x0000000010000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_NOPRIV_ERR_MASK                          	0x0000000008000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_SSID_ALLOCID_ERR_MASK                    	0x0000000004000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC_ENABLE_ERR_MASK                     	0x0000000002000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_PI_BUF_OVERFLOW_MASK                     	0x0000000001000000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC_WR_ERR_MASK                         	0x0000000000800000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC_DB_WR_ERR_MASK                      	0x0000000000400000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_HDR_PERR_MASK                            	0x0000000000200000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DATA1IN_MBE_MASK                         	0x0000000000100000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DATA1IN_SBE_MASK                         	0x0000000000080000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DATA0IN_MBE_MASK                         	0x0000000000040000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DATA0IN_SBE_MASK                         	0x0000000000020000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC88_MBE_MASK                          	0x0000000000010000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC88_SBE_MASK                          	0x0000000000008000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC38_MBE_MASK                          	0x0000000000004000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC38_SBE_MASK                          	0x0000000000002000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC28_MBE_MASK                          	0x0000000000001000ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC28_SBE_MASK                          	0x0000000000000800ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC20_MBE_MASK                          	0x0000000000000400ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC20_SBE_MASK                          	0x0000000000000200ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC18_MBE_MASK                          	0x0000000000000100ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC18_SBE_MASK                          	0x0000000000000080ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC10_MBE_MASK                          	0x0000000000000040ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC10_SBE_MASK                          	0x0000000000000020ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC08_MBE_MASK                          	0x0000000000000010ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC08_SBE_MASK                          	0x0000000000000008ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC00_MBE_MASK                          	0x0000000000000004ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC00_SBE_MASK                          	0x0000000000000002ull
+#define AR_NIC_FMA_ERR_HSS_MSK_DIAG_ONLY_MASK                           	0x0000000000000001ull
+#define AR_NIC_FMA_ERR_HSS_MSK_SW_ERR_BP                                	45
+#define AR_NIC_FMA_ERR_HSS_MSK_PI_PKT_ERR_BP                            	44
+#define AR_NIC_FMA_ERR_HSS_MSK_PI_BYTE_PUT_ERR_BP                       	43
+#define AR_NIC_FMA_ERR_HSS_MSK_AMO_BYTE_PUT_ERR_BP                      	42
+#define AR_NIC_FMA_ERR_HSS_MSK_GCW_MBE_ERR_BP                           	41
+#define AR_NIC_FMA_ERR_HSS_MSK_PI_GET_ADDR_ERR_BP                       	40
+#define AR_NIC_FMA_ERR_HSS_MSK_FMA_LAUNCH_ERR_BP                        	39
+#define AR_NIC_FMA_ERR_HSS_MSK_ADDR_ALIGN_ERR_BP                        	38
+#define AR_NIC_FMA_ERR_HSS_MSK_GET_FR_ERR_BP                            	37
+#define AR_NIC_FMA_ERR_HSS_MSK_GET_LEN_ERR_BP                           	36
+#define AR_NIC_FMA_ERR_HSS_MSK_PUT_LEN_ERR_BP                           	35
+#define AR_NIC_FMA_ERR_HSS_MSK_INV_COM_ERR_BP                           	34
+#define AR_NIC_FMA_ERR_HSS_MSK_NPES_ERR_BP                              	33
+#define AR_NIC_FMA_ERR_HSS_MSK_PI_ADDR_ERR_BP                           	32
+#define AR_NIC_FMA_ERR_HSS_MSK_PI_LEN_ERR_BP                            	31
+#define AR_NIC_FMA_ERR_HSS_MSK_SSID_INACTIVE_ERR_BP                     	30
+#define AR_NIC_FMA_ERR_HSS_MSK_PI_CMD_ERR_BP                            	29
+#define AR_NIC_FMA_ERR_HSS_MSK_DB_MBE_ERR_BP                            	28
+#define AR_NIC_FMA_ERR_HSS_MSK_NOPRIV_ERR_BP                            	27
+#define AR_NIC_FMA_ERR_HSS_MSK_SSID_ALLOCID_ERR_BP                      	26
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC_ENABLE_ERR_BP                       	25
+#define AR_NIC_FMA_ERR_HSS_MSK_PI_BUF_OVERFLOW_BP                       	24
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC_WR_ERR_BP                           	23
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC_DB_WR_ERR_BP                        	22
+#define AR_NIC_FMA_ERR_HSS_MSK_HDR_PERR_BP                              	21
+#define AR_NIC_FMA_ERR_HSS_MSK_DATA1IN_MBE_BP                           	20
+#define AR_NIC_FMA_ERR_HSS_MSK_DATA1IN_SBE_BP                           	19
+#define AR_NIC_FMA_ERR_HSS_MSK_DATA0IN_MBE_BP                           	18
+#define AR_NIC_FMA_ERR_HSS_MSK_DATA0IN_SBE_BP                           	17
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC88_MBE_BP                            	16
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC88_SBE_BP                            	15
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC38_MBE_BP                            	14
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC38_SBE_BP                            	13
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC28_MBE_BP                            	12
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC28_SBE_BP                            	11
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC20_MBE_BP                            	10
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC20_SBE_BP                            	9
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC18_MBE_BP                            	8
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC18_SBE_BP                            	7
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC10_MBE_BP                            	6
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC10_SBE_BP                            	5
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC08_MBE_BP                            	4
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC08_SBE_BP                            	3
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC00_MBE_BP                            	2
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC00_SBE_BP                            	1
+#define AR_NIC_FMA_ERR_HSS_MSK_DIAG_ONLY_BP                             	0
+#define AR_NIC_FMA_ERR_HSS_MSK_SW_ERR_QW                                	0
+#define AR_NIC_FMA_ERR_HSS_MSK_PI_PKT_ERR_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_PI_BYTE_PUT_ERR_QW                       	0
+#define AR_NIC_FMA_ERR_HSS_MSK_AMO_BYTE_PUT_ERR_QW                      	0
+#define AR_NIC_FMA_ERR_HSS_MSK_GCW_MBE_ERR_QW                           	0
+#define AR_NIC_FMA_ERR_HSS_MSK_PI_GET_ADDR_ERR_QW                       	0
+#define AR_NIC_FMA_ERR_HSS_MSK_FMA_LAUNCH_ERR_QW                        	0
+#define AR_NIC_FMA_ERR_HSS_MSK_ADDR_ALIGN_ERR_QW                        	0
+#define AR_NIC_FMA_ERR_HSS_MSK_GET_FR_ERR_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_GET_LEN_ERR_QW                           	0
+#define AR_NIC_FMA_ERR_HSS_MSK_PUT_LEN_ERR_QW                           	0
+#define AR_NIC_FMA_ERR_HSS_MSK_INV_COM_ERR_QW                           	0
+#define AR_NIC_FMA_ERR_HSS_MSK_NPES_ERR_QW                              	0
+#define AR_NIC_FMA_ERR_HSS_MSK_PI_ADDR_ERR_QW                           	0
+#define AR_NIC_FMA_ERR_HSS_MSK_PI_LEN_ERR_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_SSID_INACTIVE_ERR_QW                     	0
+#define AR_NIC_FMA_ERR_HSS_MSK_PI_CMD_ERR_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DB_MBE_ERR_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_NOPRIV_ERR_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_SSID_ALLOCID_ERR_QW                      	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC_ENABLE_ERR_QW                       	0
+#define AR_NIC_FMA_ERR_HSS_MSK_PI_BUF_OVERFLOW_QW                       	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC_WR_ERR_QW                           	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC_DB_WR_ERR_QW                        	0
+#define AR_NIC_FMA_ERR_HSS_MSK_HDR_PERR_QW                              	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DATA1IN_MBE_QW                           	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DATA1IN_SBE_QW                           	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DATA0IN_MBE_QW                           	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DATA0IN_SBE_QW                           	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC88_MBE_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC88_SBE_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC38_MBE_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC38_SBE_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC28_MBE_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC28_SBE_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC20_MBE_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC20_SBE_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC18_MBE_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC18_SBE_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC10_MBE_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC10_SBE_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC08_MBE_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC08_SBE_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC00_MBE_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DESC00_SBE_QW                            	0
+#define AR_NIC_FMA_ERR_HSS_MSK_DIAG_ONLY_QW                             	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_ERR_OS_MSK DEFINES
+ */
+#define AR_NIC_FMA_ERR_OS_MSK_SW_ERR_MASK                               	0x0000200000000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_PI_PKT_ERR_MASK                           	0x0000100000000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_PI_BYTE_PUT_ERR_MASK                      	0x0000080000000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_AMO_BYTE_PUT_ERR_MASK                     	0x0000040000000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_GCW_MBE_ERR_MASK                          	0x0000020000000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_PI_GET_ADDR_ERR_MASK                      	0x0000010000000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_FMA_LAUNCH_ERR_MASK                       	0x0000008000000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_ADDR_ALIGN_ERR_MASK                       	0x0000004000000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_GET_FR_ERR_MASK                           	0x0000002000000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_GET_LEN_ERR_MASK                          	0x0000001000000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_PUT_LEN_ERR_MASK                          	0x0000000800000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_INV_COM_ERR_MASK                          	0x0000000400000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_NPES_ERR_MASK                             	0x0000000200000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_PI_ADDR_ERR_MASK                          	0x0000000100000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_PI_LEN_ERR_MASK                           	0x0000000080000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_SSID_INACTIVE_ERR_MASK                    	0x0000000040000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_PI_CMD_ERR_MASK                           	0x0000000020000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_DB_MBE_ERR_MASK                           	0x0000000010000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_NOPRIV_ERR_MASK                           	0x0000000008000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_SSID_ALLOCID_ERR_MASK                     	0x0000000004000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_DESC_ENABLE_ERR_MASK                      	0x0000000002000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_PI_BUF_OVERFLOW_MASK                      	0x0000000001000000ull
+#define AR_NIC_FMA_ERR_OS_MSK_DESC_WR_ERR_MASK                          	0x0000000000800000ull
+#define AR_NIC_FMA_ERR_OS_MSK_DESC_DB_WR_ERR_MASK                       	0x0000000000400000ull
+#define AR_NIC_FMA_ERR_OS_MSK_HDR_PERR_MASK                             	0x0000000000200000ull
+#define AR_NIC_FMA_ERR_OS_MSK_DATA1IN_MBE_MASK                          	0x0000000000100000ull
+#define AR_NIC_FMA_ERR_OS_MSK_DATA1IN_SBE_MASK                          	0x0000000000080000ull
+#define AR_NIC_FMA_ERR_OS_MSK_DATA0IN_MBE_MASK                          	0x0000000000040000ull
+#define AR_NIC_FMA_ERR_OS_MSK_DATA0IN_SBE_MASK                          	0x0000000000020000ull
+#define AR_NIC_FMA_ERR_OS_MSK_DESC88_MBE_MASK                           	0x0000000000010000ull
+#define AR_NIC_FMA_ERR_OS_MSK_DESC88_SBE_MASK                           	0x0000000000008000ull
+#define AR_NIC_FMA_ERR_OS_MSK_DESC38_MBE_MASK                           	0x0000000000004000ull
+#define AR_NIC_FMA_ERR_OS_MSK_DESC38_SBE_MASK                           	0x0000000000002000ull
+#define AR_NIC_FMA_ERR_OS_MSK_DESC28_MBE_MASK                           	0x0000000000001000ull
+#define AR_NIC_FMA_ERR_OS_MSK_DESC28_SBE_MASK                           	0x0000000000000800ull
+#define AR_NIC_FMA_ERR_OS_MSK_DESC20_MBE_MASK                           	0x0000000000000400ull
+#define AR_NIC_FMA_ERR_OS_MSK_DESC20_SBE_MASK                           	0x0000000000000200ull
+#define AR_NIC_FMA_ERR_OS_MSK_DESC18_MBE_MASK                           	0x0000000000000100ull
+#define AR_NIC_FMA_ERR_OS_MSK_DESC18_SBE_MASK                           	0x0000000000000080ull
+#define AR_NIC_FMA_ERR_OS_MSK_DESC10_MBE_MASK                           	0x0000000000000040ull
+#define AR_NIC_FMA_ERR_OS_MSK_DESC10_SBE_MASK                           	0x0000000000000020ull
+#define AR_NIC_FMA_ERR_OS_MSK_DESC08_MBE_MASK                           	0x0000000000000010ull
+#define AR_NIC_FMA_ERR_OS_MSK_DESC08_SBE_MASK                           	0x0000000000000008ull
+#define AR_NIC_FMA_ERR_OS_MSK_DESC00_MBE_MASK                           	0x0000000000000004ull
+#define AR_NIC_FMA_ERR_OS_MSK_DESC00_SBE_MASK                           	0x0000000000000002ull
+#define AR_NIC_FMA_ERR_OS_MSK_DIAG_ONLY_MASK                            	0x0000000000000001ull
+#define AR_NIC_FMA_ERR_OS_MSK_SW_ERR_BP                                 	45
+#define AR_NIC_FMA_ERR_OS_MSK_PI_PKT_ERR_BP                             	44
+#define AR_NIC_FMA_ERR_OS_MSK_PI_BYTE_PUT_ERR_BP                        	43
+#define AR_NIC_FMA_ERR_OS_MSK_AMO_BYTE_PUT_ERR_BP                       	42
+#define AR_NIC_FMA_ERR_OS_MSK_GCW_MBE_ERR_BP                            	41
+#define AR_NIC_FMA_ERR_OS_MSK_PI_GET_ADDR_ERR_BP                        	40
+#define AR_NIC_FMA_ERR_OS_MSK_FMA_LAUNCH_ERR_BP                         	39
+#define AR_NIC_FMA_ERR_OS_MSK_ADDR_ALIGN_ERR_BP                         	38
+#define AR_NIC_FMA_ERR_OS_MSK_GET_FR_ERR_BP                             	37
+#define AR_NIC_FMA_ERR_OS_MSK_GET_LEN_ERR_BP                            	36
+#define AR_NIC_FMA_ERR_OS_MSK_PUT_LEN_ERR_BP                            	35
+#define AR_NIC_FMA_ERR_OS_MSK_INV_COM_ERR_BP                            	34
+#define AR_NIC_FMA_ERR_OS_MSK_NPES_ERR_BP                               	33
+#define AR_NIC_FMA_ERR_OS_MSK_PI_ADDR_ERR_BP                            	32
+#define AR_NIC_FMA_ERR_OS_MSK_PI_LEN_ERR_BP                             	31
+#define AR_NIC_FMA_ERR_OS_MSK_SSID_INACTIVE_ERR_BP                      	30
+#define AR_NIC_FMA_ERR_OS_MSK_PI_CMD_ERR_BP                             	29
+#define AR_NIC_FMA_ERR_OS_MSK_DB_MBE_ERR_BP                             	28
+#define AR_NIC_FMA_ERR_OS_MSK_NOPRIV_ERR_BP                             	27
+#define AR_NIC_FMA_ERR_OS_MSK_SSID_ALLOCID_ERR_BP                       	26
+#define AR_NIC_FMA_ERR_OS_MSK_DESC_ENABLE_ERR_BP                        	25
+#define AR_NIC_FMA_ERR_OS_MSK_PI_BUF_OVERFLOW_BP                        	24
+#define AR_NIC_FMA_ERR_OS_MSK_DESC_WR_ERR_BP                            	23
+#define AR_NIC_FMA_ERR_OS_MSK_DESC_DB_WR_ERR_BP                         	22
+#define AR_NIC_FMA_ERR_OS_MSK_HDR_PERR_BP                               	21
+#define AR_NIC_FMA_ERR_OS_MSK_DATA1IN_MBE_BP                            	20
+#define AR_NIC_FMA_ERR_OS_MSK_DATA1IN_SBE_BP                            	19
+#define AR_NIC_FMA_ERR_OS_MSK_DATA0IN_MBE_BP                            	18
+#define AR_NIC_FMA_ERR_OS_MSK_DATA0IN_SBE_BP                            	17
+#define AR_NIC_FMA_ERR_OS_MSK_DESC88_MBE_BP                             	16
+#define AR_NIC_FMA_ERR_OS_MSK_DESC88_SBE_BP                             	15
+#define AR_NIC_FMA_ERR_OS_MSK_DESC38_MBE_BP                             	14
+#define AR_NIC_FMA_ERR_OS_MSK_DESC38_SBE_BP                             	13
+#define AR_NIC_FMA_ERR_OS_MSK_DESC28_MBE_BP                             	12
+#define AR_NIC_FMA_ERR_OS_MSK_DESC28_SBE_BP                             	11
+#define AR_NIC_FMA_ERR_OS_MSK_DESC20_MBE_BP                             	10
+#define AR_NIC_FMA_ERR_OS_MSK_DESC20_SBE_BP                             	9
+#define AR_NIC_FMA_ERR_OS_MSK_DESC18_MBE_BP                             	8
+#define AR_NIC_FMA_ERR_OS_MSK_DESC18_SBE_BP                             	7
+#define AR_NIC_FMA_ERR_OS_MSK_DESC10_MBE_BP                             	6
+#define AR_NIC_FMA_ERR_OS_MSK_DESC10_SBE_BP                             	5
+#define AR_NIC_FMA_ERR_OS_MSK_DESC08_MBE_BP                             	4
+#define AR_NIC_FMA_ERR_OS_MSK_DESC08_SBE_BP                             	3
+#define AR_NIC_FMA_ERR_OS_MSK_DESC00_MBE_BP                             	2
+#define AR_NIC_FMA_ERR_OS_MSK_DESC00_SBE_BP                             	1
+#define AR_NIC_FMA_ERR_OS_MSK_DIAG_ONLY_BP                              	0
+#define AR_NIC_FMA_ERR_OS_MSK_SW_ERR_QW                                 	0
+#define AR_NIC_FMA_ERR_OS_MSK_PI_PKT_ERR_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_PI_BYTE_PUT_ERR_QW                        	0
+#define AR_NIC_FMA_ERR_OS_MSK_AMO_BYTE_PUT_ERR_QW                       	0
+#define AR_NIC_FMA_ERR_OS_MSK_GCW_MBE_ERR_QW                            	0
+#define AR_NIC_FMA_ERR_OS_MSK_PI_GET_ADDR_ERR_QW                        	0
+#define AR_NIC_FMA_ERR_OS_MSK_FMA_LAUNCH_ERR_QW                         	0
+#define AR_NIC_FMA_ERR_OS_MSK_ADDR_ALIGN_ERR_QW                         	0
+#define AR_NIC_FMA_ERR_OS_MSK_GET_FR_ERR_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_GET_LEN_ERR_QW                            	0
+#define AR_NIC_FMA_ERR_OS_MSK_PUT_LEN_ERR_QW                            	0
+#define AR_NIC_FMA_ERR_OS_MSK_INV_COM_ERR_QW                            	0
+#define AR_NIC_FMA_ERR_OS_MSK_NPES_ERR_QW                               	0
+#define AR_NIC_FMA_ERR_OS_MSK_PI_ADDR_ERR_QW                            	0
+#define AR_NIC_FMA_ERR_OS_MSK_PI_LEN_ERR_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_SSID_INACTIVE_ERR_QW                      	0
+#define AR_NIC_FMA_ERR_OS_MSK_PI_CMD_ERR_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_DB_MBE_ERR_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_NOPRIV_ERR_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_SSID_ALLOCID_ERR_QW                       	0
+#define AR_NIC_FMA_ERR_OS_MSK_DESC_ENABLE_ERR_QW                        	0
+#define AR_NIC_FMA_ERR_OS_MSK_PI_BUF_OVERFLOW_QW                        	0
+#define AR_NIC_FMA_ERR_OS_MSK_DESC_WR_ERR_QW                            	0
+#define AR_NIC_FMA_ERR_OS_MSK_DESC_DB_WR_ERR_QW                         	0
+#define AR_NIC_FMA_ERR_OS_MSK_HDR_PERR_QW                               	0
+#define AR_NIC_FMA_ERR_OS_MSK_DATA1IN_MBE_QW                            	0
+#define AR_NIC_FMA_ERR_OS_MSK_DATA1IN_SBE_QW                            	0
+#define AR_NIC_FMA_ERR_OS_MSK_DATA0IN_MBE_QW                            	0
+#define AR_NIC_FMA_ERR_OS_MSK_DATA0IN_SBE_QW                            	0
+#define AR_NIC_FMA_ERR_OS_MSK_DESC88_MBE_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_DESC88_SBE_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_DESC38_MBE_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_DESC38_SBE_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_DESC28_MBE_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_DESC28_SBE_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_DESC20_MBE_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_DESC20_SBE_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_DESC18_MBE_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_DESC18_SBE_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_DESC10_MBE_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_DESC10_SBE_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_DESC08_MBE_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_DESC08_SBE_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_DESC00_MBE_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_DESC00_SBE_QW                             	0
+#define AR_NIC_FMA_ERR_OS_MSK_DIAG_ONLY_QW                              	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_ERR_FIRST_FLG DEFINES
+ */
+#define AR_NIC_FMA_ERR_FIRST_FLG_SW_ERR_MASK                            	0x0000200000000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_PI_PKT_ERR_MASK                        	0x0000100000000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_PI_BYTE_PUT_ERR_MASK                   	0x0000080000000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_AMO_BYTE_PUT_ERR_MASK                  	0x0000040000000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_GCW_MBE_ERR_MASK                       	0x0000020000000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_PI_GET_ADDR_ERR_MASK                   	0x0000010000000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_FMA_LAUNCH_ERR_MASK                    	0x0000008000000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_ADDR_ALIGN_ERR_MASK                    	0x0000004000000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_GET_FR_ERR_MASK                        	0x0000002000000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_GET_LEN_ERR_MASK                       	0x0000001000000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_PUT_LEN_ERR_MASK                       	0x0000000800000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_INV_COM_ERR_MASK                       	0x0000000400000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_NPES_ERR_MASK                          	0x0000000200000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_PI_ADDR_ERR_MASK                       	0x0000000100000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_PI_LEN_ERR_MASK                        	0x0000000080000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_SSID_INACTIVE_ERR_MASK                 	0x0000000040000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_PI_CMD_ERR_MASK                        	0x0000000020000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DB_MBE_ERR_MASK                        	0x0000000010000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_NOPRIV_ERR_MASK                        	0x0000000008000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_SSID_ALLOCID_ERR_MASK                  	0x0000000004000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC_ENABLE_ERR_MASK                   	0x0000000002000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_PI_BUF_OVERFLOW_MASK                   	0x0000000001000000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC_WR_ERR_MASK                       	0x0000000000800000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC_DB_WR_ERR_MASK                    	0x0000000000400000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_HDR_PERR_MASK                          	0x0000000000200000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DATA1IN_MBE_MASK                       	0x0000000000100000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DATA1IN_SBE_MASK                       	0x0000000000080000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DATA0IN_MBE_MASK                       	0x0000000000040000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DATA0IN_SBE_MASK                       	0x0000000000020000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC88_MBE_MASK                        	0x0000000000010000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC88_SBE_MASK                        	0x0000000000008000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC38_MBE_MASK                        	0x0000000000004000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC38_SBE_MASK                        	0x0000000000002000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC28_MBE_MASK                        	0x0000000000001000ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC28_SBE_MASK                        	0x0000000000000800ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC20_MBE_MASK                        	0x0000000000000400ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC20_SBE_MASK                        	0x0000000000000200ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC18_MBE_MASK                        	0x0000000000000100ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC18_SBE_MASK                        	0x0000000000000080ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC10_MBE_MASK                        	0x0000000000000040ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC10_SBE_MASK                        	0x0000000000000020ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC08_MBE_MASK                        	0x0000000000000010ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC08_SBE_MASK                        	0x0000000000000008ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC00_MBE_MASK                        	0x0000000000000004ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC00_SBE_MASK                        	0x0000000000000002ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_DIAG_ONLY_MASK                         	0x0000000000000001ull
+#define AR_NIC_FMA_ERR_FIRST_FLG_SW_ERR_BP                              	45
+#define AR_NIC_FMA_ERR_FIRST_FLG_PI_PKT_ERR_BP                          	44
+#define AR_NIC_FMA_ERR_FIRST_FLG_PI_BYTE_PUT_ERR_BP                     	43
+#define AR_NIC_FMA_ERR_FIRST_FLG_AMO_BYTE_PUT_ERR_BP                    	42
+#define AR_NIC_FMA_ERR_FIRST_FLG_GCW_MBE_ERR_BP                         	41
+#define AR_NIC_FMA_ERR_FIRST_FLG_PI_GET_ADDR_ERR_BP                     	40
+#define AR_NIC_FMA_ERR_FIRST_FLG_FMA_LAUNCH_ERR_BP                      	39
+#define AR_NIC_FMA_ERR_FIRST_FLG_ADDR_ALIGN_ERR_BP                      	38
+#define AR_NIC_FMA_ERR_FIRST_FLG_GET_FR_ERR_BP                          	37
+#define AR_NIC_FMA_ERR_FIRST_FLG_GET_LEN_ERR_BP                         	36
+#define AR_NIC_FMA_ERR_FIRST_FLG_PUT_LEN_ERR_BP                         	35
+#define AR_NIC_FMA_ERR_FIRST_FLG_INV_COM_ERR_BP                         	34
+#define AR_NIC_FMA_ERR_FIRST_FLG_NPES_ERR_BP                            	33
+#define AR_NIC_FMA_ERR_FIRST_FLG_PI_ADDR_ERR_BP                         	32
+#define AR_NIC_FMA_ERR_FIRST_FLG_PI_LEN_ERR_BP                          	31
+#define AR_NIC_FMA_ERR_FIRST_FLG_SSID_INACTIVE_ERR_BP                   	30
+#define AR_NIC_FMA_ERR_FIRST_FLG_PI_CMD_ERR_BP                          	29
+#define AR_NIC_FMA_ERR_FIRST_FLG_DB_MBE_ERR_BP                          	28
+#define AR_NIC_FMA_ERR_FIRST_FLG_NOPRIV_ERR_BP                          	27
+#define AR_NIC_FMA_ERR_FIRST_FLG_SSID_ALLOCID_ERR_BP                    	26
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC_ENABLE_ERR_BP                     	25
+#define AR_NIC_FMA_ERR_FIRST_FLG_PI_BUF_OVERFLOW_BP                     	24
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC_WR_ERR_BP                         	23
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC_DB_WR_ERR_BP                      	22
+#define AR_NIC_FMA_ERR_FIRST_FLG_HDR_PERR_BP                            	21
+#define AR_NIC_FMA_ERR_FIRST_FLG_DATA1IN_MBE_BP                         	20
+#define AR_NIC_FMA_ERR_FIRST_FLG_DATA1IN_SBE_BP                         	19
+#define AR_NIC_FMA_ERR_FIRST_FLG_DATA0IN_MBE_BP                         	18
+#define AR_NIC_FMA_ERR_FIRST_FLG_DATA0IN_SBE_BP                         	17
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC88_MBE_BP                          	16
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC88_SBE_BP                          	15
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC38_MBE_BP                          	14
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC38_SBE_BP                          	13
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC28_MBE_BP                          	12
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC28_SBE_BP                          	11
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC20_MBE_BP                          	10
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC20_SBE_BP                          	9
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC18_MBE_BP                          	8
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC18_SBE_BP                          	7
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC10_MBE_BP                          	6
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC10_SBE_BP                          	5
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC08_MBE_BP                          	4
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC08_SBE_BP                          	3
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC00_MBE_BP                          	2
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC00_SBE_BP                          	1
+#define AR_NIC_FMA_ERR_FIRST_FLG_DIAG_ONLY_BP                           	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_SW_ERR_QW                              	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_PI_PKT_ERR_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_PI_BYTE_PUT_ERR_QW                     	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_AMO_BYTE_PUT_ERR_QW                    	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_GCW_MBE_ERR_QW                         	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_PI_GET_ADDR_ERR_QW                     	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_FMA_LAUNCH_ERR_QW                      	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_ADDR_ALIGN_ERR_QW                      	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_GET_FR_ERR_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_GET_LEN_ERR_QW                         	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_PUT_LEN_ERR_QW                         	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_INV_COM_ERR_QW                         	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_NPES_ERR_QW                            	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_PI_ADDR_ERR_QW                         	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_PI_LEN_ERR_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_SSID_INACTIVE_ERR_QW                   	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_PI_CMD_ERR_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DB_MBE_ERR_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_NOPRIV_ERR_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_SSID_ALLOCID_ERR_QW                    	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC_ENABLE_ERR_QW                     	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_PI_BUF_OVERFLOW_QW                     	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC_WR_ERR_QW                         	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC_DB_WR_ERR_QW                      	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_HDR_PERR_QW                            	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DATA1IN_MBE_QW                         	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DATA1IN_SBE_QW                         	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DATA0IN_MBE_QW                         	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DATA0IN_SBE_QW                         	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC88_MBE_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC88_SBE_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC38_MBE_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC38_SBE_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC28_MBE_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC28_SBE_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC20_MBE_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC20_SBE_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC18_MBE_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC18_SBE_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC10_MBE_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC10_SBE_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC08_MBE_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC08_SBE_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC00_MBE_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DESC00_SBE_QW                          	0
+#define AR_NIC_FMA_ERR_FIRST_FLG_DIAG_ONLY_QW                           	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_ERR_INFO_RAM0 DEFINES
+ */
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC18_MBE_SYND_MASK                   	0xff00000000000000ull
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC18_SBE_SYND_MASK                   	0x00ff000000000000ull
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC10_MBE_SYND_MASK                   	0x0000ff0000000000ull
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC10_SBE_SYND_MASK                   	0x000000ff00000000ull
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC08_MBE_SYND_MASK                   	0x00000000ff000000ull
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC08_SBE_SYND_MASK                   	0x0000000000ff0000ull
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC00_MBE_SYND_MASK                   	0x000000000000ff00ull
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC00_SBE_SYND_MASK                   	0x00000000000000ffull
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC18_MBE_SYND_BP                     	56
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC18_SBE_SYND_BP                     	48
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC10_MBE_SYND_BP                     	40
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC10_SBE_SYND_BP                     	32
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC08_MBE_SYND_BP                     	24
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC08_SBE_SYND_BP                     	16
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC00_MBE_SYND_BP                     	8
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC00_SBE_SYND_BP                     	0
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC18_MBE_SYND_QW                     	0
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC18_SBE_SYND_QW                     	0
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC10_MBE_SYND_QW                     	0
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC10_SBE_SYND_QW                     	0
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC08_MBE_SYND_QW                     	0
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC08_SBE_SYND_QW                     	0
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC00_MBE_SYND_QW                     	0
+#define AR_NIC_FMA_ERR_INFO_RAM0_DESC00_SBE_SYND_QW                     	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_ERR_INFO_RAM1 DEFINES
+ */
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC88_MBE_SYND_MASK                   	0xff00000000000000ull
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC88_SBE_SYND_MASK                   	0x00ff000000000000ull
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC38_MBE_SYND_MASK                   	0x0000ff0000000000ull
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC38_SBE_SYND_MASK                   	0x000000ff00000000ull
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC28_MBE_SYND_MASK                   	0x00000000ff000000ull
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC28_SBE_SYND_MASK                   	0x0000000000ff0000ull
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC20_MBE_SYND_MASK                   	0x000000000000ff00ull
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC20_SBE_SYND_MASK                   	0x00000000000000ffull
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC88_MBE_SYND_BP                     	56
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC88_SBE_SYND_BP                     	48
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC38_MBE_SYND_BP                     	40
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC38_SBE_SYND_BP                     	32
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC28_MBE_SYND_BP                     	24
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC28_SBE_SYND_BP                     	16
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC20_MBE_SYND_BP                     	8
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC20_SBE_SYND_BP                     	0
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC88_MBE_SYND_QW                     	0
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC88_SBE_SYND_QW                     	0
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC38_MBE_SYND_QW                     	0
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC38_SBE_SYND_QW                     	0
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC28_MBE_SYND_QW                     	0
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC28_SBE_SYND_QW                     	0
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC20_MBE_SYND_QW                     	0
+#define AR_NIC_FMA_ERR_INFO_RAM1_DESC20_SBE_SYND_QW                     	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_ERR_INFO_DATA DEFINES
+ */
+#define AR_NIC_FMA_ERR_INFO_DATA_DATA1IN_MBE_SYND_MASK                  	0x00000000ff000000ull
+#define AR_NIC_FMA_ERR_INFO_DATA_DATA1IN_SBE_SYND_MASK                  	0x0000000000ff0000ull
+#define AR_NIC_FMA_ERR_INFO_DATA_DATA0IN_MBE_SYND_MASK                  	0x000000000000ff00ull
+#define AR_NIC_FMA_ERR_INFO_DATA_DATA0IN_SBE_SYND_MASK                  	0x00000000000000ffull
+#define AR_NIC_FMA_ERR_INFO_DATA_DATA1IN_MBE_SYND_BP                    	24
+#define AR_NIC_FMA_ERR_INFO_DATA_DATA1IN_SBE_SYND_BP                    	16
+#define AR_NIC_FMA_ERR_INFO_DATA_DATA0IN_MBE_SYND_BP                    	8
+#define AR_NIC_FMA_ERR_INFO_DATA_DATA0IN_SBE_SYND_BP                    	0
+#define AR_NIC_FMA_ERR_INFO_DATA_DATA1IN_MBE_SYND_QW                    	0
+#define AR_NIC_FMA_ERR_INFO_DATA_DATA1IN_SBE_SYND_QW                    	0
+#define AR_NIC_FMA_ERR_INFO_DATA_DATA0IN_MBE_SYND_QW                    	0
+#define AR_NIC_FMA_ERR_INFO_DATA_DATA0IN_SBE_SYND_QW                    	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_ERR_INFO_HDR DEFINES
+ */
+#define AR_NIC_FMA_ERR_INFO_HDR_PERR3_MASK                              	0x0000000000000008ull
+#define AR_NIC_FMA_ERR_INFO_HDR_PERR2_MASK                              	0x0000000000000004ull
+#define AR_NIC_FMA_ERR_INFO_HDR_PERR1_MASK                              	0x0000000000000002ull
+#define AR_NIC_FMA_ERR_INFO_HDR_PERR0_MASK                              	0x0000000000000001ull
+#define AR_NIC_FMA_ERR_INFO_HDR_PERR3_BP                                	3
+#define AR_NIC_FMA_ERR_INFO_HDR_PERR2_BP                                	2
+#define AR_NIC_FMA_ERR_INFO_HDR_PERR1_BP                                	1
+#define AR_NIC_FMA_ERR_INFO_HDR_PERR0_BP                                	0
+#define AR_NIC_FMA_ERR_INFO_HDR_PERR3_QW                                	0
+#define AR_NIC_FMA_ERR_INFO_HDR_PERR2_QW                                	0
+#define AR_NIC_FMA_ERR_INFO_HDR_PERR1_QW                                	0
+#define AR_NIC_FMA_ERR_INFO_HDR_PERR0_QW                                	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_DBG_ERRINJ_RAM DEFINES
+ */
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_ADDRESS_MASK                          	0x0000007f00000000ull
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_CHECKBYTE_MASK                        	0x0000000000ff0000ull
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC88_MASK                           	0x0000000000000800ull
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC38_MASK                           	0x0000000000000400ull
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC28_MASK                           	0x0000000000000200ull
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC20_MASK                           	0x0000000000000100ull
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC18_MASK                           	0x0000000000000080ull
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC10_MASK                           	0x0000000000000040ull
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC08_MASK                           	0x0000000000000020ull
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC00_MASK                           	0x0000000000000010ull
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_TRIGGERED_MASK                        	0x0000000000000008ull
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_MODE_MASK                             	0x0000000000000006ull
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_ENABLE_MASK                           	0x0000000000000001ull
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_ADDRESS_BP                            	32
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_CHECKBYTE_BP                          	16
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC88_BP                             	11
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC38_BP                             	10
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC28_BP                             	9
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC20_BP                             	8
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC18_BP                             	7
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC10_BP                             	6
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC08_BP                             	5
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC00_BP                             	4
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_TRIGGERED_BP                          	3
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_MODE_BP                               	1
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_ENABLE_BP                             	0
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_ADDRESS_QW                            	0
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_CHECKBYTE_QW                          	0
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC88_QW                             	0
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC38_QW                             	0
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC28_QW                             	0
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC20_QW                             	0
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC18_QW                             	0
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC10_QW                             	0
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC08_QW                             	0
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_DESC00_QW                             	0
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_TRIGGERED_QW                          	0
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_MODE_QW                               	0
+#define AR_NIC_FMA_DBG_ERRINJ_RAM_ENABLE_QW                             	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_DBG_ERRINJ_PKT DEFINES
+ */
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_CHECKBYTEUP_MASK                      	0x00000000ff000000ull
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_CHECKBYTELO_MASK                      	0x0000000000ff0000ull
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_PARITY_MASK                           	0x000000000000f000ull
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_TAIL_MASK                             	0x0000000000000400ull
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_COUNT_MASK                            	0x00000000000003f0ull
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_TRIGGERED_MASK                        	0x0000000000000008ull
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_MODE_MASK                             	0x0000000000000002ull
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_ENABLE_MASK                           	0x0000000000000001ull
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_CHECKBYTEUP_BP                        	24
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_CHECKBYTELO_BP                        	16
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_PARITY_BP                             	12
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_TAIL_BP                               	10
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_COUNT_BP                              	4
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_TRIGGERED_BP                          	3
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_MODE_BP                               	1
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_ENABLE_BP                             	0
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_CHECKBYTEUP_QW                        	0
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_CHECKBYTELO_QW                        	0
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_PARITY_QW                             	0
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_TAIL_QW                               	0
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_COUNT_QW                              	0
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_TRIGGERED_QW                          	0
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_MODE_QW                               	0
+#define AR_NIC_FMA_DBG_ERRINJ_PKT_ENABLE_QW                             	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_CFG_CREDIT DEFINES
+ */
+#define AR_NIC_FMA_CFG_CREDIT_CQ_COUNT_MASK                             	0x0000000070000000ull
+#define AR_NIC_FMA_CFG_CREDIT_AAX_OPRND_MODE_MASK                       	0x0000000001000000ull
+#define AR_NIC_FMA_CFG_CREDIT_TARB_INT_COUNT_MASK                       	0x00000000001f0000ull
+#define AR_NIC_FMA_CFG_CREDIT_DLA_COUNT_MASK                            	0x000000000000ffffull
+#define AR_NIC_FMA_CFG_CREDIT_CQ_COUNT_BP                               	28
+#define AR_NIC_FMA_CFG_CREDIT_AAX_OPRND_MODE_BP                         	24
+#define AR_NIC_FMA_CFG_CREDIT_TARB_INT_COUNT_BP                         	16
+#define AR_NIC_FMA_CFG_CREDIT_DLA_COUNT_BP                              	0
+#define AR_NIC_FMA_CFG_CREDIT_CQ_COUNT_QW                               	0
+#define AR_NIC_FMA_CFG_CREDIT_AAX_OPRND_MODE_QW                         	0
+#define AR_NIC_FMA_CFG_CREDIT_TARB_INT_COUNT_QW                         	0
+#define AR_NIC_FMA_CFG_CREDIT_DLA_COUNT_QW                              	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_ERR_INFO_PI DEFINES
+ */
+#define AR_NIC_FMA_ERR_INFO_PI_LSTATUS_MASK                             	0x000000000000003full
+#define AR_NIC_FMA_ERR_INFO_PI_LSTATUS_BP                               	0
+#define AR_NIC_FMA_ERR_INFO_PI_LSTATUS_QW                               	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+/*
+ *  AR_NIC_FMA_ERR_INFO_SW DEFINES
+ */
+#define AR_NIC_FMA_ERR_INFO_SW_ADDRESS_MASK                             	0x0000fffffffffffcull
+#define AR_NIC_FMA_ERR_INFO_SW_ADDRESS_BP                               	2
+#define AR_NIC_FMA_ERR_INFO_SW_ADDRESS_QW                               	0
+#ifdef EXCEPTIONS_DEFS
+#endif /* EXCEPTIONS_DEFS */
+
+
+
+/*
+ *  AR FMA MACROS
+ */
+#ifndef RD_FIELD
+#define RD_FIELD(d, bp, m)	(((d)&(m))>>(bp))
+#endif
+#ifndef WR_FIELD
+#define WR_FIELD(mmr, d, bp, m)	(mmr = (((mmr) & ~(m)) | ((((uint64_t)(d))<<(bp)) & (m))))
+#endif
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1727_1713(mmr)     	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1727_1713_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1727_1713_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1727_1713(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1727_1713_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1727_1713_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_MARKER_DEALLOC(mmr)     	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_MARKER_DEALLOC_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_MARKER_DEALLOC_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_MARKER_DEALLOC(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_MARKER_DEALLOC_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_MARKER_DEALLOC_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1711_1696(mmr)     	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1711_1696_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1711_1696_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1711_1696(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1711_1696_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1711_1696_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_MARKER_ID(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_MARKER_ID_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_MARKER_ID_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_MARKER_ID(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_MARKER_ID_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_MARKER_ID_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_OPERAND(mmr)     	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_OPERAND_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_OPERAND_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_OPERAND(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_OPERAND_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_OPERAND_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1599_1595(mmr)     	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1599_1595_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1599_1595_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1599_1595(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1599_1595_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1599_1595_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_GET(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_GET_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_GET_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_GET(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_GET_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_GET_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_GLOBAL_OFFSET(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_GLOBAL_OFFSET_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_GLOBAL_OFFSET_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_GLOBAL_OFFSET(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_GLOBAL_OFFSET_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_GLOBAL_OFFSET_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1103(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1103_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1103_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1103(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1103_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1103_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_CD(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_CD_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_CD_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_CD(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_CD_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_CD_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_PR(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_PR_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_PR_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_PR(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_PR_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_PR_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_HIGH_PRIORITY(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_HIGH_PRIORITY_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_HIGH_PRIORITY_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_HIGH_PRIORITY(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_HIGH_PRIORITY_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_HIGH_PRIORITY_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1099(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1099_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1099_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1099(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1099_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1099_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_CQH(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_CQH_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_CQH_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_CQH(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_CQH_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_CQH_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_DONE(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_DONE_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_DONE_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_DONE(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_DONE_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_DONE_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_TRANS_ACTIVE(mmr)    	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_TRANS_ACTIVE_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_TRANS_ACTIVE_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_TRANS_ACTIVE(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_TRANS_ACTIVE_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_TRANS_ACTIVE_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_LAUNCH1(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_LAUNCH1_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_LAUNCH1_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_LAUNCH1(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_LAUNCH1_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_LAUNCH1_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_LAUNCH0(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_LAUNCH0_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_LAUNCH0_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_LAUNCH0(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_LAUNCH0_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_LAUNCH0_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_PRIV_ERR(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_PRIV_ERR_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_PRIV_ERR_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_PRIV_ERR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_PRIV_ERR_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_PRIV_ERR_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_HW_ERR(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_HW_ERR_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_HW_ERR_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_HW_ERR(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_HW_ERR_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_HW_ERR_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_SW_ERR(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_SW_ERR_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_SW_ERR_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_SW_ERR(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_SW_ERR_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_SW_ERR_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_NPES_ERR(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_NPES_ERR_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_NPES_ERR_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_NPES_ERR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_NPES_ERR_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_NPES_ERR_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_ALLOC_SEQID_ERR(mmr) 	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_ALLOC_SEQID_ERR_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_ALLOC_SEQID_ERR_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_ALLOC_SEQID_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_ALLOC_SEQID_ERR_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_ALLOC_SEQID_ERR_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_SSIDS_IN_USE(mmr)    	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_SSIDS_IN_USE_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_SSIDS_IN_USE_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_SSIDS_IN_USE(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_SSIDS_IN_USE_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_SSIDS_IN_USE_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_RC(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_RC_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_RC_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_RC(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_RC_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_RC_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WC(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WC_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WC_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WC(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WC_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WC_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1023_960(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1023_960_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1023_960_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1023_960(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1023_960_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_1023_960_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_959_896(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_959_896_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_959_896_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_959_896(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_959_896_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_959_896_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_TYPE(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_TYPE_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_TYPE_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_TYPE(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_TYPE_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_TYPE_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_887_882(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_887_882_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_887_882_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_887_882(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_887_882_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_887_882_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_TRANSACTION_END(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_TRANSACTION_END_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_TRANSACTION_END_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_TRANSACTION_END(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_TRANSACTION_END_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_TRANSACTION_END_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_DLA_DEALLOC(mmr)     	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_DLA_DEALLOC_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_DLA_DEALLOC_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_DLA_DEALLOC(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_DLA_DEALLOC_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_DLA_DEALLOC_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_SRC_CQ_DATA(mmr)     	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_SRC_CQ_DATA_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_SRC_CQ_DATA_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_SRC_CQ_DATA(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_SRC_CQ_DATA_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_SRC_CQ_DATA_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_831_771(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_831_771_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_831_771_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_831_771(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_831_771_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_831_771_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_WR_STATUS_WHEN(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_WR_STATUS_WHEN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_WR_STATUS_WHEN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_WR_STATUS_WHEN(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_WR_STATUS_WHEN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_WR_STATUS_WHEN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_767_704(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_767_704_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_767_704_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_767_704(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_767_704_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_767_704_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_703_640(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_703_640_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_703_640_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_703_640(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_703_640_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_703_640_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_639_624(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_639_624_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_639_624_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_639_624(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_639_624_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_639_624_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_CQ_WRITE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_CQ_WRITE_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_CQ_WRITE_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_CQ_WRITE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_CQ_WRITE_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_CQ_WRITE_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_TRANSACTION_START(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_TRANSACTION_START_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_TRANSACTION_START_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_TRANSACTION_START(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_TRANSACTION_START_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_TRANSACTION_START_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_REISSUE(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_REISSUE_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_REISSUE_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_REISSUE(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_REISSUE_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_REISSUE_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_DISCARD_RESET(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DISCARD_RESET_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DISCARD_RESET_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_DISCARD_RESET(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DISCARD_RESET_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DISCARD_RESET_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_ALLOC_STATUS_RESET(mmr)     	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_ALLOC_STATUS_RESET_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_ALLOC_STATUS_RESET_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_ALLOC_STATUS_RESET(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_ALLOC_STATUS_RESET_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_ALLOC_STATUS_RESET_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_571_558(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_571_558_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_571_558_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_571_558(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_571_558_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_571_558_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_CREDITS_REQUIRED(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_CREDITS_REQUIRED_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_CREDITS_REQUIRED_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_CREDITS_REQUIRED(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_CREDITS_REQUIRED_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_CREDITS_REQUIRED_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_BLOCK_ID(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BLOCK_ID_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BLOCK_ID_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_BLOCK_ID(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BLOCK_ID_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BLOCK_ID_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_523_522(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_523_522_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_523_522_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_523_522(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_523_522_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_523_522_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_INTERVAL(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_INTERVAL_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_INTERVAL_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_INTERVAL(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_INTERVAL_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_INTERVAL_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WREN(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WREN(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_MARKER_DBELL_WREN(mmr)  	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_MARKER_DBELL_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_MARKER_DBELL_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_MARKER_DBELL_WREN(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_MARKER_DBELL_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_MARKER_DBELL_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_DBELL_WREN(mmr)  	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_DBELL_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_DBELL_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_DBELL_WREN(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_DBELL_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_LAUNCH_DBELL_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_WR_STATUS_DBELL_WREN(mmr)   	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_WR_STATUS_DBELL_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_WR_STATUS_DBELL_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_WR_STATUS_DBELL_WREN(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_WR_STATUS_DBELL_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_WR_STATUS_DBELL_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_CE_DBELL_WREN(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_CE_DBELL_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_CE_DBELL_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_CE_DBELL_WREN(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_CE_DBELL_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_CE_DBELL_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_FLBTE_DBELL_WREN(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FLBTE_DBELL_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FLBTE_DBELL_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_FLBTE_DBELL_WREN(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FLBTE_DBELL_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FLBTE_DBELL_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_CQ_WRITE_DBELL_WREN(mmr)    	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_CQ_WRITE_DBELL_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_CQ_WRITE_DBELL_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_CQ_WRITE_DBELL_WREN(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_CQ_WRITE_DBELL_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_CQ_WRITE_DBELL_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_DBELL_WREN(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_DBELL_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_DBELL_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_DBELL_WREN(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_DBELL_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SEQCMP_DBELL_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_ALLOC_SEQ_ID_DBELL_WREN(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_ALLOC_SEQ_ID_DBELL_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_ALLOC_SEQ_ID_DBELL_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_ALLOC_SEQ_ID_DBELL_WREN(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_ALLOC_SEQ_ID_DBELL_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_ALLOC_SEQ_ID_DBELL_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_WC_WREN(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_WC_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_WC_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_WC_WREN(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_WC_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_WC_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_CD_WREN(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_CD_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_CD_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_CD_WREN(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_CD_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_CD_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_PR_WREN(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_PR_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_PR_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_PR_WREN(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_PR_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_ALLOC_PR_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_HIGH_PRIORITY_WREN(mmr) 	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_HIGH_PRIORITY_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_HIGH_PRIORITY_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_HIGH_PRIORITY_WREN(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_HIGH_PRIORITY_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_HIGH_PRIORITY_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_CQH_WREN(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_CQH_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_CQH_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_DLA_CQH_WREN(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_CQH_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DLA_CQH_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG2_WREN(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG2_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG2_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG2_WREN(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG2_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG2_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG1_WREN(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG1_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG1_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG1_WREN(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG1_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG1_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG0_WREN(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG0_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG0_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG0_WREN(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG0_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SCRATCH_REG0_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_NTT_EN_WREN(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_NTT_EN_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_NTT_EN_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_NTT_EN_WREN(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_NTT_EN_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_NTT_EN_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_PTAG_WREN(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PTAG_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PTAG_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_PTAG_WREN(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PTAG_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PTAG_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_SRC_CQH_WREN(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SRC_CQH_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SRC_CQH_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_SRC_CQH_WREN(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SRC_CQH_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SRC_CQH_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_PE_BASE_WREN(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PE_BASE_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PE_BASE_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_PE_BASE_WREN(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PE_BASE_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PE_BASE_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_NPES_WREN(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_NPES_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_NPES_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_NPES_WREN(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_NPES_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_NPES_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_REM_MDH_WREN(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_REM_MDH_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_REM_MDH_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_REM_MDH_WREN(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_REM_MDH_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_REM_MDH_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_LOC_MDH_WREN(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_LOC_MDH_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_LOC_MDH_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_LOC_MDH_WREN(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_LOC_MDH_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_LOC_MDH_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_BTE_FENCE_WREN(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BTE_FENCE_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BTE_FENCE_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_BTE_FENCE_WREN(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BTE_FENCE_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BTE_FENCE_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_PRIVILEGED_WREN(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PRIVILEGED_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PRIVILEGED_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_PRIVILEGED_WREN(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PRIVILEGED_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PRIVILEGED_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_BTE_CHAN_WREN(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BTE_CHAN_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BTE_CHAN_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_BTE_CHAN_WREN(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BTE_CHAN_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BTE_CHAN_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_NAT_RDCTRL_LONG_PKT_WREN(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_NAT_RDCTRL_LONG_PKT_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_NAT_RDCTRL_LONG_PKT_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_NAT_RDCTRL_LONG_PKT_WREN(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_NAT_RDCTRL_LONG_PKT_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_NAT_RDCTRL_LONG_PKT_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_ENQ_STATUS_CQH_WREN(mmr)    	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_ENQ_STATUS_CQH_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_ENQ_STATUS_CQH_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_ENQ_STATUS_CQH_WREN(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_ENQ_STATUS_CQH_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_ENQ_STATUS_CQH_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_PE_MASK_FPE_WREN(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PE_MASK_FPE_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PE_MASK_FPE_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_PE_MASK_FPE_WREN(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PE_MASK_FPE_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PE_MASK_FPE_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_OP_WREN(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_OP_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_OP_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_OP_WREN(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_OP_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_OP_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_FMA_EN_WREN(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_EN_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_EN_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_FMA_EN_WREN(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_EN_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_EN_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RC_WREN(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RC_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RC_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RC_WREN(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RC_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RC_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_HIGH_WREN(mmr)  	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_HIGH_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_HIGH_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_HIGH_WREN(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_HIGH_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_HIGH_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_LOW_WREN(mmr)   	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_LOW_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_LOW_WREN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_LOW_WREN(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_LOW_WREN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_LOW_WREN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_383_368(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_383_368_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_383_368_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_383_368(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_383_368_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_383_368_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_DEST_CQ_DATA(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DEST_CQ_DATA_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DEST_CQ_DATA_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_DEST_CQ_DATA(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DEST_CQ_DATA_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_DEST_CQ_DATA_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_FLAG_DATA_OFFSET(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FLAG_DATA_OFFSET_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FLAG_DATA_OFFSET_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_FLAG_DATA_OFFSET(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FLAG_DATA_OFFSET_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FLAG_DATA_OFFSET_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_AMO_OPRND2(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_AMO_OPRND2_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_AMO_OPRND2_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_AMO_OPRND2(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_AMO_OPRND2_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_AMO_OPRND2_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_FLAG_DATA(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FLAG_DATA_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FLAG_DATA_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_FLAG_DATA(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FLAG_DATA_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FLAG_DATA_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_AMO_OPRND1(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_AMO_OPRND1_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_AMO_OPRND1_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_AMO_OPRND1(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_AMO_OPRND1_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_AMO_OPRND1_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_NTT_EN(mmr)                 	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_NTT_EN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_NTT_EN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_NTT_EN(mmr,v)               	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_NTT_EN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_NTT_EN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_REM_PTAG(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_REM_PTAG_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_REM_PTAG_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_REM_PTAG(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_REM_PTAG_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_REM_PTAG_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_LOC_PTAG(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_LOC_PTAG_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_LOC_PTAG_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_LOC_PTAG(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_LOC_PTAG_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_LOC_PTAG_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_SRC_CQH(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SRC_CQH_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SRC_CQH_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_SRC_CQH(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SRC_CQH_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_SRC_CQH_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_PE_BASE(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PE_BASE_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PE_BASE_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_PE_BASE(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PE_BASE_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PE_BASE_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_NPES(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_NPES_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_NPES_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_NPES(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_NPES_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_NPES_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_127(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_127_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_127_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_127(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_127_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_127_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_REM_MDH(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_REM_MDH_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_REM_MDH_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_REM_MDH(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_REM_MDH_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_REM_MDH_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_114(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_114_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_114_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_114(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_114_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_114_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_LOC_MDH(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_LOC_MDH_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_LOC_MDH_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_LOC_MDH(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_LOC_MDH_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_LOC_MDH_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_101_100(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_101_100_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_101_100_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_101_100(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_101_100_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_101_100_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_99_98(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_99_98_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_99_98_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_99_98(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_99_98_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_99_98_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_97_92(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_97_92_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_97_92_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_97_92(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_97_92_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_97_92_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_91(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_91_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_91_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_91(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_91_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_91_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_90_80(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_90_80_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_90_80_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_90_80(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_90_80_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_90_80_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_79_76(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_79_76_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_79_76_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_79_76(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_79_76_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_79_76_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_75(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_75_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_75_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_75(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_75_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_75_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_PE_MASK_MODE(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PE_MASK_MODE_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PE_MASK_MODE_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_PE_MASK_MODE(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PE_MASK_MODE_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_PE_MASK_MODE_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_71(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_71_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_71_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_71(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_71_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RESERVED_71_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_FMA_OP(mmr)                 	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_OP_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_OP_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_FMA_OP(mmr,v)               	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_OP_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_OP_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_FMA_EN(mmr)                 	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_EN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_EN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_FMA_EN(mmr,v)               	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_EN_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_FMA_EN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_RC(mmr)                     	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RC_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RC_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_RC(mmr,v)                   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RC_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_RC_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_WC(mmr)                     	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_WC_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_WC_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_WC(mmr,v)                   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_WC_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_WC_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_GET_LAUNCH(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_GET_LAUNCH_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_GET_LAUNCH_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_GET_LAUNCH(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_GET_LAUNCH_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_GET_LAUNCH_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WD_OFFSET(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WD_OFFSET_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WD_OFFSET_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WD_OFFSET(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WD_OFFSET_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_STATUS_WD_OFFSET_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_BASE_OFFSET_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_SFMA_GLOBAL_OFFSET(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_SFMA_GLOBAL_OFFSET_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_GLOBAL_OFFSET_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_SFMA_GLOBAL_OFFSET(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_SFMA_GLOBAL_OFFSET_BP,\
+									AR_NIC_FMA_CFG_DESC_SFMA_GLOBAL_OFFSET_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_HI_FMA_UNUSED_145_35(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_HI_FMA_UNUSED_145_35_BP,\
+									AR_NIC_FMA_MMR_RING_0_HI_FMA_UNUSED_145_35_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_HI_FMA_UNUSED_145_35(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_HI_FMA_UNUSED_145_35_BP,\
+									AR_NIC_FMA_MMR_RING_0_HI_FMA_UNUSED_145_35_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_MID_FMA_UNUSED_127_98(mmr)     	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_UNUSED_127_98_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_UNUSED_127_98_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_MID_FMA_UNUSED_127_98(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_UNUSED_127_98_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_UNUSED_127_98_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_TDATA_SBE(mmr)    	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_TDATA_SBE_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_TDATA_SBE_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_TDATA_SBE(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_TDATA_SBE_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_TDATA_SBE_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_INV_CMD(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_INV_CMD_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_INV_CMD_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_INV_CMD(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_INV_CMD_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_INV_CMD_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_DESC_MBE(mmr)     	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_DESC_MBE_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_DESC_MBE_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_DESC_MBE(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_DESC_MBE_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_DESC_MBE_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_DATA_MBE(mmr)     	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_DATA_MBE_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_DATA_MBE_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_DATA_MBE(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_DATA_MBE_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_DATA_MBE_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_HDR_PERR(mmr)     	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_HDR_PERR_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_HDR_PERR_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_HDR_PERR(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_HDR_PERR_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_HDR_PERR_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_NFAMO_REQ(mmr)    	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_NFAMO_REQ_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_NFAMO_REQ_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_NFAMO_REQ(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_NFAMO_REQ_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_NFAMO_REQ_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PUT_REQ(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PUT_REQ_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PUT_REQ_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PUT_REQ(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PUT_REQ_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PUT_REQ_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_FAMO_REQ(mmr)     	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_FAMO_REQ_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_FAMO_REQ_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_FAMO_REQ(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_FAMO_REQ_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_FAMO_REQ_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_GET_REQ(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_GET_REQ_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_GET_REQ_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_GET_REQ(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_GET_REQ_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_GET_REQ_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_CQ_STALL(mmr)     	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_CQ_STALL_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_CQ_STALL_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_CQ_STALL(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_CQ_STALL_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_CQ_STALL_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_CQ(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_CQ_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_CQ_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_CQ(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_CQ_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_CQ_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PI_FLIT(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PI_FLIT_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PI_FLIT_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PI_FLIT(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PI_FLIT_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PI_FLIT_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PI_PKT(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PI_PKT_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PI_PKT_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PI_PKT(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PI_PKT_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PI_PKT_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_TARB_STALLED(mmr) 	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_TARB_STALLED_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_TARB_STALLED_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_TARB_STALLED(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_TARB_STALLED_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_TARB_STALLED_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_FLIT(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_FLIT_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_FLIT_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_FLIT(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_FLIT_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_FLIT_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PKT(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PKT_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PKT_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PKT(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PKT_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_CNTR_PKT_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_MID_FMA_UNUSED_81_64(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_UNUSED_81_64_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_UNUSED_81_64_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_MID_FMA_UNUSED_81_64(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_UNUSED_81_64_BP,\
+									AR_NIC_FMA_MMR_RING_0_MID_FMA_UNUSED_81_64_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_LO_FMA_UNUSED_145_35(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_UNUSED_145_35_BP,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_UNUSED_145_35_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_LO_FMA_UNUSED_145_35(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_UNUSED_145_35_BP,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_UNUSED_145_35_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_LO_FMA_OS_INTR_REQ(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_OS_INTR_REQ_BP,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_OS_INTR_REQ_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_LO_FMA_OS_INTR_REQ(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_OS_INTR_REQ_BP,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_OS_INTR_REQ_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_LO_FMA_HSS_INTR_REQ(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_HSS_INTR_REQ_BP,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_HSS_INTR_REQ_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_LO_FMA_HSS_INTR_REQ(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_HSS_INTR_REQ_BP,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_HSS_INTR_REQ_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_WR_ACK(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_WR_ACK_BP,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_WR_ACK_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_WR_ACK(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_WR_ACK_BP,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_WR_ACK_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_RESP_OUT(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_RESP_OUT_BP,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_RESP_OUT_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_RESP_OUT(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_RESP_OUT_BP,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_RESP_OUT_MASK)
+#define RF_AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_REQ_IN(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_REQ_IN_BP,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_REQ_IN_MASK)
+#define WF_AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_REQ_IN(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_REQ_IN_BP,\
+									AR_NIC_FMA_MMR_RING_0_LO_FMA_MMR_REQ_IN_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_HI_FMA_UNUSED_145_110(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_HI_FMA_UNUSED_145_110_BP,\
+									AR_NIC_FMA_ERR_FLG_1_HI_FMA_UNUSED_145_110_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_HI_FMA_UNUSED_145_110(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_HI_FMA_UNUSED_145_110_BP,\
+									AR_NIC_FMA_ERR_FLG_1_HI_FMA_UNUSED_145_110_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_UNUSED_127_110(mmr)     	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_UNUSED_127_110_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_UNUSED_127_110_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_UNUSED_127_110(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_UNUSED_127_110_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_UNUSED_127_110_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_SW_ERR(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_SW_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_SW_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_SW_ERR(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_SW_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_SW_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_PKT_ERR(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_PKT_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_PKT_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_PKT_ERR(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_PKT_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_PKT_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_BYTE_PUT_ERR(mmr)    	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_BYTE_PUT_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_BYTE_PUT_ERR(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_BYTE_PUT_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_AMO_BYTE_PUT_ERR(mmr)   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_AMO_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_AMO_BYTE_PUT_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_AMO_BYTE_PUT_ERR(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_AMO_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_AMO_BYTE_PUT_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_GCW_MBE_ERR(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_GCW_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_GCW_MBE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_GCW_MBE_ERR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_GCW_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_GCW_MBE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_GET_ADDR_ERR(mmr)    	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_GET_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_GET_ADDR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_GET_ADDR_ERR(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_GET_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_GET_ADDR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_FMA_LAUNCH_ERR(mmr)     	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_FMA_LAUNCH_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_FMA_LAUNCH_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_FMA_LAUNCH_ERR(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_FMA_LAUNCH_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_FMA_LAUNCH_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_ADDR_ALIGN_ERR(mmr)     	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_ADDR_ALIGN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_ADDR_ALIGN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_ADDR_ALIGN_ERR(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_ADDR_ALIGN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_ADDR_ALIGN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_GET_FR_ERR(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_GET_FR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_GET_FR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_GET_FR_ERR(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_GET_FR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_GET_FR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_GET_LEN_ERR(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_GET_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_GET_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_GET_LEN_ERR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_GET_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_GET_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_PUT_LEN_ERR(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PUT_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PUT_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_PUT_LEN_ERR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PUT_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PUT_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_INV_COM_ERR(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_INV_COM_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_INV_COM_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_INV_COM_ERR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_INV_COM_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_INV_COM_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_NPES_ERR(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_NPES_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_NPES_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_NPES_ERR(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_NPES_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_NPES_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_ADDR_ERR(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_ADDR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_ADDR_ERR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_ADDR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_LEN_ERR(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_LEN_ERR(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_SSID_INACTIVE_ERR(mmr)  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_SSID_INACTIVE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_SSID_INACTIVE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_SSID_INACTIVE_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_SSID_INACTIVE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_SSID_INACTIVE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_CMD_ERR(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_CMD_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_CMD_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_CMD_ERR(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_CMD_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_CMD_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DB_MBE_ERR(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DB_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DB_MBE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DB_MBE_ERR(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DB_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DB_MBE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_NOPRIV_ERR(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_NOPRIV_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_NOPRIV_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_NOPRIV_ERR(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_NOPRIV_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_NOPRIV_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_SSID_ALLOCID_ERR(mmr)   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_SSID_ALLOCID_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_SSID_ALLOCID_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_SSID_ALLOCID_ERR(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_SSID_ALLOCID_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_SSID_ALLOCID_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_ENABLE_ERR(mmr)    	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_ENABLE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_ENABLE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_ENABLE_ERR(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_ENABLE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_ENABLE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_BUF_OVERFLOW(mmr)    	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_BUF_OVERFLOW_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_BUF_OVERFLOW_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_BUF_OVERFLOW(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_BUF_OVERFLOW_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_PI_BUF_OVERFLOW_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_WR_ERR(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_WR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_WR_ERR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_WR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_DB_WR_ERR(mmr)     	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_DB_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_DB_WR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_DB_WR_ERR(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_DB_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC_DB_WR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_HDR_PERR(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_HDR_PERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_HDR_PERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_HDR_PERR(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_HDR_PERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_HDR_PERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA1IN_MBE(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA1IN_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA1IN_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA1IN_MBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA1IN_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA1IN_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA1IN_SBE(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA1IN_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA1IN_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA1IN_SBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA1IN_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA1IN_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA0IN_MBE(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA0IN_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA0IN_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA0IN_MBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA0IN_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA0IN_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA0IN_SBE(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA0IN_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA0IN_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA0IN_SBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA0IN_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DATA0IN_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC88_MBE(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC88_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC88_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC88_MBE(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC88_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC88_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC88_SBE(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC88_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC88_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC88_SBE(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC88_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC88_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC38_MBE(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC38_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC38_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC38_MBE(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC38_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC38_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC38_SBE(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC38_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC38_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC38_SBE(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC38_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC38_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC28_MBE(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC28_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC28_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC28_MBE(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC28_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC28_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC28_SBE(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC28_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC28_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC28_SBE(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC28_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC28_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC20_MBE(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC20_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC20_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC20_MBE(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC20_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC20_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC20_SBE(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC20_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC20_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC20_SBE(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC20_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC20_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC18_MBE(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC18_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC18_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC18_MBE(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC18_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC18_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC18_SBE(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC18_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC18_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC18_SBE(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC18_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC18_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC10_MBE(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC10_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC10_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC10_MBE(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC10_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC10_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC10_SBE(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC10_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC10_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC10_SBE(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC10_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC10_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC08_MBE(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC08_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC08_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC08_MBE(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC08_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC08_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC08_SBE(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC08_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC08_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC08_SBE(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC08_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC08_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC00_MBE(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC00_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC00_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC00_MBE(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC00_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC00_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC00_SBE(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC00_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC00_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC00_SBE(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC00_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_DESC00_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_UNUSED_64(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_UNUSED_64_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_UNUSED_64_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_MID_FMA_UNUSED_64(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_UNUSED_64_BP,\
+									AR_NIC_FMA_ERR_FLG_1_MID_FMA_UNUSED_64_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_UNUSED_63_46(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_UNUSED_63_46_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_UNUSED_63_46_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_UNUSED_63_46(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_UNUSED_63_46_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_UNUSED_63_46_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SW_ERR(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SW_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SW_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SW_ERR(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SW_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SW_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_PKT_ERR(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_PKT_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_PKT_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_PKT_ERR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_PKT_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_PKT_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_BYTE_PUT_ERR(mmr)   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_BYTE_PUT_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_BYTE_PUT_ERR(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_BYTE_PUT_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_AMO_BYTE_PUT_ERR(mmr)  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_AMO_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_AMO_BYTE_PUT_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_AMO_BYTE_PUT_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_AMO_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_AMO_BYTE_PUT_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GCW_MBE_ERR(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GCW_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GCW_MBE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GCW_MBE_ERR(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GCW_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GCW_MBE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_GET_ADDR_ERR(mmr)   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_GET_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_GET_ADDR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_GET_ADDR_ERR(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_GET_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_GET_ADDR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_FMA_LAUNCH_ERR(mmr)    	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_FMA_LAUNCH_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_FMA_LAUNCH_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_FMA_LAUNCH_ERR(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_FMA_LAUNCH_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_FMA_LAUNCH_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_ADDR_ALIGN_ERR(mmr)    	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_ADDR_ALIGN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_ADDR_ALIGN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_ADDR_ALIGN_ERR(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_ADDR_ALIGN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_ADDR_ALIGN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GET_FR_ERR(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GET_FR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GET_FR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GET_FR_ERR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GET_FR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GET_FR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GET_LEN_ERR(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GET_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GET_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GET_LEN_ERR(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GET_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_GET_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PUT_LEN_ERR(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PUT_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PUT_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PUT_LEN_ERR(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PUT_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PUT_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_INV_COM_ERR(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_INV_COM_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_INV_COM_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_INV_COM_ERR(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_INV_COM_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_INV_COM_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_NPES_ERR(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_NPES_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_NPES_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_NPES_ERR(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_NPES_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_NPES_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_ADDR_ERR(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_ADDR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_ADDR_ERR(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_ADDR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_LEN_ERR(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_LEN_ERR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SSID_INACTIVE_ERR(mmr) 	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SSID_INACTIVE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SSID_INACTIVE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SSID_INACTIVE_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SSID_INACTIVE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SSID_INACTIVE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_CMD_ERR(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_CMD_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_CMD_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_CMD_ERR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_CMD_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_CMD_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DB_MBE_ERR(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DB_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DB_MBE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DB_MBE_ERR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DB_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DB_MBE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_NOPRIV_ERR(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_NOPRIV_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_NOPRIV_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_NOPRIV_ERR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_NOPRIV_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_NOPRIV_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SSID_ALLOCID_ERR(mmr)  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SSID_ALLOCID_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SSID_ALLOCID_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SSID_ALLOCID_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SSID_ALLOCID_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_SSID_ALLOCID_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_ENABLE_ERR(mmr)   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_ENABLE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_ENABLE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_ENABLE_ERR(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_ENABLE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_ENABLE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_BUF_OVERFLOW(mmr)   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_BUF_OVERFLOW_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_BUF_OVERFLOW_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_BUF_OVERFLOW(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_BUF_OVERFLOW_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_PI_BUF_OVERFLOW_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_WR_ERR(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_WR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_WR_ERR(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_WR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_DB_WR_ERR(mmr)    	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_DB_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_DB_WR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_DB_WR_ERR(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_DB_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC_DB_WR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_HDR_PERR(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_HDR_PERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_HDR_PERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_HDR_PERR(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_HDR_PERR_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_HDR_PERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA1IN_MBE(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA1IN_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA1IN_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA1IN_MBE(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA1IN_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA1IN_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA1IN_SBE(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA1IN_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA1IN_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA1IN_SBE(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA1IN_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA1IN_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA0IN_MBE(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA0IN_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA0IN_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA0IN_MBE(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA0IN_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA0IN_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA0IN_SBE(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA0IN_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA0IN_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA0IN_SBE(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA0IN_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DATA0IN_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC88_MBE(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC88_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC88_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC88_MBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC88_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC88_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC88_SBE(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC88_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC88_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC88_SBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC88_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC88_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC38_MBE(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC38_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC38_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC38_MBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC38_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC38_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC38_SBE(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC38_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC38_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC38_SBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC38_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC38_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC28_MBE(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC28_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC28_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC28_MBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC28_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC28_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC28_SBE(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC28_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC28_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC28_SBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC28_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC28_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC20_MBE(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC20_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC20_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC20_MBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC20_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC20_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC20_SBE(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC20_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC20_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC20_SBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC20_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC20_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC18_MBE(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC18_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC18_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC18_MBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC18_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC18_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC18_SBE(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC18_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC18_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC18_SBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC18_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC18_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC10_MBE(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC10_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC10_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC10_MBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC10_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC10_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC10_SBE(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC10_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC10_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC10_SBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC10_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC10_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC08_MBE(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC08_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC08_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC08_MBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC08_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC08_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC08_SBE(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC08_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC08_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC08_SBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC08_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC08_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC00_MBE(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC00_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC00_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC00_MBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC00_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC00_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC00_SBE(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC00_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC00_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC00_SBE(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC00_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_I_DESC00_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_UNUSED_0(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_UNUSED_0_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_UNUSED_0_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_1_LO_FMA_UNUSED_0(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_UNUSED_0_BP,\
+									AR_NIC_FMA_ERR_FLG_1_LO_FMA_UNUSED_0_MASK)
+#define RF_AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA_I_PI_NIC_REQ_SB(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA_I_PI_NIC_REQ_SB_BP,\
+									AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA_I_PI_NIC_REQ_SB_MASK)
+#define WF_AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA_I_PI_NIC_REQ_SB(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA_I_PI_NIC_REQ_SB_BP,\
+									AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA_I_PI_NIC_REQ_SB_MASK)
+#define RF_AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA_I_PI_NIC_REQ_FLIT(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA_I_PI_NIC_REQ_FLIT_BP,\
+									AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA_I_PI_NIC_REQ_FLIT_MASK)
+#define WF_AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA_I_PI_NIC_REQ_FLIT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA_I_PI_NIC_REQ_FLIT_BP,\
+									AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_HI_FMA_I_PI_NIC_REQ_FLIT_MASK)
+#define RF_AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_MID_FMA_I_PI_NIC_REQ_FLIT(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_MID_FMA_I_PI_NIC_REQ_FLIT_BP,\
+									AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_MID_FMA_I_PI_NIC_REQ_FLIT_MASK)
+#define WF_AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_MID_FMA_I_PI_NIC_REQ_FLIT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_MID_FMA_I_PI_NIC_REQ_FLIT_BP,\
+									AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_MID_FMA_I_PI_NIC_REQ_FLIT_MASK)
+#define RF_AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_LO_FMA_I_PI_NIC_REQ_FLIT(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_LO_FMA_I_PI_NIC_REQ_FLIT_BP,\
+									AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_LO_FMA_I_PI_NIC_REQ_FLIT_MASK)
+#define WF_AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_LO_FMA_I_PI_NIC_REQ_FLIT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_LO_FMA_I_PI_NIC_REQ_FLIT_BP,\
+									AR_NIC_FMA_PI_FLIT_INPUT_STAGE_2_LO_FMA_I_PI_NIC_REQ_FLIT_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_HI_FMA_UNUSED_145_96(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_HI_FMA_UNUSED_145_96_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_HI_FMA_UNUSED_145_96_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_HI_FMA_UNUSED_145_96(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_HI_FMA_UNUSED_145_96_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_HI_FMA_UNUSED_145_96_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_UNUSED_145_96(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_UNUSED_145_96_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_UNUSED_145_96_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_UNUSED_145_96(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_UNUSED_145_96_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_UNUSED_145_96_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_DLA_MARKER_HDR_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_DLA_MARKER_HDR_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_DLA_MARKER_HDR_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_DLA_MARKER_HDR_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_DLA_MARKER_HDR_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_DLA_MARKER_HDR_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_WR_88_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_WR_88_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_WR_88_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_WR_88_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_WR_88_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_WR_88_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_RD_88_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_RD_88_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_RD_88_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_RD_88_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_RD_88_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_RD_88_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_Q_NIC_PI_REQ_ACK(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_Q_NIC_PI_REQ_ACK_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_Q_NIC_PI_REQ_ACK_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_Q_NIC_PI_REQ_ACK(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_Q_NIC_PI_REQ_ACK_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_Q_NIC_PI_REQ_ACK_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_PI_REWIND(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_PI_REWIND_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_PI_REWIND_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_PI_REWIND(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_PI_REWIND_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_PI_REWIND_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_PI_HOLD(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_PI_HOLD_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_PI_HOLD_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_PI_HOLD(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_PI_HOLD_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_PI_HOLD_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_VALID_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_VALID_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_VALID_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_VALID_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_VALID_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_VALID_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_HEADER_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_HEADER_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_HEADER_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_HEADER_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_HEADER_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_HEADER_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_ERR_RECVD_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_ERR_RECVD_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_ERR_RECVD_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_ERR_RECVD_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_ERR_RECVD_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_ERR_RECVD_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WN_HDR_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WN_HDR_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WN_HDR_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WN_HDR_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WN_HDR_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WN_HDR_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WN_DTF_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WN_DTF_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WN_DTF_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WN_DTF_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WN_DTF_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WN_DTF_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_USER_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_USER_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_USER_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_USER_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_USER_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_USER_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_CQ_WINDOW_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_CQ_WINDOW_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_CQ_WINDOW_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_CQ_WINDOW_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_CQ_WINDOW_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_CQ_WINDOW_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_ALLOC_SSID_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_ALLOC_SSID_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_ALLOC_SSID_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_ALLOC_SSID_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_ALLOC_SSID_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_ALLOC_SSID_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CQWRITE_HDR_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CQWRITE_HDR_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CQWRITE_HDR_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CQWRITE_HDR_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CQWRITE_HDR_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CQWRITE_HDR_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CQWRITE_DTF_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CQWRITE_DTF_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CQWRITE_DTF_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CQWRITE_DTF_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CQWRITE_DTF_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CQWRITE_DTF_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_FLBTE_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_FLBTE_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_FLBTE_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_FLBTE_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_FLBTE_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_FLBTE_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_WR_STAT_WHEN_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_WR_STAT_WHEN_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_WR_STAT_WHEN_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_WR_STAT_WHEN_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_WR_STAT_WHEN_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_WR_STAT_WHEN_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CE_HDR_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CE_HDR_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CE_HDR_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CE_HDR_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CE_HDR_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CE_HDR_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CE_DTF_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CE_DTF_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CE_DTF_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CE_DTF_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CE_DTF_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_CE_DTF_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_SEQCMP_HDR_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_SEQCMP_HDR_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_SEQCMP_HDR_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_SEQCMP_HDR_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_SEQCMP_HDR_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_SEQCMP_HDR_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_SEQCMP_DTF_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_SEQCMP_DTF_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_SEQCMP_DTF_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_SEQCMP_DTF_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_SEQCMP_DTF_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_SEQCMP_DTF_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_MMR_RD_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_MMR_RD_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_MMR_RD_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_MMR_RD_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_MMR_RD_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_MMR_RD_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_MMR_WR_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_MMR_WR_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_MMR_WR_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_MMR_WR_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_MMR_WR_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_MMR_WR_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_FMA_LAUNCH0(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_FMA_LAUNCH0_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_FMA_LAUNCH0_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_FMA_LAUNCH0(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_FMA_LAUNCH0_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_FMA_LAUNCH0_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_FMA_LAUNCH1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_FMA_LAUNCH1_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_FMA_LAUNCH1_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_FMA_LAUNCH1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_FMA_LAUNCH1_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_FMA_LAUNCH1_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WR_STAT_REQ_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WR_STAT_REQ_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WR_STAT_REQ_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WR_STAT_REQ_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WR_STAT_REQ_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_GO_WR_STAT_REQ_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_SEQ_ACTIVE_READ_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_SEQ_ACTIVE_READ_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_SEQ_ACTIVE_READ_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_SEQ_ACTIVE_READ_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_SEQ_ACTIVE_READ_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_SEQ_ACTIVE_READ_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_DESCRIPTOR_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_DESCRIPTOR_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_DESCRIPTOR_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_DESCRIPTOR_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_DESCRIPTOR_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_MID_FMA_R_DESCRIPTOR_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_DESCRIPTOR_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_DESCRIPTOR_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_DESCRIPTOR_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_DESCRIPTOR_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_DESCRIPTOR_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_DESCRIPTOR_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_ADDRESS_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_ADDRESS_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_ADDRESS_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_ADDRESS_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_ADDRESS_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_ADDRESS_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DATA0_2ODD(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DATA0_2ODD_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DATA0_2ODD_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DATA0_2ODD(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DATA0_2ODD_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DATA0_2ODD_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_00_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_00_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_00_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_00_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_00_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_00_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_08_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_08_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_08_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_08_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_08_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_08_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_10_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_10_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_10_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_10_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_10_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_10_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_18_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_18_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_18_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_18_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_18_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_18_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_20_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_20_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_20_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_20_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_20_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_20_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_28_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_28_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_28_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_28_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_28_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_28_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_38_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_38_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_38_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_38_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_38_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_38_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_80_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_80_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_80_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_80_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_80_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_WR_80_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_00_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_00_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_00_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_00_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_00_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_00_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_08_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_08_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_08_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_08_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_08_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_08_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_10_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_10_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_10_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_10_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_10_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_10_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_18_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_18_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_18_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_18_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_18_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_18_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_20_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_20_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_20_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_20_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_20_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_20_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_28_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_28_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_28_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_28_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_28_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_28_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_38_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_38_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_38_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_38_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_38_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_38_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_80_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_80_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_80_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_80_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_80_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_RD_80_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_TAIL_FLIT_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_TAIL_FLIT_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_TAIL_FLIT_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_TAIL_FLIT_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_TAIL_FLIT_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_TAIL_FLIT_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_PERR(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_PERR_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_PERR_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_PERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_PERR_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_PERR_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_COM_ERR(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_COM_ERR_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_COM_ERR_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_COM_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_COM_ERR_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_COM_ERR_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_ADR_ERR(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_ADR_ERR_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_ADR_ERR_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_ADR_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_ADR_ERR_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_ADR_ERR_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_LEN_ERR(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_LEN_ERR_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_LEN_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_LEN_ERR_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_HDR_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA0_SBE(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA0_SBE_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA0_SBE_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA0_SBE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA0_SBE_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA0_SBE_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA0_MBE(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA0_MBE_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA0_MBE_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA0_MBE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA0_MBE_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA0_MBE_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA1_SBE(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA1_SBE_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA1_SBE_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA1_SBE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA1_SBE_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA1_SBE_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA1_MBE(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA1_MBE_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA1_MBE_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA1_MBE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA1_MBE_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_MMR_DATA1_MBE_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DESC_OP_ERR(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DESC_OP_ERR_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DESC_OP_ERR_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DESC_OP_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DESC_OP_ERR_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DESC_OP_ERR_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DESC_DB_ERR(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DESC_DB_ERR_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DESC_DB_ERR_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DESC_DB_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DESC_DB_ERR_BP,\
+									AR_NIC_FMA_PI_CONTROL_DECODE_DESC_READ_STAGE_4_LO_FMA_R_Q_DESC_DB_ERR_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_UNUSED_145_144(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_UNUSED_145_144_BP,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_UNUSED_145_144_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_UNUSED_145_144(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_UNUSED_145_144_BP,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_UNUSED_145_144_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_R_ECC1_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_R_ECC1_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_R_ECC1_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_R_ECC1_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_R_ECC1_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_R_ECC1_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_R_DATA1_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_R_DATA1_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_R_DATA1_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_R_DATA1_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_R_DATA1_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_HI_FMA_R_DATA1_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA_R_DATA1_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA_R_DATA1_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA_R_DATA1_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA_R_DATA1_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA_R_DATA1_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA_R_DATA1_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA_R_ECC0_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA_R_ECC0_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA_R_ECC0_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA_R_ECC0_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA_R_ECC0_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_MID_FMA_R_ECC0_SG3_MASK)
+#define RF_AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_LO_FMA_R_DATA0_SG3(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_LO_FMA_R_DATA0_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_LO_FMA_R_DATA0_SG3_MASK)
+#define WF_AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_LO_FMA_R_DATA0_SG3(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_LO_FMA_R_DATA0_SG3_BP,\
+									AR_NIC_FMA_PI_CONTROL_DATA_DESC_READ_STAGE_5_LO_FMA_R_DATA0_SG3_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_HI_FMA_UNUSED_145_82(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_HI_FMA_UNUSED_145_82_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_HI_FMA_UNUSED_145_82_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_HI_FMA_UNUSED_145_82(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_HI_FMA_UNUSED_145_82_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_HI_FMA_UNUSED_145_82_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_UNUSED_145_82(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_UNUSED_145_82_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_UNUSED_145_82_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_UNUSED_145_82(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_UNUSED_145_82_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_UNUSED_145_82_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_I_DESC_SG6(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_I_DESC_SG6_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_I_DESC_SG6_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_I_DESC_SG6(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_I_DESC_SG6_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_I_DESC_SG6_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_HDR(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_HDR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_HDR_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_HDR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_HDR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_HDR_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_LAUNCH(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_LAUNCH_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_LAUNCH_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_LAUNCH(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_LAUNCH_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_LAUNCH_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_GET(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_GET_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_GET_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_GET(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_GET_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_GET_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_PUT(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_PUT_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_PUT_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_PUT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_PUT_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_PUT_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_AMO(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_AMO_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_AMO_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_AMO(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_AMO_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_AMO_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_STAT_REQ(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_STAT_REQ_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_STAT_REQ_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_STAT_REQ(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_STAT_REQ_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_STAT_REQ_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_AMO_2OPS(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_AMO_2OPS_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_AMO_2OPS_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_AMO_2OPS(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_AMO_2OPS_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_AMO_2OPS_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_32BIT_AMO_CE(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_32BIT_AMO_CE_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_32BIT_AMO_CE_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_32BIT_AMO_CE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_32BIT_AMO_CE_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_32BIT_AMO_CE_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_64BIT(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_64BIT_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_64BIT_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_64BIT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_64BIT_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_64BIT_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_REQ_COUNT(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_REQ_COUNT_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_REQ_COUNT_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_REQ_COUNT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_REQ_COUNT_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_MID_FMA_R_REQ_COUNT_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_REQ_COUNT(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_REQ_COUNT_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_REQ_COUNT_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_REQ_COUNT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_REQ_COUNT_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_REQ_COUNT_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GOP0_SG6(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GOP0_SG6_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GOP0_SG6_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GOP0_SG6(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GOP0_SG6_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GOP0_SG6_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_COUNT(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_COUNT_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_COUNT_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_COUNT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_COUNT_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_COUNT_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_MBE(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_MBE_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_MBE_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_MBE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_MBE_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_MBE_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_COUNT_ERR(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_COUNT_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_COUNT_ERR_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_COUNT_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_COUNT_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW0_COUNT_ERR_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GOP1_SG6(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GOP1_SG6_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GOP1_SG6_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GOP1_SG6(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GOP1_SG6_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GOP1_SG6_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_COUNT(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_COUNT_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_COUNT_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_COUNT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_COUNT_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_COUNT_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_MBE(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_MBE_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_MBE_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_MBE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_MBE_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_MBE_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_COUNT_ERR(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_COUNT_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_COUNT_ERR_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_COUNT_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_COUNT_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_GCW1_COUNT_ERR_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_DTF(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_DTF_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_DTF_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_DTF(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_DTF_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_DTF_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_TAIL(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_TAIL_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_TAIL_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_TAIL(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_TAIL_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_TAIL_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_CE_DTF1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_CE_DTF1_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_CE_DTF1_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_CE_DTF1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_CE_DTF1_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_CE_DTF1_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_FLAG_DATA(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_FLAG_DATA_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_FLAG_DATA_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_FLAG_DATA(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_FLAG_DATA_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_FLAG_DATA_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_CE_IDX(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_CE_IDX_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_CE_IDX_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_CE_IDX(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_CE_IDX_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_CE_IDX_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_CE_OP2(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_CE_OP2_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_CE_OP2_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_CE_OP2(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_CE_OP2_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_SEND_CE_OP2_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_LAF1_VALID(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_LAF1_VALID_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_LAF1_VALID_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_LAF1_VALID(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_LAF1_VALID_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_LAF1_VALID_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_RC0(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_RC0_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_RC0_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_RC0(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_RC0_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_RC0_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_WC0(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_WC0_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_WC0_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_WC0(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_WC0_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_WC0_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_COUNT0(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_COUNT0_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_COUNT0_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_COUNT0(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_COUNT0_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_COUNT0_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_RC1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_RC1_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_RC1_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_RC1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_RC1_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_RC1_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_WC1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_WC1_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_WC1_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_WC1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_WC1_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INC_WC1_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SW_ERR_1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SW_ERR_1_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SW_ERR_1_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SW_ERR_1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SW_ERR_1_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SW_ERR_1_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_NPES_ERR(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_NPES_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_NPES_ERR_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_NPES_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_NPES_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_NPES_ERR_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SEQID_ERR(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SEQID_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SEQID_ERR_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SEQID_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SEQID_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SEQID_ERR_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SSID_AA_ERR(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SSID_AA_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SSID_AA_ERR_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SSID_AA_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SSID_AA_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SSID_AA_ERR_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SSID_NA_ERR(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SSID_NA_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SSID_NA_ERR_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SSID_NA_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SSID_NA_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_SSID_NA_ERR_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_ENABLE_ERR(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_ENABLE_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_ENABLE_ERR_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_ENABLE_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_ENABLE_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_ENABLE_ERR_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_FR_LEN_ERR(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_FR_LEN_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_FR_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_FR_LEN_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_FR_LEN_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_FR_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_GET_LEN_ERR(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_GET_LEN_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_GET_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_GET_LEN_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_GET_LEN_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_GET_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_PUT_LEN_ERR(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_PUT_LEN_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_PUT_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_PUT_LEN_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_PUT_LEN_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_PUT_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INV_COM_ERR(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INV_COM_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INV_COM_ERR_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INV_COM_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INV_COM_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_INV_COM_ERR_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_ALIGN_ERR(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_ALIGN_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_ALIGN_ERR_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_ALIGN_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_ALIGN_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_ALIGN_ERR_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_LAUNCH_ERR(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_LAUNCH_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_LAUNCH_ERR_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_LAUNCH_ERR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_LAUNCH_ERR_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_LAUNCH_ERR_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_WR_STAT_WHEN(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_WR_STAT_WHEN_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_WR_STAT_WHEN_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_WR_STAT_WHEN(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_WR_STAT_WHEN_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_WR_STAT_WHEN_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_WR_STAT_WHEN_MODE(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_WR_STAT_WHEN_MODE_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_WR_STAT_WHEN_MODE_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_WR_STAT_WHEN_MODE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_WR_STAT_WHEN_MODE_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_WR_STAT_WHEN_MODE_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_UNUSED_1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_UNUSED_1_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_UNUSED_1_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_UNUSED_1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_UNUSED_1_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_UNUSED_1_MASK)
+#define RF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_FMA_BTE_VALID(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_FMA_BTE_VALID_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_FMA_BTE_VALID_MASK)
+#define WF_AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_FMA_BTE_VALID(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_FMA_BTE_VALID_BP,\
+									AR_NIC_FMA_PACKET_GENERATION_TARB_WRITE_STAGE_6_LO_FMA_R_Q_FMA_BTE_VALID_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_HI_FMA_UNUSED_145_64(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_HI_FMA_UNUSED_145_64_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_HI_FMA_UNUSED_145_64_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_HI_FMA_UNUSED_145_64(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_HI_FMA_UNUSED_145_64_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_HI_FMA_UNUSED_145_64_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_MID_FMA_UNUSED_145_64(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_MID_FMA_UNUSED_145_64_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_MID_FMA_UNUSED_145_64_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_MID_FMA_UNUSED_145_64(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_MID_FMA_UNUSED_145_64_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_MID_FMA_UNUSED_145_64_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_ACTIVE(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_ACTIVE_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_ACTIVE_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_ACTIVE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_ACTIVE_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_ACTIVE_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_READ_PKT(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_READ_PKT_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_READ_PKT_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_READ_PKT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_READ_PKT_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_READ_PKT_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_LAF1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_LAF1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_LAF1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_LAF1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_LAF1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_LAF1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_DONE(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_DONE_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_DONE_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_DONE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_DONE_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GET_DONE_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_PUT_AAX_MODE(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_PUT_AAX_MODE_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_PUT_AAX_MODE_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_PUT_AAX_MODE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_PUT_AAX_MODE_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_PUT_AAX_MODE_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_ACTIVE(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_ACTIVE_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_ACTIVE_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_ACTIVE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_ACTIVE_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_ACTIVE_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_DONE(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_DONE_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_DONE_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_DONE(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_DONE_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_DONE_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_PUT_AMO(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_PUT_AMO_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_PUT_AMO_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_PUT_AMO(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_PUT_AMO_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_PUT_AMO_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_ADD_DATA(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_ADD_DATA_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_ADD_DATA_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_ADD_DATA(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_ADD_DATA_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_ADD_DATA_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT(mmr)  	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_PUT_AMO(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_PUT_AMO_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_PUT_AMO_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_PUT_AMO(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_PUT_AMO_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_PUT_AMO_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_PTR(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_PTR_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_PTR_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_PTR(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_PTR_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_PTR_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_NEXT_FLIT(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_NEXT_FLIT_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_NEXT_FLIT_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_NEXT_FLIT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_NEXT_FLIT_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_NEXT_FLIT_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PEND_REQ_COUNT(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PEND_REQ_COUNT_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PEND_REQ_COUNT_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PEND_REQ_COUNT(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PEND_REQ_COUNT_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PEND_REQ_COUNT_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GO_READ_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GO_READ_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GO_READ_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GO_READ_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GO_READ_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GO_READ_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_HEADER_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_HEADER_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_HEADER_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_HEADER_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_HEADER_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_HEADER_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_LAUNCH_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_LAUNCH_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_LAUNCH_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_LAUNCH_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_LAUNCH_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_LAUNCH_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_GET(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_GET_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_GET_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_GET(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_GET_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_START_GET_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GOP0_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GOP0_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GOP0_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GOP0_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GOP0_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GOP0_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_CNT0_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_CNT0_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_CNT0_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_CNT0_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_CNT0_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_CNT0_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW0_MBE_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW0_MBE_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW0_MBE_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW0_MBE_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW0_MBE_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW0_MBE_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW0_COUNT_ERR_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW0_COUNT_ERR_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW0_COUNT_ERR_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW0_COUNT_ERR_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW0_COUNT_ERR_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW0_COUNT_ERR_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GOP1_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GOP1_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GOP1_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GOP1_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GOP1_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GOP1_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_CNT1_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_CNT1_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_CNT1_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_CNT1_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_CNT1_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_CNT1_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW1_MBE_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW1_MBE_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW1_MBE_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW1_MBE_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW1_MBE_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW1_MBE_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW1_COUNT_ERR_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW1_COUNT_ERR_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW1_COUNT_ERR_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW1_COUNT_ERR_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW1_COUNT_ERR_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_GCW1_COUNT_ERR_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_TAIL_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_TAIL_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_TAIL_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_TAIL_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_TAIL_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_TAIL_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_HDR_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_HDR_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_HDR_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_HDR_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_HDR_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_HDR_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_LAF_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_LAF_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_LAF_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_LAF_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_LAF_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_LAF_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_LAF1_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_LAF1_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_LAF1_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_LAF1_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_LAF1_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_LAF1_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_DATA_READ_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_DATA_READ_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_DATA_READ_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_DATA_READ_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_DATA_READ_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_DATA_READ_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_ADD_DATA_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_ADD_DATA_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_ADD_DATA_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_ADD_DATA_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_ADD_DATA_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_ADD_DATA_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_PUT_AMO_DATA_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_PUT_AMO_DATA_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_PUT_AMO_DATA_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_PUT_AMO_DATA_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_PUT_AMO_DATA_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_PUT_AMO_DATA_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_GET_AMO_DATA_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_GET_AMO_DATA_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_GET_AMO_DATA_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_GET_AMO_DATA_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_GET_AMO_DATA_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_SEND_GET_AMO_DATA_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_PTR_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_PTR_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_PTR_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_PTR_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_PTR_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_PUT_AMO_PTR_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_PUT_AMO_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_PUT_AMO_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_PUT_AMO_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_PUT_AMO_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_PUT_AMO_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_PUT_AMO_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_GET_AMO_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_GET_AMO_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_GET_AMO_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_GET_AMO_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_GET_AMO_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_2OP_GET_AMO_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_GET_AMO_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_GET_AMO_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_GET_AMO_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_GET_AMO_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_GET_AMO_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_GET_AMO_SG1_MASK)
+#define RF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_PUT_AMO_SG1(mmr)	RD_FIELD(mmr,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_PUT_AMO_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_PUT_AMO_SG1_MASK)
+#define WF_AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_PUT_AMO_SG1(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_PUT_AMO_SG1_BP,\
+									AR_NIC_FMA_TARB_RD_DATA_STAGE_7_LO_FMA_Q_64BIT_PUT_AMO_SG1_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1727_1664(mmr)    	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1727_1664_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1727_1664_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1727_1664(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1727_1664_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1727_1664_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1663_1600(mmr)    	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1663_1600_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1663_1600_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1663_1600(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1663_1600_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1663_1600_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1599_1536(mmr)    	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1599_1536_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1599_1536_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1599_1536(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1599_1536_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1599_1536_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1151_1088(mmr)    	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1151_1088_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1151_1088_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1151_1088(mmr,v)  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1151_1088_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1151_1088_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_STATUS(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_STATUS_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_STATUS_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_STATUS(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_STATUS_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_STATUS_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1023_960(mmr)     	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1023_960_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1023_960_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1023_960(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1023_960_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_1023_960_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_959_896(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_959_896_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_959_896_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_959_896(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_959_896_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_959_896_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_895_832(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_895_832_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_895_832_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_895_832(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_895_832_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_895_832_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_831_771(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_831_771_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_831_771_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_831_771(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_831_771_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_831_771_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_WR_STATUS_WHEN(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_WR_STATUS_WHEN_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_WR_STATUS_WHEN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_WR_STATUS_WHEN(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_WR_STATUS_WHEN_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_WR_STATUS_WHEN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_767_704(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_767_704_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_767_704_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_767_704(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_767_704_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_767_704_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_RPT_ENQ_STATUS(mmr)  	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_RPT_ENQ_STATUS_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_RPT_ENQ_STATUS_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_RPT_ENQ_STATUS(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_RPT_ENQ_STATUS_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_RPT_ENQ_STATUS_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_BTE_IMMEDIATE(mmr)   	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_BTE_IMMEDIATE_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_BTE_IMMEDIATE_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_BTE_IMMEDIATE(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_BTE_IMMEDIATE_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_BTE_IMMEDIATE_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_SSID_CQ_EN(mmr)  	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_SSID_CQ_EN_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_SSID_CQ_EN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_SSID_CQ_EN(mmr,v)	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_SSID_CQ_EN_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_SSID_CQ_EN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_BTE_CQ_EN(mmr)   	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_BTE_CQ_EN_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_BTE_CQ_EN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_BTE_CQ_EN(mmr,v) 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_BTE_CQ_EN_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_BTE_CQ_EN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_699_688(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_699_688_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_699_688_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_699_688(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_699_688_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_699_688_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_CQ_DATA(mmr)     	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_CQ_DATA_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_CQ_DATA_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_CQ_DATA(mmr,v)   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_CQ_DATA_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FLBTE_SRC_CQ_DATA_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_639_576(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_639_576_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_639_576_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_639_576(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_639_576_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_639_576_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_575_512(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_575_512_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_575_512_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_575_512(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_575_512_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_575_512_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_PRIVILEGE_MASK(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_PRIVILEGE_MASK_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_PRIVILEGE_MASK_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_PRIVILEGE_MASK(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_PRIVILEGE_MASK_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_PRIVILEGE_MASK_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_DEST_USER_DATA(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_DEST_USER_DATA_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_DEST_USER_DATA_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_DEST_USER_DATA(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_DEST_USER_DATA_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_DEST_USER_DATA_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_319_288(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_319_288_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_319_288_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_319_288(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_319_288_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_319_288_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_XFER_LEN(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_XFER_LEN_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_XFER_LEN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_XFER_LEN(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_XFER_LEN_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_XFER_LEN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_255_240(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_255_240_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_255_240_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_255_240(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_255_240_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_255_240_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_LOC_PHYS_ADDR(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_LOC_PHYS_ADDR_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_LOC_PHYS_ADDR_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_LOC_PHYS_ADDR(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_LOC_PHYS_ADDR_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_LOC_PHYS_ADDR_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_LOC_MEM_OFFSET(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_LOC_MEM_OFFSET_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_LOC_MEM_OFFSET_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_LOC_MEM_OFFSET(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_LOC_MEM_OFFSET_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_LOC_MEM_OFFSET_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_NTT_EN(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_NTT_EN_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_NTT_EN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_NTT_EN(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_NTT_EN_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_NTT_EN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_REM_PTAG(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_REM_PTAG_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_REM_PTAG_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_REM_PTAG(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_REM_PTAG_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_REM_PTAG_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_LOC_PTAG(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_LOC_PTAG_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_LOC_PTAG_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_LOC_PTAG(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_LOC_PTAG_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_LOC_PTAG_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_SRC_CQH(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_SRC_CQH_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_SRC_CQH_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_SRC_CQH(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_SRC_CQH_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_SRC_CQH_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_PE_BASE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_PE_BASE_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_PE_BASE_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_PE_BASE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_PE_BASE_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_PE_BASE_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_NPES(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_NPES_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_NPES_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_NPES(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_NPES_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_NPES_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_127(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_127_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_127_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_127(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_127_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_127_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_REM_MDH(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_REM_MDH_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_REM_MDH_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_REM_MDH(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_REM_MDH_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_REM_MDH_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_114(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_114_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_114_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_114(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_114_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_114_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_LOC_MDH(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_LOC_MDH_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_LOC_MDH_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_LOC_MDH(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_LOC_MDH_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_LOC_MDH_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_BTE_FENCE(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_BTE_FENCE_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_BTE_FENCE_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_BTE_FENCE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_BTE_FENCE_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_BTE_FENCE_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_PRIVILEGED(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_PRIVILEGED_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_PRIVILEGED_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_PRIVILEGED(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_PRIVILEGED_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_PRIVILEGED_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_99_98(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_99_98_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_99_98_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_99_98(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_99_98_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_99_98_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_BTE_CHAN(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_BTE_CHAN_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_BTE_CHAN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_BTE_CHAN(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_BTE_CHAN_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_BTE_CHAN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_95(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_95_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_95_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_95(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_95_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_95_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RD_NO_SNOOP(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RD_NO_SNOOP_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RD_NO_SNOOP_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RD_NO_SNOOP(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RD_NO_SNOOP_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RD_NO_SNOOP_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RD_RO(mmr)                 	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RD_RO_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RD_RO_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RD_RO(mmr,v)               	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RD_RO_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RD_RO_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_NAT_EN(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_NAT_EN_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_NAT_EN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_NAT_EN(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_NAT_EN_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_NAT_EN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_91(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_91_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_91_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_91(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_91_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_91_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_ENQ_STATUS_CQH(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_ENQ_STATUS_CQH_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_ENQ_STATUS_CQH_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_ENQ_STATUS_CQH(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_ENQ_STATUS_CQH_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_ENQ_STATUS_CQH_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_75_72(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_75_72_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_75_72_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_75_72(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_75_72_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_75_72_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_71(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_71_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_71_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_71(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_71_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_71_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_70_66(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_70_66_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_70_66_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_70_66(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_70_66_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_70_66_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_BTE_OP(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_BTE_OP_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_BTE_OP_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_BTE_OP(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_BTE_OP_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_BTE_OP_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_FMA_EN(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FMA_EN_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FMA_EN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_FMA_EN(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FMA_EN_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_FMA_EN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RC(mmr)                    	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RC_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RC_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RC(mmr,v)                  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RC_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RC_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_WC(mmr)                    	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_WC_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_WC_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_WC(mmr,v)                  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_WC_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_WC_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_58(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_58_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_58_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_58(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_58_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_RESERVED_58_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_LOGICAL_DEST(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_LOGICAL_DEST_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_LOGICAL_DEST_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_LOGICAL_DEST(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_LOGICAL_DEST_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_LOGICAL_DEST_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_FLBTE_REM_MEM_OFFSET(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_REM_MEM_OFFSET_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_REM_MEM_OFFSET_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_FLBTE_REM_MEM_OFFSET(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_REM_MEM_OFFSET_BP,\
+									AR_NIC_FMA_CFG_DESC_FLBTE_REM_MEM_OFFSET_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_1727_1664(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_1727_1664_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_1727_1664_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_1727_1664(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_1727_1664_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_1727_1664_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_1663_1600(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_1663_1600_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_1663_1600_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_1663_1600(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_1663_1600_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_1663_1600_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_1599_1536(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_1599_1536_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_1599_1536_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_1599_1536(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_1599_1536_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_1599_1536_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_1151_1088(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_1151_1088_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_1151_1088_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_1151_1088(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_1151_1088_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_1151_1088_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_STATUS(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_STATUS_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_STATUS_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_STATUS(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_STATUS_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_STATUS_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_1023_960(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_1023_960_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_1023_960_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_1023_960(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_1023_960_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_1023_960_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_959_896(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_959_896_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_959_896_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_959_896(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_959_896_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_959_896_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_SEQCMP(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_SEQCMP_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_SEQCMP_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_SEQCMP(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_SEQCMP_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_SEQCMP_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_831_771(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_831_771_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_831_771_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_831_771(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_831_771_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_831_771_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_WR_STATUS_WHEN(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_WR_STATUS_WHEN_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_WR_STATUS_WHEN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_WR_STATUS_WHEN(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_WR_STATUS_WHEN_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_WR_STATUS_WHEN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_767_745(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_767_745_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_767_745_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_767_745(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_767_745_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_767_745_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_CEDB_USE_OPRND2(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_CEDB_USE_OPRND2_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_CEDB_USE_OPRND2_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_CEDB_USE_OPRND2(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_CEDB_USE_OPRND2_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_CEDB_USE_OPRND2_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_CEDB_REDUCTN_ID(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_CEDB_REDUCTN_ID_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_CEDB_REDUCTN_ID_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_CEDB_REDUCTN_ID(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_CEDB_REDUCTN_ID_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_CEDB_REDUCTN_ID_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_703_640(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_703_640_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_703_640_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_703_640(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_703_640_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_703_640_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_639_576(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_639_576_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_639_576_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_639_576(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_639_576_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_639_576_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_ALLOC_SEQID(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_ALLOC_SEQID_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_ALLOC_SEQID_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_ALLOC_SEQID(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_ALLOC_SEQID_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_ALLOC_SEQID_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_PRIVILEGE_MASK(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_PRIVILEGE_MASK_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_PRIVILEGE_MASK_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_PRIVILEGE_MASK(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_PRIVILEGE_MASK_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_PRIVILEGE_MASK_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_383_334(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_383_334_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_383_334_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_383_334(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_383_334_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_383_334_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_CHILD_ID(mmr)                 	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_CHILD_ID_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_CHILD_ID_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_CHILD_ID(mmr,v)               	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_CHILD_ID_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_CHILD_ID_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_327_326(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_327_326_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_327_326_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_327_326(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_327_326_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_327_326_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_CE_ID(mmr)                    	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_CE_ID_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_CE_ID_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_CE_ID(mmr,v)                  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_CE_ID_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_CE_ID_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_CE_OPRND2(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_CE_OPRND2_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_CE_OPRND2_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_CE_OPRND2(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_CE_OPRND2_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_CE_OPRND2_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_CE_OPRND1(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_CE_OPRND1_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_CE_OPRND1_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_CE_OPRND1(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_CE_OPRND1_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_CE_OPRND1_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_NTT_EN(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_NTT_EN_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_NTT_EN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_NTT_EN(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_NTT_EN_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_NTT_EN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_REM_PTAG(mmr)                 	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_REM_PTAG_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_REM_PTAG_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_REM_PTAG(mmr,v)               	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_REM_PTAG_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_REM_PTAG_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_182_164(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_182_164_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_182_164_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_182_164(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_182_164_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_182_164_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_PE_BASE(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_PE_BASE_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_PE_BASE_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_PE_BASE(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_PE_BASE_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_PE_BASE_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_NPES(mmr)                     	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_NPES_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_NPES_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_NPES(mmr,v)                   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_NPES_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_NPES_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_127(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_127_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_127_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_127(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_127_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_127_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_REM_MDH(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_REM_MDH_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_REM_MDH_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_REM_MDH(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_REM_MDH_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_REM_MDH_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_114(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_114_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_114_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_114(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_114_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_114_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_113_100(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_113_100_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_113_100_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_113_100(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_113_100_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_113_100_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_99_98(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_99_98_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_99_98_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_99_98(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_99_98_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_99_98_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_97_92(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_97_92_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_97_92_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_97_92(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_97_92_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_97_92_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_91(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_91_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_91_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_91(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_91_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_91_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_90_80(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_90_80_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_90_80_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_90_80(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_90_80_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_90_80_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_79_76(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_79_76_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_79_76_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_79_76(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_79_76_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_79_76_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_FP_EXCEPTION(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_FP_EXCEPTION_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_FP_EXCEPTION_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_FP_EXCEPTION(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_FP_EXCEPTION_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_FP_EXCEPTION_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_71(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_71_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_71_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_71(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_71_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_71_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_70(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_70_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_70_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_70(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_70_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_70_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_CE_OP(mmr)                    	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_CE_OP_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_CE_OP_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_CE_OP(mmr,v)                  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_CE_OP_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_CE_OP_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_FMA_EN(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_FMA_EN_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_FMA_EN_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_FMA_EN(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_FMA_EN_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_FMA_EN_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RC(mmr)                       	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RC_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RC_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RC(mmr,v)                     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RC_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RC_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_59(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_59_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_59_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_59(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_59_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_59_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_58(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_58_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_58_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_RESERVED_58(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_58_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_RESERVED_58_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_LOGICAL_DEST(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_LOGICAL_DEST_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_LOGICAL_DEST_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_LOGICAL_DEST(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_LOGICAL_DEST_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_LOGICAL_DEST_MASK)
+#define RF_AR_NIC_FMA_CFG_DESC_CE_SCATTER_OFFSET(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_DESC_CE_SCATTER_OFFSET_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_SCATTER_OFFSET_MASK)
+#define WF_AR_NIC_FMA_CFG_DESC_CE_SCATTER_OFFSET(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_DESC_CE_SCATTER_OFFSET_BP,\
+									AR_NIC_FMA_CFG_DESC_CE_SCATTER_OFFSET_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_SW_ERR(mmr)                       	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_SW_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_SW_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_SW_ERR(mmr,v)                     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_SW_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_SW_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_PI_PKT_ERR(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_PI_PKT_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_PI_PKT_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_PI_PKT_ERR(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_PI_PKT_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_PI_PKT_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_PI_BYTE_PUT_ERR(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_PI_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_PI_BYTE_PUT_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_PI_BYTE_PUT_ERR(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_PI_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_PI_BYTE_PUT_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_AMO_BYTE_PUT_ERR(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_AMO_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_AMO_BYTE_PUT_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_AMO_BYTE_PUT_ERR(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_AMO_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_AMO_BYTE_PUT_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_GCW_MBE_ERR(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_GCW_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_GCW_MBE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_GCW_MBE_ERR(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_GCW_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_GCW_MBE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_PI_GET_ADDR_ERR(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_PI_GET_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_PI_GET_ADDR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_PI_GET_ADDR_ERR(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_PI_GET_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_PI_GET_ADDR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_FMA_LAUNCH_ERR(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_FMA_LAUNCH_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_FMA_LAUNCH_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_FMA_LAUNCH_ERR(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_FMA_LAUNCH_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_FMA_LAUNCH_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_ADDR_ALIGN_ERR(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_ADDR_ALIGN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_ADDR_ALIGN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_ADDR_ALIGN_ERR(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_ADDR_ALIGN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_ADDR_ALIGN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_GET_FR_ERR(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_GET_FR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_GET_FR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_GET_FR_ERR(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_GET_FR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_GET_FR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_GET_LEN_ERR(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_GET_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_GET_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_GET_LEN_ERR(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_GET_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_GET_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_PUT_LEN_ERR(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_PUT_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_PUT_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_PUT_LEN_ERR(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_PUT_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_PUT_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_INV_COM_ERR(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_INV_COM_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_INV_COM_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_INV_COM_ERR(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_INV_COM_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_INV_COM_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_NPES_ERR(mmr)                     	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_NPES_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_NPES_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_NPES_ERR(mmr,v)                   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_NPES_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_NPES_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_PI_ADDR_ERR(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_PI_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_PI_ADDR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_PI_ADDR_ERR(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_PI_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_PI_ADDR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_PI_LEN_ERR(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_PI_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_PI_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_PI_LEN_ERR(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_PI_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_PI_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_SSID_INACTIVE_ERR(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_SSID_INACTIVE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_SSID_INACTIVE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_SSID_INACTIVE_ERR(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_SSID_INACTIVE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_SSID_INACTIVE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_PI_CMD_ERR(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_PI_CMD_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_PI_CMD_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_PI_CMD_ERR(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_PI_CMD_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_PI_CMD_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DB_MBE_ERR(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DB_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_DB_MBE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DB_MBE_ERR(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DB_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_DB_MBE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_NOPRIV_ERR(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_NOPRIV_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_NOPRIV_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_NOPRIV_ERR(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_NOPRIV_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_NOPRIV_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_SSID_ALLOCID_ERR(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_SSID_ALLOCID_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_SSID_ALLOCID_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_SSID_ALLOCID_ERR(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_SSID_ALLOCID_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_SSID_ALLOCID_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DESC_ENABLE_ERR(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DESC_ENABLE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC_ENABLE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DESC_ENABLE_ERR(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DESC_ENABLE_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC_ENABLE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_PI_BUF_OVERFLOW(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_PI_BUF_OVERFLOW_BP,\
+									AR_NIC_FMA_ERR_FLG_PI_BUF_OVERFLOW_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_PI_BUF_OVERFLOW(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_PI_BUF_OVERFLOW_BP,\
+									AR_NIC_FMA_ERR_FLG_PI_BUF_OVERFLOW_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DESC_WR_ERR(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DESC_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC_WR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DESC_WR_ERR(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DESC_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC_WR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DESC_DB_WR_ERR(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DESC_DB_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC_DB_WR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DESC_DB_WR_ERR(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DESC_DB_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC_DB_WR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_HDR_PERR(mmr)                     	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_HDR_PERR_BP,\
+									AR_NIC_FMA_ERR_FLG_HDR_PERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_HDR_PERR(mmr,v)                   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_HDR_PERR_BP,\
+									AR_NIC_FMA_ERR_FLG_HDR_PERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DATA1IN_MBE(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DATA1IN_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DATA1IN_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DATA1IN_MBE(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DATA1IN_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DATA1IN_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DATA1IN_SBE(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DATA1IN_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DATA1IN_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DATA1IN_SBE(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DATA1IN_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DATA1IN_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DATA0IN_MBE(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DATA0IN_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DATA0IN_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DATA0IN_MBE(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DATA0IN_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DATA0IN_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DATA0IN_SBE(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DATA0IN_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DATA0IN_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DATA0IN_SBE(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DATA0IN_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DATA0IN_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DESC88_MBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DESC88_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC88_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DESC88_MBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DESC88_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC88_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DESC88_SBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DESC88_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC88_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DESC88_SBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DESC88_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC88_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DESC38_MBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DESC38_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC38_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DESC38_MBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DESC38_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC38_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DESC38_SBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DESC38_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC38_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DESC38_SBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DESC38_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC38_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DESC28_MBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DESC28_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC28_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DESC28_MBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DESC28_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC28_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DESC28_SBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DESC28_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC28_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DESC28_SBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DESC28_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC28_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DESC20_MBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DESC20_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC20_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DESC20_MBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DESC20_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC20_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DESC20_SBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DESC20_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC20_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DESC20_SBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DESC20_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC20_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DESC18_MBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DESC18_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC18_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DESC18_MBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DESC18_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC18_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DESC18_SBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DESC18_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC18_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DESC18_SBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DESC18_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC18_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DESC10_MBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DESC10_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC10_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DESC10_MBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DESC10_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC10_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DESC10_SBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DESC10_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC10_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DESC10_SBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DESC10_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC10_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DESC08_MBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DESC08_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC08_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DESC08_MBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DESC08_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC08_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DESC08_SBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DESC08_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC08_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DESC08_SBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DESC08_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC08_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DESC00_MBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DESC00_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC00_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DESC00_MBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DESC00_MBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC00_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DESC00_SBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DESC00_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC00_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DESC00_SBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DESC00_SBE_BP,\
+									AR_NIC_FMA_ERR_FLG_DESC00_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FLG_DIAG_ONLY(mmr)                    	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FLG_DIAG_ONLY_BP,\
+									AR_NIC_FMA_ERR_FLG_DIAG_ONLY_MASK)
+#define WF_AR_NIC_FMA_ERR_FLG_DIAG_ONLY(mmr,v)                  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FLG_DIAG_ONLY_BP,\
+									AR_NIC_FMA_ERR_FLG_DIAG_ONLY_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_SW_ERR(mmr)                       	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_SW_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_SW_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_SW_ERR(mmr,v)                     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_SW_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_SW_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_PI_PKT_ERR(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_PI_PKT_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_PI_PKT_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_PI_PKT_ERR(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_PI_PKT_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_PI_PKT_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_PI_BYTE_PUT_ERR(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_PI_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_PI_BYTE_PUT_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_PI_BYTE_PUT_ERR(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_PI_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_PI_BYTE_PUT_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_AMO_BYTE_PUT_ERR(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_AMO_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_AMO_BYTE_PUT_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_AMO_BYTE_PUT_ERR(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_AMO_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_AMO_BYTE_PUT_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_GCW_MBE_ERR(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_GCW_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_GCW_MBE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_GCW_MBE_ERR(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_GCW_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_GCW_MBE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_PI_GET_ADDR_ERR(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_PI_GET_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_PI_GET_ADDR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_PI_GET_ADDR_ERR(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_PI_GET_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_PI_GET_ADDR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_FMA_LAUNCH_ERR(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_FMA_LAUNCH_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_FMA_LAUNCH_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_FMA_LAUNCH_ERR(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_FMA_LAUNCH_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_FMA_LAUNCH_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_ADDR_ALIGN_ERR(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_ADDR_ALIGN_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_ADDR_ALIGN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_ADDR_ALIGN_ERR(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_ADDR_ALIGN_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_ADDR_ALIGN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_GET_FR_ERR(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_GET_FR_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_GET_FR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_GET_FR_ERR(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_GET_FR_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_GET_FR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_GET_LEN_ERR(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_GET_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_GET_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_GET_LEN_ERR(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_GET_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_GET_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_PUT_LEN_ERR(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_PUT_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_PUT_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_PUT_LEN_ERR(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_PUT_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_PUT_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_INV_COM_ERR(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_INV_COM_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_INV_COM_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_INV_COM_ERR(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_INV_COM_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_INV_COM_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_NPES_ERR(mmr)                     	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_NPES_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_NPES_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_NPES_ERR(mmr,v)                   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_NPES_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_NPES_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_PI_ADDR_ERR(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_PI_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_PI_ADDR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_PI_ADDR_ERR(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_PI_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_PI_ADDR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_PI_LEN_ERR(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_PI_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_PI_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_PI_LEN_ERR(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_PI_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_PI_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_SSID_INACTIVE_ERR(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_SSID_INACTIVE_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_SSID_INACTIVE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_SSID_INACTIVE_ERR(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_SSID_INACTIVE_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_SSID_INACTIVE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_PI_CMD_ERR(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_PI_CMD_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_PI_CMD_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_PI_CMD_ERR(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_PI_CMD_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_PI_CMD_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DB_MBE_ERR(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DB_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_DB_MBE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DB_MBE_ERR(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DB_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_DB_MBE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_NOPRIV_ERR(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_NOPRIV_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_NOPRIV_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_NOPRIV_ERR(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_NOPRIV_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_NOPRIV_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_SSID_ALLOCID_ERR(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_SSID_ALLOCID_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_SSID_ALLOCID_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_SSID_ALLOCID_ERR(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_SSID_ALLOCID_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_SSID_ALLOCID_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DESC_ENABLE_ERR(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DESC_ENABLE_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC_ENABLE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DESC_ENABLE_ERR(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DESC_ENABLE_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC_ENABLE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_PI_BUF_OVERFLOW(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_PI_BUF_OVERFLOW_BP,\
+									AR_NIC_FMA_ERR_CLR_PI_BUF_OVERFLOW_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_PI_BUF_OVERFLOW(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_PI_BUF_OVERFLOW_BP,\
+									AR_NIC_FMA_ERR_CLR_PI_BUF_OVERFLOW_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DESC_WR_ERR(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DESC_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC_WR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DESC_WR_ERR(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DESC_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC_WR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DESC_DB_WR_ERR(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DESC_DB_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC_DB_WR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DESC_DB_WR_ERR(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DESC_DB_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC_DB_WR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_HDR_PERR(mmr)                     	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_HDR_PERR_BP,\
+									AR_NIC_FMA_ERR_CLR_HDR_PERR_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_HDR_PERR(mmr,v)                   	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_HDR_PERR_BP,\
+									AR_NIC_FMA_ERR_CLR_HDR_PERR_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DATA1IN_MBE(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DATA1IN_MBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DATA1IN_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DATA1IN_MBE(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DATA1IN_MBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DATA1IN_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DATA1IN_SBE(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DATA1IN_SBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DATA1IN_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DATA1IN_SBE(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DATA1IN_SBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DATA1IN_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DATA0IN_MBE(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DATA0IN_MBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DATA0IN_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DATA0IN_MBE(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DATA0IN_MBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DATA0IN_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DATA0IN_SBE(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DATA0IN_SBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DATA0IN_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DATA0IN_SBE(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DATA0IN_SBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DATA0IN_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DESC88_MBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DESC88_MBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC88_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DESC88_MBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DESC88_MBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC88_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DESC88_SBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DESC88_SBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC88_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DESC88_SBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DESC88_SBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC88_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DESC38_MBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DESC38_MBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC38_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DESC38_MBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DESC38_MBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC38_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DESC38_SBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DESC38_SBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC38_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DESC38_SBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DESC38_SBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC38_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DESC28_MBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DESC28_MBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC28_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DESC28_MBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DESC28_MBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC28_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DESC28_SBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DESC28_SBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC28_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DESC28_SBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DESC28_SBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC28_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DESC20_MBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DESC20_MBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC20_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DESC20_MBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DESC20_MBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC20_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DESC20_SBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DESC20_SBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC20_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DESC20_SBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DESC20_SBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC20_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DESC18_MBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DESC18_MBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC18_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DESC18_MBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DESC18_MBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC18_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DESC18_SBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DESC18_SBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC18_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DESC18_SBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DESC18_SBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC18_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DESC10_MBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DESC10_MBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC10_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DESC10_MBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DESC10_MBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC10_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DESC10_SBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DESC10_SBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC10_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DESC10_SBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DESC10_SBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC10_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DESC08_MBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DESC08_MBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC08_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DESC08_MBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DESC08_MBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC08_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DESC08_SBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DESC08_SBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC08_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DESC08_SBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DESC08_SBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC08_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DESC00_MBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DESC00_MBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC00_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DESC00_MBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DESC00_MBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC00_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DESC00_SBE(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DESC00_SBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC00_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DESC00_SBE(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DESC00_SBE_BP,\
+									AR_NIC_FMA_ERR_CLR_DESC00_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_CLR_DIAG_ONLY(mmr)                    	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_CLR_DIAG_ONLY_BP,\
+									AR_NIC_FMA_ERR_CLR_DIAG_ONLY_MASK)
+#define WF_AR_NIC_FMA_ERR_CLR_DIAG_ONLY(mmr,v)                  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_CLR_DIAG_ONLY_BP,\
+									AR_NIC_FMA_ERR_CLR_DIAG_ONLY_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_SW_ERR(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_SW_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_SW_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_SW_ERR(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_SW_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_SW_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_PI_PKT_ERR(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_PKT_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_PKT_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_PI_PKT_ERR(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_PKT_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_PKT_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_PI_BYTE_PUT_ERR(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_BYTE_PUT_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_PI_BYTE_PUT_ERR(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_BYTE_PUT_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_AMO_BYTE_PUT_ERR(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_AMO_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_AMO_BYTE_PUT_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_AMO_BYTE_PUT_ERR(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_AMO_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_AMO_BYTE_PUT_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_GCW_MBE_ERR(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_GCW_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_GCW_MBE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_GCW_MBE_ERR(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_GCW_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_GCW_MBE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_PI_GET_ADDR_ERR(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_GET_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_GET_ADDR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_PI_GET_ADDR_ERR(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_GET_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_GET_ADDR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_FMA_LAUNCH_ERR(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_FMA_LAUNCH_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_FMA_LAUNCH_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_FMA_LAUNCH_ERR(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_FMA_LAUNCH_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_FMA_LAUNCH_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_ADDR_ALIGN_ERR(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_ADDR_ALIGN_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_ADDR_ALIGN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_ADDR_ALIGN_ERR(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_ADDR_ALIGN_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_ADDR_ALIGN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_GET_FR_ERR(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_GET_FR_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_GET_FR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_GET_FR_ERR(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_GET_FR_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_GET_FR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_GET_LEN_ERR(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_GET_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_GET_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_GET_LEN_ERR(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_GET_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_GET_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_PUT_LEN_ERR(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_PUT_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_PUT_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_PUT_LEN_ERR(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_PUT_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_PUT_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_INV_COM_ERR(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_INV_COM_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_INV_COM_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_INV_COM_ERR(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_INV_COM_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_INV_COM_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_NPES_ERR(mmr)                 	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_NPES_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_NPES_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_NPES_ERR(mmr,v)               	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_NPES_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_NPES_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_PI_ADDR_ERR(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_ADDR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_PI_ADDR_ERR(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_ADDR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_PI_LEN_ERR(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_PI_LEN_ERR(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_SSID_INACTIVE_ERR(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_SSID_INACTIVE_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_SSID_INACTIVE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_SSID_INACTIVE_ERR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_SSID_INACTIVE_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_SSID_INACTIVE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_PI_CMD_ERR(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_CMD_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_CMD_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_PI_CMD_ERR(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_CMD_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_CMD_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DB_MBE_ERR(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DB_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DB_MBE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DB_MBE_ERR(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DB_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DB_MBE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_NOPRIV_ERR(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_NOPRIV_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_NOPRIV_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_NOPRIV_ERR(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_NOPRIV_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_NOPRIV_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_SSID_ALLOCID_ERR(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_SSID_ALLOCID_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_SSID_ALLOCID_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_SSID_ALLOCID_ERR(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_SSID_ALLOCID_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_SSID_ALLOCID_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DESC_ENABLE_ERR(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC_ENABLE_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC_ENABLE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DESC_ENABLE_ERR(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC_ENABLE_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC_ENABLE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_PI_BUF_OVERFLOW(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_BUF_OVERFLOW_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_BUF_OVERFLOW_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_PI_BUF_OVERFLOW(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_BUF_OVERFLOW_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_PI_BUF_OVERFLOW_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DESC_WR_ERR(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC_WR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DESC_WR_ERR(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC_WR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DESC_DB_WR_ERR(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC_DB_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC_DB_WR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DESC_DB_WR_ERR(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC_DB_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC_DB_WR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_HDR_PERR(mmr)                 	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_HDR_PERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_HDR_PERR_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_HDR_PERR(mmr,v)               	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_HDR_PERR_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_HDR_PERR_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DATA1IN_MBE(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DATA1IN_MBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DATA1IN_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DATA1IN_MBE(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DATA1IN_MBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DATA1IN_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DATA1IN_SBE(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DATA1IN_SBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DATA1IN_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DATA1IN_SBE(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DATA1IN_SBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DATA1IN_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DATA0IN_MBE(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DATA0IN_MBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DATA0IN_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DATA0IN_MBE(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DATA0IN_MBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DATA0IN_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DATA0IN_SBE(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DATA0IN_SBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DATA0IN_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DATA0IN_SBE(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DATA0IN_SBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DATA0IN_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DESC88_MBE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC88_MBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC88_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DESC88_MBE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC88_MBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC88_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DESC88_SBE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC88_SBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC88_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DESC88_SBE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC88_SBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC88_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DESC38_MBE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC38_MBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC38_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DESC38_MBE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC38_MBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC38_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DESC38_SBE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC38_SBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC38_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DESC38_SBE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC38_SBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC38_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DESC28_MBE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC28_MBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC28_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DESC28_MBE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC28_MBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC28_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DESC28_SBE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC28_SBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC28_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DESC28_SBE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC28_SBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC28_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DESC20_MBE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC20_MBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC20_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DESC20_MBE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC20_MBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC20_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DESC20_SBE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC20_SBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC20_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DESC20_SBE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC20_SBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC20_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DESC18_MBE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC18_MBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC18_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DESC18_MBE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC18_MBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC18_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DESC18_SBE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC18_SBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC18_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DESC18_SBE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC18_SBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC18_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DESC10_MBE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC10_MBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC10_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DESC10_MBE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC10_MBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC10_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DESC10_SBE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC10_SBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC10_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DESC10_SBE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC10_SBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC10_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DESC08_MBE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC08_MBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC08_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DESC08_MBE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC08_MBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC08_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DESC08_SBE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC08_SBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC08_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DESC08_SBE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC08_SBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC08_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DESC00_MBE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC00_MBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC00_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DESC00_MBE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC00_MBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC00_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DESC00_SBE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC00_SBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC00_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DESC00_SBE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC00_SBE_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DESC00_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_HSS_MSK_DIAG_ONLY(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_HSS_MSK_DIAG_ONLY_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DIAG_ONLY_MASK)
+#define WF_AR_NIC_FMA_ERR_HSS_MSK_DIAG_ONLY(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_HSS_MSK_DIAG_ONLY_BP,\
+									AR_NIC_FMA_ERR_HSS_MSK_DIAG_ONLY_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_SW_ERR(mmr)                    	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_SW_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_SW_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_SW_ERR(mmr,v)                  	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_SW_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_SW_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_PI_PKT_ERR(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_PKT_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_PKT_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_PI_PKT_ERR(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_PKT_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_PKT_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_PI_BYTE_PUT_ERR(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_BYTE_PUT_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_PI_BYTE_PUT_ERR(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_BYTE_PUT_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_AMO_BYTE_PUT_ERR(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_AMO_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_AMO_BYTE_PUT_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_AMO_BYTE_PUT_ERR(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_AMO_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_AMO_BYTE_PUT_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_GCW_MBE_ERR(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_GCW_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_GCW_MBE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_GCW_MBE_ERR(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_GCW_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_GCW_MBE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_PI_GET_ADDR_ERR(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_GET_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_GET_ADDR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_PI_GET_ADDR_ERR(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_GET_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_GET_ADDR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_FMA_LAUNCH_ERR(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_FMA_LAUNCH_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_FMA_LAUNCH_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_FMA_LAUNCH_ERR(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_FMA_LAUNCH_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_FMA_LAUNCH_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_ADDR_ALIGN_ERR(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_ADDR_ALIGN_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_ADDR_ALIGN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_ADDR_ALIGN_ERR(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_ADDR_ALIGN_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_ADDR_ALIGN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_GET_FR_ERR(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_GET_FR_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_GET_FR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_GET_FR_ERR(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_GET_FR_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_GET_FR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_GET_LEN_ERR(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_GET_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_GET_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_GET_LEN_ERR(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_GET_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_GET_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_PUT_LEN_ERR(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_PUT_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_PUT_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_PUT_LEN_ERR(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_PUT_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_PUT_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_INV_COM_ERR(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_INV_COM_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_INV_COM_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_INV_COM_ERR(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_INV_COM_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_INV_COM_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_NPES_ERR(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_NPES_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_NPES_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_NPES_ERR(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_NPES_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_NPES_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_PI_ADDR_ERR(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_ADDR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_PI_ADDR_ERR(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_ADDR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_PI_LEN_ERR(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_PI_LEN_ERR(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_SSID_INACTIVE_ERR(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_SSID_INACTIVE_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_SSID_INACTIVE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_SSID_INACTIVE_ERR(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_SSID_INACTIVE_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_SSID_INACTIVE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_PI_CMD_ERR(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_CMD_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_CMD_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_PI_CMD_ERR(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_CMD_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_CMD_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DB_MBE_ERR(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DB_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DB_MBE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DB_MBE_ERR(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DB_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DB_MBE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_NOPRIV_ERR(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_NOPRIV_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_NOPRIV_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_NOPRIV_ERR(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_NOPRIV_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_NOPRIV_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_SSID_ALLOCID_ERR(mmr)          	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_SSID_ALLOCID_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_SSID_ALLOCID_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_SSID_ALLOCID_ERR(mmr,v)        	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_SSID_ALLOCID_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_SSID_ALLOCID_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DESC_ENABLE_ERR(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC_ENABLE_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC_ENABLE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DESC_ENABLE_ERR(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC_ENABLE_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC_ENABLE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_PI_BUF_OVERFLOW(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_BUF_OVERFLOW_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_BUF_OVERFLOW_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_PI_BUF_OVERFLOW(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_BUF_OVERFLOW_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_PI_BUF_OVERFLOW_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DESC_WR_ERR(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC_WR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DESC_WR_ERR(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC_WR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DESC_DB_WR_ERR(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC_DB_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC_DB_WR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DESC_DB_WR_ERR(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC_DB_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC_DB_WR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_HDR_PERR(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_HDR_PERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_HDR_PERR_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_HDR_PERR(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_HDR_PERR_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_HDR_PERR_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DATA1IN_MBE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DATA1IN_MBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DATA1IN_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DATA1IN_MBE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DATA1IN_MBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DATA1IN_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DATA1IN_SBE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DATA1IN_SBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DATA1IN_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DATA1IN_SBE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DATA1IN_SBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DATA1IN_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DATA0IN_MBE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DATA0IN_MBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DATA0IN_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DATA0IN_MBE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DATA0IN_MBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DATA0IN_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DATA0IN_SBE(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DATA0IN_SBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DATA0IN_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DATA0IN_SBE(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DATA0IN_SBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DATA0IN_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DESC88_MBE(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC88_MBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC88_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DESC88_MBE(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC88_MBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC88_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DESC88_SBE(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC88_SBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC88_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DESC88_SBE(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC88_SBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC88_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DESC38_MBE(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC38_MBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC38_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DESC38_MBE(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC38_MBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC38_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DESC38_SBE(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC38_SBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC38_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DESC38_SBE(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC38_SBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC38_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DESC28_MBE(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC28_MBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC28_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DESC28_MBE(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC28_MBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC28_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DESC28_SBE(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC28_SBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC28_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DESC28_SBE(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC28_SBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC28_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DESC20_MBE(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC20_MBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC20_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DESC20_MBE(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC20_MBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC20_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DESC20_SBE(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC20_SBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC20_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DESC20_SBE(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC20_SBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC20_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DESC18_MBE(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC18_MBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC18_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DESC18_MBE(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC18_MBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC18_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DESC18_SBE(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC18_SBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC18_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DESC18_SBE(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC18_SBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC18_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DESC10_MBE(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC10_MBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC10_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DESC10_MBE(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC10_MBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC10_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DESC10_SBE(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC10_SBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC10_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DESC10_SBE(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC10_SBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC10_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DESC08_MBE(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC08_MBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC08_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DESC08_MBE(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC08_MBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC08_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DESC08_SBE(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC08_SBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC08_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DESC08_SBE(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC08_SBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC08_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DESC00_MBE(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC00_MBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC00_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DESC00_MBE(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC00_MBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC00_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DESC00_SBE(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC00_SBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC00_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DESC00_SBE(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC00_SBE_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DESC00_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_OS_MSK_DIAG_ONLY(mmr)                 	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_OS_MSK_DIAG_ONLY_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DIAG_ONLY_MASK)
+#define WF_AR_NIC_FMA_ERR_OS_MSK_DIAG_ONLY(mmr,v)               	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_OS_MSK_DIAG_ONLY_BP,\
+									AR_NIC_FMA_ERR_OS_MSK_DIAG_ONLY_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_SW_ERR(mmr)                 	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_SW_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_SW_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_SW_ERR(mmr,v)               	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_SW_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_SW_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_PI_PKT_ERR(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_PKT_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_PKT_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_PI_PKT_ERR(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_PKT_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_PKT_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_PI_BYTE_PUT_ERR(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_BYTE_PUT_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_PI_BYTE_PUT_ERR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_BYTE_PUT_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_AMO_BYTE_PUT_ERR(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_AMO_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_AMO_BYTE_PUT_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_AMO_BYTE_PUT_ERR(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_AMO_BYTE_PUT_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_AMO_BYTE_PUT_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_GCW_MBE_ERR(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_GCW_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_GCW_MBE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_GCW_MBE_ERR(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_GCW_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_GCW_MBE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_PI_GET_ADDR_ERR(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_GET_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_GET_ADDR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_PI_GET_ADDR_ERR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_GET_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_GET_ADDR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_FMA_LAUNCH_ERR(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_FMA_LAUNCH_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_FMA_LAUNCH_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_FMA_LAUNCH_ERR(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_FMA_LAUNCH_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_FMA_LAUNCH_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_ADDR_ALIGN_ERR(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_ADDR_ALIGN_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_ADDR_ALIGN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_ADDR_ALIGN_ERR(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_ADDR_ALIGN_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_ADDR_ALIGN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_GET_FR_ERR(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_GET_FR_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_GET_FR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_GET_FR_ERR(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_GET_FR_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_GET_FR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_GET_LEN_ERR(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_GET_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_GET_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_GET_LEN_ERR(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_GET_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_GET_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_PUT_LEN_ERR(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PUT_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PUT_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_PUT_LEN_ERR(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PUT_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PUT_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_INV_COM_ERR(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_INV_COM_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_INV_COM_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_INV_COM_ERR(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_INV_COM_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_INV_COM_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_NPES_ERR(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_NPES_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_NPES_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_NPES_ERR(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_NPES_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_NPES_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_PI_ADDR_ERR(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_ADDR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_PI_ADDR_ERR(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_ADDR_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_ADDR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_PI_LEN_ERR(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_LEN_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_PI_LEN_ERR(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_LEN_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_LEN_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_SSID_INACTIVE_ERR(mmr)      	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_SSID_INACTIVE_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_SSID_INACTIVE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_SSID_INACTIVE_ERR(mmr,v)    	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_SSID_INACTIVE_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_SSID_INACTIVE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_PI_CMD_ERR(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_CMD_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_CMD_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_PI_CMD_ERR(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_CMD_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_CMD_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DB_MBE_ERR(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DB_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DB_MBE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DB_MBE_ERR(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DB_MBE_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DB_MBE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_NOPRIV_ERR(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_NOPRIV_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_NOPRIV_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_NOPRIV_ERR(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_NOPRIV_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_NOPRIV_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_SSID_ALLOCID_ERR(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_SSID_ALLOCID_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_SSID_ALLOCID_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_SSID_ALLOCID_ERR(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_SSID_ALLOCID_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_SSID_ALLOCID_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DESC_ENABLE_ERR(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC_ENABLE_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC_ENABLE_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DESC_ENABLE_ERR(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC_ENABLE_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC_ENABLE_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_PI_BUF_OVERFLOW(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_BUF_OVERFLOW_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_BUF_OVERFLOW_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_PI_BUF_OVERFLOW(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_BUF_OVERFLOW_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_PI_BUF_OVERFLOW_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DESC_WR_ERR(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC_WR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DESC_WR_ERR(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC_WR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DESC_DB_WR_ERR(mmr)         	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC_DB_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC_DB_WR_ERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DESC_DB_WR_ERR(mmr,v)       	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC_DB_WR_ERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC_DB_WR_ERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_HDR_PERR(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_HDR_PERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_HDR_PERR_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_HDR_PERR(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_HDR_PERR_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_HDR_PERR_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DATA1IN_MBE(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DATA1IN_MBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DATA1IN_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DATA1IN_MBE(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DATA1IN_MBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DATA1IN_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DATA1IN_SBE(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DATA1IN_SBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DATA1IN_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DATA1IN_SBE(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DATA1IN_SBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DATA1IN_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DATA0IN_MBE(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DATA0IN_MBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DATA0IN_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DATA0IN_MBE(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DATA0IN_MBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DATA0IN_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DATA0IN_SBE(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DATA0IN_SBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DATA0IN_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DATA0IN_SBE(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DATA0IN_SBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DATA0IN_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DESC88_MBE(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC88_MBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC88_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DESC88_MBE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC88_MBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC88_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DESC88_SBE(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC88_SBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC88_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DESC88_SBE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC88_SBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC88_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DESC38_MBE(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC38_MBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC38_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DESC38_MBE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC38_MBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC38_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DESC38_SBE(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC38_SBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC38_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DESC38_SBE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC38_SBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC38_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DESC28_MBE(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC28_MBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC28_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DESC28_MBE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC28_MBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC28_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DESC28_SBE(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC28_SBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC28_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DESC28_SBE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC28_SBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC28_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DESC20_MBE(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC20_MBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC20_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DESC20_MBE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC20_MBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC20_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DESC20_SBE(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC20_SBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC20_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DESC20_SBE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC20_SBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC20_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DESC18_MBE(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC18_MBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC18_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DESC18_MBE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC18_MBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC18_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DESC18_SBE(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC18_SBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC18_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DESC18_SBE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC18_SBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC18_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DESC10_MBE(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC10_MBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC10_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DESC10_MBE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC10_MBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC10_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DESC10_SBE(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC10_SBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC10_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DESC10_SBE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC10_SBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC10_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DESC08_MBE(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC08_MBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC08_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DESC08_MBE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC08_MBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC08_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DESC08_SBE(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC08_SBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC08_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DESC08_SBE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC08_SBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC08_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DESC00_MBE(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC00_MBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC00_MBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DESC00_MBE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC00_MBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC00_MBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DESC00_SBE(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC00_SBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC00_SBE_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DESC00_SBE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC00_SBE_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DESC00_SBE_MASK)
+#define RF_AR_NIC_FMA_ERR_FIRST_FLG_DIAG_ONLY(mmr)              	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DIAG_ONLY_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DIAG_ONLY_MASK)
+#define WF_AR_NIC_FMA_ERR_FIRST_FLG_DIAG_ONLY(mmr,v)            	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DIAG_ONLY_BP,\
+									AR_NIC_FMA_ERR_FIRST_FLG_DIAG_ONLY_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_RAM0_DESC18_MBE_SYND(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC18_MBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC18_MBE_SYND_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_RAM0_DESC18_MBE_SYND(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC18_MBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC18_MBE_SYND_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_RAM0_DESC18_SBE_SYND(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC18_SBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC18_SBE_SYND_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_RAM0_DESC18_SBE_SYND(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC18_SBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC18_SBE_SYND_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_RAM0_DESC10_MBE_SYND(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC10_MBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC10_MBE_SYND_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_RAM0_DESC10_MBE_SYND(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC10_MBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC10_MBE_SYND_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_RAM0_DESC10_SBE_SYND(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC10_SBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC10_SBE_SYND_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_RAM0_DESC10_SBE_SYND(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC10_SBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC10_SBE_SYND_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_RAM0_DESC08_MBE_SYND(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC08_MBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC08_MBE_SYND_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_RAM0_DESC08_MBE_SYND(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC08_MBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC08_MBE_SYND_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_RAM0_DESC08_SBE_SYND(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC08_SBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC08_SBE_SYND_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_RAM0_DESC08_SBE_SYND(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC08_SBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC08_SBE_SYND_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_RAM0_DESC00_MBE_SYND(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC00_MBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC00_MBE_SYND_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_RAM0_DESC00_MBE_SYND(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC00_MBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC00_MBE_SYND_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_RAM0_DESC00_SBE_SYND(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC00_SBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC00_SBE_SYND_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_RAM0_DESC00_SBE_SYND(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC00_SBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM0_DESC00_SBE_SYND_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_RAM1_DESC88_MBE_SYND(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC88_MBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC88_MBE_SYND_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_RAM1_DESC88_MBE_SYND(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC88_MBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC88_MBE_SYND_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_RAM1_DESC88_SBE_SYND(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC88_SBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC88_SBE_SYND_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_RAM1_DESC88_SBE_SYND(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC88_SBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC88_SBE_SYND_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_RAM1_DESC38_MBE_SYND(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC38_MBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC38_MBE_SYND_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_RAM1_DESC38_MBE_SYND(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC38_MBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC38_MBE_SYND_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_RAM1_DESC38_SBE_SYND(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC38_SBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC38_SBE_SYND_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_RAM1_DESC38_SBE_SYND(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC38_SBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC38_SBE_SYND_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_RAM1_DESC28_MBE_SYND(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC28_MBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC28_MBE_SYND_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_RAM1_DESC28_MBE_SYND(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC28_MBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC28_MBE_SYND_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_RAM1_DESC28_SBE_SYND(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC28_SBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC28_SBE_SYND_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_RAM1_DESC28_SBE_SYND(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC28_SBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC28_SBE_SYND_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_RAM1_DESC20_MBE_SYND(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC20_MBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC20_MBE_SYND_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_RAM1_DESC20_MBE_SYND(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC20_MBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC20_MBE_SYND_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_RAM1_DESC20_SBE_SYND(mmr)        	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC20_SBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC20_SBE_SYND_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_RAM1_DESC20_SBE_SYND(mmr,v)      	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC20_SBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_RAM1_DESC20_SBE_SYND_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_DATA_DATA1IN_MBE_SYND(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_DATA_DATA1IN_MBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_DATA_DATA1IN_MBE_SYND_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_DATA_DATA1IN_MBE_SYND(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_DATA_DATA1IN_MBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_DATA_DATA1IN_MBE_SYND_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_DATA_DATA1IN_SBE_SYND(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_DATA_DATA1IN_SBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_DATA_DATA1IN_SBE_SYND_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_DATA_DATA1IN_SBE_SYND(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_DATA_DATA1IN_SBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_DATA_DATA1IN_SBE_SYND_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_DATA_DATA0IN_MBE_SYND(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_DATA_DATA0IN_MBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_DATA_DATA0IN_MBE_SYND_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_DATA_DATA0IN_MBE_SYND(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_DATA_DATA0IN_MBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_DATA_DATA0IN_MBE_SYND_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_DATA_DATA0IN_SBE_SYND(mmr)       	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_DATA_DATA0IN_SBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_DATA_DATA0IN_SBE_SYND_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_DATA_DATA0IN_SBE_SYND(mmr,v)     	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_DATA_DATA0IN_SBE_SYND_BP,\
+									AR_NIC_FMA_ERR_INFO_DATA_DATA0IN_SBE_SYND_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_HDR_PERR3(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_HDR_PERR3_BP,\
+									AR_NIC_FMA_ERR_INFO_HDR_PERR3_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_HDR_PERR3(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_HDR_PERR3_BP,\
+									AR_NIC_FMA_ERR_INFO_HDR_PERR3_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_HDR_PERR2(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_HDR_PERR2_BP,\
+									AR_NIC_FMA_ERR_INFO_HDR_PERR2_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_HDR_PERR2(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_HDR_PERR2_BP,\
+									AR_NIC_FMA_ERR_INFO_HDR_PERR2_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_HDR_PERR1(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_HDR_PERR1_BP,\
+									AR_NIC_FMA_ERR_INFO_HDR_PERR1_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_HDR_PERR1(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_HDR_PERR1_BP,\
+									AR_NIC_FMA_ERR_INFO_HDR_PERR1_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_HDR_PERR0(mmr)                   	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_HDR_PERR0_BP,\
+									AR_NIC_FMA_ERR_INFO_HDR_PERR0_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_HDR_PERR0(mmr,v)                 	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_HDR_PERR0_BP,\
+									AR_NIC_FMA_ERR_INFO_HDR_PERR0_MASK)
+#define RF_AR_NIC_FMA_DBG_ERRINJ_RAM_ADDRESS(mmr)               	RD_FIELD(mmr,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_ADDRESS_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_ADDRESS_MASK)
+#define WF_AR_NIC_FMA_DBG_ERRINJ_RAM_ADDRESS(mmr,v)             	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_ADDRESS_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_ADDRESS_MASK)
+#define RF_AR_NIC_FMA_DBG_ERRINJ_RAM_CHECKBYTE(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_CHECKBYTE_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_CHECKBYTE_MASK)
+#define WF_AR_NIC_FMA_DBG_ERRINJ_RAM_CHECKBYTE(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_CHECKBYTE_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_CHECKBYTE_MASK)
+#define RF_AR_NIC_FMA_DBG_ERRINJ_RAM_DESC88(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC88_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC88_MASK)
+#define WF_AR_NIC_FMA_DBG_ERRINJ_RAM_DESC88(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC88_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC88_MASK)
+#define RF_AR_NIC_FMA_DBG_ERRINJ_RAM_DESC38(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC38_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC38_MASK)
+#define WF_AR_NIC_FMA_DBG_ERRINJ_RAM_DESC38(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC38_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC38_MASK)
+#define RF_AR_NIC_FMA_DBG_ERRINJ_RAM_DESC28(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC28_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC28_MASK)
+#define WF_AR_NIC_FMA_DBG_ERRINJ_RAM_DESC28(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC28_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC28_MASK)
+#define RF_AR_NIC_FMA_DBG_ERRINJ_RAM_DESC20(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC20_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC20_MASK)
+#define WF_AR_NIC_FMA_DBG_ERRINJ_RAM_DESC20(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC20_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC20_MASK)
+#define RF_AR_NIC_FMA_DBG_ERRINJ_RAM_DESC18(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC18_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC18_MASK)
+#define WF_AR_NIC_FMA_DBG_ERRINJ_RAM_DESC18(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC18_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC18_MASK)
+#define RF_AR_NIC_FMA_DBG_ERRINJ_RAM_DESC10(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC10_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC10_MASK)
+#define WF_AR_NIC_FMA_DBG_ERRINJ_RAM_DESC10(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC10_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC10_MASK)
+#define RF_AR_NIC_FMA_DBG_ERRINJ_RAM_DESC08(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC08_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC08_MASK)
+#define WF_AR_NIC_FMA_DBG_ERRINJ_RAM_DESC08(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC08_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC08_MASK)
+#define RF_AR_NIC_FMA_DBG_ERRINJ_RAM_DESC00(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC00_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC00_MASK)
+#define WF_AR_NIC_FMA_DBG_ERRINJ_RAM_DESC00(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC00_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_DESC00_MASK)
+#define RF_AR_NIC_FMA_DBG_ERRINJ_RAM_TRIGGERED(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_TRIGGERED_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_TRIGGERED_MASK)
+#define WF_AR_NIC_FMA_DBG_ERRINJ_RAM_TRIGGERED(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_TRIGGERED_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_TRIGGERED_MASK)
+#define RF_AR_NIC_FMA_DBG_ERRINJ_RAM_MODE(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_MODE_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_MODE_MASK)
+#define WF_AR_NIC_FMA_DBG_ERRINJ_RAM_MODE(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_MODE_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_MODE_MASK)
+#define RF_AR_NIC_FMA_DBG_ERRINJ_RAM_ENABLE(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_ENABLE_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_ENABLE_MASK)
+#define WF_AR_NIC_FMA_DBG_ERRINJ_RAM_ENABLE(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_ENABLE_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_RAM_ENABLE_MASK)
+#define RF_AR_NIC_FMA_DBG_ERRINJ_PKT_CHECKBYTEUP(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_CHECKBYTEUP_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_CHECKBYTEUP_MASK)
+#define WF_AR_NIC_FMA_DBG_ERRINJ_PKT_CHECKBYTEUP(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_CHECKBYTEUP_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_CHECKBYTEUP_MASK)
+#define RF_AR_NIC_FMA_DBG_ERRINJ_PKT_CHECKBYTELO(mmr)           	RD_FIELD(mmr,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_CHECKBYTELO_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_CHECKBYTELO_MASK)
+#define WF_AR_NIC_FMA_DBG_ERRINJ_PKT_CHECKBYTELO(mmr,v)         	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_CHECKBYTELO_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_CHECKBYTELO_MASK)
+#define RF_AR_NIC_FMA_DBG_ERRINJ_PKT_PARITY(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_PARITY_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_PARITY_MASK)
+#define WF_AR_NIC_FMA_DBG_ERRINJ_PKT_PARITY(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_PARITY_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_PARITY_MASK)
+#define RF_AR_NIC_FMA_DBG_ERRINJ_PKT_TAIL(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_TAIL_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_TAIL_MASK)
+#define WF_AR_NIC_FMA_DBG_ERRINJ_PKT_TAIL(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_TAIL_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_TAIL_MASK)
+#define RF_AR_NIC_FMA_DBG_ERRINJ_PKT_COUNT(mmr)                 	RD_FIELD(mmr,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_COUNT_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_COUNT_MASK)
+#define WF_AR_NIC_FMA_DBG_ERRINJ_PKT_COUNT(mmr,v)               	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_COUNT_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_COUNT_MASK)
+#define RF_AR_NIC_FMA_DBG_ERRINJ_PKT_TRIGGERED(mmr)             	RD_FIELD(mmr,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_TRIGGERED_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_TRIGGERED_MASK)
+#define WF_AR_NIC_FMA_DBG_ERRINJ_PKT_TRIGGERED(mmr,v)           	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_TRIGGERED_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_TRIGGERED_MASK)
+#define RF_AR_NIC_FMA_DBG_ERRINJ_PKT_MODE(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_MODE_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_MODE_MASK)
+#define WF_AR_NIC_FMA_DBG_ERRINJ_PKT_MODE(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_MODE_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_MODE_MASK)
+#define RF_AR_NIC_FMA_DBG_ERRINJ_PKT_ENABLE(mmr)                	RD_FIELD(mmr,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_ENABLE_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_ENABLE_MASK)
+#define WF_AR_NIC_FMA_DBG_ERRINJ_PKT_ENABLE(mmr,v)              	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_ENABLE_BP,\
+									AR_NIC_FMA_DBG_ERRINJ_PKT_ENABLE_MASK)
+#define RF_AR_NIC_FMA_CFG_CREDIT_CQ_COUNT(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_CREDIT_CQ_COUNT_BP,\
+									AR_NIC_FMA_CFG_CREDIT_CQ_COUNT_MASK)
+#define WF_AR_NIC_FMA_CFG_CREDIT_CQ_COUNT(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_CREDIT_CQ_COUNT_BP,\
+									AR_NIC_FMA_CFG_CREDIT_CQ_COUNT_MASK)
+#define RF_AR_NIC_FMA_CFG_CREDIT_AAX_OPRND_MODE(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_CREDIT_AAX_OPRND_MODE_BP,\
+									AR_NIC_FMA_CFG_CREDIT_AAX_OPRND_MODE_MASK)
+#define WF_AR_NIC_FMA_CFG_CREDIT_AAX_OPRND_MODE(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_CREDIT_AAX_OPRND_MODE_BP,\
+									AR_NIC_FMA_CFG_CREDIT_AAX_OPRND_MODE_MASK)
+#define RF_AR_NIC_FMA_CFG_CREDIT_TARB_INT_COUNT(mmr)            	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_CREDIT_TARB_INT_COUNT_BP,\
+									AR_NIC_FMA_CFG_CREDIT_TARB_INT_COUNT_MASK)
+#define WF_AR_NIC_FMA_CFG_CREDIT_TARB_INT_COUNT(mmr,v)          	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_CREDIT_TARB_INT_COUNT_BP,\
+									AR_NIC_FMA_CFG_CREDIT_TARB_INT_COUNT_MASK)
+#define RF_AR_NIC_FMA_CFG_CREDIT_DLA_COUNT(mmr)                 	RD_FIELD(mmr,\
+									AR_NIC_FMA_CFG_CREDIT_DLA_COUNT_BP,\
+									AR_NIC_FMA_CFG_CREDIT_DLA_COUNT_MASK)
+#define WF_AR_NIC_FMA_CFG_CREDIT_DLA_COUNT(mmr,v)               	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_CFG_CREDIT_DLA_COUNT_BP,\
+									AR_NIC_FMA_CFG_CREDIT_DLA_COUNT_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_PI_LSTATUS(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_PI_LSTATUS_BP,\
+									AR_NIC_FMA_ERR_INFO_PI_LSTATUS_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_PI_LSTATUS(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_PI_LSTATUS_BP,\
+									AR_NIC_FMA_ERR_INFO_PI_LSTATUS_MASK)
+#define RF_AR_NIC_FMA_ERR_INFO_SW_ADDRESS(mmr)                  	RD_FIELD(mmr,\
+									AR_NIC_FMA_ERR_INFO_SW_ADDRESS_BP,\
+									AR_NIC_FMA_ERR_INFO_SW_ADDRESS_MASK)
+#define WF_AR_NIC_FMA_ERR_INFO_SW_ADDRESS(mmr,v)                	WR_FIELD(mmr,v,\
+									AR_NIC_FMA_ERR_INFO_SW_ADDRESS_BP,\
+									AR_NIC_FMA_ERR_INFO_SW_ADDRESS_MASK)
+
+#endif

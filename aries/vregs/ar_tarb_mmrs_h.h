@@ -1,0 +1,329 @@
+/******************************************************************************
+ * COPYRIGHT CRAY INC. ar_tarb_mmrs_h.h
+ * FILE: ar_tarb_mmrs_h.h
+ * Created by v2h.c on Wed Oct  8 14:39:03 2014
+ ******************************************************************************/
+
+#ifndef _AR_TARB_MMRS_H_H_
+#define _AR_TARB_MMRS_H_H_
+
+#ifdef __GNUC__
+#define _unused __attribute__((unused))
+#else
+#define _unused
+#endif
+
+#ifndef _GENERIC_MMRD_T_
+#define _GENERIC_MMRD_T_
+typedef struct {
+	char* _name;		/* Field name */
+	uint32_t _bpos;		/* Field bit postion */
+	uint64_t _mask;		/* Field bit mask */
+} generic_mmrd_t;
+#endif
+
+#ifndef _ERRCAT_MMRD_T_
+#define _ERRCAT_MMRD_T_
+typedef struct {
+	char* _name;		/* Field name */
+	uint32_t _bpos;		/* Field bit postion */
+	uint32_t _ec;		/* Field error category */
+} errcat_mmrd_t;
+#endif
+
+#ifndef _GENERIC_MMR_T_
+#define _GENERIC_MMR_T_
+typedef struct {
+	char* _name;		/* MMR name */
+	uint64_t _addr;		/* MMR address */
+	int _size;		/* Size in bytes of MMR */
+	int _depth;		/* Number of MMR instances */
+	const generic_mmrd_t *_info;	/* MMR detail */
+} generic_mmr_t;
+#endif
+
+static const generic_mmr_t* _ar_tarb_mmrs[] _unused;	/* TARB Array */
+
+/*
+ *  AR TARB MMR DETAIL DECLARATIONS
+ */
+static const generic_mmrd_t _ar_nic_tarb_cfg_params_detail[] = {
+    { "MAX_PKT_SIZE", AR_NIC_TARB_CFG_PARAMS_MAX_PKT_SIZE_BP, AR_NIC_TARB_CFG_PARAMS_MAX_PKT_SIZE_MASK },
+    { "SF_DLA", AR_NIC_TARB_CFG_PARAMS_SF_DLA_BP, AR_NIC_TARB_CFG_PARAMS_SF_DLA_MASK },
+    { "SF_BTE", AR_NIC_TARB_CFG_PARAMS_SF_BTE_BP, AR_NIC_TARB_CFG_PARAMS_SF_BTE_MASK },
+    { "SF_CE", AR_NIC_TARB_CFG_PARAMS_SF_CE_BP, AR_NIC_TARB_CFG_PARAMS_SF_CE_MASK },
+    { "SSID_CREDIT_MAX", AR_NIC_TARB_CFG_PARAMS_SSID_CREDIT_MAX_BP, AR_NIC_TARB_CFG_PARAMS_SSID_CREDIT_MAX_MASK },
+    { NULL, 0, 0 }
+};
+static const generic_mmrd_t _ar_nic_tarb_tarb_mmr_ring_0_hi_tarb_detail[] = {
+    { "UNUSED_145_35", AR_NIC_TARB_TARB_MMR_RING_0_HI_TARB_UNUSED_145_35_BP, AR_NIC_TARB_TARB_MMR_RING_0_HI_TARB_UNUSED_145_35_MASK },
+    { NULL, 0, 0 }
+};
+static const generic_mmrd_t _ar_nic_tarb_tarb_mmr_ring_0_mid_tarb_detail[] = {
+    { "UNUSED_127_94", AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_UNUSED_127_94_BP, AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_UNUSED_127_94_MASK },
+    { "CNTR_SSID_STALLED", AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_SSID_STALLED_BP, AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_SSID_STALLED_MASK },
+    { "CNTR_SSID_PKTS", AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_SSID_PKTS_BP, AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_SSID_PKTS_MASK },
+    { "CNTR_SSID_FLITS", AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_SSID_FLITS_BP, AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_SSID_FLITS_MASK },
+    { "CNTR_DLA_BLOCKED", AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_DLA_BLOCKED_BP, AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_DLA_BLOCKED_MASK },
+    { "CNTR_DLA_PKTS", AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_DLA_PKTS_BP, AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_DLA_PKTS_MASK },
+    { "CNTR_DLA_FLITS", AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_DLA_FLITS_BP, AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_DLA_FLITS_MASK },
+    { "CNTR_BTE_BLOCKED", AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_BTE_BLOCKED_BP, AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_BTE_BLOCKED_MASK },
+    { "CNTR_BTE_PKTS", AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_BTE_PKTS_BP, AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_BTE_PKTS_MASK },
+    { "CNTR_BTE_FLITS", AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_BTE_FLITS_BP, AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_BTE_FLITS_MASK },
+    { "CNTR_CE_BLOCKED", AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_CE_BLOCKED_BP, AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_CE_BLOCKED_MASK },
+    { "CNTR_CE_PKTS", AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_CE_PKTS_BP, AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_CE_PKTS_MASK },
+    { "CNTR_CE_FLITS", AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_CE_FLITS_BP, AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_CNTR_CE_FLITS_MASK },
+    { "UNUSED_81_64", AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_UNUSED_81_64_BP, AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB_UNUSED_81_64_MASK },
+    { NULL, 0, 0 }
+};
+static const generic_mmrd_t _ar_nic_tarb_tarb_mmr_ring_0_lo_tarb_detail[] = {
+    { "UNUSED_145_35", AR_NIC_TARB_TARB_MMR_RING_0_LO_TARB_UNUSED_145_35_BP, AR_NIC_TARB_TARB_MMR_RING_0_LO_TARB_UNUSED_145_35_MASK },
+    { "R_Q_TARB_PI_OS_IRQ", AR_NIC_TARB_TARB_MMR_RING_0_LO_TARB_R_Q_TARB_PI_OS_IRQ_BP, AR_NIC_TARB_TARB_MMR_RING_0_LO_TARB_R_Q_TARB_PI_OS_IRQ_MASK },
+    { "R_Q_TARB_LB_HSS_IRQ", AR_NIC_TARB_TARB_MMR_RING_0_LO_TARB_R_Q_TARB_LB_HSS_IRQ_BP, AR_NIC_TARB_TARB_MMR_RING_0_LO_TARB_R_Q_TARB_LB_HSS_IRQ_MASK },
+    { "R_Q_TARB_NETMON_RING_WRACK", AR_NIC_TARB_TARB_MMR_RING_0_LO_TARB_R_Q_TARB_NETMON_RING_WRACK_BP, AR_NIC_TARB_TARB_MMR_RING_0_LO_TARB_R_Q_TARB_NETMON_RING_WRACK_MASK },
+    { "R_Q_TARB_NETMON_RING_15_0", AR_NIC_TARB_TARB_MMR_RING_0_LO_TARB_R_Q_TARB_NETMON_RING_15_0_BP, AR_NIC_TARB_TARB_MMR_RING_0_LO_TARB_R_Q_TARB_NETMON_RING_15_0_MASK },
+    { "I_NETMON_TARB_RING_15_0", AR_NIC_TARB_TARB_MMR_RING_0_LO_TARB_I_NETMON_TARB_RING_15_0_BP, AR_NIC_TARB_TARB_MMR_RING_0_LO_TARB_I_NETMON_TARB_RING_15_0_MASK },
+    { NULL, 0, 0 }
+};
+static const generic_mmrd_t _ar_nic_tarb_err_flg_1_hi_tarb_detail[] = {
+    { "UNUSED_145_71", AR_NIC_TARB_ERR_FLG_1_HI_TARB_UNUSED_145_71_BP, AR_NIC_TARB_ERR_FLG_1_HI_TARB_UNUSED_145_71_MASK },
+    { NULL, 0, 0 }
+};
+static const generic_mmrd_t _ar_nic_tarb_err_flg_1_mid_tarb_detail[] = {
+    { "UNUSED_127_71", AR_NIC_TARB_ERR_FLG_1_MID_TARB_UNUSED_127_71_BP, AR_NIC_TARB_ERR_FLG_1_MID_TARB_UNUSED_127_71_MASK },
+    { "DLA_UNDERFLOW", AR_NIC_TARB_ERR_FLG_1_MID_TARB_DLA_UNDERFLOW_BP, AR_NIC_TARB_ERR_FLG_1_MID_TARB_DLA_UNDERFLOW_MASK },
+    { "BTE_UNDERFLOW", AR_NIC_TARB_ERR_FLG_1_MID_TARB_BTE_UNDERFLOW_BP, AR_NIC_TARB_ERR_FLG_1_MID_TARB_BTE_UNDERFLOW_MASK },
+    { "CE_UNDERFLOW", AR_NIC_TARB_ERR_FLG_1_MID_TARB_CE_UNDERFLOW_BP, AR_NIC_TARB_ERR_FLG_1_MID_TARB_CE_UNDERFLOW_MASK },
+    { "DLA_OVERFLOW", AR_NIC_TARB_ERR_FLG_1_MID_TARB_DLA_OVERFLOW_BP, AR_NIC_TARB_ERR_FLG_1_MID_TARB_DLA_OVERFLOW_MASK },
+    { "BTE_OVERFLOW", AR_NIC_TARB_ERR_FLG_1_MID_TARB_BTE_OVERFLOW_BP, AR_NIC_TARB_ERR_FLG_1_MID_TARB_BTE_OVERFLOW_MASK },
+    { "CE_OVERFLOW", AR_NIC_TARB_ERR_FLG_1_MID_TARB_CE_OVERFLOW_BP, AR_NIC_TARB_ERR_FLG_1_MID_TARB_CE_OVERFLOW_MASK },
+    { "DIAG_ONLY", AR_NIC_TARB_ERR_FLG_1_MID_TARB_DIAG_ONLY_BP, AR_NIC_TARB_ERR_FLG_1_MID_TARB_DIAG_ONLY_MASK },
+    { NULL, 0, 0 }
+};
+static const generic_mmrd_t _ar_nic_tarb_err_flg_1_lo_tarb_detail[] = {
+    { "UNUSED_63_7", AR_NIC_TARB_ERR_FLG_1_LO_TARB_UNUSED_63_7_BP, AR_NIC_TARB_ERR_FLG_1_LO_TARB_UNUSED_63_7_MASK },
+    { "I_DLA_UNDERFLOW", AR_NIC_TARB_ERR_FLG_1_LO_TARB_I_DLA_UNDERFLOW_BP, AR_NIC_TARB_ERR_FLG_1_LO_TARB_I_DLA_UNDERFLOW_MASK },
+    { "I_BTE_UNDERFLOW", AR_NIC_TARB_ERR_FLG_1_LO_TARB_I_BTE_UNDERFLOW_BP, AR_NIC_TARB_ERR_FLG_1_LO_TARB_I_BTE_UNDERFLOW_MASK },
+    { "I_CE_UNDERFLOW", AR_NIC_TARB_ERR_FLG_1_LO_TARB_I_CE_UNDERFLOW_BP, AR_NIC_TARB_ERR_FLG_1_LO_TARB_I_CE_UNDERFLOW_MASK },
+    { "I_DLA_OVERFLOW", AR_NIC_TARB_ERR_FLG_1_LO_TARB_I_DLA_OVERFLOW_BP, AR_NIC_TARB_ERR_FLG_1_LO_TARB_I_DLA_OVERFLOW_MASK },
+    { "I_BTE_OVERFLOW", AR_NIC_TARB_ERR_FLG_1_LO_TARB_I_BTE_OVERFLOW_BP, AR_NIC_TARB_ERR_FLG_1_LO_TARB_I_BTE_OVERFLOW_MASK },
+    { "I_CE_OVERFLOW", AR_NIC_TARB_ERR_FLG_1_LO_TARB_I_CE_OVERFLOW_BP, AR_NIC_TARB_ERR_FLG_1_LO_TARB_I_CE_OVERFLOW_MASK },
+    { "UNUSED_0", AR_NIC_TARB_ERR_FLG_1_LO_TARB_UNUSED_0_BP, AR_NIC_TARB_ERR_FLG_1_LO_TARB_UNUSED_0_MASK },
+    { NULL, 0, 0 }
+};
+static const generic_mmrd_t _ar_nic_tarb_tarb_ssid_req_flit_2_hi_tarb_detail[] = {
+    { "TARB_SSID_REQ_SB", AR_NIC_TARB_TARB_SSID_REQ_FLIT_2_HI_TARB_TARB_SSID_REQ_SB_BP, AR_NIC_TARB_TARB_SSID_REQ_FLIT_2_HI_TARB_TARB_SSID_REQ_SB_MASK },
+    { "TARB_SSID_REQ_FLIT", AR_NIC_TARB_TARB_SSID_REQ_FLIT_2_HI_TARB_TARB_SSID_REQ_FLIT_BP, AR_NIC_TARB_TARB_SSID_REQ_FLIT_2_HI_TARB_TARB_SSID_REQ_FLIT_MASK },
+    { NULL, 0, 0 }
+};
+static const generic_mmrd_t _ar_nic_tarb_tarb_ssid_req_flit_2_mid_tarb_detail[] = {
+    { "TARB_SSID_REQ_FLIT", AR_NIC_TARB_TARB_SSID_REQ_FLIT_2_MID_TARB_TARB_SSID_REQ_FLIT_BP, AR_NIC_TARB_TARB_SSID_REQ_FLIT_2_MID_TARB_TARB_SSID_REQ_FLIT_MASK },
+    { NULL, 0, 0 }
+};
+static const generic_mmrd_t _ar_nic_tarb_tarb_ssid_req_flit_2_lo_tarb_detail[] = {
+    { "TARB_SSID_REQ_FLIT", AR_NIC_TARB_TARB_SSID_REQ_FLIT_2_LO_TARB_TARB_SSID_REQ_FLIT_BP, AR_NIC_TARB_TARB_SSID_REQ_FLIT_2_LO_TARB_TARB_SSID_REQ_FLIT_MASK },
+    { NULL, 0, 0 }
+};
+static const generic_mmrd_t _ar_nic_tarb_tarb_arb_crdt_ack_fields_3_hi_tarb_detail[] = {
+    { "UNUSED_145_37", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_HI_TARB_UNUSED_145_37_BP, AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_HI_TARB_UNUSED_145_37_MASK },
+    { NULL, 0, 0 }
+};
+static const generic_mmrd_t _ar_nic_tarb_tarb_arb_crdt_ack_fields_3_mid_tarb_detail[] = {
+    { "UNUSED_145_37", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_MID_TARB_UNUSED_145_37_BP, AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_MID_TARB_UNUSED_145_37_MASK },
+    { NULL, 0, 0 }
+};
+static const generic_mmrd_t _ar_nic_tarb_tarb_arb_crdt_ack_fields_3_lo_tarb_detail[] = {
+    { "UNUSED_145_37", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_UNUSED_145_37_BP, AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_UNUSED_145_37_MASK },
+    { "I_SSID_TARB_REQ_ACK", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_I_SSID_TARB_REQ_ACK_BP, AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_I_SSID_TARB_REQ_ACK_MASK },
+    { "RESERVED_35_33", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_RESERVED_35_33_BP, AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_RESERVED_35_33_MASK },
+    { "R_Q_TARB_DLA_REQ_ACK", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_R_Q_TARB_DLA_REQ_ACK_BP, AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_R_Q_TARB_DLA_REQ_ACK_MASK },
+    { "RESERVED_31_29", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_RESERVED_31_29_BP, AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_RESERVED_31_29_MASK },
+    { "R_Q_TARB_BTE_REQ_ACK", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_R_Q_TARB_BTE_REQ_ACK_BP, AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_R_Q_TARB_BTE_REQ_ACK_MASK },
+    { "RESERVED_27_25", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_RESERVED_27_25_BP, AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_RESERVED_27_25_MASK },
+    { "R_Q_TARB_CE_REQ_ACK", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_R_Q_TARB_CE_REQ_ACK_BP, AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_R_Q_TARB_CE_REQ_ACK_MASK },
+    { "TARB_CRDTS", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_TARB_CRDTS_BP, AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_TARB_CRDTS_MASK },
+    { "TARB_CRDTS_EMPTY", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_TARB_CRDTS_EMPTY_BP, AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_TARB_CRDTS_EMPTY_MASK },
+    { "I_DLA_TARB_DL_REC", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_I_DLA_TARB_DL_REC_BP, AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_I_DLA_TARB_DL_REC_MASK },
+    { "QOS_VLD", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_QOS_VLD_BP, AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_QOS_VLD_MASK },
+    { "ARB_HOLD", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_ARB_HOLD_BP, AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_ARB_HOLD_MASK },
+    { "RESERVED_11", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_RESERVED_11_BP, AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_RESERVED_11_MASK },
+    { "ARB_ACK", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_ARB_ACK_BP, AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_ARB_ACK_MASK },
+    { "RESERVED_7", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_RESERVED_7_BP, AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_RESERVED_7_MASK },
+    { "ARB_GNT", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_ARB_GNT_BP, AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_ARB_GNT_MASK },
+    { "RESERVED_3", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_RESERVED_3_BP, AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_RESERVED_3_MASK },
+    { "ARB_REQ", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_ARB_REQ_BP, AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB_ARB_REQ_MASK },
+    { NULL, 0, 0 }
+};
+static const generic_mmrd_t _ar_nic_tarb_cfg_qos_rate_detail[] = {
+    { "B2_RATE", AR_NIC_TARB_CFG_QOS_RATE_B2_RATE_BP, AR_NIC_TARB_CFG_QOS_RATE_B2_RATE_MASK },
+    { "B1_RATE", AR_NIC_TARB_CFG_QOS_RATE_B1_RATE_BP, AR_NIC_TARB_CFG_QOS_RATE_B1_RATE_MASK },
+    { NULL, 0, 0 }
+};
+static const generic_mmrd_t _ar_nic_tarb_cfg_qos_size_detail[] = {
+    { "B2_SIZE", AR_NIC_TARB_CFG_QOS_SIZE_B2_SIZE_BP, AR_NIC_TARB_CFG_QOS_SIZE_B2_SIZE_MASK },
+    { "B1_SIZE", AR_NIC_TARB_CFG_QOS_SIZE_B1_SIZE_BP, AR_NIC_TARB_CFG_QOS_SIZE_B1_SIZE_MASK },
+    { NULL, 0, 0 }
+};
+static const generic_mmrd_t _ar_nic_tarb_dbg_credit_detail[] = {
+    { "SSID_CREDIT_CNT", AR_NIC_TARB_DBG_CREDIT_SSID_CREDIT_CNT_BP, AR_NIC_TARB_DBG_CREDIT_SSID_CREDIT_CNT_MASK },
+    { NULL, 0, 0 }
+};
+static const generic_mmrd_t _ar_nic_tarb_err_flg_detail[] = {
+    { "DLA_UNDERFLOW", AR_NIC_TARB_ERR_FLG_DLA_UNDERFLOW_BP, AR_NIC_TARB_ERR_FLG_DLA_UNDERFLOW_MASK },
+    { "BTE_UNDERFLOW", AR_NIC_TARB_ERR_FLG_BTE_UNDERFLOW_BP, AR_NIC_TARB_ERR_FLG_BTE_UNDERFLOW_MASK },
+    { "CE_UNDERFLOW", AR_NIC_TARB_ERR_FLG_CE_UNDERFLOW_BP, AR_NIC_TARB_ERR_FLG_CE_UNDERFLOW_MASK },
+    { "DLA_OVERFLOW", AR_NIC_TARB_ERR_FLG_DLA_OVERFLOW_BP, AR_NIC_TARB_ERR_FLG_DLA_OVERFLOW_MASK },
+    { "BTE_OVERFLOW", AR_NIC_TARB_ERR_FLG_BTE_OVERFLOW_BP, AR_NIC_TARB_ERR_FLG_BTE_OVERFLOW_MASK },
+    { "CE_OVERFLOW", AR_NIC_TARB_ERR_FLG_CE_OVERFLOW_BP, AR_NIC_TARB_ERR_FLG_CE_OVERFLOW_MASK },
+    { "DIAG_ONLY", AR_NIC_TARB_ERR_FLG_DIAG_ONLY_BP, AR_NIC_TARB_ERR_FLG_DIAG_ONLY_MASK },
+    { NULL, 0, 0 }
+};
+#ifdef EXCEPTIONS_DEFS
+static const errcat_mmrd_t _ar_nic_tarb_err_flg_errcat[] = {
+    { "DLA_UNDERFLOW", AR_NIC_TARB_ERR_FLG_DLA_UNDERFLOW_BP, AR_NIC_TARB_ERR_FLG_DLA_UNDERFLOW_EC },
+    { "BTE_UNDERFLOW", AR_NIC_TARB_ERR_FLG_BTE_UNDERFLOW_BP, AR_NIC_TARB_ERR_FLG_BTE_UNDERFLOW_EC },
+    { "CE_UNDERFLOW", AR_NIC_TARB_ERR_FLG_CE_UNDERFLOW_BP, AR_NIC_TARB_ERR_FLG_CE_UNDERFLOW_EC },
+    { "DLA_OVERFLOW", AR_NIC_TARB_ERR_FLG_DLA_OVERFLOW_BP, AR_NIC_TARB_ERR_FLG_DLA_OVERFLOW_EC },
+    { "BTE_OVERFLOW", AR_NIC_TARB_ERR_FLG_BTE_OVERFLOW_BP, AR_NIC_TARB_ERR_FLG_BTE_OVERFLOW_EC },
+    { "CE_OVERFLOW", AR_NIC_TARB_ERR_FLG_CE_OVERFLOW_BP, AR_NIC_TARB_ERR_FLG_CE_OVERFLOW_EC },
+    { "DIAG_ONLY", AR_NIC_TARB_ERR_FLG_DIAG_ONLY_BP, AR_NIC_TARB_ERR_FLG_DIAG_ONLY_EC },
+    { NULL, 0, 0 }
+};
+#endif
+static const generic_mmrd_t _ar_nic_tarb_err_clr_detail[] = {
+    { "DLA_UNDERFLOW", AR_NIC_TARB_ERR_CLR_DLA_UNDERFLOW_BP, AR_NIC_TARB_ERR_CLR_DLA_UNDERFLOW_MASK },
+    { "BTE_UNDERFLOW", AR_NIC_TARB_ERR_CLR_BTE_UNDERFLOW_BP, AR_NIC_TARB_ERR_CLR_BTE_UNDERFLOW_MASK },
+    { "CE_UNDERFLOW", AR_NIC_TARB_ERR_CLR_CE_UNDERFLOW_BP, AR_NIC_TARB_ERR_CLR_CE_UNDERFLOW_MASK },
+    { "DLA_OVERFLOW", AR_NIC_TARB_ERR_CLR_DLA_OVERFLOW_BP, AR_NIC_TARB_ERR_CLR_DLA_OVERFLOW_MASK },
+    { "BTE_OVERFLOW", AR_NIC_TARB_ERR_CLR_BTE_OVERFLOW_BP, AR_NIC_TARB_ERR_CLR_BTE_OVERFLOW_MASK },
+    { "CE_OVERFLOW", AR_NIC_TARB_ERR_CLR_CE_OVERFLOW_BP, AR_NIC_TARB_ERR_CLR_CE_OVERFLOW_MASK },
+    { "DIAG_ONLY", AR_NIC_TARB_ERR_CLR_DIAG_ONLY_BP, AR_NIC_TARB_ERR_CLR_DIAG_ONLY_MASK },
+    { NULL, 0, 0 }
+};
+static const generic_mmrd_t _ar_nic_tarb_err_hss_msk_detail[] = {
+    { "DLA_UNDERFLOW", AR_NIC_TARB_ERR_HSS_MSK_DLA_UNDERFLOW_BP, AR_NIC_TARB_ERR_HSS_MSK_DLA_UNDERFLOW_MASK },
+    { "BTE_UNDERFLOW", AR_NIC_TARB_ERR_HSS_MSK_BTE_UNDERFLOW_BP, AR_NIC_TARB_ERR_HSS_MSK_BTE_UNDERFLOW_MASK },
+    { "CE_UNDERFLOW", AR_NIC_TARB_ERR_HSS_MSK_CE_UNDERFLOW_BP, AR_NIC_TARB_ERR_HSS_MSK_CE_UNDERFLOW_MASK },
+    { "DLA_OVERFLOW", AR_NIC_TARB_ERR_HSS_MSK_DLA_OVERFLOW_BP, AR_NIC_TARB_ERR_HSS_MSK_DLA_OVERFLOW_MASK },
+    { "BTE_OVERFLOW", AR_NIC_TARB_ERR_HSS_MSK_BTE_OVERFLOW_BP, AR_NIC_TARB_ERR_HSS_MSK_BTE_OVERFLOW_MASK },
+    { "CE_OVERFLOW", AR_NIC_TARB_ERR_HSS_MSK_CE_OVERFLOW_BP, AR_NIC_TARB_ERR_HSS_MSK_CE_OVERFLOW_MASK },
+    { "DIAG_ONLY", AR_NIC_TARB_ERR_HSS_MSK_DIAG_ONLY_BP, AR_NIC_TARB_ERR_HSS_MSK_DIAG_ONLY_MASK },
+    { NULL, 0, 0 }
+};
+static const generic_mmrd_t _ar_nic_tarb_err_os_msk_detail[] = {
+    { "DLA_UNDERFLOW", AR_NIC_TARB_ERR_OS_MSK_DLA_UNDERFLOW_BP, AR_NIC_TARB_ERR_OS_MSK_DLA_UNDERFLOW_MASK },
+    { "BTE_UNDERFLOW", AR_NIC_TARB_ERR_OS_MSK_BTE_UNDERFLOW_BP, AR_NIC_TARB_ERR_OS_MSK_BTE_UNDERFLOW_MASK },
+    { "CE_UNDERFLOW", AR_NIC_TARB_ERR_OS_MSK_CE_UNDERFLOW_BP, AR_NIC_TARB_ERR_OS_MSK_CE_UNDERFLOW_MASK },
+    { "DLA_OVERFLOW", AR_NIC_TARB_ERR_OS_MSK_DLA_OVERFLOW_BP, AR_NIC_TARB_ERR_OS_MSK_DLA_OVERFLOW_MASK },
+    { "BTE_OVERFLOW", AR_NIC_TARB_ERR_OS_MSK_BTE_OVERFLOW_BP, AR_NIC_TARB_ERR_OS_MSK_BTE_OVERFLOW_MASK },
+    { "CE_OVERFLOW", AR_NIC_TARB_ERR_OS_MSK_CE_OVERFLOW_BP, AR_NIC_TARB_ERR_OS_MSK_CE_OVERFLOW_MASK },
+    { "DIAG_ONLY", AR_NIC_TARB_ERR_OS_MSK_DIAG_ONLY_BP, AR_NIC_TARB_ERR_OS_MSK_DIAG_ONLY_MASK },
+    { NULL, 0, 0 }
+};
+static const generic_mmrd_t _ar_nic_tarb_err_first_flg_detail[] = {
+    { "DLA_UNDERFLOW", AR_NIC_TARB_ERR_FIRST_FLG_DLA_UNDERFLOW_BP, AR_NIC_TARB_ERR_FIRST_FLG_DLA_UNDERFLOW_MASK },
+    { "BTE_UNDERFLOW", AR_NIC_TARB_ERR_FIRST_FLG_BTE_UNDERFLOW_BP, AR_NIC_TARB_ERR_FIRST_FLG_BTE_UNDERFLOW_MASK },
+    { "CE_UNDERFLOW", AR_NIC_TARB_ERR_FIRST_FLG_CE_UNDERFLOW_BP, AR_NIC_TARB_ERR_FIRST_FLG_CE_UNDERFLOW_MASK },
+    { "DLA_OVERFLOW", AR_NIC_TARB_ERR_FIRST_FLG_DLA_OVERFLOW_BP, AR_NIC_TARB_ERR_FIRST_FLG_DLA_OVERFLOW_MASK },
+    { "BTE_OVERFLOW", AR_NIC_TARB_ERR_FIRST_FLG_BTE_OVERFLOW_BP, AR_NIC_TARB_ERR_FIRST_FLG_BTE_OVERFLOW_MASK },
+    { "CE_OVERFLOW", AR_NIC_TARB_ERR_FIRST_FLG_CE_OVERFLOW_BP, AR_NIC_TARB_ERR_FIRST_FLG_CE_OVERFLOW_MASK },
+    { "DIAG_ONLY", AR_NIC_TARB_ERR_FIRST_FLG_DIAG_ONLY_BP, AR_NIC_TARB_ERR_FIRST_FLG_DIAG_ONLY_MASK },
+    { NULL, 0, 0 }
+};
+
+/*
+ *  AR TARB MMR DECLARATIONS
+ */
+static const generic_mmr_t _ar_nic_tarb_cfg_params = {
+    "AR_NIC_TARB_CFG_PARAMS", AR_NIC_TARB_CFG_PARAMS, 8, 1, _ar_nic_tarb_cfg_params_detail
+};
+static const generic_mmr_t _ar_nic_tarb_tarb_mmr_ring_0_hi_tarb = {
+    "AR_NIC_TARB_TARB_MMR_RING_0_HI_TARB", AR_NIC_TARB_TARB_MMR_RING_0_HI_TARB, 8, 1, _ar_nic_tarb_tarb_mmr_ring_0_hi_tarb_detail
+};
+static const generic_mmr_t _ar_nic_tarb_tarb_mmr_ring_0_mid_tarb = {
+    "AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB", AR_NIC_TARB_TARB_MMR_RING_0_MID_TARB, 8, 1, _ar_nic_tarb_tarb_mmr_ring_0_mid_tarb_detail
+};
+static const generic_mmr_t _ar_nic_tarb_tarb_mmr_ring_0_lo_tarb = {
+    "AR_NIC_TARB_TARB_MMR_RING_0_LO_TARB", AR_NIC_TARB_TARB_MMR_RING_0_LO_TARB, 8, 1, _ar_nic_tarb_tarb_mmr_ring_0_lo_tarb_detail
+};
+static const generic_mmr_t _ar_nic_tarb_err_flg_1_hi_tarb = {
+    "AR_NIC_TARB_ERR_FLG_1_HI_TARB", AR_NIC_TARB_ERR_FLG_1_HI_TARB, 8, 1, _ar_nic_tarb_err_flg_1_hi_tarb_detail
+};
+static const generic_mmr_t _ar_nic_tarb_err_flg_1_mid_tarb = {
+    "AR_NIC_TARB_ERR_FLG_1_MID_TARB", AR_NIC_TARB_ERR_FLG_1_MID_TARB, 8, 1, _ar_nic_tarb_err_flg_1_mid_tarb_detail
+};
+static const generic_mmr_t _ar_nic_tarb_err_flg_1_lo_tarb = {
+    "AR_NIC_TARB_ERR_FLG_1_LO_TARB", AR_NIC_TARB_ERR_FLG_1_LO_TARB, 8, 1, _ar_nic_tarb_err_flg_1_lo_tarb_detail
+};
+static const generic_mmr_t _ar_nic_tarb_tarb_ssid_req_flit_2_hi_tarb = {
+    "AR_NIC_TARB_TARB_SSID_REQ_FLIT_2_HI_TARB", AR_NIC_TARB_TARB_SSID_REQ_FLIT_2_HI_TARB, 8, 1, _ar_nic_tarb_tarb_ssid_req_flit_2_hi_tarb_detail
+};
+static const generic_mmr_t _ar_nic_tarb_tarb_ssid_req_flit_2_mid_tarb = {
+    "AR_NIC_TARB_TARB_SSID_REQ_FLIT_2_MID_TARB", AR_NIC_TARB_TARB_SSID_REQ_FLIT_2_MID_TARB, 8, 1, _ar_nic_tarb_tarb_ssid_req_flit_2_mid_tarb_detail
+};
+static const generic_mmr_t _ar_nic_tarb_tarb_ssid_req_flit_2_lo_tarb = {
+    "AR_NIC_TARB_TARB_SSID_REQ_FLIT_2_LO_TARB", AR_NIC_TARB_TARB_SSID_REQ_FLIT_2_LO_TARB, 8, 1, _ar_nic_tarb_tarb_ssid_req_flit_2_lo_tarb_detail
+};
+static const generic_mmr_t _ar_nic_tarb_tarb_arb_crdt_ack_fields_3_hi_tarb = {
+    "AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_HI_TARB", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_HI_TARB, 8, 1, _ar_nic_tarb_tarb_arb_crdt_ack_fields_3_hi_tarb_detail
+};
+static const generic_mmr_t _ar_nic_tarb_tarb_arb_crdt_ack_fields_3_mid_tarb = {
+    "AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_MID_TARB", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_MID_TARB, 8, 1, _ar_nic_tarb_tarb_arb_crdt_ack_fields_3_mid_tarb_detail
+};
+static const generic_mmr_t _ar_nic_tarb_tarb_arb_crdt_ack_fields_3_lo_tarb = {
+    "AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB", AR_NIC_TARB_TARB_ARB_CRDT_ACK_FIELDS_3_LO_TARB, 8, 1, _ar_nic_tarb_tarb_arb_crdt_ack_fields_3_lo_tarb_detail
+};
+static const generic_mmr_t _ar_nic_tarb_cfg_qos_rate = {
+    "AR_NIC_TARB_CFG_QOS_RATE", AR_NIC_TARB_CFG_QOS_RATE, 8, 1, _ar_nic_tarb_cfg_qos_rate_detail
+};
+static const generic_mmr_t _ar_nic_tarb_cfg_qos_size = {
+    "AR_NIC_TARB_CFG_QOS_SIZE", AR_NIC_TARB_CFG_QOS_SIZE, 8, 1, _ar_nic_tarb_cfg_qos_size_detail
+};
+static const generic_mmr_t _ar_nic_tarb_dbg_credit = {
+    "AR_NIC_TARB_DBG_CREDIT", AR_NIC_TARB_DBG_CREDIT, 8, 1, _ar_nic_tarb_dbg_credit_detail
+};
+static const generic_mmr_t _ar_nic_tarb_err_flg = {
+    "AR_NIC_TARB_ERR_FLG", AR_NIC_TARB_ERR_FLG, 8, 1, _ar_nic_tarb_err_flg_detail
+};
+static const generic_mmr_t _ar_nic_tarb_err_clr = {
+    "AR_NIC_TARB_ERR_CLR", AR_NIC_TARB_ERR_CLR, 8, 1, _ar_nic_tarb_err_clr_detail
+};
+static const generic_mmr_t _ar_nic_tarb_err_hss_msk = {
+    "AR_NIC_TARB_ERR_HSS_MSK", AR_NIC_TARB_ERR_HSS_MSK, 8, 1, _ar_nic_tarb_err_hss_msk_detail
+};
+static const generic_mmr_t _ar_nic_tarb_err_os_msk = {
+    "AR_NIC_TARB_ERR_OS_MSK", AR_NIC_TARB_ERR_OS_MSK, 8, 1, _ar_nic_tarb_err_os_msk_detail
+};
+static const generic_mmr_t _ar_nic_tarb_err_first_flg = {
+    "AR_NIC_TARB_ERR_FIRST_FLG", AR_NIC_TARB_ERR_FIRST_FLG, 8, 1, _ar_nic_tarb_err_first_flg_detail
+};
+
+/*
+ *  INSTALL AR TARB MMRS
+ */
+static const generic_mmr_t* _ar_tarb_mmrs[] _unused = {
+    &_ar_nic_tarb_cfg_params,
+    &_ar_nic_tarb_tarb_mmr_ring_0_hi_tarb,
+    &_ar_nic_tarb_tarb_mmr_ring_0_mid_tarb,
+    &_ar_nic_tarb_tarb_mmr_ring_0_lo_tarb,
+    &_ar_nic_tarb_err_flg_1_hi_tarb,
+    &_ar_nic_tarb_err_flg_1_mid_tarb,
+    &_ar_nic_tarb_err_flg_1_lo_tarb,
+    &_ar_nic_tarb_tarb_ssid_req_flit_2_hi_tarb,
+    &_ar_nic_tarb_tarb_ssid_req_flit_2_mid_tarb,
+    &_ar_nic_tarb_tarb_ssid_req_flit_2_lo_tarb,
+    &_ar_nic_tarb_tarb_arb_crdt_ack_fields_3_hi_tarb,
+    &_ar_nic_tarb_tarb_arb_crdt_ack_fields_3_mid_tarb,
+    &_ar_nic_tarb_tarb_arb_crdt_ack_fields_3_lo_tarb,
+    &_ar_nic_tarb_cfg_qos_rate,
+    &_ar_nic_tarb_cfg_qos_size,
+    &_ar_nic_tarb_dbg_credit,
+    &_ar_nic_tarb_err_flg,
+    &_ar_nic_tarb_err_clr,
+    &_ar_nic_tarb_err_hss_msk,
+    &_ar_nic_tarb_err_os_msk,
+    &_ar_nic_tarb_err_first_flg,
+    NULL
+};
+
+#endif
