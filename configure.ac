@@ -1,27 +1,15 @@
-#                                               -*- Autoconf -*-
-# Process this file with autoconf to produce a configure script.
+dnl Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.63])
-AC_INIT([gpcd], [1.0], [])
-AM_INIT_AUTOMAKE(gpcd, 1.0)
-AC_CONFIG_SRCDIR([gpcd_lib.c])
-#AC_CONFIG_HEADERS([config.h])
+AC_PREREQ(2.63)
+AC_INIT(gpcd-support, 1.0.0, ovis-help@sandia.gov)
+AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_SRCDIR([gpcd/gpcd_lib.c])
+AC_CONFIG_AUX_DIR(config)
+AC_CONFIG_SUBDIRS([gpcd])
+AM_INIT_AUTOMAKE([foreign])
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+AM_CONFIG_HEADER(config.h)
+AC_SUBST(ac_configure_args)
 
-# Checks for programs.
-AC_PROG_CC
-
-# Checks for libraries.
-AC_PROG_RANLIB
-
-# Checks for header files.
-AC_CHECK_HEADERS([fcntl.h stdint.h stdlib.h string.h unistd.h])
-
-# Checks for typedefs, structures, and compiler characteristics.
-AC_TYPE_UINT32_T
-AC_TYPE_UINT64_T
-
-# Checks for library functions.
-AC_FUNC_MALLOC
-AC_CHECK_FUNCS([bzero])
-
-AC_OUTPUT(Makefile)
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT

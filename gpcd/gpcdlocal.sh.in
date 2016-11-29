@@ -1,0 +1,4 @@
+#!/bin/bash
+# what's needed to link, without going through install.
+GPCDLOCAL_BUILD_LIBDIR=@abs_builddir@
+GPCDLOCAL_BUILD_INCDIR=@abs_srcdir@

@@ -1,5 +1,3 @@
-#! /bin/sh
+#!/bin/sh
+autoreconf --force --install -v
 
-aclocal \
-&& automake --add-missing \
-&& autoconf
